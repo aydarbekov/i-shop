@@ -124,3 +124,108 @@
 // }
 //
 // $(document).ready(setUpFavoriteButtons);
+
+function slick() {
+    $('.category-cards').slick({
+        centerMode: true,
+        centerPadding: '60px',
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 2,
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    centerMode: false,
+                    slidesToShow: 3,
+                    slidesToScroll: 2,
+                    infinite: false,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                    centerMode: false,
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    infinite: false,
+
+                }
+            }
+        ]
+    });
+}
+let a = $('.slick-track div:nth-child(4n)');
+let dropdown = false;
+
+function godown() {
+    let count_for_third = -20;
+    let count_for_fourth = -10;
+    for (let i = 0; i < a.length; i++) {
+        a[i].previousSibling.style.position = 'absolute';
+        a[i].previousSibling.style.top = '110%';
+        count_for_third = count_for_third + 20;
+        a[i].previousSibling.style.left = count_for_third + '%';
+        a[i].style.position = 'absolute';
+        a[i].style.top = '110%';
+        count_for_fourth = count_for_fourth + 20;
+        a[i].style.left = count_for_fourth + '%'
+    }
+}
+function goup() {
+    for (let i = 0; i < a.length; i++) {
+        a[i].previousSibling.style.position = 'static';
+        a[i].style.position = 'static';
+    }
+}
+let info_btns = $('.info-btn');
+function add_dropdown_toggle(){
+    for(let i = 0; i<info_btns.length; i++){
+        info_btns[i].classList.add('dropdown-toggle')
+    }
+    dropdown = true
+}
+function remove_dropdown_toggle(){
+    for(let i = 0; i<info_btns.length; i++){
+        info_btns[i].classList.remove('dropdown-toggle')
+    }
+    dropdown = false
+}
+function dropdown_listener(){
+    for(let i = 0; i<info_btns.length; i++){
+        info_btns[i].addEventListener("click", function(){
+            if (!info_btns[i].parentElement.classList.contains('dropup')){
+                info_btns[i].parentElement.classList.add('dropup');
+            } 	else {
+                info_btns[i].parentElement.classList.remove('dropup');
+            }
+        });
+    }
+}
+$(document).ready(function(){
+    dropdown_listener();
+    slick();
+    if(document.documentElement.clientWidth < 768) {
+        godown();
+        add_dropdown_toggle();
+
+    }
+    $(window).resize(function() {
+        if(document.documentElement.clientWidth < 768) {
+            godown();
+            if (!dropdown){
+                add_dropdown_toggle()
+            }
+        }
+        if(document.documentElement.clientWidth >= 768) {
+            if (dropdown){
+                remove_dropdown_toggle()
+            }
+            goup();
+
+
+        }
+    });
+
+});
