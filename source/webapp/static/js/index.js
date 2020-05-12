@@ -156,10 +156,11 @@ function slick() {
         ]
     });
 }
-let a = $('.slick-track div:nth-child(4n)');
 let dropdown = false;
 
 function godown() {
+    const a = $('.slick-track div:nth-child(4n)');
+    console.log(a[0]);
     let count_for_third = -20;
     let count_for_fourth = -10;
     for (let i = 0; i < a.length; i++) {
@@ -174,6 +175,7 @@ function godown() {
     }
 }
 function goup() {
+    const a = $('.slick-track div:nth-child(4n)');
     for (let i = 0; i < a.length; i++) {
         a[i].previousSibling.style.position = 'static';
         a[i].style.position = 'static';

@@ -837,7 +837,7 @@ footer{
 		text-align: left;
 	}
 	.slick-list{
-		height: 320px;
+		padding-bottom: 50%;
 	}
 	.category-card{
 		margin-left: 15px;
