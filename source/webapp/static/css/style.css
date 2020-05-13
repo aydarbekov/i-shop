@@ -698,7 +698,7 @@ body{
 }
 .subscribe input{
 	border: 1px solid #DFE3E9;
-	border-top-right-radius: 4px;
+	border-bottom-left-radius: 4px;
 	border-top-left-radius: 4px;
 	padding: 6px 12px;
 }
@@ -715,9 +715,9 @@ body{
 	line-height: 14px;
 	color: #FFFFFF;
 	border: none;
-	padding: 11.5px 30px;
+	padding: 12px 30px;
     position: relative;
-    top: -2px;
+    top: -1px;
     left: -4px;
 }
 footer{
@@ -970,4 +970,13 @@ footer{
     	min-width: 67px;
     	height: 30px;
 	}
+}
+@-moz-document url-prefix() {
+    .middle-header form select {
+    	padding:11px 12px;
+    	-moz-appearance: none;
+    	background-image: url(../images/icons/down.svg);
+    	background-repeat: no-repeat;
+		background-position: 97% 1px;
+		background-size: 12%;    }
 }
