@@ -6,7 +6,7 @@ from webapp.models import Product
 
 
 class IndexView(ListView):
-    template_name = 'products.html'
+    template_name = 'index.html'
     model = Product
     context_object_name = "products"
 
