@@ -1,55 +1,55 @@
-// // const baseUrl = 'http://localhost:8000/api/v2/';
-// //
-// // function getFullPath(path) {
-// //     path = path.replace(/^\/+|\/+$/g, '');
-// //     path = path.replace(/\/{2,}/g, '/');
-// //     return baseUrl + path + '/';
-// // }
-// //
-// // function makeRequest(path, method, auth = true, data = null) {
-// //     let settings = {
-// //         url: getFullPath(path),
-// //         method: method,
-// //         dataType: 'json'
-// //     };
-// //     if (data) {
-// //         settings['data'] = JSON.stringify(data);
-// //         settings['contentType'] = 'application/json';
-// //     }
-// //     if (auth) {
-// //         settings.headers = {'Authorization': 'Token ' + getToken()};
-// //     }
-// //     return $.ajax(settings);
-// // }
-// //
-// // function saveToken(token) {
-// //     localStorage.setItem('authToken', token);
-// // }
-// //
-// // function getToken() {
-// //     return localStorage.getItem('authToken');
-// // }
-// //
-// // function removeToken() {
-// //     localStorage.removeItem('authToken');
-// // }
-// //
-// // function logIn(username, password) {
-// //     const credentials = {username, password};
-// //     let request = makeRequest('login', 'post', false, credentials);
-// //     request.done(function (data, status, response) {
-// //         console.log('Received token');
-// //         saveToken(data.token);
-// //     }).fail(function (response, status, message) {
-// //         console.log('Could not get token');
-// //         console.log(response);
-// //     });
-// // }
-// //
-// // $(document).ready(function () {
-// //     let token = getToken();
-// //     if (!token) logIn('admin', 'admin');
-// // });
+// const baseUrl = 'http://localhost:8000/api/v2/';
+//
+// function getFullPath(path) {
+//     path = path.replace(/^\/+|\/+$/g, '');
+//     path = path.replace(/\/{2,}/g, '/');
+//     return baseUrl + path + '/';
+// }
+//
+// function makeRequest(path, method, auth = true, data = null) {
+//     let settings = {
+//         url: getFullPath(path),
+//         method: method,
+//         dataType: 'json'
+//     };
+//     if (data) {
+//         settings['data'] = JSON.stringify(data);
+//         settings['contentType'] = 'application/json';
+//     }
+//     if (auth) {
+//         settings.headers = {'Authorization': 'Token ' + getToken()};
+//     }
+//     return $.ajax(settings);
+// }
+//
+// function saveToken(token) {
+//     localStorage.setItem('authToken', token);
+// }
+//
+// function getToken() {
+//     return localStorage.getItem('authToken');
+// }
+//
+// function removeToken() {
+//     localStorage.removeItem('authToken');
+// }
+//
+// function logIn(username, password) {
+//     const credentials = {username, password};
+//     let request = makeRequest('login', 'post', false, credentials);
+//     request.done(function (data, status, response) {
+//         console.log('Received token');
+//         saveToken(data.token);
+//     }).fail(function (response, status, message) {
+//         console.log('Could not get token');
+//         console.log(response);
+//     });
+// }
+//
+// $(document).ready(function () {
+//     let token = getToken();
+//     if (!token) logIn('admin', 'admin');
+// });
 //
 //
 // /* Код с Лабораторной ESDP */
@@ -156,8 +156,6 @@ function slick() {
         ]
     });
 }
-let dropdown = false;
-
 function godown() {
     const a = $('.slick-track div:nth-child(4n)');
     let count_for_third = -20;
@@ -180,52 +178,17 @@ function goup() {
         a[i].style.position = 'static';
     }
 }
-let info_btns = $('.info-btn');
-function add_dropdown_toggle(){
-    for(let i = 0; i<info_btns.length; i++){
-        info_btns[i].classList.add('dropdown-toggle')
-    }
-    dropdown = true
-}
-function remove_dropdown_toggle(){
-    for(let i = 0; i<info_btns.length; i++){
-        info_btns[i].classList.remove('dropdown-toggle')
-    }
-    dropdown = false
-}
-function dropdown_listener(){
-    for(let i = 0; i<info_btns.length; i++){
-        info_btns[i].addEventListener("click", function(){
-            if (!info_btns[i].parentElement.classList.contains('dropup')){
-                info_btns[i].parentElement.classList.add('dropup');
-            } 	else {
-                info_btns[i].parentElement.classList.remove('dropup');
-            }
-        });
-    }
-}
 $(document).ready(function(){
-    dropdown_listener();
     slick();
     if(document.documentElement.clientWidth < 768) {
         godown();
-        add_dropdown_toggle();
-
     }
     $(window).resize(function() {
         if(document.documentElement.clientWidth < 768) {
             godown();
-            if (!dropdown){
-                add_dropdown_toggle()
-            }
         }
         if(document.documentElement.clientWidth >= 768) {
-            if (dropdown){
-                remove_dropdown_toggle()
-            }
             goup();
-
-
         }
     });
 
