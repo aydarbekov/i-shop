@@ -991,9 +991,6 @@ footer{
 	color: #FFFFFF;
 	margin-top: 15px;
 }
-.products-in-category .card-text{
-	position: relative;
-}
 .position-for-hidden{
     height: 10px;
     margin-left: -20px;
@@ -1010,6 +1007,22 @@ footer{
 }
 .filter-btn{
 	display: contents;
+}
+.products-in-category .card-text div{
+	width: 50px;
+	height: 50px;
+	background-color: #83B734;
+	border-radius: 50%;
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 19px;
+	color: #FFFFFF;
+	position: absolute;
+	top: 3%;
+	left: 5%;
+}
+.products-in-category .card-text{
+	position: static;
 }
 
 @media screen and (min-width:769px){
@@ -1263,6 +1276,12 @@ footer{
 	}
 	.products-in-category .card:hover .photo-back {
 	    height: 130px;
+	}
+    .products-in-category .card-text div{
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+        line-height: 16px;
 	}
 }
 @-moz-document url-prefix() {
