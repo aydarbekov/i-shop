@@ -944,7 +944,12 @@ footer{
     height: 230px;
     margin: 20px auto 0;
 }
-
+.products-in-category img{
+	max-height: 90%;
+    width: auto;
+    max-width: 90%;
+    height: auto;
+}
 
 .products-in-category .hidden-part{
 	display: none;
@@ -1252,6 +1257,12 @@ footer{
 }
 .recomended-product-block{
 	margin-top: 100px;
+}
+.recomended-product-block img{
+    max-height: 90%;
+    width: auto;
+    max-width: 90%;
+    height: auto;
 }
 body .recomended-product-block .recomend-title{
 	font-weight: 900;
