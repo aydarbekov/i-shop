@@ -2,7 +2,8 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from webapp.models import Product
+
+from webapp.models import Product, Category
 
 
 class IndexView(ListView):
@@ -10,6 +11,10 @@ class IndexView(ListView):
     model = Product
     context_object_name = "products"
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context['categories'] = Category.objects.all()
+        return context
 
 class ProductView(DetailView):
     model = Product
@@ -48,3 +53,23 @@ class ProductDeleteView(PermissionRequiredMixin, DeleteView):
         product.in_stock = False
         product.save()
         return HttpResponseRedirect(self.get_success_url())
+
+
+class ProductListView(ListView):
+    template_name = 'products.html'
+    model = Product
+
+    def get_url(self):
+        global site
+        site = self.request.path
+        return site
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context['categories'] = Category.objects.all()
+        category_pk = self.kwargs.get('pk')
+        context['products'] = Product.objects.filter(category_id=category_pk)
+        self.get_url()
+        return context
+
+
