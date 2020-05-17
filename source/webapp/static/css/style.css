@@ -1057,7 +1057,7 @@ footer{
     margin-left: auto;
 }
 .product-info .name-price-share button{
-	background-image: url(../static/share2.png);
+	background-image: url(../images/share2.png);
 	border: none;
 	background-color: transparent;
 }
@@ -1114,7 +1114,6 @@ footer{
 	font-weight: 600;
 	font-size: 14px;
 	line-height: 17px;
-	text-align: center;
 	letter-spacing: 0.875px;
 	text-transform: uppercase;
 	color: #222427;
@@ -1150,7 +1149,6 @@ footer{
 	background-repeat: no-repeat;
 	background-position: center;
 	padding: 0;
-	background-position: center;
 	background-color: transparent;
 	border: none;
 }
@@ -1158,10 +1156,10 @@ footer{
 	filter: brightness(1.5) sepia(0.4) hue-rotate(60deg) saturate(5);
 }
 .promo-button-favorite2{
-	background-image: url(../static/favorive.svg);
+	background-image: url(../images/icons/favorive.svg);
 }
 .promo-button-compare2{
-	background-image: url(../static/compare5.png);
+	background-image: url(../images/icons/compare5.png);
 }
 .product-info .color-category-tags{
 	font-weight: bold;
@@ -1208,12 +1206,12 @@ footer{
 	margin-left: 15px;
 }
 .icon-insta2{
-	background-image: url(../static/social_icons/insta-black.png);
+	background-image: url(../images/icons/social_icons/insta-black.png);
 	background-color: transparent;
     border: none;
 }
 .icon-telegram2{
-	background-image: url(../static/social_icons/telegram-black.png);
+	background-image: url(../images/icons/social_icons/telegram-black.png);
 	background-color: transparent;
     border: none;
 }
@@ -1269,7 +1267,7 @@ body .recomended-product-block .recomend-title{
 }
 .recomended-product-block .card:hover{
 	border: 1px solid #ECECEC;
-	box-shadow: 0px 4px 4px rgba(201, 201, 201, 0.25);
+	box-shadow: 0 4px 4px rgba(201, 201, 201, 0.25);
 	box-sizing: border-box;
 }
 .recomended-product-block .card:hover .hidden-part{
@@ -1290,7 +1288,7 @@ body .recomended-product-block .recomend-title{
 	width: 100%;
 	border: 1px solid #ECECEC;
 	border-top: none;
-	box-shadow: 0px 4px 4px rgba(201, 201, 201, 0.25);
+	box-shadow: 0 4px 4px rgba(201, 201, 201, 0.25);
 	padding-left: 36px;
 	padding-right: 36px;
 	padding-bottom: 20px;
