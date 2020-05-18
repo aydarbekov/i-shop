@@ -18,7 +18,7 @@
                 {% if user.profile.photo %}
                     <img src="{{ user.profile.photo.url }}" class="card-img-top" alt="user picture">
                 {% else %}
-                    {% load static %}<img src="{% static "default_avatar.png" %}" class="card-img-top" alt="default avatar">
+                    {% load static %}<img src="{% static "images/no_photo.jpg" %}" class="card-img-top" alt="no-photo">
                 {% endif %}
             </div>
             <div class="col-md-6">
@@ -29,7 +29,7 @@
                     {% endif %}
                     <p>Username: {{ user.username }}<p>
                     <p class="card-text">Имя: <b>{{ user.first_name }}</b></p>
-                    <p class="card-text">Фамилия: {{ user.last_name }}</p>
+                    <p class="card-text">Фамилия: <b>{{ user.last_name }}</b></p>
                     {% if user.profile.sex %}
                         <p>Пол: {{ user.profile.sex }}
                     {% endif %}
@@ -49,10 +49,10 @@
                     {% endif %}
                 </div>
             {% if user.profile.type == 'client' %}
-                    <a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a></td>
+                    <a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a>
                 {% endif %}
                 {% if user.profile.type == 'company' %}
-                    <a href="{% url 'accounts:company_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a></td>
+                    <a href="{% url 'accounts:company_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a>
                 {% endif %}
             </div>
         </div>

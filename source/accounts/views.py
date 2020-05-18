@@ -5,7 +5,8 @@ from django.contrib.auth import login
 from django.views.generic import DetailView, UpdateView, ListView
 from django.contrib.auth.models import User
 from django.urls import reverse
-from .forms import UserCreationForm, UserInfoChangeForm, CompanyInfoChangeForm, UserPasswordChangeForm
+from .forms import UserCreationForm, UserInfoChangeForm, CompanyInfoChangeForm, UserPasswordChangeForm, \
+    StaffCreationForm
 from main.settings import HOST_NAME
 from accounts.models import Token, Profile
 from django.http import HttpResponseRedirect
@@ -128,25 +129,6 @@ class CompanyInfoChangeView(UpdateView):
     context_object_name = 'user_object'
     form_class = CompanyInfoChangeForm
 
-    # def form_valid(self, form):
-    #     pk = self.kwargs.get('pk')
-    #     profile = get_object_or_404(Profile, user=pk)
-    #     user = get_object_or_404(User, pk=pk)
-    #     user.first_name = form.cleaned_data['first_name']
-    #     user.last_name = form.cleaned_data['last_name']
-    #     user.email = form.cleaned_data['email']
-    #     profile.sex = form.cleaned_data['sex']
-    #     profile.birth_date = form.cleaned_data['birth_date']
-    #     profile.mobile_phone = form.cleaned_data['mobile_phone']
-    #     profile.company_name = form.cleaned_data['company_name']
-    #     print(profile.company_name)
-    #     profile.inn = form.cleaned_data['inn']
-    #     profile.okpo = form.cleaned_data['okpo']
-    #     profile.phone = form.cleaned_data['phone']
-    #     profile.save()
-    #     user.save()
-    #     return self.get_success_url()
-
     # def test_func(self):
     #     return self.get_object() == self.request.user
 
@@ -171,8 +153,8 @@ class UserListView(ListView):
     model = User
     template_name = 'user_list.html'
     context_object_name = 'users'
-    paginate_by = 5
-    paginate_orphans = 1
+    # paginate_by = 5
+    # paginate_orphans = 1
 
     def get_url(self):
         global site
@@ -184,3 +166,32 @@ class UserListView(ListView):
     #     print(user)
     #     return user.is_staff
 
+
+def register_staff_view(request):
+    if request.method == 'GET':
+        form = StaffCreationForm()
+        return render(request, 'register.html', {'form': form})
+    elif request.method == 'POST':
+        form = StaffCreationForm(data=request.POST)
+        if form.is_valid():
+            user = User(
+                username=form.cleaned_data['username'],
+                first_name=form.cleaned_data['first_name'],
+                last_name=form.cleaned_data['last_name'],
+                # phone_number=form.cleaned_data['phone_number'],
+                email=form.cleaned_data['email'],
+                is_active=True  # user не активный до подтверждения email
+            )
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            profile = Profile(
+                user=user,
+                mobile_phone=form.cleaned_data['phone_number'],
+                type=form.cleaned_data['type']
+            )
+            user.save()
+            profile.save()
+
+            return reverse('accounts:user_detail', kwargs={"pk": user.pk})
+        else:
+            return render(request, 'register.html', {'form': form})
