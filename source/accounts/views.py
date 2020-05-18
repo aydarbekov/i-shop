@@ -1,6 +1,6 @@
 
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.views.generic import DetailView, UpdateView, ListView
 from django.contrib.auth.models import User
@@ -106,7 +106,7 @@ def user_activate(request):
 class UserDetailView(DetailView):
     model = User
     template_name = 'user_detail.html'
-    context_object_name = 'user_object'
+    context_object_name = 'user'
 
 
 class UserInfoChangeView(UpdateView):
@@ -119,7 +119,7 @@ class UserInfoChangeView(UpdateView):
     #     return self.get_object() == self.request.user
 
     def get_success_url(self):
-        return reverse('accounts:user_detail', kwargs={'pk': self.object.pk})
+        return reverse('accounts:user_detail', kwargs={"pk": self.object.pk})
 
 
 class CompanyInfoChangeView(UpdateView):
@@ -128,11 +128,30 @@ class CompanyInfoChangeView(UpdateView):
     context_object_name = 'user_object'
     form_class = CompanyInfoChangeForm
 
+    # def form_valid(self, form):
+    #     pk = self.kwargs.get('pk')
+    #     profile = get_object_or_404(Profile, user=pk)
+    #     user = get_object_or_404(User, pk=pk)
+    #     user.first_name = form.cleaned_data['first_name']
+    #     user.last_name = form.cleaned_data['last_name']
+    #     user.email = form.cleaned_data['email']
+    #     profile.sex = form.cleaned_data['sex']
+    #     profile.birth_date = form.cleaned_data['birth_date']
+    #     profile.mobile_phone = form.cleaned_data['mobile_phone']
+    #     profile.company_name = form.cleaned_data['company_name']
+    #     print(profile.company_name)
+    #     profile.inn = form.cleaned_data['inn']
+    #     profile.okpo = form.cleaned_data['okpo']
+    #     profile.phone = form.cleaned_data['phone']
+    #     profile.save()
+    #     user.save()
+    #     return self.get_success_url()
+
     # def test_func(self):
     #     return self.get_object() == self.request.user
 
     def get_success_url(self):
-        return reverse('accounts:user_detail', kwargs={'pk': self.object.pk})
+        return reverse('accounts:user_detail', kwargs={"pk": self.object.pk})
 
 
 class UserPasswordChangeView(UserPassesTestMixin, UpdateView):

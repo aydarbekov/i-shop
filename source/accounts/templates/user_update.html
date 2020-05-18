@@ -15,7 +15,13 @@
 {% extends 'base.html' %}
 {% block content %}
         <div class="container" style="width: 500px">
-        <form action="{% url 'accounts:user_update' user_object.pk %}" method="post" enctype="multipart/form-data">
+            {% if user_object.profile.type == 'client' %}
+                <form action="{% url 'accounts:user_update' user_object.pk %}" method="post" enctype="multipart/form-data">
+                {% endif %}
+            {% if user_object.profile.type == 'company' %}
+                    <form action="{% url 'accounts:company_update' user_object.pk %}" method="post" enctype="multipart/form-data">
+                {% endif %}
+{#        <form action="{% url 'accounts:user_update' user_object.pk %}" method="post" enctype="multipart/form-data">#}
             {% include "partial/form.html" %}
             <p class="text-center"><input type="submit" value="Готово" class="btn btn-success"></p>
         </form>

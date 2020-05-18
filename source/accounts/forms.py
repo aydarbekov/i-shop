@@ -126,12 +126,10 @@ class CompanyInfoChangeForm(forms.ModelForm):
     mobile_phone = forms.CharField(required=True, label='Мобильный телефон')
     birth_date = forms.DateField(required=False, label='Дата рождения')
     sex = forms.ChoiceField(choices=SEX, required=False, label='Пол')
-    # type = forms.ChoiceField(choices=SEX, required=False, label='Тип')
     company_name = forms.CharField(required=True, label='Название компании')
     inn = forms.CharField(required=True, label='ИНН')
     okpo = forms.CharField(required=True, label='ОКПО')
     phone = forms.CharField(required=True, label='Телефон контактного лица')
-
 
     def get_initial_for_field(self, field, field_name):
         if field_name in self.Meta.profile_fields:
@@ -155,7 +153,7 @@ class CompanyInfoChangeForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email']
-        profile_fields =['mobile_phone', 'sex', 'birth_date', 'photo', 'type', 'company_name', 'phone','inn', 'okpo']
+        profile_fields = ['mobile_phone', 'sex', 'birth_date', 'photo', 'phone',  'company_name', 'inn', 'okpo']
         widgets = {
             'phone': TextInput(attrs={'placeholder': 'Моб. номер в формате +996555123456'}),
         }
