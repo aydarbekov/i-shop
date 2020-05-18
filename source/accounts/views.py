@@ -2,7 +2,7 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, ListView
 from django.contrib.auth.models import User
 from django.urls import reverse
 from .forms import UserCreationForm, UserInfoChangeForm, CompanyInfoChangeForm, UserPasswordChangeForm
@@ -109,27 +109,27 @@ class UserDetailView(DetailView):
     context_object_name = 'user_object'
 
 
-class UserInfoChangeView(UserPassesTestMixin, UpdateView):
+class UserInfoChangeView(UpdateView):
     model = User
     template_name = 'user_update.html'
     context_object_name = 'user_object'
     form_class = UserInfoChangeForm
 
-    def test_func(self):
-        return self.get_object() == self.request.user
+    # def test_func(self):
+    #     return self.get_object() == self.request.user
 
     def get_success_url(self):
         return reverse('accounts:user_detail', kwargs={'pk': self.object.pk})
 
 
-class CompanyInfoChangeView(UserPassesTestMixin, UpdateView):
+class CompanyInfoChangeView(UpdateView):
     model = User
     template_name = 'user_update.html'
     context_object_name = 'user_object'
     form_class = CompanyInfoChangeForm
 
-    def test_func(self):
-        return self.get_object() == self.request.user
+    # def test_func(self):
+    #     return self.get_object() == self.request.user
 
     def get_success_url(self):
         return reverse('accounts:user_detail', kwargs={'pk': self.object.pk})
@@ -147,4 +147,21 @@ class UserPasswordChangeView(UserPassesTestMixin, UpdateView):
     def get_success_url(self):
         return reverse('accounts:login')
 
+
+class UserListView(ListView):
+    model = User
+    template_name = 'user_list.html'
+    context_object_name = 'users'
+    paginate_by = 5
+    paginate_orphans = 1
+
+    def get_url(self):
+        global site
+        site = self.request.path
+        return site
+
+    # def test_func(self):
+    #     user = self.request.user
+    #     print(user)
+    #     return user.is_staff
 
