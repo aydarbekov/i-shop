@@ -1,25 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}Kanctorg{% endblock %}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 {% block menu %}
-    {% if perms.webapp.product_add %}
-        <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Функции Администратора
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="{% url 'accounts:user_list' %}">Список пользователей</a>
-    <a class="dropdown-item" href="{% url 'accounts:register_staff' %}">Добавить персонал</a>
-    <a class="dropdown-item" href="{% url 'webapp:product_create' %}">Добавить товар</a>
-      <a class="dropdown-item" href="{% url 'webapp:orders' %}">Заказы</a>
-  </div>
-        </div>
-{#        <a href="{% url 'accounts:user_list' %}" class="login  d-none d-md-flex">Список пользователей</a>#}
-{#        <a href="{% url 'accounts:register_staff' %}" class="login  d-none d-md-flex">Добавить персонал</a>#}
-{#        <a href="{% url 'webapp:product_create' %}" class="login  d-none d-md-flex">Доб тов</a>#}
-{#        <a href="{% url 'webapp:orders' %}" class="login  d-none d-md-flex">Зак</a>#}
-    {% endif %}
 {% endblock %}
 {% block content %}
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -275,8 +257,5 @@
     {#    </div>#}
 {% endblock %}
 {% block scripts %}
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script type="application/javascript" src="{% static "js/index.js" %}"></script>
 {% endblock %}
