@@ -62,4 +62,30 @@
 
 # class SimpleSearchForm(forms.Form):
 #     search = forms.CharField(max_length=100, required=False, label="Search")
+from django.core.exceptions import ValidationError
+from django.forms import ModelForm
+from webapp.models import OrderProduct, Order
 
+
+class ManualOrderForm(ModelForm):
+    def clean_first_name(self):
+        if not self.user and not self.cleaned_data.get('first_name'):
+            raise ValidationError('Вы должны указать пользователя либо его имя!')
+
+    def clean_email(self):
+        if not self.user and not self.cleaned_data.get('email'):
+            raise ValidationError('Вы должны указать пользователя либо его email!')
+
+    def clean_phone(self):
+        if not self.user and not self.cleaned_data.get('phone'):
+            raise ValidationError('Вы должны указать пользователя либо его телефон!')
+
+    class Meta:
+        model = Order
+        fields = ['user', 'first_name', 'last_name', 'email', 'address', 'phone']
+
+
+class OrderProductForm(ModelForm):
+    class Meta:
+        model = OrderProduct
+        fields = ['product', 'amount']

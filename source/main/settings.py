@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'webapp',
     'widget_tweaks',
     'accounts',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [

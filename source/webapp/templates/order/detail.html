@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}{{ object.name }}{% endblock %}
+{% block content %}
+   <h4>Заказ:</h4>
+    <p>Имя клиента: {{ order.first_name }} {{ order.last_name }}</p>
+    <p>Email : {{ order.email }}</p>
+    <p>Телефон : {{ order.phone }}</p>
+    <p>Email : {{ order.email }}</p>
+    <p>Дата создания : {{ order.created_at }}</p>
+    <br>
+    <p>Список покупок:</p>
+    {% for product_in_order in order.orderproduct_set.all %}
+
+        <p>{{ product_in_order.product }}: {{ product_in_order.amount }}</p>
+{#        <p>Producrt pk {{ product_in_order.pk }}</p>#}
+{#        <p>Order pk {{ product_in_order.order.pk }}</p>#}
+        <a href="{% url 'webapp:order_product_update' product_in_order.pk product_in_order.order.pk %}">Изменить количество</a>
+        <a href="{% url 'webapp:order_product_delete' product_in_order.pk product_in_order.order.pk %}">Удалить товар</a>
+    {% endfor %}
+{% endblock %}

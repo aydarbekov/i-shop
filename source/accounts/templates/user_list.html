@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Kanctorg{% endblock %}
+{% block menu %}
+    {% if perms.webapp.product_add %}
+        <a href="{% url 'webapp:product_create' %}" class="login  d-none d-md-flex">Доб тов</a>
+        <a href="{% url 'webapp:orders' %}" class="login  d-none d-md-flex">Зак</a>
+    {% endif %}
+{% endblock %}
+{% block content %}
+ <center><h1>Пользователи</h1></center>
+{#    <hr/>#}
+    {#    {% if is_paginated %}#}
+    {#        {% include 'partial/pagination.html' %}#}
+    {#    {% endif %}#}
+    <table class="table table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Тип</th>
+            <th scope='col'>Телефон</th>
+            <th scope='col'>Дата рождения</th>
+            <th scope="col">Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            {% if perms.accounts.view_user %}
+                <tr data-href="{% url 'accounts:user_detail' user.pk %}">
+            {% endif %}
+                <th scope="row">{{ use.id }}</th>
+                {% if perms.accounts.view_user %}
+                    <td data-href="{% url 'accounts:user_detail' user.pk %}">{{ user.first_name }}</td>
+                {% endif %}
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.profile.type }}</td>
+                <td>{{ user.profile.mobile_phone }}</td>
+                <td>{{ user.profile.birth_date }}</td>
+                {% if perms.accounts.view_user %}
+                    <td><a href="{% url 'accounts:user_detail' user.pk %}"> Details...</a>
+                {% endif %}
+                {% if user.profile.type == 'client' %}
+                    <a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a></td>
+                {% endif %}
+                {% if user.profile.type == 'company' %}
+                    <a href="{% url 'accounts:company_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a></td>
+                {% endif %}
+{#                    <a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a></td>#}
+                </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block scripts %}
+    <script type="application/javascript" src="{% static "js/products.js" %}"></script>
+{% endblock %}

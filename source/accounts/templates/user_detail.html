@@ -2,27 +2,58 @@
 {% block title %}{{ user_object.username }}{% endblock %}
 {% block menu %}
     {% if user_object == request.user %}
+        {% if user_object.profile.type == 'client' %}
         <li><a href="{% url "accounts:user_update" user_object.pk %}">Edit Profile</a></li>
-        <li><a href="{% url 'accounts:user_password_change' user_object.pk %}">Change Password</a></li>
+        {% endif %}
+        {% if user_object.profile.type == 'company' %}
+        <li><a href="{% url "accounts:company_update" user_object.pk %}">Edit Profile</a></li>
+        {% endif %}
+        <a href="{% url 'accounts:user_password_change' user_object.pk %}" class="login  d-none d-md-flex">Change Password</a>
     {% endif %}
 {% endblock %}
 {% block content %}
     <div class="card mb-3" style="max-width: 540px; border: none">
         <div class="row no-gutters">
-{#            <div class="col-md-4" style="margin-top: 27px">#}
-{#                {% if user_object.profile.avatar %}#}
-{#                    <img src="{{ user_object.profile.avatar.url }}" class="card-img-top" alt="user picture">#}
-{#                {% else %}#}
-{#                    {% load static %}<img src="{% static "default_avatar.png" %}" class="card-img-top" alt="default avatar">#}
-{#                {% endif %}#}
-{#            </div>#}
-            <div class="col-md-8">
+            <div class="col-md-6" style="margin-top: 27px">
+                {% if user.profile.photo %}
+                    <img src="{{ user.profile.photo.url }}" class="card-img-top" alt="user picture">
+                {% else %}
+                    {% load static %}<img src="{% static "images/no_photo.jpg" %}" class="card-img-top" alt="no-photo">
+                {% endif %}
+            </div>
+            <div class="col-md-6">
                 <div class="card-body">
-                    <h2 class="card-title">Profile: {{ user_object.username }}</h2>
-                    <p class="card-text">First Name: <b>{{ user_object.first_name }}</b></p>
-                    <p class="card-text">Last Name: {{ user_object.last_name }}</p>
-                    <p class="card-text">Email: {{ user_object.email }}</p>
+                    <p>Тип: {{ user.profile.type }} </p>
+                    {% if user.profile.company_name %}
+                        <p>Название компании: {{ user.profile.company_name }}
+                    {% endif %}
+                    <p>Username: {{ user.username }}<p>
+                    <p class="card-text">Имя: <b>{{ user.first_name }}</b></p>
+                    <p class="card-text">Фамилия: <b>{{ user.last_name }}</b></p>
+                    {% if user.profile.sex %}
+                        <p>Пол: {{ user.profile.sex }}
+                    {% endif %}
+                    <p class="card-text">Email: {{ user.email }}</p>
+                    <p>Телефон: {{ user.profile.mobile_phone }}</p>
+                    {% if user.profile.phone %}
+                        <p>Телефон доверенного лица: {{ user.profile.phone }}
+                    {% endif %}
+                    {% if user.profile.birth_date %}
+                        <p>Дата рождения: {{ user.profile.birth_date }}
+                    {% endif %}
+                    {% if user.profile.inn %}
+                        <p>Инн: {{ user.profile.inn }}
+                    {% endif %}
+                    {% if user.profile.okpo %}
+                        <p>ОКПО: {{ user.profile.okpo }}
+                    {% endif %}
                 </div>
+            {% if user.profile.type == 'client' %}
+                    <a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a>
+                {% endif %}
+                {% if user.profile.type == 'company' %}
+                    <a href="{% url 'accounts:company_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a>
+                {% endif %}
             </div>
         </div>
     </div>

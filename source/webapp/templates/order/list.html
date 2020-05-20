@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Заказы:</h2>
+    <br>
+    {% csrf_token %}
+            {% for order in orders %}
+{#                <p>Имя клиента: {{ order.first_name }} {{ order.last_name }}</p>#}
+{#                <p>Email : {{ order.email }}</p>#}
+{#                <p>Телефон : {{ order.phone }}</p>#}
+                <p>Адрес : {{ order.address }}</p>
+                <p>Дата создания : {{ order.created_at }}</p>
+                <a href="{% url 'webapp:order_detail' order.pk %}">Подробнее</a>
+                <a href="{% url 'webapp:order_update' order.pk %}">Редактировать</a>
+{#                <a href="{% url 'webapp:order_deliver' order.pk %}">Отмена заказа</a>#}
+{#                <a href="{% url 'webapp:order_deliver' order.pk %}">Заказ доставлен</a>#}
+                <br><br>
+            {% endfor %}
+{% endblock %}
