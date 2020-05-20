@@ -1,7 +1,10 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic.base import View
+
 from webapp.models import Product
 
 
@@ -48,3 +51,21 @@ class ProductDeleteView(PermissionRequiredMixin, DeleteView):
         product.in_stock = False
         product.save()
         return HttpResponseRedirect(self.get_success_url())
+
+# class ProductDeleteView(PermissionRequiredMixin, View):
+#     model = Product
+#     # template_name = 'product_delete.html'
+#     # success_url = reverse_lazy('webapp:index')
+#     context_object_name = 'product'
+#     permission_required = 'webapp.delete_product'
+#
+#     def get(self, request, *args, **kwargs):
+#         pk = self.kwargs.get('pk')
+#         product = get_object_or_404(Product, id=pk)
+#         # product = self.object
+#         if product.in_stock == True:
+#             product.in_stock = False
+#         else:
+#             product.in_stock = True
+#         product.save()
+#         return HttpResponseRedirect('webapp:product_detail', product.pk)

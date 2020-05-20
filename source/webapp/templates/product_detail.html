@@ -16,11 +16,11 @@
         <p><b>Категория:</b> {{ product.category }}</p>
         <p><b>Цена:</b> {{ product.price }} сом</p>
         <p><b>В наличии:</b> {{ product.in_stock|yesno:"Да,Нет" }}</p>
-        {% if perms.webapp.product_change %}
+{#        {% if perms.webapp.product_change %}#}
             <p><a href="{% url 'webapp:product_update' product.pk %}" class="btn btn-primary">Изменить</a></p>
-        {% endif %}
-        {% if perms.webapp.product_delete %}
+{#        {% endif %}#}
+{#        {% if perms.webapp.product_delete %}#}
             <p><a href="{% url 'webapp:product_delete' product.pk %}" class="btn btn-danger">Нет в наличии</a></p>
-        {% endif %}
+{#        {% endif %}#}
     </div>
 {% endblock %}
