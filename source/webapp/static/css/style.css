@@ -1108,7 +1108,7 @@ footer{
 	color: #424348;
 	font-size: 14px;
 	text-align: center;
-	width: calc(38px * 3);
+	width: calc(33px * 3);
 }
 .input-number__input {
 	width: 32px;
@@ -1344,6 +1344,120 @@ body .recomended-product-block .recomend-title{
 }
 .recomended-product-block .card-text{
 	position: static;
+}
+.table-products-name{
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #585858;
+	padding-right: 0!important;
+	padding-left: 0!important;
+}
+.table-price{
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 46px;
+	color: #585858;
+}
+.product-summ{
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 46px;
+	color: #83B734;
+}
+.table-products .breadcrumb{
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #C1C1C1;
+}
+.cart-summ{
+	border: 2px solid #DFE3E9;
+	margin-top: 6%;
+	margin-left: 20px;
+	padding: 26px;
+	padding-top: 50px;
+}
+.cart-summ-header{
+	font-weight: 900;
+	font-size: 24px;
+	line-height: 28px;
+	text-transform: uppercase;
+	color: #585858;
+}
+.cart-summ-itog-header{
+	font-weight: 900;
+	font-size: 18px;
+	line-height: 21px;
+	text-transform: uppercase;
+	color: #585858;
+}
+.cart-summ-itogo-header{
+	font-weight: 900;
+	font-size: 24px;
+	line-height: 28px;
+	text-transform: capitalize;
+	color: #585858;
+}
+.cart-summ-itog{
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 28px;
+	text-transform: uppercase;
+	color: #585858;
+}
+.cart-summ-delivery{
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 28px;
+	text-transform: uppercase;
+	color: #83B734;
+}
+.cart-summ-itogo{
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 46px;
+	display: flex;
+	align-items: center;
+	color: #83B734;
+}
+.delete-from-cart{
+	width: 20px;
+	height: 20px;
+	background-image: url(../images/icons/delete.png);
+	background-repeat: no-repeat;
+}
+.product-photo{
+	max-height: 90%;
+    width: auto;
+    max-width: 90%;
+    height: auto;
+}
+.table-header{
+	font-weight: 900;
+	font-size: 18px;
+	line-height: 21px;
+	text-transform: uppercase;
+	color: #585858;
+	border-top: none!important;
+}
+.tovar{
+	padding-left: 6%!important;
+}
+.none-top-border{
+	border-top: none!important;
+}
+table .photo-back-table {
+    background-color: #F8F8F8;
+    height: 110px;
+    width: 100px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+table td{
+	vertical-align: middle!important;
 }
 
 
@@ -1692,6 +1806,96 @@ body .recomended-product-block .recomend-title{
 		height: 40px;
 		font-size: 14px;
 		line-height: 16px;
+	}
+	.table-base thead{
+		display: none;
+	}
+	.table-for-vertical{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 5px 10px!important;
+	}
+	.table-products-name{
+		font-size: 10px;
+		line-height: 12px;
+		padding-top: 25px!important;
+		border: none!important;
+	}
+	.table-price{
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 16px;
+		border: none!important;
+	}
+	.table-price p{
+		font-weight: 500;
+		font-size: 10px;
+		line-height: 12px;
+		text-transform: uppercase;
+		color: #585858;
+		margin: 0;
+	}
+	.table-quantity{
+		border: none!important;
+	}
+	.table-quantity .input-number__input{
+		font-weight: 600;
+		font-size: 12px;
+		line-height: 15px;
+		width: 18px;
+		padding: 0;
+	}
+	.table-quantity p{
+		font-weight: 500;
+		font-size: 10px;
+		line-height: 12px;
+		text-transform: uppercase;
+		color: #585858;
+		margin: 0;
+	}
+	.input-number__minus, .input-number__plus{
+		width: 18px;
+    	height: 28px;
+	}
+	.table-quantity .input-number{
+		width: auto;
+	}
+	.product-summ{
+		font-style: normal;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 16px;
+		color: #83B734;
+		border: none!important;
+	}
+	.product-summ p{
+		font-weight: 500;
+		font-size: 10px;
+		line-height: 12px;
+		text-transform: uppercase;
+		color: #585858;
+		margin: 0;
+	}
+	.table-first-column{
+		display: none;
+	}
+	.table-base .delete-from-cart {
+	    width: 14px;
+	    height: 14px;
+	    background-size: 14px;
+	}
+	.table-second-column{
+		border: none!important;
+		padding-bottom: 25px!important;
+    	padding-top: 25px!important;
+	}
+	.table-base tr{
+		border-bottom: 1px solid #DFE3E9;
+	}
+	.cart-summ{
+		border: none;
+		padding: 0;
 	}
 
 }
