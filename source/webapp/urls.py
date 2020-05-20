@@ -5,6 +5,7 @@ from webapp.views.product_views import IndexView, ProductView, ProductCreateView
 from webapp.views.review_views import ReviewCreateView
 from webapp.views.subcategory_views import SubCategoryDeleteView, SubCategoryCreateView, SubCategoryUpdateView
 from .views.orders_view import OrderListView, OrderDetailView, OrderUpdateView, OrderProductUpdateView, OrderProductDeleteView
+from .views.news_views import NewsView, NewsAddView, NewsDetailView, NewsDeleteView, NewsEditView
 
 app_name = 'webapp'
 
@@ -27,5 +28,10 @@ urlpatterns = [
     path('orders/product/update/<int:pk>/<int:id>', OrderProductUpdateView.as_view(), name='order_product_update'),
     path('orders/product/delete/<int:pk>/<int:id>', OrderProductDeleteView.as_view(), name='order_product_delete'),
     path('product_category/<int:pk>', ProductListView.as_view(), name='products_category'),
-    path('review/add/<int:pk>/', ReviewCreateView.as_view(), name='review_create')
+    path('review/add/<int:pk>/', ReviewCreateView.as_view(), name='review_create'),
+    path('news/', NewsView.as_view(), name='news'),
+    path('news/<int:pk>/', NewsDetailView.as_view(), name='news_detail'),
+    path('news/add/', NewsAddView.as_view(), name='news_add'),
+    path('news/change/<int:pk>/', NewsEditView.as_view(), name='news_edit'),
+    path('news/delete/<int:pk>/', NewsDeleteView.as_view(), name='news_delete'),
 ]
