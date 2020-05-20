@@ -2,6 +2,7 @@ from django.urls import path
 from webapp.views.category_views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView
 from webapp.views.product_views import IndexView, ProductView, ProductCreateView, ProductUpdateView, ProductDeleteView, \
     ProductListView
+from webapp.views.review_views import ReviewCreateView
 from webapp.views.subcategory_views import SubCategoryDeleteView, SubCategoryCreateView, SubCategoryUpdateView
 from .views.orders_view import OrderListView, OrderDetailView, OrderUpdateView, OrderProductUpdateView, OrderProductDeleteView
 
@@ -26,5 +27,5 @@ urlpatterns = [
     path('orders/product/update/<int:pk>/<int:id>', OrderProductUpdateView.as_view(), name='order_product_update'),
     path('orders/product/delete/<int:pk>/<int:id>', OrderProductDeleteView.as_view(), name='order_product_delete'),
     path('product_category/<int:pk>', ProductListView.as_view(), name='products_category'),
-
+    path('review/add/<int:pk>/', ReviewCreateView.as_view(), name='review_create')
 ]
