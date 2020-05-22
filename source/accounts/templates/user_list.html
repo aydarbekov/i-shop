@@ -2,10 +2,10 @@
 {% load staticfiles %}
 {% block title %}Kanctorg{% endblock %}
 {% block menu %}
-    {% if perms.webapp.product_add %}
-        <a href="{% url 'webapp:product_create' %}" class="login  d-none d-md-flex">Доб тов</a>
-        <a href="{% url 'webapp:orders' %}" class="login  d-none d-md-flex">Зак</a>
-    {% endif %}
+{#    {% if perms.webapp.product_add %}#}
+{#        <a href="{% url 'webapp:product_create' %}" class="login  d-none d-md-flex">Доб тов</a>#}
+{#        <a href="{% url 'webapp:orders' %}" class="login  d-none d-md-flex">Зак</a>#}
+{#    {% endif %}#}
 {% endblock %}
 {% block content %}
  <center><h1>Пользователи</h1></center>

@@ -79,142 +79,24 @@
                                 <img src="{% static 'default_image.png' %}" class="card-img-top" alt="No photo">
                             {% endif %}
                             <h5 class="category-card-title card-title d-inline-block position-absolute">{{ category.category_name }}</h5>
-{#                            <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
-{#                                34</p>#}
+                            {#                            <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
+                            {#                                34</p>#}
                         </a>
                     </div>
                 </div>
             {% endfor %}
-            {#            <div class="category-card ">#}
-            {#                <div class="position-relative">#}
-            {#                    <a href="#">#}
-            {#                        <img src="{% static "images/category_images/bum-izdelia.png" %}" class="card-img-top"#}
-            {#                             alt="Бумажные изделия">#}
-            {#                        <h5 class="category-card-title card-title d-inline-block position-absolute">1Бумажная#}
-            {#                            продукция</h5>#}
-            {#                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
-            {#                            34</p>#}
-            {#                    </a>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="category-card ">#}
-            {#                <div class="position-relative ">#}
-            {#                    <a href="#">#}
-            {#                        <img src="{% static "images/category_images/kanc.png" %}" class="card-img-top"#}
-            {#                             alt="Канцелярские товары">#}
-            {#                        <h5 class="category-card-title card-title d-inline-block position-absolute">2Канцелярские#}
-            {#                            товары</h5>#}
-            {#                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
-            {#                            87</p>#}
-            {#                    </a>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="category-card ">#}
-            {#                <div class="position-relative ">#}
-            {#                    <a href="#">#}
-            {#                        <img src="{% static "images/category_images/child.png" %}" class="card-img-top"#}
-            {#                             alt="Канцелярские товары">#}
-            {#                        <h5 class="category-card-title card-title d-inline-block position-absolute">3Для детей</h5>#}
-            {#                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
-            {#                            90</p>#}
-            {#                    </a>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="category-card ">#}
-            {#                <div class="position-relative ">#}
-            {#                    <a href="#">#}
-            {#                        <img src="{% static "images/category_images/kanc.png" %}" class="card-img-top"#}
-            {#                             alt="Канцелярские товары">#}
-            {#                        <h5 class="category-card-title card-title d-inline-block position-absolute">4Хозяйственные#}
-            {#                            товары</h5>#}
-            {#                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
-            {#                            45</p>#}
-            {#                    </a>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="category-card ">#}
-            {#                <div class="position-relative ">#}
-            {#                    <a href="#">#}
-            {#                        <img src="{% static "images/category_images/kanc.png" %}" class="card-img-top"#}
-            {#                             alt="Канцелярские товары">#}
-            {#                        <h5 class="category-card-title card-title d-inline-block position-absolute">5Канцелярские#}
-            {#                            товары</h5>#}
-            {#                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
-            {#                            34</p>#}
-            {#                    </a>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="category-card ">#}
-            {#                <div class="position-relative ">#}
-            {#                    <a href="#">#}
-            {#                        <img src="{% static "images/category_images/bum-izdelia.png" %}" class="card-img-top"#}
-            {#                             alt="Канцелярские товары">#}
-            {#                        <h5 class="category-card-title card-title d-inline-block position-absolute">6Канцелярские#}
-            {#                            товары</h5>#}
-            {#                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
-            {#                            34</p>#}
-            {#                    </a>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="category-card ">#}
-            {#                <div class="position-relative ">#}
-            {#                    <a href="#">#}
-            {#                        <img src="{% static "images/category_images/bum-izdelia.png" %}" class="card-img-top"#}
-            {#                             alt="Канцелярские товары">#}
-            {#                        <h5 class="category-card-title card-title d-inline-block position-absolute">7Канцелярские#}
-            {#                            товары</h5>#}
-            {#                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
-            {#                            34</p>#}
-            {#                    </a>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="category-card ">#}
-            {#                <div class="position-relative ">#}
-            {#                    <a href="#">#}
-            {#                        <img src="{% static "images/category_images/bum-izdelia.png" %}" class="card-img-top"#}
-            {#                             alt="Канцелярские товары">#}
-            {#                        <h5 class="category-card-title card-title d-inline-block position-absolute">8Канцелярские#}
-            {#                            товары</h5>#}
-            {#                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
-            {#                            34</p>#}
-            {#                    </a>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="category-card ">#}
-            {#                <div class="position-relative ">#}
-            {#                    <a href="#">#}
-            {#                        <img src="{% static "images/category_images/bum-izdelia.png" %}" class="card-img-top"#}
-            {#                             alt="Канцелярские товары">#}
-            {#                        <h5 class="category-card-title card-title d-inline-block position-absolute">9Канцелярские#}
-            {#                            товары</h5>#}
-            {#                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
-            {#                            34</p>#}
-            {#                    </a>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="category-card ">#}
-            {#                <div class="position-relative ">#}
-            {#                    <a href="#">#}
-            {#                        <img src="{% static "images/category_images/bum-izdelia.png" %}" class="card-img-top"#}
-            {#                             alt="Канцелярские товары">#}
-            {#                        <h5 class="category-card-title card-title d-inline-block position-absolute">10Канцелярские#}
-            {#                            товары</h5>#}
-            {#                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
-            {#                            90</p>#}
-            {#                    </a>#}
-            {#                </div>#}
-            {#            </div>#}
         </div>
     </div>
     <div class="bestseller">
         <p class="bestseller-text-background">Bestseller</p>
-        <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">
-        <div class="bestseller-content">
-            <h3>Кресло для офиса</h3>
-            <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione
-                maiores harum. Aliquid, sed.</p>
-            <p class="bestseller-price">$8</p>
-            <button type="button" class="btn bestseller-button mr-4">в корзину</button>
+        <div class="container">
+            <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">
+            <div class="bestseller-content">
+                <h3>Кресло для офиса</h3>
+                <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
+                <p class="bestseller-price">$8</p>
+                <button type="button" class="btn bestseller-button mr-4">в корзину</button>
+            </div>
         </div>
     </div>
     <div class="promos container">
@@ -225,7 +107,7 @@
         <div class="row flex-nowrap overflow-auto flex-fill">
             <div class="col-8 col-md-5 col-lg-4">
                 <div class="card">
-                    <img src="{% static 'images/category_images/kanc.png' %}" class="promo-img card-img-top" alt="...">
+                    <img src="{% static 'images/printer3.png' %}" class="promo-img card-img-top" alt="...">
                     <div class="promo-body card-body position-relative">
                         <div class="promo-descr position-absolute">Акция дня</div>
                         <h5 class="card-title">Получи скидку</h5>
