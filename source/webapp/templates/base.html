@@ -61,6 +61,7 @@
                             <a class="dropdown-item" href="{% url 'accounts:user_list' %}">Список пользователей</a>
                             <a class="dropdown-item" href="{% url 'accounts:register_staff' %}">Добавить персонал</a>
                             <a class="dropdown-item" href="{% url 'webapp:product_create' %}">Добавить товар</a>
+                            <a class="dropdown-item" href="{% url 'webapp:categories_list' %}">Категории</a>
                             <a class="dropdown-item" href="{% url 'webapp:orders' %}">Заказы</a>
                         </div>
                     </div>
@@ -105,8 +106,11 @@
                                         <a href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}" class="category nav-link dropdown-toggle d-flex align-items-center pl-0"><p>{{ category }}</p></a>
                                     </a>
                                     <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">
-                                        <a class="dropdown-item" href="#">1Another action</a>
-                                        <a class="dropdown-item" href="#">2Another action</a>
+                                        {% for subcategory in category.subcategories.all %}
+{#                                        <a class="dropdown-item" href="#">1Another action</a>#}
+{#                                        <a class="dropdown-item" href="#">2Another action</a>#}
+                                            <a class="dropdown-item" href="#">{{ subcategory.sub_name }}</a>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             {% endfor %}
