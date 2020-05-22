@@ -90,6 +90,8 @@ class ProductListView(ListView):
         context = super().get_context_data()
         context['categories'] = Category.objects.all()
         category_pk = self.kwargs.get('pk')
+        product_category = Category.objects.get(pk=category_pk)
+        context['product_category'] = product_category
         context['products'] = Product.objects.filter(category_id=category_pk)
         self.get_url()
         return context

@@ -9,8 +9,9 @@
 {% endblock %}
 {% block content %}
     <div class="category-detail-headline">
-        <img src="{% static 'images/category_images/kanc-header3.webp' %}" alt="">
-        <h4>Компьютерная техника</h4>
+{#        <img src="{% static 'images/category_images/kanc-header3.webp' %}" alt="">#}
+        <img src="{{ product_category.photo.url }}" alt="">
+        <h4>{{ product_category }}</h4>
     </div>
     <div class="container">
         <div class="category-block-content d-flex">
@@ -85,7 +86,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Компьютерная техника</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ product_category }}</li>
                         </ol>
                     </nav>
                     <div class="pagination ml-auto d-none d-lg-block">
