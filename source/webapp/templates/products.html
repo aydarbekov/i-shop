@@ -115,7 +115,11 @@
                             <div class="col-6 col-md-4 px-2">
                                 <div class="card">
                                     <div class="photo-back">
-                                        <img src="{{ product.photo.url }}" class="card-img-top" alt="...">
+                                        {% if product.photo %}
+                                            <img src="{{ product.photo.url }}" class="card-img-top" alt="...">
+                                        {% else %}
+                                            {% load static %}<img src="{% static "images/no_photo.jpg" %}" class="card-img-top" alt="no-photo">
+                                        {% endif %}
                                     </div>
                                     <div class="card-body">
                                         <div class="card-text d-flex flex-column align-items-center px-3">

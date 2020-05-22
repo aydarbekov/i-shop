@@ -103,8 +103,8 @@
                         <div class="dropdown-menu mt-0 rounded-0" aria-labelledby="navbarDropdownMenuLink">
                             {% for category in categories %}
                                 <div class="dropdown-item dropright">
-                                    <a class="category nav-link d-flex align-items-center pl-0" href="{% url 'webapp:products_category' category.pk %}?category={{ category.id }}" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <a href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}" class="category nav-link dropdown-toggle d-flex align-items-center pl-0"><p>{{ category }}</p></a>
+                                    <a class="category nav-link d-flex align-items-center pl-0" href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}" class="category nav-link dropdown-toggle d-flex align-items-center pl-0"><p>{{ category.category_name }}</p></a>
                                     </a>
                                     <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">
                                         {% for subcategory in category.subcategories.all %}

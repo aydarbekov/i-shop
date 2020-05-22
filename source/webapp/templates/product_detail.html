@@ -10,7 +10,11 @@
 		<div class="product-content">
 			<div class="row">
 				<div class="col-12 col-md-5 mt-5">
-					<a href="{{ product.photo.url }}" data-fancybox="gallery" data-caption="Caption #1">
+                    {% if product.photo %}
+                        <a href="{{ product.photo.url }}" data-fancybox="gallery" data-caption="Caption #1">
+                    {% else %}
+                        {% load static %}<a href="{% static "images/no_photo.jpg" %}" data-fancybox="gallery" data-caption="Caption #1">
+                    {% endif %}
 						<div class="photo-back">
                             {% if product.photo %}
                                 <img src="{{ product.photo.url }}" class="card-img-top" alt="{{ product.name }}">
