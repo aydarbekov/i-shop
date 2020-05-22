@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from main.settings_local import DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -153,7 +155,7 @@ LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL ='webapp:index'
 LOGOUT_REDIRECT_URL = 'webapp:index'
 
-# HOST_NAME = 'http://localhost:8000'
+HOST_NAME = 'http://149.154.71.78:1437'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/uploads/'
