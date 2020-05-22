@@ -7,6 +7,10 @@ from django.forms import widgets
 from accounts.models import Profile, PROFILE_TYPE_CHOICES, SEX
 from django.forms import TextInput
 
+STAFF_TYPE_CHOICES = (
+    ('seller', 'Продавец'),
+    ('admin', 'Администратор'),
+)
 
 class StaffCreationForm(forms.Form):
     username = forms.CharField(max_length=20, label='Username', required=True)
@@ -18,7 +22,7 @@ class StaffCreationForm(forms.Form):
                                widget=forms.PasswordInput)
     phone_number = forms.CharField(required=True, label='Мобильный телефон')
     email = forms.EmailField(label='Email', required=True)
-    type = forms.ChoiceField(choices=PROFILE_TYPE_CHOICES, required=True, label='Тип')
+    type = forms.ChoiceField(choices=STAFF_TYPE_CHOICES, required=True, label='Тип')
 
 
     # def clean_email(self):

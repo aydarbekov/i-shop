@@ -114,6 +114,7 @@
                     <div class="row mx-0">
                         {% for product in products %}
                             <div class="col-6 col-md-4 px-2">
+                            <a href="{% url "webapp:product_detail" product.pk %}">
                                 <div class="card">
                                     <div class="photo-back">
                                         {% if product.photo %}
@@ -142,6 +143,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </a>
                             </div>
                         {% endfor %}
                     </div>
