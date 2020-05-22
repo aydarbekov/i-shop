@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load review %}
 {% block title %}{{ product.name }}{% endblock %}
 {% block styles %}
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css">
@@ -117,6 +118,34 @@
 					</div>
 				</div>
 			</div>
+            <div class="review_list">
+                {% for review in product.reviews.all %}
+                    {% if review %}
+                    <h4>Отзывы</h4>
+                    <div class="row comment">
+                        <div class="col-2">
+                            {% if review.author.profile.photo %}
+                                <img src="{{ review.author.profile.photo.url }}"
+                                     alt="Author photo">
+                            {% else %}
+                                <img src="{% static 'default_image.png' %}" alt="No photo">
+                            {% endif %}
+                            <p>{{ review.author }}. Cоздана: {{ review.date|date:'d.m.Y' }}</p>
+                            {% for i in review.grade|times %}
+                                <div class="d-inline-block">
+                                    <i class=" fas fa-star" style="position: relative"></i>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="col-10 review_text">{{ review.text }}</div>
+                        <p class="comment-links">
+                        </p>
+                    </div>
+                    {% endif %}
+                {% empty %}
+                    <p>Отзывов нет</p>
+                {% endfor %}
+            </div>
 		</div>
 	</div>
 	<div class="original-block">
@@ -277,4 +306,9 @@
 {% block scripts %}
     <script type="text/javascript" src='{% static "js/jquery.fancybox.js" %}'></script>
     <script type="application/javascript" src="{% static "js/product-detail.js" %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.review').rating();
+        });
+    </script>
 {% endblock %}
