@@ -72,7 +72,7 @@
             {% for category in categories %}
                 <div class="category-card ">
                     <div class="position-relative">
-                        <a href="#">
+                        <a href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}">
                             {% if category.photo %}
                                 <img src="{{ category.photo.url }}" class="card-img-top" alt="{{ category.category_name }}">
                             {% else %}
