@@ -48,23 +48,23 @@ class CategoryCreateView(UserPassesTestMixin, CreateView):
 class CategoryUpdateView(UserPassesTestMixin, UpdateView):
     model = Category
     template_name = 'edit.html'
-    fields = ['category_name']
+    fields = ['category_name', 'photo']
 
     def test_func(self):
         user = self.request.user
         return user.is_staff
 
-    def form_valid(self, form):
-        text = form.cleaned_data['category_name']
-        if Category.objects.filter(category_name=text.capitalize()):
-            messages.error(self.request, 'Категория с таким названием уже существует!')
-            return render(self.request, 'edit.html', {})
-        else:
-            pk = self.kwargs.get('pk')
-            category = get_object_or_404(Category, id=pk)
-            category.category_name = text.capitalize()
-            category.save()
-        return self.get_success_url()
+    # def form_valid(self, form):
+    #     category = form.cleaned_data['category_name']
+    #     if Category.objects.filter(category_name=category):
+    #         messages.error(self.request, 'Категория с таким названием уже существует!')
+    #         return render(self.request, 'edit.html', {})
+    #     else:
+    #         pk = self.kwargs.get('pk')
+    #         category = get_object_or_404(Category, id=pk)
+    #         category.category_name = category
+    #         category.save()
+    #     return self.get_success_url()
 
     def get_success_url(self):
         return redirect('webapp:categories_list')
