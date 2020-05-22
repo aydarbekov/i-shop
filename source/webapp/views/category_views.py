@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
 from webapp.models import Category
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
@@ -25,7 +25,7 @@ class CategoryListView(UserPassesTestMixin, ListView):
 class CategoryCreateView(UserPassesTestMixin, CreateView):
     model = Category
     template_name = 'add.html'
-    fields = ['category_name']
+    fields = ['category_name', 'photo']
 
     def test_func(self):
         user = self.request.user
@@ -49,6 +49,7 @@ class CategoryUpdateView(UserPassesTestMixin, UpdateView):
     model = Category
     template_name = 'edit.html'
     fields = ['category_name', 'photo']
+    context_object_name = 'category'
 
     def test_func(self):
         user = self.request.user
@@ -67,7 +68,7 @@ class CategoryUpdateView(UserPassesTestMixin, UpdateView):
     #     return self.get_success_url()
 
     def get_success_url(self):
-        return redirect('webapp:categories_list')
+        return reverse('webapp:categories_list')
 
 
 class CategoryDeleteView(UserPassesTestMixin, DeleteView):
