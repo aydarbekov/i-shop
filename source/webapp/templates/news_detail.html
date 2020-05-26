@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load auth_extras %}
+{#{% load auth_extras %}#}
 {% load static %}
 {% block title %}Новости{% endblock %}
 {% block menu %}
@@ -10,7 +10,11 @@
             <div class="col col-12 col-sm-10 col-md-8 col-lg-6 m-auto">
                 <h1 class="title pt-5">{{ news.title }}</h1>
                 <p><b>Дата создания: </b>{{ news.created_at| date:'d.m.Y H:i:s' }}</p>
-                <img src="{{ news.photo.url }}" class="photo card-img-top mb-5" alt="{{ news.title }}">
+                {% if news.photo %}
+                        <img src="{{ news.photo.url }}" class="photo card-img-top mb-5" alt="{{ news.title }}">
+                    {% else %}
+                        {% load static %}<a href="{% static "images/no_photo.jpg" %}" data-fancybox="gallery" data-caption="Caption #1">
+                    {% endif %}
                 <p align="justify">{{ news.text }}</p>
                 {% if request.user.is_staff %}
                     <a href="{% url 'webapp:news_edit' news.pk %}"

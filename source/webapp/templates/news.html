@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load auth_extras %}
+{#{% load auth_extras %}#}
 {% block content %}
     <h1>Новости</h1>
     {% if request.user.is_staff %}
@@ -10,7 +10,11 @@
     {%  for news in news_list %}
       <div class="row">
         <div class="col-3 m-2">
-            <img src="{{ news.photo.url }}" class="card-img-top" alt="{{ news.title }}">
+            {% if news.photo %}
+                <img src="{{ news.photo.url }}" class="photo card-img-top mb-5" alt="{{ news.title }}">
+            {% else %}
+                {% load static %}<a href="{% static "images/no_photo.jpg" %}" data-fancybox="gallery" data-caption="Caption #1">
+            {% endif %}
         </div>
         <div class="col-8">
             <h5 class="news-title">{{ news.title }}</h5>
