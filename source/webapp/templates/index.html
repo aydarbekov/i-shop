@@ -15,7 +15,8 @@
                 <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">
                 <div class="carousel-content carousel-caption">
                     <h5 class="carousel-title">Скетчбук</h5>
-                    <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo accusantium iste tempore sed delectus quos.Lorem ipsum dolor sit amet..</p>
+                    <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo accusantium
+                        iste tempore sed delectus quos.Lorem ipsum dolor sit amet..</p>
                     <div class="carousel-button-price d-flex align-items-center">
                         <button type="button" class="btn button-in-carousel mr-4">в корзину</button>
                         <p class="carousel-price">$8</p>
@@ -27,7 +28,8 @@
                     <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">
                     <div class="carousel-content carousel-caption">
                         <h5 class="carousel-title">Блокнот</h5>
-                        <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, porro.</p>
+                        <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,
+                            porro.</p>
                         <div class="carousel-button-price d-flex align-items-center">
                             <button type="button" class="btn button-in-carousel mr-4">в корзину</button>
                             <p class="carousel-price">$15</p>
@@ -39,7 +41,8 @@
                 <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">
                 <div class="carousel-content carousel-caption">
                     <h5 class="carousel-title">Книга</h5>
-                    <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero sint, repellendus officiis!</p>
+                    <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero sint,
+                        repellendus officiis!</p>
                     <div class="carousel-button-price d-flex align-items-center">
                         <button type="button" class="btn button-in-carousel mr-4">в корзину</button>
                         <p class="carousel-price">$20</p>
@@ -56,7 +59,7 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <div class="category-sort container"  id="contentt">
+    <div class="category-sort container" id="contentt">
         <a class="btn btn-light category-sort-button" href="#">Все</a>
         <a class="btn btn-light category-sort-button" href="#">Новинки</a>
         <a class="btn btn-light category-sort-button" href="#">Популярное</a>
@@ -66,106 +69,34 @@
     <div class="category-block">
         <div class="category-title container my-4">Наши категории</div>
         <div class="category-cards">
-            <div class="category-card ">
-                <div class="position-relative">
-                    <a href="#">
-                        <img src="{% static "images/category_images/bum-izdelia.png" %}" class="card-img-top" alt="Бумажные изделия">
-                        <h5 class="category-card-title card-title d-inline-block position-absolute">1Бумажная продукция</h5>
-                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">34</p>
-                    </a>
+            {% for category in categories %}
+                <div class="category-card ">
+                    <div class="position-relative">
+                        <a href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}">
+                            {% if category.photo %}
+                                <img src="{{ category.photo.url }}" class="card-img-top" alt="{{ category.category_name }}">
+                            {% else %}
+                                <img src="{% static 'default_image.png' %}" class="card-img-top" alt="No photo">
+                            {% endif %}
+                            <h5 class="category-card-title card-title d-inline-block position-absolute">{{ category.category_name }}</h5>
+                            {#                            <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
+                            {#                                34</p>#}
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="category-card ">
-                <div class="position-relative ">
-                    <a href="#">
-                        <img src="{% static "images/category_images/kanc.png" %}" class="card-img-top" alt="Канцелярские товары">
-                        <h5 class="category-card-title card-title d-inline-block position-absolute">2Канцелярские товары</h5>
-                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">87</p>
-                    </a>
-                </div>
-            </div>
-            <div class="category-card ">
-                <div class="position-relative ">
-                    <a href="#">
-                        <img src="{% static "images/category_images/child.png" %}" class="card-img-top" alt="Канцелярские товары">
-                        <h5 class="category-card-title card-title d-inline-block position-absolute">3Для детей</h5>
-                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">90</p>
-                    </a>
-                </div>
-            </div>
-            <div class="category-card ">
-                <div class="position-relative ">
-                    <a href="#">
-                        <img src="{% static "images/category_images/kanc.png" %}" class="card-img-top" alt="Канцелярские товары">
-                        <h5 class="category-card-title card-title d-inline-block position-absolute">4Хозяйственные товары</h5>
-                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">45</p>
-                    </a>
-                </div>
-            </div>
-            <div class="category-card ">
-                <div class="position-relative ">
-                    <a href="#">
-                        <img src="{% static "images/category_images/kanc.png" %}" class="card-img-top" alt="Канцелярские товары">
-                        <h5 class="category-card-title card-title d-inline-block position-absolute">5Канцелярские товары</h5>
-                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">34</p>
-                    </a>
-                </div>
-            </div>
-            <div class="category-card ">
-                <div class="position-relative ">
-                    <a href="#">
-                        <img src="{% static "images/category_images/bum-izdelia.png" %}" class="card-img-top" alt="Канцелярские товары">
-                        <h5 class="category-card-title card-title d-inline-block position-absolute">6Канцелярские товары</h5>
-                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">34</p>
-                    </a>
-                </div>
-            </div>
-            <div class="category-card ">
-                <div class="position-relative ">
-                    <a href="#">
-                        <img src="{% static "images/category_images/bum-izdelia.png" %}" class="card-img-top" alt="Канцелярские товары">
-                        <h5 class="category-card-title card-title d-inline-block position-absolute">7Канцелярские товары</h5>
-                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">34</p>
-                    </a>
-                </div>
-            </div>
-            <div class="category-card ">
-                <div class="position-relative ">
-                    <a href="#">
-                        <img src="{% static "images/category_images/bum-izdelia.png" %}" class="card-img-top" alt="Канцелярские товары">
-                        <h5 class="category-card-title card-title d-inline-block position-absolute">8Канцелярские товары</h5>
-                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">34</p>
-                    </a>
-                </div>
-            </div>
-            <div class="category-card ">
-                <div class="position-relative ">
-                    <a href="#">
-                        <img src="{% static "images/category_images/bum-izdelia.png" %}" class="card-img-top" alt="Канцелярские товары">
-                        <h5 class="category-card-title card-title d-inline-block position-absolute">9Канцелярские товары</h5>
-                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">34</p>
-                    </a>
-                </div>
-            </div>
-            <div class="category-card ">
-                <div class="position-relative ">
-                    <a href="#">
-                        <img src="{% static "images/category_images/bum-izdelia.png" %}" class="card-img-top" alt="Канцелярские товары">
-                        <h5 class="category-card-title card-title d-inline-block position-absolute">10Канцелярские товары</h5>
-                        <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">90</p>
-                    </a>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <div class="bestseller">
         <p class="bestseller-text-background">Bestseller</p>
-        <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">
-        <div class="bestseller-content">
-            <h3>Кресло для офиса</h3>
-            <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
-            <p class="bestseller-price">$8</p>
-            <button type="button" class="btn bestseller-button mr-4">в корзину</button>
+        <div class="container">
+            <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">
+            <div class="bestseller-content">
+                <h3>Кресло для офиса</h3>
+                <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
+                <p class="bestseller-price">$8</p>
+                <button type="button" class="btn bestseller-button mr-4">в корзину</button>
+            </div>
         </div>
     </div>
     <div class="promos container">
@@ -176,7 +107,7 @@
         <div class="row flex-nowrap overflow-auto flex-fill">
             <div class="col-8 col-md-5 col-lg-4">
                 <div class="card">
-                    <img src="{% static 'images/category_images/kanc.png' %}" class="promo-img card-img-top" alt="...">
+                    <img src="{% static 'images/printer3.png' %}" class="promo-img card-img-top" alt="...">
                     <div class="promo-body card-body position-relative">
                         <div class="promo-descr position-absolute">Акция дня</div>
                         <h5 class="card-title">Получи скидку</h5>
@@ -202,7 +133,9 @@
                             <button class="promo-button-compare"></button>
                             <button class="promo-button-share"></button>
                         </div>
-                        <p class="card-text">Some quick example text to build on the card title aдLorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, amet.nd make up the bulk of the card's content.</p>
+                        <p class="card-text">Some quick example text to build on the card title aдLorem ipsum dolor sit
+                            amet, consectetur adipisicing elit. Impedit, amet.nd make up the bulk of the card's
+                            content.</p>
                         <a href="#" class="btn btn-primary">Получить скидку</a>
                     </div>
                 </div>
@@ -218,7 +151,8 @@
                             <button class="promo-button-compare"></button>
                             <button class="promo-button-share"></button>
                         </div>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
                         <a href="#" class="btn btn-primary">Получить скидку</a>
                     </div>
                 </div>
@@ -233,7 +167,9 @@
         </form>
     </div>
     <div class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4412.16964714803!2d74.55874739931456!3d42.7115643736239!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389935106d16e745%3A0xc2410481696a04e9!2zNDLCsDQyJzQ0LjMiTiA3NMKwMzMnMzIuMSJF!5e0!3m2!1sru!2skg!4v1589124898764!5m2!1sru!2skg" width="100%" height="480" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4412.16964714803!2d74.55874739931456!3d42.7115643736239!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389935106d16e745%3A0xc2410481696a04e9!2zNDLCsDQyJzQ0LjMiTiA3NMKwMzMnMzIuMSJF!5e0!3m2!1sru!2skg!4v1589124898764!5m2!1sru!2skg"
+                width="100%" height="480" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                tabindex="0"></iframe>
     </div>
     {#    <h1 class="text-center">Товары</h1>#}
     {#    <div class="row">#}

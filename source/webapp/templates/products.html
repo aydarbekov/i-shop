@@ -2,15 +2,16 @@
 {% load staticfiles %}
 {% block title %}Kanctorg{% endblock %}
 {% block menu %}
-    {% if perms.webapp.product_add %}
-        <a href="{% url 'webapp:product_create' %}" class="login  d-none d-md-flex">Доб тов</a>
-        <a href="{% url 'webapp:orders' %}" class="login  d-none d-md-flex">Зак</a>
-    {% endif %}
+{#    {% if perms.webapp.product_add %}#}
+{#        <a href="{% url 'webapp:product_create' %}" class="login  d-none d-md-flex">Доб тов</a>#}
+{#        <a href="{% url 'webapp:orders' %}" class="login  d-none d-md-flex">Зак</a>#}
+{#    {% endif %}#}
 {% endblock %}
 {% block content %}
     <div class="category-detail-headline">
-        <img src="{% static 'images/category_images/kanc-header3.webp' %}" alt="">
-        <h4>Компьютерная техника</h4>
+{#        <img src="{% static 'images/category_images/kanc-header3.webp' %}" alt="">#}
+        <img src="{{ product_category.photo.url }}" alt="">
+        <h4>{{ product_category }}</h4>
     </div>
     <div class="container">
         <div class="category-block-content d-flex">
@@ -85,7 +86,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Компьютерная техника</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ product_category }}</li>
                         </ol>
                     </nav>
                     <div class="pagination ml-auto d-none d-lg-block">
@@ -113,9 +114,14 @@
                     <div class="row mx-0">
                         {% for product in products %}
                             <div class="col-6 col-md-4 px-2">
+                            <a href="{% url "webapp:product_detail" product.pk %}">
                                 <div class="card">
                                     <div class="photo-back">
-                                        <img src="{{ product.photo.url }}" class="card-img-top" alt="...">
+                                        {% if product.photo %}
+                                            <img src="{{ product.photo.url }}" class="card-img-top" alt="...">
+                                        {% else %}
+                                            {% load static %}<img src="{% static "images/no_photo.jpg" %}" class="card-img-top" alt="no-photo">
+                                        {% endif %}
                                     </div>
                                     <div class="card-body">
                                         <div class="card-text d-flex flex-column align-items-center px-3">
@@ -137,6 +143,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </a>
                             </div>
                         {% endfor %}
                     </div>

@@ -393,7 +393,7 @@ body{
 .category-card{
 	margin-left: 10px;
 	margin-right: 10px;
-	/*max-width: 268px;*/
+	max-width: 268px;
 }
 .category-card img{
 	max-height: 350px;
@@ -414,6 +414,7 @@ body{
 	line-height: 16px;
 	text-align: center;
 	text-transform: uppercase;
+	color: #4F4F4F;
 }
 .category-card-count{
 	width: 20%;
@@ -636,6 +637,8 @@ body{
     justify-content: center;
     padding: 97px;
     margin-top: 5%;
+	background-size: cover;
+
 }
 .subscribe p{
 	font-weight: 900;
@@ -1907,4 +1910,7 @@ table td{
     	background-repeat: no-repeat;
 		background-position: 97% 1px;
 		background-size: 12%;    }
+}
+.fa-star{
+    	color: rgb(255 138 0);
 }

@@ -3,7 +3,7 @@ from webapp.models import Category, Product, SubCategory, DeliveryAddress, Order
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['pk', 'category_name']
+    list_display = ['pk', 'category_name', 'photo']
     list_filter = ['category_name']
     list_display_links = ['pk', 'category_name']
 

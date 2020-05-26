@@ -6,12 +6,15 @@ from phonenumber_field.modelfields import PhoneNumberField
 PROFILE_TYPE_CHOICES = (
     ('client', 'Физическое лицо'),
     ('company', 'Юридическое лицо'),
+    ('seller', 'Продавец'),
+    ('admin', 'Администратор'),
 )
 
 SEX = (
     ('man', 'Мужской'),
     ('woman', 'Женский'),
 )
+
 
 class Token(models.Model):
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE,

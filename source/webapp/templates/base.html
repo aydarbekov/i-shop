@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="{% static "css/jquery-ui.min.css" %}">
     <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/star.css" %}">
     {% block styles %}{% endblock %}
 </head>
 <body>
@@ -61,6 +62,7 @@
                             <a class="dropdown-item" href="{% url 'accounts:user_list' %}">Список пользователей</a>
                             <a class="dropdown-item" href="{% url 'accounts:register_staff' %}">Добавить персонал</a>
                             <a class="dropdown-item" href="{% url 'webapp:product_create' %}">Добавить товар</a>
+                            <a class="dropdown-item" href="{% url 'webapp:categories_list' %}">Категории</a>
                             <a class="dropdown-item" href="{% url 'webapp:orders' %}">Заказы</a>
                         </div>
                     </div>
@@ -101,12 +103,15 @@
                         <div class="dropdown-menu mt-0 rounded-0" aria-labelledby="navbarDropdownMenuLink">
                             {% for category in categories %}
                                 <div class="dropdown-item dropright">
-                                    <a class="category nav-link d-flex align-items-center pl-0" href="{% url 'webapp:products_category' category.pk %}?category={{ category.id }}" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <a href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}" class="category nav-link dropdown-toggle d-flex align-items-center pl-0"><p>{{ category }}</p></a>
+                                    <a class="category nav-link d-flex align-items-center pl-0" href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}" class="category nav-link dropdown-toggle d-flex align-items-center pl-0"><p>{{ category.category_name }}</p></a>
                                     </a>
                                     <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">
-                                        <a class="dropdown-item" href="#">1Another action</a>
-                                        <a class="dropdown-item" href="#">2Another action</a>
+                                        {% for subcategory in category.subcategories.all %}
+{#                                        <a class="dropdown-item" href="#">1Another action</a>#}
+{#                                        <a class="dropdown-item" href="#">2Another action</a>#}
+                                            <a class="dropdown-item" href="#">{{ subcategory.sub_name }}</a>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             {% endfor %}
@@ -313,7 +318,7 @@
 <script type="application/javascript" src="{% static "js/fontawsome.js" %}"></script>
 <script type="text/javascript" src="{% static "js/slick.min.js" %}"></script>
 <script type="application/javascript" src="{% static "js/base.js" %}"></script>
-
+<script type="application/javascript" src="{% static "js/review.js" %}"></script>
 
 {% block scripts %}{% endblock %}
 </body>
