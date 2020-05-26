@@ -5,7 +5,22 @@ from django.db import models
 CITY_CHOICES = (
     ('Bishkek', 'Бишкек'),
 )
-
+COLOR_CHOICES = (
+    ('#F0DEBA;', 'Бежевый'),
+    ('green', 'Зеленый'),
+    ('grey', 'Серый'),
+    ('blue', 'Синий'),
+    ('red', 'Красный'),
+    ('yellow', 'Желтый'),
+    ('black', 'Черный'),
+    ('orange', 'Оранжевый'),
+    ('brown', 'Коричневый'),
+    ('white', 'Белый'),
+    ('pink', 'Розовый'),
+    ('purple', 'Фиолетовый'),
+    ('darkblue', 'Темно-синий'),
+    ('darkgreen', 'Темно-зеленый'),
+)
 
 class Category(models.Model):
     category_name = models.CharField(max_length=50, verbose_name='Категория')
@@ -24,13 +39,26 @@ class SubCategory(models.Model):
         return self.sub_name
 
 
+class Brand(models.Model):
+    brand_name = models.CharField(max_length=50, verbose_name='Название')
+    photo = models.ImageField(upload_to='brand_images', null=True, blank=True, verbose_name='Изображение')
+
+    def __str__(self):
+        return self.brand_name
+
+
 class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name='Товар')
     category = models.ForeignKey(Category, related_name='products', on_delete=models.PROTECT,
                                 verbose_name='Категория')
-    photo = models.ImageField(upload_to='product_images', null=True, blank=True, verbose_name='Изображение')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     in_stock = models.BooleanField(verbose_name='В наличии', default=True)
+    description = models.TextField(max_length=3000, verbose_name='Описание', null=True, blank=True)
+    color = models.CharField(max_length=20,choices=COLOR_CHOICES, default=COLOR_CHOICES[0][0], verbose_name="Цвет", null=True, blank=True)
+    discount = models.IntegerField(verbose_name='Скидка', null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
+    quantity = models.IntegerField(verbose_name='Количество', null=True, blank=True)
+    brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Бренд', related_name='products')
 
 
     def __str__(self):
@@ -120,3 +148,5 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+
+

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from webapp.models import Category, Product, SubCategory, DeliveryAddress, Order, OrderProduct, Review, News, Image
+from webapp.models import Category, Product, SubCategory, DeliveryAddress, Order, OrderProduct, Review, News, Image, Brand
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -47,6 +47,12 @@ class NewsAdmin(admin.ModelAdmin):
     list_display_links = ['pk', 'title']
 
 
+class BrandAdmin(admin.ModelAdmin):
+    list_display = ['pk', 'brand_name', 'photo']
+    list_filter = ['brand_name']
+    list_display_links = ['pk', 'brand_name']
+
+
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
@@ -55,3 +61,4 @@ admin.site.register(DeliveryAddress, DeliveryAddressAdmin)
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Image)
+admin.site.register(Brand, BrandAdmin)
