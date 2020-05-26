@@ -15,9 +15,9 @@ class SubCategoryAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['pk', 'name', 'category', 'price', 'in_stock']
-    list_filter = ['name', 'category', 'price', 'in_stock']
-    list_display_links = ['name', 'category', 'price', 'in_stock']
+    list_display = ['pk', 'name', 'category', 'price', 'in_stock', 'date', 'discount', 'color', 'quantity', 'brand']
+    list_filter = ['name', 'category', 'price', 'in_stock', 'brand', 'color']
+    list_display_links = ['name', 'category', 'price', 'in_stock', 'brand']
 
 
 class DeliveryAddressAdmin(admin.ModelAdmin):

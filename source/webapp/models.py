@@ -6,7 +6,7 @@ CITY_CHOICES = (
     ('Bishkek', 'Бишкек'),
 )
 COLOR_CHOICES = (
-    ('#F0DEBA;', 'Бежевый'),
+    ('white', 'Белый'),
     ('green', 'Зеленый'),
     ('grey', 'Серый'),
     ('blue', 'Синий'),
@@ -15,7 +15,7 @@ COLOR_CHOICES = (
     ('black', 'Черный'),
     ('orange', 'Оранжевый'),
     ('brown', 'Коричневый'),
-    ('white', 'Белый'),
+    ('#F0DEBA;', 'Бежевый'),
     ('pink', 'Розовый'),
     ('purple', 'Фиолетовый'),
     ('darkblue', 'Темно-синий'),
@@ -29,6 +29,10 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name
 
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
 
 class SubCategory(models.Model):
     sub_name = models.CharField(max_length=50, verbose_name='Подраздел')
@@ -38,6 +42,10 @@ class SubCategory(models.Model):
     def __str__(self):
         return self.sub_name
 
+    class Meta:
+        verbose_name = 'Подкатегория'
+        verbose_name_plural = 'Подкатегория'
+
 
 class Brand(models.Model):
     brand_name = models.CharField(max_length=50, verbose_name='Название')
@@ -45,6 +53,10 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.brand_name
+
+    class Meta:
+        verbose_name = 'Бренд'
+        verbose_name_plural = 'Бренды'
 
 
 class Product(models.Model):
@@ -127,6 +139,10 @@ class Review(models.Model):
     def __str__(self):
         return self.text
 
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
+
 
 class Image(models.Model):
     image = models.ImageField(upload_to='product_images', verbose_name='Изображение')
@@ -148,5 +164,9 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
 
 
