@@ -14,7 +14,7 @@ services:
     build:
       context: ./source
       dockerfile: Dockerfile.prod
-    command: gunicorn webapp.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn main.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/web/static
       - media_volume:/home/app/web/uploads
