@@ -1,4 +1,6 @@
 from django.urls import path
+
+from webapp.views.brand_views import BrandListView, BrandCreateView, BrandUpdateView, BrandDeleteView
 from webapp.views.category_views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView
 from webapp.views.product_views import IndexView, ProductView, ProductCreateView, ProductUpdateView, ProductDeleteView, \
     ProductListView
@@ -34,4 +36,8 @@ urlpatterns = [
     path('news/add/', NewsAddView.as_view(), name='news_add'),
     path('news/change/<int:pk>/', NewsEditView.as_view(), name='news_edit'),
     path('news/delete/<int:pk>/', NewsDeleteView.as_view(), name='news_delete'),
+    path('brands/', BrandListView.as_view(), name='brands_list'),
+    path('brand/add/', BrandCreateView.as_view(), name='brand_add'),
+    path('brand/change/<int:pk>/', BrandUpdateView.as_view(), name='brand_change'),
+    path('brand/delete/<int:pk>/', BrandDeleteView.as_view(), name='brand_delete'),
 ]
