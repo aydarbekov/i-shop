@@ -1553,6 +1553,84 @@ table td{
     color: #FFFFFF;
     margin-top: 15px;
 }
+.delivery-icon{
+	width: 50px;
+	height: 50px;
+	background-image: url(../images/icons/delivery.png);
+	background-repeat: no-repeat;
+
+}
+.delivery-time{
+	width: 50px;
+	height: 50px;
+	background-image: url(../images/icons/delivery-time.png);
+	background-repeat: no-repeat;
+
+}
+.delivery-big{
+	width: 50px;
+	height: 50px;
+	background-image: url(../images/icons/delivery-big.png);
+	background-repeat: no-repeat;
+}
+.delivery-content h4{
+	font-weight: 900;
+	font-size: 24px;
+	line-height: 28px;
+	color: #585858;
+}
+.delivery-content .marker {
+	padding-right: 9px;
+    height: 9px;
+    margin-top: 4px;
+    border-radius: 50%;
+    margin-right: 13px;
+    background-color: #83B734;
+}
+.delivery-content .line{
+	border: 1px solid #DFE3E9;
+	padding: 20px;
+}
+.delivery-content .line p{
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 19px;
+	color: #585858;
+	margin: 0;
+}
+.delivery-content .line b{
+	font-weight: 900;
+}
+.delivery-price a{
+	color: #83B734;
+}
+.delivery-big-block a{
+	color: #83B734;
+}
+.delivery-content .delivery-self .text-red{
+	font-weight: 900;
+	font-size: 24px;
+	line-height: 28px;
+	color: #EB5757;
+}
+.delivery-self .delivery-marker-1{
+	margin-top: 8px;
+}
+.delivery-self .delivery-marker-2{
+	margin-right: 10px;
+}
+.delivery-self ul{
+	padding-inline-start: 0;
+}
+.delivery-self li{
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 19px;
+	color: #585858;
+}
+.delivery-self .text-green{
+	color: #83B734;
+}
 
 @media screen and (min-width:769px){
 	.info-card .card-body{
@@ -1989,6 +2067,41 @@ table td{
 	.cart-summ{
 		border: none;
 		padding: 0;
+	}
+    .delivery-icon{
+		width: 24px;
+    	height: 24px;
+    	background-size: 24px;
+	}
+	.delivery-time{
+		width: 24px;
+    	height: 24px;
+    	background-size: 24px;
+	}
+	.delivery-big{
+		width: 31px;
+    	height: 24px;
+    	background-size: 24px;
+	}
+	.delivery-content h4 {
+	    font-size: 18px;
+	    line-height: 21px;
+	    margin: 0;
+	}
+	.delivery-content .line p {
+	    font-size: 14px;
+	    line-height: 16px;
+	}
+	.delivery-content .delivery-self .text-red{
+	    font-size: 14px;
+	    line-height: 16px;
+	}
+	.delivery-self .delivery-marker-1 {
+	    margin-top: 3px;
+	}
+	.delivery-self li {
+	    font-size: 14px;
+	    line-height: 16px;
 	}
 
 }
