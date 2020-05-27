@@ -387,7 +387,7 @@ body{
 	position: absolute;
 	top: 360px;
 }
-.slick-track{
+.category-block .slick-track{
 	left: -50%;
 }
 .category-card{
@@ -452,7 +452,7 @@ body{
 }
 .bestseller{
 	background-color: #83B734;
-	margin: 5% auto;
+	margin: 0% auto;
 	position: relative;
 	display: flex;
     flex-wrap: nowrap;

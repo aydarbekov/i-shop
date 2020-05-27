@@ -28,6 +28,13 @@ function slick() {
             }
         ]
     });
+    $('.bestseller-slide').slick({
+        centerMode: true,
+        centerPadding: '0px',
+        slidesToShow: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+    });
 }
 function godown() {
     const last = $('.category-card:last-child');
