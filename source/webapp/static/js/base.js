@@ -29,13 +29,17 @@ function dropdown_listener(){
 
 $(document).ready(function() {
     $('.cart').click(function() {
-        $('.empty-collapse')[0].style.display = 'block';
-        $('.cart-modal').slideToggle(500);
+        if ($('.empty-collapse')[0].style.display === 'none' || $('.empty-collapse')[0].style.display === ''){
+            $('.empty-collapse')[0].style.display = 'block';
+            $('.cart-modal').slideToggle(500);
+        }else if ($('.empty-collapse')[0].style.display === 'block'){
+            $('.empty-collapse')[0].style.display = 'none';
+            $('.cart-modal').slideToggle(500);
+        }
+
     });
     $('.empty-collapse').click(function() {
         $( ".cart" ).click();
-        $('.empty-collapse')[0].style.display = 'none';
-
     });
     $(window).resize(function() {
         if(document.documentElement.clientWidth <= 768) {
