@@ -1,12 +1,7 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.views.generic.base import View
-
-from webapp.models import Product
-
 from webapp.models import Product, Category
 
 
@@ -28,7 +23,7 @@ class ProductView(DetailView):
 class ProductCreateView(PermissionRequiredMixin, CreateView):
     model = Product
     template_name = 'add.html'
-    fields = ('name', 'category', 'price', 'photo', 'in_stock')
+    fields = ('name', 'category', 'price','in_stock', 'description', 'color', 'discount', 'quantity', 'brand')
     success_url = reverse_lazy('webapp:index')
     permission_required = 'webapp.add_product'
     permission_denied_message = '403 Доступ запрещён!'
@@ -37,7 +32,7 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
 class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     model = Product
     template_name = 'edit.html'
-    fields = ('name', 'category', 'price', 'photo', 'in_stock')
+    fields = ('name', 'category', 'price','in_stock', 'description', 'color', 'discount', 'quantity', 'brand')
     context_object_name = 'product'
     permission_required = 'webapp.change_product'
 
