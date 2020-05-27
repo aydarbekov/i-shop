@@ -138,7 +138,8 @@
                                                     <button class="promo-button-compare"></button>
                                                     <button class="promo-button-share"></button>
                                                 </div>
-                                                <button type="button" class="to-cart btn btn-success">В корзину</button>
+                                                <a href="{% url 'webapp:cart_change' %}?pk={{ product.pk }}&action=add&next={% url 'webapp:products_category' product_category.pk %}" class="to-cart btn btn-success">В корзину</a>
+{#                                                <button type="button" class="to-cart btn btn-success">В корзину</button>#}
                                             </div>
                                         </div>
                                     </div>

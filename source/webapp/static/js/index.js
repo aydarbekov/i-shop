@@ -60,6 +60,15 @@ function goup() {
     }
 }
 $(document).ready(function(){
+    $('.cart').click(function() {
+        $('.empty-collapse')[0].style.display = 'block';
+        $('.cart-modal').slideToggle(500);
+    });
+    $('.empty-collapse').click(function() {
+        $( ".cart" ).click();
+        $('.empty-collapse')[0].style.display = 'none';
+
+    });
     slick();
     if(document.documentElement.clientWidth < 768) {
         godown();

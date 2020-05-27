@@ -2,7 +2,7 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
-from django.views.generic import DetailView, UpdateView, ListView, CreateView
+from django.views.generic import DetailView, UpdateView, ListView
 from django.contrib.auth.models import User
 from django.urls import reverse
 from .forms import UserCreationForm, UserInfoChangeForm, CompanyInfoChangeForm, UserPasswordChangeForm, \
@@ -178,8 +178,9 @@ def register_staff_view(request):
                 username=form.cleaned_data['username'],
                 first_name=form.cleaned_data['first_name'],
                 last_name=form.cleaned_data['last_name'],
+                # phone_number=form.cleaned_data['phone_number'],
                 email=form.cleaned_data['email'],
-                is_active=False  # user не активный до подтверждения email
+                is_active=True  # user не активный до подтверждения email
             )
             user.set_password(form.cleaned_data['password'])
             user.save()
@@ -188,9 +189,9 @@ def register_staff_view(request):
                 mobile_phone=form.cleaned_data['phone_number'],
                 type=form.cleaned_data['type']
             )
-            user.is_active = True
             user.save()
             profile.save()
-            return HttpResponseRedirect(reverse('accounts:user_detail', kwargs={"pk": user.pk}))
+
+            return reverse('accounts:user_detail', kwargs={"pk": user.pk})
         else:
             return render(request, 'register.html', {'form': form})

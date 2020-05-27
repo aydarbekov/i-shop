@@ -33,11 +33,12 @@ class CategoryCreateView(UserPassesTestMixin, CreateView):
 
     def form_valid(self, form):
         text = form.cleaned_data['category_name']
+        photo = form.cleaned_data['photo']
         if Category.objects.filter(category_name=text.capitalize()):
             messages.error(self.request, 'Категория с таким названием уже существует!')
             return render(self.request, 'add.html', {})
         else:
-            category = Category(category_name=text.capitalize())
+            category = Category(category_name=text.capitalize(), photo=photo)
             category.save()
         return self.get_success_url()
 

@@ -9,6 +9,14 @@
 },
 {
   "model": "sessions.session",
+  "pk": "je2h2fmcl25ptacop1gawh58pivqp4bt",
+  "fields": {
+    "session_data": "Mzg3MzA0NWM2NDZhYTJjZTRkOGRmMjNiOWQ2MDRmNGM0ZGI5NzM4YTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxY2MxYWE2ZGNlNDkxZWMzMDhhMWNiNDNmZTQ2MzFhNjgzMDlmYzc1In0=",
+    "expire_date": "2020-06-09T21:46:19.186Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "l6zx1dfzs6y7jf52dd8uhw6yfcudtqr4",
   "fields": {
     "session_data": "Mzg3MzA0NWM2NDZhYTJjZTRkOGRmMjNiOWQ2MDRmNGM0ZGI5NzM4YTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxY2MxYWE2ZGNlNDkxZWMzMDhhMWNiNDNmZTQ2MzFhNjgzMDlmYzc1In0=",
@@ -20,7 +28,7 @@
   "pk": 1,
   "fields": {
     "category_name": "\u0411\u0443\u043c\u0430\u0436\u043d\u0430\u044f \u043f\u0440\u043e\u0434\u0443\u043a\u0446\u0438\u044f",
-    "photo": "category_images/bum-izdelia_GLuooan.png"
+    "photo": "category_images/bum-izdelia_nQT7gWi.png"
   }
 },
 {
@@ -176,14 +184,59 @@
   }
 },
 {
+  "model": "webapp.brand",
+  "pk": 2,
+  "fields": {
+    "brand_name": "Bic",
+    "photo": "brand_images/orig.jpg"
+  }
+},
+{
+  "model": "webapp.brand",
+  "pk": 3,
+  "fields": {
+    "brand_name": "\u041b\u0443\u0447",
+    "photo": "brand_images/Unknown.jpg"
+  }
+},
+{
+  "model": "webapp.brand",
+  "pk": 4,
+  "fields": {
+    "brand_name": "\u0413\u0430\u043c\u043c\u0430",
+    "photo": "brand_images/orig.png"
+  }
+},
+{
+  "model": "webapp.brand",
+  "pk": 5,
+  "fields": {
+    "brand_name": "Faber-castell",
+    "photo": "brand_images/faber_sastell.png"
+  }
+},
+{
+  "model": "webapp.brand",
+  "pk": 6,
+  "fields": {
+    "brand_name": "Erichkrause",
+    "photo": "brand_images/scale_1200.png"
+  }
+},
+{
   "model": "webapp.product",
   "pk": 1,
   "fields": {
     "name": "\u041a\u0430\u0440\u0430\u043d\u0434\u0430\u0448",
     "category": 2,
-    "photo": "product_images/10.jpg",
     "price": "200.00",
-    "in_stock": true
+    "in_stock": true,
+    "description": null,
+    "color": "#F0DEBA;",
+    "discount": null,
+    "date": "2021-03-29T11:41:22Z",
+    "quantity": null,
+    "brand": null
   }
 },
 {
@@ -192,9 +245,14 @@
   "fields": {
     "name": "\u041a\u0430\u0440\u0430\u043d\u0434\u0430\u0448",
     "category": 2,
-    "photo": "product_images/9.jpg",
     "price": "150.00",
-    "in_stock": true
+    "in_stock": true,
+    "description": null,
+    "color": "#F0DEBA;",
+    "discount": null,
+    "date": "2021-03-29T11:41:22Z",
+    "quantity": null,
+    "brand": null
   }
 },
 {
@@ -203,9 +261,14 @@
   "fields": {
     "name": "\u0411\u0443\u043c\u0430\u0433\u0430 \u0421\u043d\u0435\u0433\u0443\u0440\u043e\u0447\u043a\u0430",
     "category": 1,
-    "photo": "product_images/6.jpg",
     "price": "120.00",
-    "in_stock": true
+    "in_stock": true,
+    "description": null,
+    "color": "#F0DEBA;",
+    "discount": null,
+    "date": "2021-03-29T11:41:22Z",
+    "quantity": null,
+    "brand": null
   }
 },
 {
@@ -214,9 +277,14 @@
   "fields": {
     "name": "\u0411\u0443\u043c\u0430\u0433\u0430",
     "category": 1,
-    "photo": "product_images/5.png",
     "price": "250.00",
-    "in_stock": true
+    "in_stock": true,
+    "description": null,
+    "color": "#F0DEBA;",
+    "discount": null,
+    "date": "2021-03-29T11:41:22Z",
+    "quantity": null,
+    "brand": null
   }
 },
 {
@@ -225,9 +293,14 @@
   "fields": {
     "name": "\u041a\u0440\u0430\u0441\u043a\u0438",
     "category": 2,
-    "photo": "product_images/3.jpg",
     "price": "300.00",
-    "in_stock": true
+    "in_stock": true,
+    "description": null,
+    "color": "#F0DEBA;",
+    "discount": null,
+    "date": "2021-03-29T11:41:22Z",
+    "quantity": null,
+    "brand": null
   }
 },
 {
@@ -236,9 +309,14 @@
   "fields": {
     "name": "\u041f\u043b\u0430\u0441\u0442\u0438\u043b\u0438\u043d",
     "category": 2,
-    "photo": "product_images/1_1HTSLHj.jpg",
     "price": "70.00",
-    "in_stock": true
+    "in_stock": true,
+    "description": null,
+    "color": "#F0DEBA;",
+    "discount": null,
+    "date": "2021-03-29T11:41:22Z",
+    "quantity": null,
+    "brand": null
   }
 },
 {
@@ -247,9 +325,14 @@
   "fields": {
     "name": "\u041f\u043b\u0430\u0441\u0442\u0438\u043b\u0438\u043d",
     "category": 2,
-    "photo": "product_images/2_TEMuGWW.jpg",
     "price": "80.00",
-    "in_stock": true
+    "in_stock": true,
+    "description": null,
+    "color": "#F0DEBA;",
+    "discount": null,
+    "date": "2021-03-29T11:41:22Z",
+    "quantity": null,
+    "brand": null
   }
 },
 {
@@ -258,9 +341,14 @@
   "fields": {
     "name": "\u0422\u0435\u0442\u0440\u0430\u0434\u0438",
     "category": 8,
-    "photo": "product_images/7.jpg",
     "price": "30.00",
-    "in_stock": true
+    "in_stock": true,
+    "description": null,
+    "color": "#F0DEBA;",
+    "discount": null,
+    "date": "2021-03-29T11:41:22Z",
+    "quantity": null,
+    "brand": null
   }
 },
 {
@@ -269,9 +357,14 @@
   "fields": {
     "name": "\u0422\u0435\u0442\u0440\u0430\u0434\u0438",
     "category": 8,
-    "photo": "product_images/8.jpg",
     "price": "25.00",
-    "in_stock": true
+    "in_stock": true,
+    "description": null,
+    "color": "#F0DEBA;",
+    "discount": null,
+    "date": "2021-03-29T11:41:22Z",
+    "quantity": null,
+    "brand": null
   }
 },
 {
@@ -280,9 +373,14 @@
   "fields": {
     "name": "test",
     "category": 1,
-    "photo": "",
     "price": "100.00",
-    "in_stock": false
+    "in_stock": false,
+    "description": null,
+    "color": "#F0DEBA;",
+    "discount": null,
+    "date": "2021-03-29T11:41:22Z",
+    "quantity": null,
+    "brand": null
   }
 },
 {
@@ -898,11 +996,335 @@
   }
 },
 {
+  "model": "auth.permission",
+  "pk": 69,
+  "fields": {
+    "name": "Can add Profile",
+    "content_type": 18,
+    "codename": "add_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 70,
+  "fields": {
+    "name": "Can change Profile",
+    "content_type": 18,
+    "codename": "change_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 71,
+  "fields": {
+    "name": "Can delete Profile",
+    "content_type": 18,
+    "codename": "delete_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 72,
+  "fields": {
+    "name": "Can view Profile",
+    "content_type": 18,
+    "codename": "view_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 73,
+  "fields": {
+    "name": "Can add \u0410\u0434\u0440\u0435\u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
+    "content_type": 10,
+    "codename": "add_deliveryaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 74,
+  "fields": {
+    "name": "Can change \u0410\u0434\u0440\u0435\u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
+    "content_type": 10,
+    "codename": "change_deliveryaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 75,
+  "fields": {
+    "name": "Can delete \u0410\u0434\u0440\u0435\u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
+    "content_type": 10,
+    "codename": "delete_deliveryaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 76,
+  "fields": {
+    "name": "Can view \u0410\u0434\u0440\u0435\u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
+    "content_type": 10,
+    "codename": "view_deliveryaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 77,
+  "fields": {
+    "name": "Can add \u0417\u0430\u043a\u0430\u0437",
+    "content_type": 11,
+    "codename": "add_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 78,
+  "fields": {
+    "name": "Can change \u0417\u0430\u043a\u0430\u0437",
+    "content_type": 11,
+    "codename": "change_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 79,
+  "fields": {
+    "name": "Can delete \u0417\u0430\u043a\u0430\u0437",
+    "content_type": 11,
+    "codename": "delete_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 80,
+  "fields": {
+    "name": "Can view \u0417\u0430\u043a\u0430\u0437",
+    "content_type": 11,
+    "codename": "view_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 81,
+  "fields": {
+    "name": "Can add \u0422\u043e\u0432\u0430\u0440 \u0432 \u0437\u0430\u043a\u0430\u0437\u0435",
+    "content_type": 12,
+    "codename": "add_orderproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 82,
+  "fields": {
+    "name": "Can change \u0422\u043e\u0432\u0430\u0440 \u0432 \u0437\u0430\u043a\u0430\u0437\u0435",
+    "content_type": 12,
+    "codename": "change_orderproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 83,
+  "fields": {
+    "name": "Can delete \u0422\u043e\u0432\u0430\u0440 \u0432 \u0437\u0430\u043a\u0430\u0437\u0435",
+    "content_type": 12,
+    "codename": "delete_orderproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 84,
+  "fields": {
+    "name": "Can view \u0422\u043e\u0432\u0430\u0440 \u0432 \u0437\u0430\u043a\u0430\u0437\u0435",
+    "content_type": 12,
+    "codename": "view_orderproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 85,
+  "fields": {
+    "name": "Can add \u041e\u0442\u0437\u044b\u0432",
+    "content_type": 13,
+    "codename": "add_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 86,
+  "fields": {
+    "name": "Can change \u041e\u0442\u0437\u044b\u0432",
+    "content_type": 13,
+    "codename": "change_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 87,
+  "fields": {
+    "name": "Can delete \u041e\u0442\u0437\u044b\u0432",
+    "content_type": 13,
+    "codename": "delete_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 88,
+  "fields": {
+    "name": "Can view \u041e\u0442\u0437\u044b\u0432",
+    "content_type": 13,
+    "codename": "view_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 89,
+  "fields": {
+    "name": "Can add \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435",
+    "content_type": 14,
+    "codename": "add_image"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 90,
+  "fields": {
+    "name": "Can change \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435",
+    "content_type": 14,
+    "codename": "change_image"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 91,
+  "fields": {
+    "name": "Can delete \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435",
+    "content_type": 14,
+    "codename": "delete_image"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 92,
+  "fields": {
+    "name": "Can view \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435",
+    "content_type": 14,
+    "codename": "view_image"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 93,
+  "fields": {
+    "name": "Can add \u041d\u043e\u0432\u043e\u0441\u0442\u044c",
+    "content_type": 15,
+    "codename": "add_news"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 94,
+  "fields": {
+    "name": "Can change \u041d\u043e\u0432\u043e\u0441\u0442\u044c",
+    "content_type": 15,
+    "codename": "change_news"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 95,
+  "fields": {
+    "name": "Can delete \u041d\u043e\u0432\u043e\u0441\u0442\u044c",
+    "content_type": 15,
+    "codename": "delete_news"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 96,
+  "fields": {
+    "name": "Can view \u041d\u043e\u0432\u043e\u0441\u0442\u044c",
+    "content_type": 15,
+    "codename": "view_news"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 97,
+  "fields": {
+    "name": "Can add \u0411\u0440\u0435\u043d\u0434",
+    "content_type": 16,
+    "codename": "add_brand"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 98,
+  "fields": {
+    "name": "Can change \u0411\u0440\u0435\u043d\u0434",
+    "content_type": 16,
+    "codename": "change_brand"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 99,
+  "fields": {
+    "name": "Can delete \u0411\u0440\u0435\u043d\u0434",
+    "content_type": 16,
+    "codename": "delete_brand"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 100,
+  "fields": {
+    "name": "Can view \u0411\u0440\u0435\u043d\u0434",
+    "content_type": 16,
+    "codename": "view_brand"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 101,
+  "fields": {
+    "name": "Can add token",
+    "content_type": 17,
+    "codename": "add_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 102,
+  "fields": {
+    "name": "Can change token",
+    "content_type": 17,
+    "codename": "change_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 103,
+  "fields": {
+    "name": "Can delete token",
+    "content_type": 17,
+    "codename": "delete_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 104,
+  "fields": {
+    "name": "Can view token",
+    "content_type": 17,
+    "codename": "view_token"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$150000$uSFUOF4e7Zf3$vrIYIWOGUY5ss0MB5sKCnpScwXPnoVKyNpf7OR7awyo=",
-    "last_login": "2020-05-02T13:36:35.351Z",
+    "last_login": "2020-05-26T21:46:19.179Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -1321,7 +1743,7 @@
   "model": "admin.logentry",
   "pk": 26,
   "fields": {
-    "action_time": "2020-05-22T10:14:52.000Z",
+    "action_time": "2020-05-22T10:14:52Z",
     "user": 1,
     "content_type": 7,
     "object_id": "2",

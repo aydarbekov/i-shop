@@ -1,15 +1,33 @@
 {% extends 'base.html' %}
 {% block title %}{{ user_object.username }}{% endblock %}
 {% block menu %}
-    {% if user_object == request.user %}
-        {% if user_object.profile.type == 'client' %}
-        <li><a href="{% url "accounts:user_update" user_object.pk %}">Edit Profile</a></li>
-        {% endif %}
-        {% if user_object.profile.type == 'company' %}
-        <li><a href="{% url "accounts:company_update" user_object.pk %}">Edit Profile</a></li>
-        {% endif %}
-        <a href="{% url 'accounts:user_password_change' user_object.pk %}" class="login  d-none d-md-flex">Change Password</a>
+    {% if perms.webapp.product_add %}
+        <div class="dropdown">
+            <button class=" login m-0 btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    style="border: none; white-space: pre-line; background-color: white; width: min-content;">
+                Функции Администратора
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{% url 'accounts:user_list' %}">Список пользователей</a>
+                <a class="dropdown-item" href="{% url 'accounts:register_staff' %}">Добавить персонал</a>
+                <a class="dropdown-item" href="{% url 'webapp:product_create' %}">Добавить товар</a>
+                <a class="dropdown-item" href="{% url 'webapp:categories_list' %}">Категории</a>
+                <a class="dropdown-item" href="{% url 'webapp:brands_list' %}">Бренды</a>
+                <a class="dropdown-item" href="{% url 'webapp:orders' %}">Заказы</a>
+            </div>
+        </div>
     {% endif %}
+
+    {#    {% if user_object == request.user %}#}
+    {#        {% if user_object.profile.type == 'client' %}#}
+{#    <li><a href="{% url "accounts:user_update" user_object.pk %}">Edit Profile</a></li>#}
+    {#        {% endif %}#}
+    {#        {% if user_object.profile.type == 'company' %}#}
+{#    <li><a href="{% url "accounts:company_update" user_object.pk %}">Edit Profile</a></li>#}
+    {#        {% endif %}#}
+    {#        <a href="{% url 'accounts:user_password_change' user_object.pk %}" class="login  d-none d-md-flex">Change Password</a>#}
+    {#    {% endif %}#}
 {% endblock %}
 {% block content %}
     <div class="card mb-3" style="max-width: 540px; border: none">
@@ -49,7 +67,7 @@
                         <p>ОКПО: {{ user.profile.okpo }}
                     {% endif %}
                 </div>
-            {% if user.profile.type == 'client' %}
+                {% if user.profile.type == 'client' %}
                     <a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a>
                 {% endif %}
                 {% if user.profile.type == 'company' %}
