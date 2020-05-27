@@ -20,10 +20,10 @@
                 <td>{{ item.qty }}</td>
                 <td>{{ item.total }}</td>
                 <td>
-                    <a href="{% url 'webapp:basket_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:basket' %}">Больше</a>
+                    <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:cart' %}">Больше</a>
                 </td>
                 <td>
-                    <a href="{% url 'webapp:basket_change' %}?pk={{ item.product.pk }}&action=remove&next={% url 'webapp:basket' %}">Меньше</a>
+                    <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=remove&next={% url 'webapp:cart' %}">Меньше</a>
                 </td>
             </tr>
         {% endfor %}

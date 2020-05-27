@@ -7,10 +7,10 @@ from webapp.models import Product, Order, OrderProduct
 from django.contrib import messages
 
 
-
 class CartChangeView(View):
     def get(self, request, *args, **kwargs):
         products = request.session.get('products', [])
+        print(request.path)
 
         pk = request.GET.get('pk')
         action = request.GET.get('action')
@@ -19,8 +19,9 @@ class CartChangeView(View):
 
         if action == 'add':
             product = get_object_or_404(Product, pk=pk)
-            if product.quantity > 0:
-                products.append(pk)
+            print("Producr.quantity", product.quantity)
+            # if product.quantity > 0:
+            products.append(pk)
         else:
             for product_pk in products:
                 if product_pk == pk:
@@ -31,6 +32,7 @@ class CartChangeView(View):
         request.session['products_count'] = len(products)
 
         return redirect(next_url)
+
 
 class CartView(CreateView):
     model = Order
