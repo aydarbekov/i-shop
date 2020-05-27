@@ -1,32 +1,30 @@
-{#{% load staticfiles %}#}
-{##}
-{#<!doctype html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <meta name="viewport"#}
-{#         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">#}
-{#    <meta http-equiv="X-UA-Compatible" content="ie=edge">#}
-{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">#}
-{#    <link rel="stylesheet" href="{% static "css/style.css" %}">#}
-{#    <title>LOGIN</title>#}
-{#</head>#}
-{#<body>#}
-{#<div class="container" style="width: 500px">#}
-{#    <form action="{% url 'accounts:login' %}?next={{ next }}" method="post" class="text-center">#}
-{#        {% include 'partial/form.html' with button_text='Log In' %}#}
-{#    </form>#}
-{#</div>#}
-{#</body>#}
-{#</html>#}
-
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Вход</h1>
-    <div class="container" style="width: 500px">
-    <form action="{% url 'accounts:login' %}?next={{ next }}" method="post" class="text-center">
-        {% include 'partial/form.html' %}
-        <p class="text-center"><input type="submit" value="Войти" class="btn btn-success"></p>
-    </form>
+    <div class="login-block">
+        <h4>Вход</h4>
+        <div class="" style="display: flex; justify-content: center; padding-bottom: 50px">
+            <form action="{% url 'accounts:login' %}?next={{ next }}" method="post" class="text-center">
+                {% include 'partial/form.html' %}
+                <p class="text-center"><input type="submit" value="Вход" class="btn btn-success"></p>
+                <div class="checkbox-remember">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Запомнить меня</label>
+                </div>
+            </form>
+        </div>
+        <hr>
+        <span>Или войти</span>
+        <div class="social-login" style="display: flex; justify-content: center; padding-bottom: 50px;">
+            <div class="" style="width: 440px; max-width: 90%; display: flex; justify-content: space-between">
+                <button type="button" class="btn btn-fb">Facebook</button>
+                <button type="button" class="btn btn-ggl">Google</button>
+            </div>
+        </div>
     </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $('#id_username').attr('placeholder','Введите вашу почту');
+        $('#id_password').attr('placeholder','Введите пароль');
+    </script>
 {% endblock %}

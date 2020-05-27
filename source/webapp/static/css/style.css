@@ -1645,6 +1645,109 @@ table td{
 	font-size: 14px;
 	line-height: 16px;
 }
+.login-block{
+	margin: 5% 0 10%;
+}
+.login-block form{
+	width: 440px;
+    max-width: 90%;
+}
+.login-block h4{
+	margin-bottom: 35px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 21px;
+    text-transform: uppercase;
+    color: #4F4F4F;
+}
+.login-block .form-group label{
+	display: none;
+}
+.login-block .form-control{
+	max-width: 440px;
+	height: 56px;
+	font-size: 16px;
+	line-height: 20px;
+}
+.login-block .form-control::placeholder{
+	color: #C1C1C1;
+}
+.login-block p input{
+	margin-top: 30px;
+	height: 60px;
+    width: 100%;
+    background: #83B734;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+.checkbox-remember{
+	text-align: left;
+	display: flex;
+	align-items: center;
+}
+.checkbox-remember input{
+	width: 20px;
+    height: 20px;
+	margin-right: 10px;
+}
+.checkbox-remember label{
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #585858;
+	margin: 0;
+}
+.login-block hr{
+	border: 2px solid #F8F8F8;
+	width: 90%;
+}
+.login-block span{
+	font-weight: 900;
+	font-size: 18px;
+	line-height: 21px;
+	text-transform: uppercase;
+	color: #4F4F4F;
+	position: relative;
+    display: inline-block;
+    left: 50%;
+    top: -17px;
+    background-color: white;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    text-align: center;
+}
+.social-login button{
+	width: 45%;
+	height: 60px;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 16px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	padding-left: 70px;
+    text-align: left;
+}
+.social-login .btn-fb{
+	background: #344F8D;
+	background-image: url("../images/icons/facebook-logo.png");
+	background-repeat: no-repeat;
+    background-position: 20px 14px;
+
+}
+.social-login .btn-ggl{
+	background: #3A7AF2;
+	background-image: url("../images/icons/google-plus-logo.png");
+	background-repeat: no-repeat;
+    background-position: 20px 14px;
+
+}
 
 @media screen and (min-width:769px){
 	.info-card .card-body{
