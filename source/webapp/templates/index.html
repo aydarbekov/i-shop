@@ -18,7 +18,9 @@
                     <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo accusantium
                         iste tempore sed delectus quos.Lorem ipsum dolor sit amet..</p>
                     <div class="carousel-button-price d-flex align-items-center">
-                        <button type="button" class="btn button-in-carousel mr-4">в корзину</button>
+                        <a href="{% url 'webapp:cart_change' %}?pk={{ product.pk }}&action=add&next={% url 'webapp:index' %}" class="btn button-in-carousel mr-4">в корзину</a>
+
+{#                        <button type="button" class="btn button-in-carousel mr-4">в корзину</button>#}
                         <p class="carousel-price">$8</p>
                     </div>
                 </div>
@@ -79,43 +81,23 @@
                                 <img src="{% static 'default_image.png' %}" class="card-img-top" alt="No photo">
                             {% endif %}
                             <h5 class="category-card-title card-title d-inline-block position-absolute">{{ category.category_name }}</h5>
-                            <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">
-                                34</p>
+                            {#                            <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
+                            {#                                34</p>#}
                         </a>
                     </div>
                 </div>
             {% endfor %}
         </div>
     </div>
-    <div class="bestseller my-5">
+    <div class="bestseller">
         <p class="bestseller-text-background">Bestseller</p>
-        <div class="container d-flex flex-nowrap bestseller bg-transparent bestseller-slide">
-            <div class="d-flex flex-nowrap bg-transparent">
-                <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">
-                <div class="bestseller-content">
-                    <h3>Кресло для офиса</h3>
-                    <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
-                    <p class="bestseller-price">$8</p>
-                    <button type="button" class="btn bestseller-button mr-4">в корзину</button>
-                </div>
-            </div>
-            <div class="d-flex flex-nowrap bg-transparent">
-                <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">
-                <div class="bestseller-content">
-                    <h3>Кресло для офиса</h3>
-                    <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
-                    <p class="bestseller-price">$8</p>
-                    <button type="button" class="btn bestseller-button mr-4">в корзину</button>
-                </div>
-            </div>
-            <div class="d-flex flex-nowrap bg-transparent">
-                <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">
-                <div class="bestseller-content">
-                    <h3>Кресло для офиса</h3>
-                    <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
-                    <p class="bestseller-price">$8</p>
-                    <button type="button" class="btn bestseller-button mr-4">в корзину</button>
-                </div>
+        <div class="container d-flex flex-nowrap bestseller">
+            <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">
+            <div class="bestseller-content">
+                <h3>Кресло для офиса</h3>
+                <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
+                <p class="bestseller-price">$8</p>
+                <button type="button" class="btn bestseller-button mr-4">в корзину</button>
             </div>
         </div>
     </div>
