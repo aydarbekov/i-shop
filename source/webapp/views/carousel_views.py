@@ -26,7 +26,7 @@ class CarouselListView(UserPassesTestMixin, ListView):
 
 class CarouselCreateView(UserPassesTestMixin, CreateView):
     model = Carousel
-    template_name = 'add.html'
+    template_name = 'base_CRUD/add.html'
     fields = ['product']
 
     def test_func(self):
@@ -37,7 +37,7 @@ class CarouselCreateView(UserPassesTestMixin, CreateView):
         product = form.cleaned_data['product']
         if Carousel.objects.filter(product=product):
             messages.error(self.request, 'Объект уже существует!')
-            return render(self.request, 'add.html', {})
+            return render(self.request, 'base_CRUD/add.html', {})
         else:
             carousel = Carousel(product=product)
             carousel.save()
@@ -49,7 +49,7 @@ class CarouselCreateView(UserPassesTestMixin, CreateView):
 
 class CarouselUpdateView(UserPassesTestMixin, UpdateView):
     model = Carousel
-    template_name = 'edit.html'
+    template_name = 'base_CRUD/edit.html'
     fields = ['product']
     context_object_name = 'product'
 
@@ -63,7 +63,7 @@ class CarouselUpdateView(UserPassesTestMixin, UpdateView):
 
 class CarouselDeleteView(UserPassesTestMixin, DeleteView):
     model = Carousel
-    template_name = 'delete.html'
+    template_name = 'base_CRUD/delete.html'
     context_object_name = 'object'
     success_url = reverse_lazy('webapp:carousel_list')
     permission_required = "webapp.delete_category"
@@ -90,8 +90,6 @@ class CarouselAddView(View):
             carousel = Carousel.objects.get(product=product)
             carousel.delete()
         else:
-            print('ADDED')
             Carousel.objects.get_or_create(product=product)
-            print('ADDED')
         return redirect('webapp:products_all')
 
