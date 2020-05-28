@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{#{% load auth_extras %}#}
 {% block content %}
     <h1>Новости</h1>
     {% if request.user.is_staff %}
@@ -13,7 +12,7 @@
             {% if news.photo %}
                 <img src="{{ news.photo.url }}" class="photo card-img-top mb-5" alt="{{ news.title }}">
             {% else %}
-                {% load static %}<a href="{% static "images/no_photo.jpg" %}" data-fancybox="gallery" data-caption="Caption #1">
+                {% load static %}<a href="{% static "images/no_photo.jpg" %}" data-fancybox="gallery" data-caption="Caption #1"></a>
             {% endif %}
         </div>
         <div class="col-8">

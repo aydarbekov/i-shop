@@ -74,13 +74,14 @@
                     <div class="position-relative">
                         <a href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}">
                             {% if category.photo %}
-                                <img src="{{ category.photo.url }}" class="card-img-top" alt="{{ category.category_name }}">
+                                <img src="{{ category.photo.url }}" class="card-img-top"
+                                     alt="{{ category.category_name }}">
                             {% else %}
                                 <img src="{% static 'default_image.png' %}" class="card-img-top" alt="No photo">
                             {% endif %}
                             <h5 class="category-card-title card-title d-inline-block position-absolute">{{ category.category_name }}</h5>
-                            {#                            <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">#}
-                            {#                                34</p>#}
+                            <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">
+                                34</p>
                         </a>
                     </div>
                 </div>
@@ -93,7 +94,8 @@
             <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">
             <div class="bestseller-content">
                 <h3>Кресло для офиса</h3>
-                <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
+                <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel
+                    ratione maiores harum. Aliquid, sed.</p>
                 <p class="bestseller-price">$8</p>
                 <button type="button" class="btn bestseller-button mr-4">в корзину</button>
             </div>

@@ -1,24 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}{{ user_object.username }}{% endblock %}
 {% block menu %}
-    {% if perms.webapp.product_add %}
-        <div class="dropdown">
-            <button class=" login m-0 btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                    style="border: none; white-space: pre-line; background-color: white; width: min-content;">
-                Функции Администратора
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="{% url 'accounts:user_list' %}">Список пользователей</a>
-                <a class="dropdown-item" href="{% url 'accounts:register_staff' %}">Добавить персонал</a>
-                <a class="dropdown-item" href="{% url 'webapp:product_create' %}">Добавить товар</a>
-                <a class="dropdown-item" href="{% url 'webapp:categories_list' %}">Категории</a>
-                <a class="dropdown-item" href="{% url 'webapp:brands_list' %}">Бренды</a>
-                <a class="dropdown-item" href="{% url 'webapp:orders' %}">Заказы</a>
-            </div>
-        </div>
-    {% endif %}
-
     {#    {% if user_object == request.user %}#}
     {#        {% if user_object.profile.type == 'client' %}#}
 {#    <li><a href="{% url "accounts:user_update" user_object.pk %}">Edit Profile</a></li>#}
