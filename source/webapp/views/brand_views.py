@@ -24,7 +24,7 @@ class BrandListView(UserPassesTestMixin, ListView):
 
 class BrandCreateView(UserPassesTestMixin, CreateView):
     model = Brand
-    template_name = 'add.html'
+    template_name = 'base_CRUD/add.html'
     fields = ['brand_name', 'photo']
 
     def test_func(self):
@@ -36,7 +36,7 @@ class BrandCreateView(UserPassesTestMixin, CreateView):
         photo = form.cleaned_data['photo']
         if Brand.objects.filter(brand_name=text.capitalize()):
             messages.error(self.request, 'Бренд с таким названием уже существует!')
-            return render(self.request, 'add.html', {})
+            return render(self.request, 'base_CRUD/add.html', {})
         else:
             brand = Brand(brand_name=text.capitalize(), photo=photo)
             brand.save()
@@ -48,7 +48,7 @@ class BrandCreateView(UserPassesTestMixin, CreateView):
 
 class BrandUpdateView(UserPassesTestMixin, UpdateView):
     model = Brand
-    template_name = 'edit.html'
+    template_name = 'base_CRUD/edit.html'
     fields = ['brand_name', 'photo']
     context_object_name = 'brand'
 
@@ -74,7 +74,7 @@ class BrandUpdateView(UserPassesTestMixin, UpdateView):
 
 class BrandDeleteView(UserPassesTestMixin, DeleteView):
     model = Brand
-    template_name = 'delete.html'
+    template_name = 'base_CRUD/delete.html'
     success_url = reverse_lazy('webapp:brands_list')
     permission_required = "webapp.delete_brand"
     permission_denied_message = "Доступ запрещен"
