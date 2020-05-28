@@ -6,10 +6,13 @@ from webapp.views.product_views import IndexView, ProductView, ProductCreateView
     ProductListView
 from webapp.views.review_views import ReviewCreateView
 from webapp.views.subcategory_views import SubCategoryDeleteView, SubCategoryCreateView, SubCategoryUpdateView
+from .views.cart_views import CartChangeView, CartView
 from .views.orders_view import OrderListView, OrderDetailView, OrderUpdateView, OrderProductUpdateView, OrderProductDeleteView
 from .views.news_views import NewsView, NewsAddView, NewsDetailView, NewsDeleteView, NewsEditView
 
 app_name = 'webapp'
+
+
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
@@ -17,6 +20,7 @@ urlpatterns = [
     path('product/add/', ProductCreateView.as_view(), name='product_create'),
     path('products/<int:pk>/update/', ProductUpdateView.as_view(), name='product_update'),
     path('products/<int:pk>/delete/', ProductDeleteView.as_view(), name='product_delete'),
+    path('product_category/<int:pk>', ProductListView.as_view(), name='products_category'),
     path('categories/', CategoryListView.as_view(), name='categories_list'),
     path('category/add/', CategoryCreateView.as_view(), name='category_add'),
     path('category/change/<int:pk>/', CategoryUpdateView.as_view(), name='category_change'),
@@ -29,7 +33,8 @@ urlpatterns = [
     path('orders/<int:pk>/update', OrderUpdateView.as_view(), name='order_update'),
     path('orders/product/update/<int:pk>/<int:id>', OrderProductUpdateView.as_view(), name='order_product_update'),
     path('orders/product/delete/<int:pk>/<int:id>', OrderProductDeleteView.as_view(), name='order_product_delete'),
-    path('product_category/<int:pk>', ProductListView.as_view(), name='products_category'),
+    path('cart/change/', CartChangeView.as_view(), name='cart_change'),
+    path('cart/', CartView.as_view(), name='cart'),
     path('review/add/<int:pk>/', ReviewCreateView.as_view(), name='review_create'),
     path('news/', NewsView.as_view(), name='news'),
     path('news/<int:pk>/', NewsDetailView.as_view(), name='news_detail'),

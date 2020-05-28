@@ -51,6 +51,25 @@
             </form>
             <div class="nav-link text-uppercase ml-md-auto d-flex align-items-center justify-content-between">
                 {% block menu %}{% endblock %}
+                {% if perms.webapp.product_add %}
+                    <div class="dropdown">
+                        <button class=" login m-0 btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                style="border: none; white-space: pre-line; background-color: white; width: min-content;">
+                            Функции Администратора
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'accounts:user_list' %}">Список пользователей</a>
+                            <a class="dropdown-item" href="{% url 'accounts:register_staff' %}">Добавить персонал</a>
+                            <a class="dropdown-item" href="{% url 'webapp:product_create' %}">Добавить товар</a>
+                            <a class="dropdown-item" href="{% url 'webapp:categories_list' %}">Категории</a>
+                            <a class="dropdown-item" href="{% url 'webapp:brands_list' %}">Брепшенды</a>
+                            <a class="dropdown-item" href="{% url 'webapp:news' %}">Новости</a>
+                            <a class="dropdown-item" href="{% url 'webapp:orders' %}">Заказы</a>
+                        </div>
+                    </div>
+                {% endif %}
+
                 {% if request.user.is_authenticated %}
                     <a class="login  d-none d-md-flex" href="{% url 'accounts:user_detail' request.user.pk %}">{{ request.user }}!</a>
                     <a class="login  d-none d-md-flex" href="{% url 'accounts:logout' %}">Выйти</a>
