@@ -43,7 +43,7 @@ class CartView(CreateView):
     def get_context_data(self, **kwargs):
         cart, cart_total = self._prepare_cart()
         kwargs['cart'] = cart
-        kwargs['basket_total'] = cart_total
+        kwargs['cart_total'] = cart_total
         return super().get_context_data(**kwargs)
 
     def get_form_kwargs(self):
@@ -57,20 +57,20 @@ class CartView(CreateView):
             return self.form_invalid(form)
         response = super().form_valid(form)
         self._save_order_products()
-        self._clean_basket()
+        self._clean_cart()
         messages.success(self.request, 'Заказ оформлен!')
         return response
 
     def _prepare_cart(self):
         totals = self._get_totals()
-        basket = []
-        basket_total = 0
+        cart = []
+        cart_total = 0
         for pk, qty in totals.items():
             product = Product.objects.get(pk=int(pk))
             total = product.price * qty
-            basket_total += total
-            basket.append({'product': product, 'qty': qty, 'total': total})
-        return basket, basket_total
+            cart_total += total
+            cart.append({'product': product, 'qty': qty, 'total': total})
+        return cart, cart_total
 
     def _get_totals(self):
         products = self.request.session.get('products', [])
@@ -90,7 +90,7 @@ class CartView(CreateView):
         for pk, qty in totals.items():
             OrderProduct.objects.create(product_id=pk, order=self.object, amount=qty)
 
-    def _clean_basket(self):
+    def _clean_cart(self):
         if 'products' in self.request.session:
             self.request.session.pop('products')
         if 'products_count' in self.request.session:
