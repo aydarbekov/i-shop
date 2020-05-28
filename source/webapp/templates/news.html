@@ -2,7 +2,7 @@
 {% block content %}
     <h1>Новости</h1>
     {% if request.user.is_staff %}
-        <a href="{% url 'webapp:news_add' %}" class="btn btn-success ml-5 my-3 hiddenbutton">
+        <a href="{% url 'webapp:news_add' %}" class="btn ml-5 my-3 hiddenbutton" style="background-color: #83B734; color: white">
             + Добавить новость</a>
     {% endif %}
     <hr/>
