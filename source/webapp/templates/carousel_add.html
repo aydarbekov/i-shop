@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Добавить в карусель {% endblock %}
+{% block content %}
+    <h1 class="text-center">Добавить</h1>
+    <form action="{% url "webapp:product_carousel_add" pk %}" method="POST" enctype="multipart/form-data">
+{#        {% include 'partial/form.html' %}#}
+        {% csrf_token %}
+        <input type="submit" value="Добавить" class="btn btn-primary">
+    </form>
+{% endblock %}

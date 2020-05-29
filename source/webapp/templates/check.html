@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Проверка{% endblock %}
+{% block styles %}{% endblock %}
+{% block content %}
+    <div class="container my-4 my-sm-5">
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <div class="payment-details table-products">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item">Корзина</li>
+                            <li class="breadcrumb-item active">Проверка</li>
+                            <li class="breadcrumb-item">Оплата</li>
+                        </ol>
+                    </nav>
+                    <h4>Платежные реквизиты</h4>
+                    <form action="">
+                        <div class="first-last-name">
+                            <input type="text" name="first_name" autofocus placeholder="Ваше Имя">
+                            <input type="text" name="last_name"  placeholder="Ваша фамилия">
+                        </div>
+                        <input type="text" name="company_name"  placeholder="Имя компании">
+                        <input type="text" name="city"  placeholder="Город">
+                        <input type="text" name="adress"  placeholder="Адрес">
+                        <input type="text" name="phone"  placeholder="Номер телефона">
+                        <input type="text" name="mail"  placeholder="Почта">
+                        <div class="create-account-checkbox">
+                            <input type="checkbox" id="create_account" name="create_account">
+                            <label for="create_account">Создать аккаунт?</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-12 col-lg-5">
+                <div class="order-summ">
+                    <h3 class="order-summ-header">Ваш заказ</h3>
+                    <div class="order-summ-table">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td class="none-top-border order-product-name">Принтер для печати</td>
+                                <td class="none-top-border order-product-qty">х2</td>
+                                <td class="none-top-border order-product-summ">$200</td>
+                            </tr>
+                            <tr>
+                                <td class="none-top-border order-product-name">Принтер для печати</td>
+                                <td class="none-top-border order-product-qty">х2</td>
+                                <td class="none-top-border order-product-summ">$200</td>
+                            </tr>
+                            <tr>
+                                <th class="none-top-border order-header" colspan="2" scope="row">Доставка</th>
+                                <td class="none-top-border order-summ-delivery">$50</td>
+                            </tr>
+                            <tr>
+                                <th class="none-top-border order-header pb-4" colspan="2" scope="row">Итог</th>
+                                <td class="none-top-border order-summ-delivery pb-4">$10</td>
+                            </tr>
+                            <tr>
+                                <th class="order-header-itog" colspan="2" scope="row">Общий итог</th>
+                                <td class="order-product-summ">$1210</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="payment-method">
+                        <div class="method-radio">
+                            <input type="radio" id='visa' name="method" value="visa">
+                            <label for="visa">Через карту Visa / Элькарт</label><br>
+                        </div>
+                        <div class="method-radio">
+                            <input type="radio" id="ibank" name="method" value="ibank">
+                            <label for="ibank">Через интернет банкинг</label><br>
+                        </div>
+                        <div class="method-radio">
+                            <input type="radio" id="cash" name="method" value="cash">
+                            <label for="cash">Оплата при доставке(наличными)</label>
+                        </div>
+                    </div>
+                    <div class="agree-checkbox">
+                        <input type="checkbox" id="agree" name="agree">
+                        <label for="agree">Я прочитал и согласен с условиями сайта</label>
+                    </div>
+                    <div class="pay-btn">
+                        <button type="button" class="to-cart btn btn-success">Перейти к оплате</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}{% endblock %}
