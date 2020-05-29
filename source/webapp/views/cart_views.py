@@ -10,8 +10,6 @@ from django.contrib import messages
 class CartChangeView(View):
     def get(self, request, *args, **kwargs):
         products = request.session.get('products', [])
-        print(request.path)
-
         pk = request.GET.get('pk')
         action = request.GET.get('action')
         print(action, "action")
@@ -22,6 +20,12 @@ class CartChangeView(View):
             print("Producr.quantity", product.quantity)
             # if product.quantity > 0:
             products.append(pk)
+        elif action == 'delete':
+            new_products = []
+            for product_pk in products:
+                if product_pk != pk:
+                    new_products.append(product_pk)
+            products = new_products
         else:
             for product_pk in products:
                 if product_pk == pk:

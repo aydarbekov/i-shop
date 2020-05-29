@@ -29,7 +29,9 @@
                         {% for item in cart %}
                             <tr>
                                 <td class="table-first-column">
-                                    <div class="delete-from-cart"></div>
+                                    <div class="delete-from-cart">
+                                        <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">X</a>
+                                    </div>
                                 </td>
                                 <td class="table-second-column">
                                     <div class="photo-back-table">
