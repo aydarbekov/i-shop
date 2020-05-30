@@ -6,7 +6,7 @@ from webapp.views.product_views import IndexView, ProductView, ProductCreateView
     ProductListView
 from webapp.views.review_views import ReviewCreateView
 from webapp.views.subcategory_views import SubCategoryDeleteView, SubCategoryCreateView, SubCategoryUpdateView
-from .views.cart_views import CartChangeView, CartView
+from .views.cart_views import CartChangeView, CartView, cartdeleteitem, cartadditem
 from .views.orders_view import OrderListView, OrderDetailView, OrderUpdateView, OrderProductUpdateView, OrderProductDeleteView
 from .views.news_views import NewsView, NewsAddView, NewsDetailView, NewsDeleteView, NewsEditView
 from .views.carousel_views import *
@@ -53,5 +53,7 @@ urlpatterns = [
     path('carousel/products/all/', ProductALLListView.as_view(), name='products_all'),
     path('carouseldeleteitem/', carouseldeleteitem, name='carouseldeleteitem'),
     path('carouseladditem/', carouseladditem, name='carouseladditem'),
+    path('cartdeleteitem/', cartdeleteitem, name='cartdeleteitem'),
+    path('cartadditem/', cartadditem, name='cartadditem'),
 
 ]

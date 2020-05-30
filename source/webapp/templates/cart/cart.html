@@ -51,25 +51,33 @@
                                 </td>
                                 <td class="table-price table-for-vertical">
                                     <p class="d-inline-block d-sm-none">Цена</p>
-                                    {{ item.product.price }}
+                                    <div class="price-{{ item.product.pk }}">{{ item.product.price }}</div>
                                 </td>
                                 <td class="table-quantity table-for-vertical">
                                     <p class="d-inline-block d-sm-none">Количество</p>
                                     <div class="input-number">
                                         <div class="input-number__minus">
-                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=remove&next={% url 'webapp:cart' %}">-</a>
+                                            <a href="{% url "webapp:cartdeleteitem" %}" id="cart-delete-{{ item.product.pk }}"
+                               data-product-pk="{{ item.product.pk }}"
+                               class="cartdelete">-</a>
+{#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=remove&next={% url 'webapp:cart' %}">-</a>#}
                                         </div>
-                                        <input class="input-number__input" type="text" pattern="^[0-9]+$"
+                                        <input class="input-number__input" type="text" pattern="^[0-9]+$" id="gty-{{ item.product.pk }}"
                                                value="{{ item.qty }}">
                                         <div class="input-number__plus">
-                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:cart' %}">+</a>
+                                            <a href="{% url "webapp:cartadditem" %}" id="cart-add-{{ item.product.pk }}"
+                               data-product-pk="{{ item.product.pk }}"
+                               class="cartadd">+</a>
+{#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:cart' %}">+</a>#}
                                         </div>
 
                                     </div>
                                 </td>
                                 <td class="product-summ table-for-vertical"><p class="d-inline-block d-sm-none">
                                     Итого</p>
-                                    {{ item.total }}</td>
+{#                                    <input class="" type="text" id="total-{{ item.product.pk }}"#}
+{#                                               value="{{ item.total }}">#}
+                                <div class="total-{{ item.product.pk }}">{{ item.total }}</div></td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -83,17 +91,19 @@
                         <tbody>
                         <tr>
                             <th class="none-top-border cart-summ-itog-header" scope="row">Итог</th>
-                            <td class="none-top-border cart-summ-itog">{{ cart_total }}</td>
+                            <td class="none-top-border cart-summ-itog"><div class="cart-total">
+                                {{ cart_total }}</div></td>
                         </tr>
                         <tr>
                             <th class="cart-summ-itog-header" scope="row">Доставка</th>
-                            <td class="cart-summ-delivery">$10</td>
+                            <td class="cart-summ-delivery">10</td>
                         </tr>
                         </tbody>
                         <tfoot>
                         <tr>
                             <th class="cart-summ-itogo-header" scope="row">Итого</th>
-                            <td class="cart-summ-itogo">$990</td>
+                            <td class="cart-summ-itogo"><div class="cart-total">
+                                {{ cart_total }}</div></td>
                         </tr>
                         </tfoot>
                     </table>
@@ -213,3 +223,6 @@
 {#        </script>#}
 {#    {% endif %}#}
 {#{% endblock %}#}
+{% block scripts %}
+        <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>
+{% endblock %}
