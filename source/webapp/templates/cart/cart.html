@@ -27,7 +27,7 @@
                         </thead>
                         <tbody>
                         {% for item in cart %}
-                            <tr>
+                            <tr class="product-{{ item.product.pk }}">
                                 <td class="table-first-column">
                                     <div class="delete-from-cart">
                                         <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">X</a>

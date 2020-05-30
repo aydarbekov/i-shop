@@ -45,8 +45,6 @@ function cartAdd(e) {
     let cartForms = cartTotalFormsInput.text();
     let deliverPriceInput = $(".cart-summ-delivery");
     let deliveryPrice = deliverPriceInput.text();
-    console.log(deliveryPrice, "THIS IS DELIVERY PRICE");
-    console.log(cartForms, 'THIS IS CSRT TOTAL PRICE');
     cartTotalFormsInput.text(parseInt(cartForms) + parseInt(priceForms) + ',00');
     $.ajax({
         method: 'post',
@@ -75,10 +73,10 @@ function cartDelete(e) {
     totalFormsInput.text(parseInt(totalForms) - parseInt(priceForms) + ',00');
     let cartTotalFormsInput = $(".cart-total");
     let cartForms = cartTotalFormsInput.text();
-    console.log(cartForms, 'THIS IS CSRT TOTAL PRICE');
     let deliverPriceInput = $(".cart-summ-delivery");
     let deliveryPrice = deliverPriceInput.text();
     cartTotalFormsInput.text(parseInt(cartForms) - parseInt(priceForms) + ',00');
+    if (qtyForms <= 1) $(".product-" + product_pk).remove();
     $.ajax({
         method: 'post',
         url: href,
