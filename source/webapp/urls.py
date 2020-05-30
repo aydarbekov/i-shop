@@ -14,7 +14,6 @@ from .views.carousel_views import *
 app_name = 'webapp'
 
 
-
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('products/<int:pk>/', ProductView.as_view(), name='product_detail'),
@@ -52,4 +51,7 @@ urlpatterns = [
     path('carousel/delete/<int:pk>/', CarouselDeleteView.as_view(), name='carousel_delete'),
     path('carousel/change/product/<int:pk>/', CarouselAddView.as_view(), name='product_carousel_add'),
     path('carousel/products/all/', ProductALLListView.as_view(), name='products_all'),
+    path('carouseldeleteitem/', carouseldeleteitem, name='carouseldeleteitem'),
+    path('carouseladditem/', carouseladditem, name='carouseladditem'),
+
 ]

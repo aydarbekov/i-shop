@@ -5,3 +5,4 @@ sqlparse==0.3.1
 django-widget-tweaks==1.4.8
 phonenumbers==8.12.0
 django-phonenumber-field
+djangorestframework==3.11.0

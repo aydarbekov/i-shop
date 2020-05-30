@@ -1,5 +1,7 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.http import HttpResponse, JsonResponse
 from django.views import View
+import json
 
 from webapp.models import Carousel, Product
 from django.urls import reverse_lazy, reverse
@@ -93,3 +95,15 @@ class CarouselAddView(View):
             Carousel.objects.get_or_create(product=product)
         return redirect('webapp:products_all')
 
+
+def carouseldeleteitem(request):
+    product = get_object_or_404(Product, pk=request.POST.get('pk'))
+    carousel = get_object_or_404(Carousel, product=product)
+    carousel.delete()
+    return JsonResponse({'pk': product.pk})
+
+
+def carouseladditem(request):
+    product = get_object_or_404(Product, pk=request.POST.get('pk'))
+    Carousel.objects.get_or_create(product=product)
+    return JsonResponse({'pk': product.pk})

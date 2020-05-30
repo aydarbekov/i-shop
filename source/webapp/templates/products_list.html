@@ -36,11 +36,22 @@
                     <td>{{ product.category }}</td>
                     <td>{{ product.brand }}</td>
                     <td>
-                        <form action="{% url 'webapp:product_carousel_add' product.pk %}" method="post">
+{#                        {% if  not product.carousel_product.all %}#}
                             {% csrf_token %}
-                                <input type="submit" value="{% if  not product.carousel_product.all %} Добавить {% else %} Удалить {% endif %}"
-                          class="btn btn-success">
-                            </form>
+                    <div id="favorites-button-{{ announce.pk }}" class="mt-2">
+                        <a href="{% url "webapp:carouseladditem" %}" id="carousel-add-{{ product.pk }}"
+                               data-product-pk="{{ product.pk }}"
+                               class="btn btn-success carouseladd {% if product.carousel_product.all %}d-none{% endif %}">Добавить</a>
+{#                            <input type="button" value="Добавить" data-id="{{ product.pk }}" class="btn btn-success carouseladd#}
+{#                            {% if product.carousel_product.all %}d-none{% endif %}" id="carousel-add-{{ product.pk }}">#}
+{#                        {% else %}#}
+                        <a href="{% url "webapp:carouseldeleteitem" %}" id="carousel-delete-{{ product.pk }}"
+                               data-product-pk="{{ product.pk }}"
+                               class="btn btn-danger carouseldelete {% if not product.carousel_product.all %}d-none{% endif %}">Удалить</a>
+{#                            <input type="button" value="Удалить" data-id="{{ product.pk }}" class="btn btn-danger carouseldelete#}
+{#                            {% if not product.carousel_product.all %}d-none{% endif %}" id="carousel-delete-{{ product.pk }}">#}
+{#                        {% endif %}#}
+                    </div>
                         </td>
                         <td class="symbol"><a class='update hiddenbutton'
                                               href="{% url 'webapp:product_update' product.pk %}">&#x270E;</a></td>
@@ -51,5 +62,8 @@
                 </tbody>
             {% endfor %}
         </table>
-    </form>
+{#    </form>#}
+{% endblock %}
+{% block scripts %}
+    <script type="application/javascript" src="{% static "js/carousel_ajax.js" %}"></script>
 {% endblock %}
