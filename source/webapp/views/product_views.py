@@ -1,8 +1,10 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from webapp.models import Product, Category
+from webapp.forms import ProductForm, ImageFormset
+from webapp.models import Product, Category, Image
 
 
 class IndexView(ListView):
@@ -22,17 +24,43 @@ class ProductView(DetailView):
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
     model = Product
-    template_name = 'add.html'
-    fields = ('name', 'category', 'price','in_stock', 'description', 'color', 'discount', 'quantity', 'brand')
-    success_url = reverse_lazy('webapp:index')
+    template_name = 'product_add.html'
+    form_class = ProductForm
     permission_required = 'webapp.add_product'
     permission_denied_message = '403 Доступ запрещён!'
+
+
+    def get_context_data(self, **kwargs):
+        if 'formset' not in kwargs:
+            kwargs['formset'] = ImageFormset()
+        return super().get_context_data(**kwargs)
+
+    def post(self, request, *args, **kwargs):
+        print('post')
+        self.object = None
+        form = self.get_form()
+        formset = ImageFormset(self.request.POST,self.request.FILES)
+        if form.is_valid() and formset.is_valid():
+            return self.form_valid(form, formset)
+        return self.form_invalid(form, formset)
+
+    def form_valid(self, form, formset):
+        self.object = form.save()
+        formset.instance = self.object
+        formset.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def form_invalid(self, form, formset):
+        return self.render_to_response(self.get_context_data(form=form, formset=formset))
+
+    def get_success_url(self):
+        return reverse('webapp:product_detail', kwargs={'pk': self.object.pk})
 
 
 class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     model = Product
     template_name = 'edit.html'
-    fields = ('name', 'category', 'price','in_stock', 'description', 'color', 'discount', 'quantity', 'brand')
+    form_class = ProductForm
     context_object_name = 'product'
     permission_required = 'webapp.change_product'
 

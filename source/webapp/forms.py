@@ -63,8 +63,8 @@
 # class SimpleSearchForm(forms.Form):
 #     search = forms.CharField(max_length=100, required=False, label="Search")
 from django.core.exceptions import ValidationError
-from django.forms import ModelForm
-from webapp.models import OrderProduct, Order
+from django.forms import ModelForm, inlineformset_factory
+from webapp.models import OrderProduct, Order, Product, Image
 
 
 class CartOrderCreateForm(ModelForm):
@@ -117,3 +117,10 @@ class OrderProductForm(ModelForm):
     class Meta:
         model = OrderProduct
         fields = ['product', 'amount']
+
+class ProductForm(ModelForm):
+    class Meta:
+        model = Product
+        exclude = ['in_stock', 'date']
+
+ImageFormset = inlineformset_factory(Product, Image, fields='__all__', extra=1, validate_min=False, min_num=0, can_delete=True)
