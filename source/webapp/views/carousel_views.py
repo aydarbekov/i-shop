@@ -78,7 +78,7 @@ class CarouselDeleteView(UserPassesTestMixin, DeleteView):
 
 class ProductALLListView(ListView):
     model = Product
-    template_name = 'products_list.html'
+    template_name = 'products/products_list.html'
     context_object_name = 'products'
     # paginate_by = 5
     # paginate_orphans = 1

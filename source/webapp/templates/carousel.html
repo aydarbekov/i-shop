@@ -26,8 +26,8 @@
                 <tr style="background-color: lavender">
                     <th scope="row">{{ forloop.counter }}</th>
                     <td>
-                        {% if product.photo %}
-                            <img src="{{ product.photo.url }}" alt="..." style="width: 50px; height: 30px">
+                        {% if product.images %}
+                            <img src="{{ product.images.first.image.url }}" alt="..." style="width: 50px; height: 30px">
                         {% else %}
                             {% load static %}
                             <img src="{% static "images/no_photo.jpg" %}" alt="no-photo"style="height: 30px;width: 30px">
