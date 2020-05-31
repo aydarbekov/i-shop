@@ -170,3 +170,9 @@ class News(models.Model):
         verbose_name_plural = 'Новости'
 
 
+class Carousel(models.Model):
+    product = models.ForeignKey(Product, related_name='carousel_product', on_delete=models.CASCADE,
+                                verbose_name='Карусель', null=True, blank=True)
+
+    def _str_(self):
+        return self.product.name

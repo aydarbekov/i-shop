@@ -124,3 +124,7 @@ class ProductForm(ModelForm):
         exclude = ['in_stock', 'date']
 
 ImageFormset = inlineformset_factory(Product, Image, fields='__all__', extra=1, validate_min=False, min_num=0, can_delete=True)
+
+
+ProductsFormset = inlineformset_factory(Order, OrderProduct, OrderProductForm, extra=0,
+                                        validate_min=True, min_num=1, can_delete=True)

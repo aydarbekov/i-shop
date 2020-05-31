@@ -24,7 +24,7 @@ class CategoryListView(UserPassesTestMixin, ListView):
 
 class CategoryCreateView(UserPassesTestMixin, CreateView):
     model = Category
-    template_name = 'add.html'
+    template_name = 'base_CRUD/add.html'
     fields = ['category_name', 'photo']
 
     def test_func(self):
@@ -36,7 +36,7 @@ class CategoryCreateView(UserPassesTestMixin, CreateView):
         photo = form.cleaned_data['photo']
         if Category.objects.filter(category_name=text.capitalize()):
             messages.error(self.request, 'Категория с таким названием уже существует!')
-            return render(self.request, 'add.html', {})
+            return render(self.request, 'base_CRUD/add.html', {})
         else:
             category = Category(category_name=text.capitalize(), photo=photo)
             category.save()
@@ -48,7 +48,7 @@ class CategoryCreateView(UserPassesTestMixin, CreateView):
 
 class CategoryUpdateView(UserPassesTestMixin, UpdateView):
     model = Category
-    template_name = 'edit.html'
+    template_name = 'base_CRUD/edit.html'
     fields = ['category_name', 'photo']
     context_object_name = 'category'
 
@@ -74,7 +74,7 @@ class CategoryUpdateView(UserPassesTestMixin, UpdateView):
 
 class CategoryDeleteView(UserPassesTestMixin, DeleteView):
     model = Category
-    template_name = 'delete.html'
+    template_name = 'base_CRUD/delete.html'
     success_url = reverse_lazy('webapp:categories_list')
     permission_required = "webapp.delete_category"
     permission_denied_message = "Доступ запрещен"

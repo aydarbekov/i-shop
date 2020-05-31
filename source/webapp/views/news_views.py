@@ -6,20 +6,20 @@ from webapp.models import News
 
 class NewsView(ListView):
     model = News
-    template_name = 'news.html'
+    template_name = 'news/news.html'
     context_object_name = 'news_list'
     ordering = ['-created_at']
 
 
 class NewsDetailView(DetailView):
     model = News
-    template_name = 'news_detail.html'
+    template_name = 'news/news_detail.html'
     context_object_name = 'news'
 
 
 class NewsAddView(UserPassesTestMixin, CreateView):
     model = News
-    template_name = 'add.html'
+    template_name = 'base_CRUD/add.html'
     fields = ('title', 'text', 'photo')
     success_url = reverse_lazy('webapp:news')
 
@@ -29,7 +29,7 @@ class NewsAddView(UserPassesTestMixin, CreateView):
 
 
 class NewsEditView(UserPassesTestMixin, UpdateView):
-    template_name = 'edit.html'
+    template_name = 'base_CRUD/edit.html'
     model = News
     fields = ('title', 'text', 'photo')
     context_object_name = 'news'
@@ -44,7 +44,7 @@ class NewsEditView(UserPassesTestMixin, UpdateView):
 
 class NewsDeleteView(UserPassesTestMixin, DeleteView):
     model = News
-    template_name = 'delete.html'
+    template_name = 'base_CRUD/delete.html'
     context_object_name = 'news'
     success_url = reverse_lazy('webapp:news')
 

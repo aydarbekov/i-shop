@@ -59,12 +59,14 @@
                             Функции Администратора
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'webapp:products_all' %}">Список товаров</a>
                             <a class="dropdown-item" href="{% url 'accounts:user_list' %}">Список пользователей</a>
                             <a class="dropdown-item" href="{% url 'accounts:register_staff' %}">Добавить персонал</a>
                             <a class="dropdown-item" href="{% url 'webapp:product_create' %}">Добавить товар</a>
                             <a class="dropdown-item" href="{% url 'webapp:categories_list' %}">Категории</a>
                             <a class="dropdown-item" href="{% url 'webapp:brands_list' %}">Бренды</a>
                             <a class="dropdown-item" href="{% url 'webapp:news' %}">Новости</a>
+                            <a class="dropdown-item" href="{% url 'webapp:carousel_list' %}">Карусель</a>
                             <a class="dropdown-item" href="{% url 'webapp:orders' %}">Заказы</a>
                         </div>
                     </div>
@@ -123,7 +125,7 @@
             <span class="name">Итого:</span>
             <span class="summ">$1000</span>
         </div>
-        <a class="btn cart-modal-to-cart" href="">Корзина</a>
+        <a href="{% url "webapp:cart" %}" class="btn cart-modal-to-cart">Корзина</a>
         <a class="btn cart-modal-check" href="">Проверить</a>
     </div>
     <div class="collapse" id="navbarToggleExternalContent">

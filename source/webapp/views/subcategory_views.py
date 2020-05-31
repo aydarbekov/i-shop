@@ -9,7 +9,7 @@ from django.shortcuts import render
 
 class SubCategoryCreateView(UserPassesTestMixin, CreateView):
     model = SubCategory
-    template_name = 'add.html'
+    template_name = 'base_CRUD/add.html'
     fields = ['sub_name']
 
 
@@ -19,7 +19,7 @@ class SubCategoryCreateView(UserPassesTestMixin, CreateView):
         category = get_object_or_404(Category, pk=category_pk)
         if category.subcategories.filter(sub_name=subname):
             messages.error(self.request, 'Подраздел с таким названием уже существует!')
-            return render(self.request, 'add.html', {})
+            return render(self.request, 'base_CRUD/add.html', {})
         else:
             category.subcategories.create(sub_name=subname)
         return self.get_success_url()
@@ -34,7 +34,7 @@ class SubCategoryCreateView(UserPassesTestMixin, CreateView):
 
 class SubCategoryUpdateView(UserPassesTestMixin, UpdateView):
     model = SubCategory
-    template_name = 'edit.html'
+    template_name = 'base_CRUD/edit.html'
     fields = ['category','sub_name']
 
 
@@ -43,7 +43,7 @@ class SubCategoryUpdateView(UserPassesTestMixin, UpdateView):
         category = form.cleaned_data['category']
         if SubCategory.objects.filter(category=category, sub_name=subname):
             messages.error(self.request, 'Подраздел с таким названием уже существует!')
-            return render(self.request, 'edit.html', {})
+            return render(self.request, 'base_CRUD/edit.html', {})
         else:
             pk = self.kwargs.get('pk')
             subcategory = get_object_or_404(SubCategory, id=pk)
@@ -62,7 +62,7 @@ class SubCategoryUpdateView(UserPassesTestMixin, UpdateView):
 
 class SubCategoryDeleteView(UserPassesTestMixin, DeleteView):
     model = SubCategory
-    template_name = 'delete.html'
+    template_name = 'base_CRUD/delete.html'
     success_url = reverse_lazy('webapp:categories_list')
     permission_required = "webapp.delete_subcategory"
     permission_denied_message = "Доступ запрещен"

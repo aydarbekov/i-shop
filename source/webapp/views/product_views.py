@@ -19,13 +19,14 @@ class IndexView(ListView):
 
 class ProductView(DetailView):
     model = Product
-    template_name = 'product_detail.html'
+    template_name = 'products/product_detail.html'
 
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
     model = Product
-    template_name = 'product_add.html'
-    form_class = ProductForm
+    template_name = 'base_CRUD/product_add.html'
+    fields = ('name', 'category', 'price','in_stock', 'description', 'color', 'discount', 'quantity', 'brand')
+    success_url = reverse_lazy('webapp:index')
     permission_required = 'webapp.add_product'
     permission_denied_message = '403 Доступ запрещён!'
 
@@ -59,8 +60,8 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
 
 class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     model = Product
-    template_name = 'edit.html'
-    form_class = ProductForm
+    template_name = 'base_CRUD/edit.html'
+    fields = ('name', 'category', 'price','in_stock', 'description', 'color', 'discount', 'quantity', 'brand')
     context_object_name = 'product'
     permission_required = 'webapp.change_product'
 
@@ -70,7 +71,7 @@ class ProductUpdateView(PermissionRequiredMixin, UpdateView):
 
 class ProductDeleteView(PermissionRequiredMixin, DeleteView):
     model = Product
-    template_name = 'product_delete.html'
+    template_name = 'products/product_delete.html'
     success_url = reverse_lazy('webapp:index')
     context_object_name = 'product'
     permission_required = 'webapp.delete_product'
@@ -101,7 +102,7 @@ class ProductDeleteView(PermissionRequiredMixin, DeleteView):
 
 
 class ProductListView(ListView):
-    template_name = 'products.html'
+    template_name = 'products/products.html'
     model = Product
 
     def get_url(self):

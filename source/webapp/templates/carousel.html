@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="POST" action="#">
+        {% csrf_token %}
+        <table class="table"  style="line-height: 15px">
+            <h3>Товары в карусели</h3>
+            {#            {% if perms.webapp.add_category %}#}
+            <div class="row">
+                <a href="{% url 'webapp:carousel_add' %}" class="btn btn-success  ml-5 my-3 hiddenbutton">Добавить
+                    в карусель</a>
+            </div>
+            {#            {% endif %}#}
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Изображение</th>
+                <th scope="col">Название</th>
+                <th scope="col">Категория</th>
+                <th scope="col">Бренд</th>
+                <th class="symbol hiddenbutton" scope="col">Редактировать</th>
+                <th class="symbol hiddenbutton" scope="col">Удалить</th>
+            </tr>
+            </thead>
+            {% for product in carousel %}
+                <tbody>
+                <tr style="background-color: lavender">
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>
+                        {% if product.photo %}
+                            <img src="{{ product.photo.url }}" alt="..." style="width: 50px; height: 30px">
+                        {% else %}
+                            {% load static %}
+                            <img src="{% static "images/no_photo.jpg" %}" alt="no-photo"style="height: 30px;width: 30px">
+                        {% endif %}
+                    </td>
+                    <td>{{ product.product.name }}</td>
+                    <td>{{ product.product.category }}</td>
+                    <td>{{ product.product.brand }}</td>
+                    {% if product.pk %}
+                        <td class="symbol"><a class='update hiddenbutton'
+                                              href="{% url 'webapp:carousel_change' product.pk %}">&#x270E;</a></td>
+                    {% endif %}
+                    {% if product.pk %}
+                        <td class="symbol"><a class='delete hiddenbutton'
+                                              href="{% url 'webapp:carousel_delete' product.pk %}" style="color: red">&times;</a>
+                        </td>
+                    {% endif %}
+{#                        <td class="symbol"><a href="{% url 'webapp:carousel_add' product.pk %}" class="add hiddenbutton">+</a></td>#}
+                </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </form>
+{% endblock %}
