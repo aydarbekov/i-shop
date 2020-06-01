@@ -5,7 +5,22 @@ from django.db import models
 CITY_CHOICES = (
     ('Bishkek', 'Бишкек'),
 )
-
+COLOR_CHOICES = (
+    ('white', 'Белый'),
+    ('green', 'Зеленый'),
+    ('grey', 'Серый'),
+    ('blue', 'Синий'),
+    ('red', 'Красный'),
+    ('yellow', 'Желтый'),
+    ('black', 'Черный'),
+    ('orange', 'Оранжевый'),
+    ('brown', 'Коричневый'),
+    ('#F0DEBA;', 'Бежевый'),
+    ('pink', 'Розовый'),
+    ('purple', 'Фиолетовый'),
+    ('darkblue', 'Темно-синий'),
+    ('darkgreen', 'Темно-зеленый'),
+)
 
 class Category(models.Model):
     category_name = models.CharField(max_length=50, verbose_name='Категория')
@@ -13,6 +28,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category_name
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
 
 
 class SubCategory(models.Model):
@@ -23,14 +42,35 @@ class SubCategory(models.Model):
     def __str__(self):
         return self.sub_name
 
+    class Meta:
+        verbose_name = 'Подкатегория'
+        verbose_name_plural = 'Подкатегория'
+
+
+class Brand(models.Model):
+    brand_name = models.CharField(max_length=50, verbose_name='Название')
+    photo = models.ImageField(upload_to='brand_images', null=True, blank=True, verbose_name='Изображение')
+
+    def __str__(self):
+        return self.brand_name
+
+    class Meta:
+        verbose_name = 'Бренд'
+        verbose_name_plural = 'Бренды'
+
 
 class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name='Товар')
     category = models.ForeignKey(Category, related_name='products', on_delete=models.PROTECT,
                                 verbose_name='Категория')
-    photo = models.ImageField(upload_to='product_images', null=True, blank=True, verbose_name='Изображение')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     in_stock = models.BooleanField(verbose_name='В наличии', default=True)
+    description = models.TextField(max_length=3000, verbose_name='Описание', null=True, blank=True)
+    color = models.CharField(max_length=20,choices=COLOR_CHOICES, default=COLOR_CHOICES[0][0], verbose_name="Цвет", null=True, blank=True)
+    discount = models.IntegerField(verbose_name='Скидка', null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
+    quantity = models.IntegerField(verbose_name='Количество', null=True, blank=True)
+    brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Бренд', related_name='products')
 
 
     def __str__(self):
@@ -99,6 +139,10 @@ class Review(models.Model):
     def __str__(self):
         return self.text
 
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
+
 
 class Image(models.Model):
     image = models.ImageField(upload_to='product_images', verbose_name='Изображение')
@@ -120,3 +164,15 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
+
+
+class Carousel(models.Model):
+    product = models.ForeignKey(Product, related_name='carousel_product', on_delete=models.CASCADE,
+                                verbose_name='Карусель', null=True, blank=True)
+
+    def _str_(self):
+        return self.product.name

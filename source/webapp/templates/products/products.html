@@ -117,8 +117,8 @@
                             <a href="{% url "webapp:product_detail" product.pk %}">
                                 <div class="card">
                                     <div class="photo-back">
-                                        {% if product.photo %}
-                                            <img src="{{ product.photo.url }}" class="card-img-top" alt="...">
+                                        {% if product.images %}
+                                            <img src="{{ product.images.first.image.url}}" class="card-img-top" alt="...">
                                         {% else %}
                                             {% load static %}<img src="{% static "images/no_photo.jpg" %}" class="card-img-top" alt="no-photo">
                                         {% endif %}
@@ -138,7 +138,10 @@
                                                     <button class="promo-button-compare"></button>
                                                     <button class="promo-button-share"></button>
                                                 </div>
-                                                <button type="button" class="to-cart btn btn-success">В корзину</button>
+                                                <a href="{% url "webapp:cartadditem" %}" id="cart-add-{{ product.pk }}" data-product-pk="{{ product.pk }}"
+                               class="cartadd btn btn-success to-cart">В корзину</a>
+{#                                                <a href="{% url 'webapp:cart_change' %}?pk={{ product.pk }}&action=add&next={% url 'webapp:products_category' product_category.pk %}" class="to-cart btn btn-success">В корзину</a>#}
+{#                                                <button type="button" class="to-cart btn btn-success">В корзину</button>#}
                                             </div>
                                         </div>
                                     </div>
@@ -164,4 +167,5 @@
 {% endblock %}
 {% block scripts %}
     <script type="application/javascript" src="{% static "js/products.js" %}"></script>
+    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>
 {% endblock %}

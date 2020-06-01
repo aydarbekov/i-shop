@@ -1,0 +1,26 @@
+{{ formset.management_form }}
+{% for error in formset.non_form_errors %}
+    <p class="text-danger">{{ error }}</p>
+{% endfor %}
+<div id="image_forms">
+    {% for image_form in formset %}
+        <div class="form-row" id="product_images-{{ forloop.counter0 }}">
+            <div class="form-group col-md-5">
+                {% include 'partial/form_field.html' with field=image_form.image %}
+            </div>
+            <div class="form-group col-md-2 text-center">
+                <button type="button" class="btn btn-danger mt-md-4"
+                        data-id="product_images-{{ forloop.counter0 }}">x
+                </button>
+            </div>
+            <div class="d-none">
+                {{ image_form.id }}
+                {% if formset.can_delete %}{{ image_form.DELETE }}{% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<div class="form-group text-center">
+    <button type="button" id="add_image_form" class="btn" style="background-color: #83B734; color: white">Ещё фото
+    </button>
+</div>

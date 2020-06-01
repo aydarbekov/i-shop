@@ -1,130 +1,3 @@
-// const baseUrl = 'http://localhost:8000/api/v2/';
-//
-// function getFullPath(path) {
-//     path = path.replace(/^\/+|\/+$/g, '');
-//     path = path.replace(/\/{2,}/g, '/');
-//     return baseUrl + path + '/';
-// }
-//
-// function makeRequest(path, method, auth = true, data = null) {
-//     let settings = {
-//         url: getFullPath(path),
-//         method: method,
-//         dataType: 'json'
-//     };
-//     if (data) {
-//         settings['data'] = JSON.stringify(data);
-//         settings['contentType'] = 'application/json';
-//     }
-//     if (auth) {
-//         settings.headers = {'Authorization': 'Token ' + getToken()};
-//     }
-//     return $.ajax(settings);
-// }
-//
-// function saveToken(token) {
-//     localStorage.setItem('authToken', token);
-// }
-//
-// function getToken() {
-//     return localStorage.getItem('authToken');
-// }
-//
-// function removeToken() {
-//     localStorage.removeItem('authToken');
-// }
-//
-// function logIn(username, password) {
-//     const credentials = {username, password};
-//     let request = makeRequest('login', 'post', false, credentials);
-//     request.done(function (data, status, response) {
-//         console.log('Received token');
-//         saveToken(data.token);
-//     }).fail(function (response, status, message) {
-//         console.log('Could not get token');
-//         console.log(response);
-//     });
-// }
-//
-// $(document).ready(function () {
-//     let token = getToken();
-//     if (!token) logIn('admin', 'admin');
-// });
-//
-//
-// /* Код с Лабораторной ESDP */
-//
-// function getCookie(name) {
-//     var cookieValue = null;
-//     if (document.cookie && document.cookie !== '') {
-//         var cookies = document.cookie.split(';');
-//         for (var i = 0; i < cookies.length; i++) {
-//             var cookie = cookies[i].trim();
-//             // Does this cookie string begin with the name we want?
-//             if (cookie.substring(0, name.length + 1) === (name + '=')) {
-//                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-//                 break;
-//             }
-//         }
-//     }
-//     return cookieValue;
-// }
-//
-// function favoritesAddSuccess(data) {
-//     console.log(data);
-//     let adPk = data.pk;
-//     $('#add-to-favorites-' + adPk).addClass('d-none');
-//     $('#delete-from-favorites-' + adPk).removeClass('d-none');
-// }
-//
-// function favoritesDeleteSuccess(data) {
-//     console.log(data);
-//     let adPk = data.pk;
-//     $('#add-to-favorites-' + adPk).removeClass('d-none');
-//     $('#delete-from-favorites-' + adPk).addClass('d-none');
-// }
-//
-// function favoritesAdd(e) {
-//     e.preventDefault();
-//     let link = $(e.target);
-//     let href = link.attr('href');
-//     let ad_pk = link.data('ad-pk');
-//     $.ajax({
-//         method: 'post',
-//         url: href,
-//         data: {'pk': ad_pk},
-//         headers: {
-//             'X-CSRFToken': getCookie('csrftoken')
-//         }
-//     })
-//         .done(favoritesAddSuccess)
-//         .fail(console.log);
-// }
-//
-// function favoritesDelete(e) {
-//     e.preventDefault();
-//     let link = $(e.target);
-//     let href = link.attr('href');
-//     let ad_pk = link.data('ad-pk');
-//     $.ajax({
-//         method: 'post',
-//         url: href,
-//         data: {'pk': ad_pk},
-//         headers: {
-//             'X-CSRFToken': getCookie('csrftoken')
-//         }
-//     })
-//         .done(favoritesDeleteSuccess)
-//         .fail(console.log);
-// }
-//
-// function setUpFavoriteButtons() {
-//     $('.favorites-add').click(favoritesAdd);
-//     $('.favorites-delete').click(favoritesDelete);
-// }
-//
-// $(document).ready(setUpFavoriteButtons);
-
 function slick() {
     $('.category-cards').slick({
         centerMode: true,
@@ -155,8 +28,17 @@ function slick() {
             }
         ]
     });
+    $('.bestseller-slide').slick({
+        centerMode: true,
+        centerPadding: '0px',
+        slidesToShow: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+    });
 }
 function godown() {
+    const last = $('.category-card:last-child');
+    const all = $('.slick-track').children();
     const a = $('.slick-track div:nth-child(4n)');
     let count_for_third = -20;
     let count_for_fourth = -10;
@@ -169,6 +51,12 @@ function godown() {
         a[i].style.top = '110%';
         count_for_fourth = count_for_fourth + 20;
         a[i].style.left = count_for_fourth + '%'
+    }
+    if (all.length % 4 === 3) {
+        last[0].style.position = 'absolute';
+        last[0].style.top = '110%';
+        count_for_third = count_for_third + 20;
+        last[0].style.left = count_for_third + '%';
     }
 }
 function goup() {

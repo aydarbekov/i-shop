@@ -1,0 +1,329 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load review %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="product-content">
+            <div class="row">
+                <div class="col-12 col-md-5 mt-5">
+                        {% if product.images %}
+                            <a href="{{ product.images.first.image.url }}" data-fancybox="gallery" data-caption="Caption #1">
+                        {% else %}
+                            {% load static %}<a href="{% static "images/no_photo.jpg" %}" data-fancybox="gallery"
+                                                data-caption="Caption #1">
+                        {% endif %}
+
+                    <div class="photo-back">
+                        {% if product.images %}
+                            <img src="{{ product.images.first.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                        {% else %}
+                            <img src="{% static 'default_image.png' %}" class="img-fluid" alt="No photo">
+                        {% endif %}
+                    </div>
+                    </a>
+                    <div class="lil-imgs justify-content-between mt-4 d-none d-sm-flex">
+                        <a href="{% static 'images/chair.png' %}" data-fancybox="gallery" data-caption="Caption #1">
+                            <div class="photo-back-little">
+                                <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">
+                            </div>
+                        </a>
+                        <a href="{% static 'images/printer3.png' %}" data-fancybox="gallery" data-caption="Caption #1">
+                            <div class="photo-back-little">
+                                <img src="{% static 'images/printer3.png' %}" class="card-img-top" alt="...">
+                            </div>
+                        </a>
+                        <a href="{% static 'images/printer3.png' %}" data-fancybox="gallery" data-caption="Caption #1">
+                            <div class="photo-back-little">
+                                <img src="{% static 'images/printer3.png' %}" class="card-img-top" alt="...">
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-12 col-md-7 mt-5">
+                    <div class="product-info d-flex flex-column">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                                <li class="breadcrumb-item"><a href="#">{{ product.category }}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+                            </ol>
+                        </nav>
+                        <div class="name-price mt-4 d-flex">
+                            <div class="name-price-2">
+                                <h3>{{ product.name }}</h3>
+                                <p class="product-price">${{ product.price }}</p>
+                                <p class="price-without-discount">${{ product.price }}</p>
+                            </div>
+                            <div class="name-price-share d-block d-sm-none">
+                                <button class="social-icons"></button>
+                            </div>
+                        </div>
+                        <p class="product-description">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora necessitatibus atque iure
+                            adipisci sit beatae aliquam voluptatum totam repellat repellendus tempore eius, error sed
+                            eligendi! Vitae reprehenderit aut possimus atque.
+                        </p>
+                        <div class="qty-add-cart d-flex mt-4 mb-0 mb-sm-3 justify-content-between">
+                            <div class="qty-add-cart-left d-flex mb-0 mb-3">
+                                <div class="input-number">
+                                    <div class="input-number__minus">-</div>
+                                    <input class="input-number__input" type="text" pattern="^[0-9]+$" value="1">
+                                    <div class="input-number__plus">+</div>
+                                </div>
+                                <button type="button" class="to-cart btn btn-success mt-0 ml-3 w-75">Добавить в
+                                    корзину
+                                </button>
+                            </div>
+                            <div class="d-flex align-items-center mr-4 ml-4 mb-4">
+                                <button class="promo-btn-in-product promo-button-favorite2 mr-3">
+                                    <p class="d-inline-block d-sm-none">
+                                        Избранное
+                                    </p>
+                                </button>
+                                <button class="promo-btn-in-product promo-button-compare2 ml-4 ">
+                                    <p class="d-inline-block d-sm-none">
+                                        Сравнение цен
+                                    </p>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="color-category-tags mb-2">
+                            <hr/>
+                            <div class="color d-flex align-items-center">
+                                <p class="mr-3 mb-0">Цвета:</p>
+                                <button type="button" class="btn color-btn" style="background-color: #F0DEBA;">
+                                    <p class="btns-inside-white"></p>
+                                </button>
+                                <button type="button" class="btn color-btn" style="background-color: #83B734;;">
+                                    <p class="btns-inside-white"></p>
+                                </button>
+                                <button type="button" class="btn color-btn" style="background-color: #585858;;">
+                                    <p class="btns-inside-white"></p>
+                                </button>
+                                <button type="button" class="btn color-btn" style="background-color: #6CC1E4;;">
+                                    <p class="btns-inside-white"></p>
+                                </button>
+                            </div>
+                            <div class="category d-flex">
+                                <p>Категория:</p>
+                                <p class="category-tag-name">{{ product.category }}</p>
+                            </div>
+                            <div class="tags d-flex">
+                                <p>Tags:</p>
+                                <p class="category-tag-name">ТЕГИ</p>
+                            </div>
+
+                            <div class="share d-none d-sm-block">
+                                <hr/>
+                                <p>Поделиться:</p>
+                                <button class="social-icons icon-insta2"></button>
+                                <button class="social-icons icon-telegram2"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="review_list">
+                {% for review in product.reviews.all %}
+                    {% if review %}
+                        <h4>Отзывы</h4>
+                        <div class="row comment">
+                            <div class="col-2">
+                                {% if review.author.profile.photo %}
+                                    <img src="{{ review.author.profile.photo.url }}"
+                                         alt="Author photo">
+                                {% else %}
+                                    <img src="{% static 'default_image.png' %}" alt="No photo">
+                                {% endif %}
+                                <p>{{ review.author }}. Cоздана: {{ review.date|date:'d.m.Y' }}</p>
+                                {% for i in review.grade|times %}
+                                    <div class="d-inline-block">
+                                        <i class=" fas fa-star" style="position: relative"></i>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-10 review_text">{{ review.text }}</div>
+                            <p class="comment-links">
+                            </p>
+                        </div>
+                    {% endif %}
+                {% empty %}
+                    <p>Отзывов нет</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="original-block">
+        <div class="container d-flex justify-content-around">
+            <div class="original-block-item">
+                <div class="original-circle"></div>
+                <p class="original-title">100% Оригинал</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat magni vero quis dolore, veritatis
+                    cumque similique laudantium ipsam optio non.</p>
+            </div>
+            <div class="original-block-item d-none d-md-block">
+                <div class="original-circle"></div>
+                <p class="original-title">Быстрая доставка</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat magni vero quis dolore, veritatis
+                    cumque similique laudantium ipsam optio non.</p>
+            </div>
+            <div class="original-block-item  d-none d-md-block ">
+                <div class="original-circle"></div>
+                <p class="original-title">Гарантия</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat magni vero quis dolore, veritatis
+                    cumque similique laudantium ipsam optio non.</p>
+            </div>
+        </div>
+    </div>
+    <div class="recomended-product-block">
+        <div class="container">
+            <div class="recomend-title d-flex justify-content-between">
+                <p>Рекомендуемые товары</p>
+                <p>Все</p>
+            </div>
+            <div class="row">
+                <div class="col-6 col-md-3 px-2">
+                    <div class="card">
+                        <div class="photo-back">
+                            <img src="{% static 'images/printer3.png' %}" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text d-flex flex-column align-items-center px-3">
+                                <h5>Принтер для печати</h5>
+                                <p>Электроника</p>
+                                <p class="price">250-400 c</p>
+                                <div class="discount-count d-flex align-items-center justify-content-center">5%</div>
+                            </div>
+                            <div class="position-for-hidden position-relative">
+                                <div class="hidden-part text-center">
+                                    <p class="card-text">Some quick example text to build on the card content.</p>
+                                    <div class="promo-icons d-flex justify-content-center">
+                                        <button class="promo-button-favorite"></button>
+                                        <button class="promo-button-compare"></button>
+                                        <button class="promo-button-share"></button>
+                                    </div>
+                                    <button type="button" class="to-cart btn btn-success">В корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 px-2">
+                    <div class="card">
+                        <div class="photo-back">
+                            <img src="{% static 'images/mouse.png' %}" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text d-flex flex-column align-items-center px-3">
+                                <h5>Принтер для печати</h5>
+                                <p>Электроника</p>
+                                <p class="price">250-400 c</p>
+                                <div class="discount-count d-flex align-items-center justify-content-center">5%</div>
+                            </div>
+                            <div class="position-for-hidden position-relative">
+                                <div class="hidden-part text-center">
+                                    <p class="card-text">Some quick example text to build on the card content.</p>
+                                    <div class="promo-icons d-flex justify-content-center">
+                                        <button class="promo-button-favorite"></button>
+                                        <button class="promo-button-compare"></button>
+                                        <button class="promo-button-share"></button>
+                                    </div>
+                                    <button type="button" class="to-cart btn btn-success">В корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 px-2">
+                    <div class="card">
+                        <div class="photo-back">
+                            <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text d-flex flex-column align-items-center px-3">
+                                <h5>Принтер для печати</h5>
+                                <p>Электроника</p>
+                                <p class="price">250-400 c</p>
+                                <div class="discount-count d-flex align-items-center justify-content-center">5%</div>
+                            </div>
+                            <div class="position-for-hidden position-relative">
+                                <div class="hidden-part text-center">
+                                    <p class="card-text">Some quick example text to build on the card content.</p>
+                                    <div class="promo-icons d-flex justify-content-center">
+                                        <button class="promo-button-favorite"></button>
+                                        <button class="promo-button-compare"></button>
+                                        <button class="promo-button-share"></button>
+                                    </div>
+                                    <button type="button" class="to-cart btn btn-success">В корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 px-2">
+                    <div class="card">
+                        <div class="photo-back">
+                            <img src="{% static 'images/printer3.png' %}" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text d-flex flex-column align-items-center px-3">
+                                <h5>Принтер для печати</h5>
+                                <p>Электроника</p>
+                                <p class="price">250-400 c</p>
+                                <div class="discount-count d-flex align-items-center justify-content-center">5%</div>
+                            </div>
+                            <div class="position-for-hidden position-relative">
+                                <div class="hidden-part text-center">
+                                    <p class="card-text">Some quick example text to build on the card title and make up
+                                        the bulk of the card's content.</p>
+                                    <div class="promo-icons d-flex justify-content-center">
+                                        <button class="promo-button-favorite"></button>
+                                        <button class="promo-button-compare"></button>
+                                        <button class="promo-button-share"></button>
+                                    </div>
+                                    <button type="button" class="to-cart btn btn-success">В корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#    <div class="text-center">#}
+    {#        <h1>{{ product.name }}</h1>#}
+    {#        <div class="row">#}
+    {#            <div class="col col-12 col-sm-10 col-md-8 col-lg-6 m-auto">#}
+    {#                {% if product.photo %}#}
+    {#                    <img src="{{ product.photo.url }}" class="img-fluid" alt="{{ product.name }}">#}
+    {#                {% else %}#}
+    {#                    <img src="{% static 'default_image.png' %}" class="img-fluid" alt="No photo">#}
+    {#                {% endif %}#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <p><b>Категория:</b> {{ product.category }}</p>#}
+    {#        <p><b>Цена:</b> {{ product.price }} сом</p>#}
+    {#        <p><b>В наличии:</b> {{ product.in_stock|yesno:"Да,Нет" }}</p>#}
+    {#        {% if perms.webapp.product_change %}#}
+    {#            <p><a href="{% url 'webapp:product_update' product.pk %}" class="btn btn-primary">Изменить</a></p>#}
+    {#        {% endif %}#}
+    {#        {% if perms.webapp.product_delete %}#}
+    {#            <p><a href="{% url 'webapp:product_delete' product.pk %}" class="btn btn-danger">Нет в наличии</a></p>#}
+    {#        {% endif %}#}
+    {#    </div>#}
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src='{% static "js/jquery.fancybox.js" %}'></script>
+    <script type="application/javascript" src="{% static "js/product-detail.js" %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.review').rating();
+        });
+    </script>
+{% endblock %}

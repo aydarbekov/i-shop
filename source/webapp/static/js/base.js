@@ -1,4 +1,3 @@
-dropdown_listener();
 let dropdown = false;
 
 function add_dropdown_toggle(){
@@ -27,21 +26,33 @@ function dropdown_listener(){
         });
     }
 }
-if(document.documentElement.clientWidth <= 768) {
-    add_dropdown_toggle();
 
-}
-$(window).resize(function() {
-    if(document.documentElement.clientWidth <= 768) {
-        if (!dropdown){
-            add_dropdown_toggle()
-        }
-    }
-    if(document.documentElement.clientWidth >= 768) {
-        if (dropdown){
-            remove_dropdown_toggle()
+$(document).ready(function() {
+    $('.cart').click(function() {
+        if ($('.empty-collapse')[0].style.display === 'none' || $('.empty-collapse')[0].style.display === ''){
+            $('.empty-collapse')[0].style.display = 'block';
+            $('.cart-modal').slideToggle(500);
+        }else if ($('.empty-collapse')[0].style.display === 'block'){
+            $('.empty-collapse')[0].style.display = 'none';
+            $('.cart-modal').slideToggle(500);
         }
 
+    });
+    $('.empty-collapse').click(function() {
+        $( ".cart" ).click();
+    });
+    $(window).resize(function() {
+        if(document.documentElement.clientWidth <= 768) {
+            if (!dropdown){
+                add_dropdown_toggle()
+            }
+        }
+        if(document.documentElement.clientWidth >= 768) {
+            if (dropdown){
+                remove_dropdown_toggle()
+            }
 
-    }
+
+        }
+    });
 });

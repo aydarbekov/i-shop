@@ -59,10 +59,14 @@
                             Функции Администратора
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'webapp:products_all' %}">Список товаров</a>
                             <a class="dropdown-item" href="{% url 'accounts:user_list' %}">Список пользователей</a>
                             <a class="dropdown-item" href="{% url 'accounts:register_staff' %}">Добавить персонал</a>
                             <a class="dropdown-item" href="{% url 'webapp:product_create' %}">Добавить товар</a>
                             <a class="dropdown-item" href="{% url 'webapp:categories_list' %}">Категории</a>
+                            <a class="dropdown-item" href="{% url 'webapp:brands_list' %}">Бренды</a>
+                            <a class="dropdown-item" href="{% url 'webapp:news' %}">Новости</a>
+                            <a class="dropdown-item" href="{% url 'webapp:carousel_list' %}">Карусель</a>
                             <a class="dropdown-item" href="{% url 'webapp:orders' %}">Заказы</a>
                         </div>
                     </div>
@@ -77,9 +81,52 @@
                 {% endif %}
                 <a class="favorites d-none d-md-flex" href="#"></a>
                 <a class="compare d-none d-md-flex" href="#"><div class="circle-count d-flex align-items-center justify-content-center">1</div></a>
-                <a class="cart" href="#"><div class="circle-count d-flex align-items-center justify-content-center">5</div></a>
-            </div>
+                <button class="cart btn"><div class="circle-count d-flex align-items-center justify-content-center">5</div></button>            </div>
         </nav>
+    </div>
+    <div class="cart-modal">
+        <h3>Корзина</h3>
+        <div class="products-in-cart-modal">
+            <div class="product-in-cart-modal d-flex">
+                <div class="photo-back">
+                    <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">
+                </div>
+                <div class="cart-modal-center">
+                    <p>Принтер для печати</p>
+                    <span class='qty'>2x</span>
+                    <span class="price ml-3">$200</span>
+                </div>
+                <div><a href=""><div class="delete-from-cart"></div></a></div>
+            </div>
+            <div class="product-in-cart-modal d-flex">
+                <div class="photo-back">
+                    <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">
+                </div>
+                <div class="cart-modal-center">
+                    <p>Принтер для печати</p>
+                    <span class='qty'>1x</span>
+                    <span class="price ml-3">$300</span>
+                </div>
+                <div><a href=""><div class="delete-from-cart"></div></a></div>
+            </div>
+            <div class="product-in-cart-modal d-flex">
+                <div class="photo-back">
+                    <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">
+                </div>
+                <div class="cart-modal-center">
+                    <p>Принтер для печати</p>
+                    <span class='qty'>1x</span>
+                    <span class="price ml-3">$500</span>
+                </div>
+                <div><a href=""><div class="delete-from-cart"></div></a></div>
+            </div>
+        </div>
+        <div class="cart-modal-summ d-flex justify-content-between my-4">
+            <span class="name">Итого:</span>
+            <span class="summ">$1000</span>
+        </div>
+        <a href="{% url "webapp:cart" %}" class="btn cart-modal-to-cart">Корзина</a>
+        <a class="btn cart-modal-check" href="">Проверить</a>
     </div>
     <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-light px-2 pt-2 pb-3">
@@ -108,8 +155,8 @@
                                     </a>
                                     <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">
                                         {% for subcategory in category.subcategories.all %}
-{#                                        <a class="dropdown-item" href="#">1Another action</a>#}
-{#                                        <a class="dropdown-item" href="#">2Another action</a>#}
+                                            {#                                        <a class="dropdown-item" href="#">1Another action</a>#}
+                                            {#                                        <a class="dropdown-item" href="#">2Another action</a>#}
                                             <a class="dropdown-item" href="#">{{ subcategory.sub_name }}</a>
                                         {% endfor %}
                                     </div>

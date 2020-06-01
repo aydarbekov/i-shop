@@ -6,13 +6,14 @@
             <h3>Категории</h3>
             {#            {% if perms.webapp.add_category %}#}
             <div class="row">
-                <a href="{% url 'webapp:category_add' %}" class="btn btn-success  ml-5 my-3 hiddenbutton">Добавить
+                <a href="{% url 'webapp:category_add' %}" class="btn ml-5 my-3 hiddenbutton" style="background-color: #83B734; color: white">Добавить
                     категорию</a>
             </div>
             {#            {% endif %}#}
             <thead>
             <tr>
                 <th scope="col">#</th>
+                <th scope="col">Изображение</th>
                 <th scope="col">Название</th>
                 <th class="symbol hiddenbutton" scope="col">Редактировать</th>
                 <th class="symbol hiddenbutton" scope="col">Удалить</th>
@@ -24,6 +25,14 @@
                 <tbody>
                 <tr style="background-color: lavender">
                     <th scope="row">{{ forloop.counter }}</th>
+                    <td>
+                        {% if category.photo %}
+                            <img src="{{ category.photo.url }}" alt="..." style="width: 50px; height: 30px">
+                        {% else %}
+                            {% load static %}
+                            <img src="{% static "images/no_photo.jpg" %}" alt="no-photo"style="height: 30px;width: 30px">
+                        {% endif %}
+                    </td>
                     <td>{{ category.category_name }}</td>
 {#                    {% if perms.webapp.change_category %}#}
                         <td class="symbol"><a class='update hiddenbutton'
@@ -38,6 +47,7 @@
                 </tr>
                 {% for subcategory in category.subcategories.all %}
                     <tr>
+                        <th scope="row"></th>
                         <th scope="row"></th>
                         <td style="padding-left: 40px; font-size: 12px">{{ subcategory.sub_name }}</td>
 {#                        {% if perms.webapp.change_subcategory %}#}
