@@ -117,13 +117,15 @@ def cartdeleteitem(request):
 
 
 def cartadditem(request):
-    action = request.POST.get('action')
-    print(action, "THIS IS ACTION")
     products = request.session.get('products', [])
     pk = request.POST.get('pk')
+    qty = request.POST.get('qty')
     product = get_object_or_404(Product, pk=request.POST.get('pk'))
-    products.append(pk)
-    print("ADDED")
+    if qty:
+        for i in range(int(qty)):
+            products.append(pk)
+    else:
+        products.append(pk)
     request.session['products'] = products
     request.session['products_count'] = len(products)
     return JsonResponse({'pk': product.pk})

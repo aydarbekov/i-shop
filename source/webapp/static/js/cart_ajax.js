@@ -14,8 +14,22 @@ function getCookie(name) {
     return cookieValue;
 }
 
+// const baseUrl = 'http://localhost:8000/api/v2/';
+//
+// function getFullPath(e) {
+//     e.preventDefault();
+//     let link = $(e.target);
+//     let href = link.attr('href');
+//     href = href.replace(/^\/+|\/+$/g, '');
+//     console.log(href, "THIS IS HREF1");
+//     // path = path.replace(/\/{2,}/g, '/');
+//     // console.log(path, "THIS IS PATH");
+//     // return baseUrl + path + '/';
+// }
+// $(document).ready(getFullPath());
+
 function cartAddSuccess(data) {
-    console.log(data);
+    console.log(data, "THIS IS DATA");
     // let productPk = data.pk;
     // $('#cat-add-' + productPk).addClass('d-none');
     // $('#cart-' + productPk).removeClass('d-none');
@@ -32,6 +46,7 @@ function cartAdd(e) {
     e.preventDefault();
     let link = $(e.target);
     let href = link.attr('href');
+    console.log(href, "THIS IS HREF");
     let product_pk = link.data('product-pk');
     let qtyFormsInput = $("#gty-" + product_pk);
     let qtyForms = qtyFormsInput.val();
@@ -45,11 +60,15 @@ function cartAdd(e) {
     let cartForms = cartTotalFormsInput.text();
     let deliverPriceInput = $(".cart-summ-delivery");
     let deliveryPrice = deliverPriceInput.text();
+    let qty = qtyFormsInput.val();
+    console.log(qty, "THIS IS QTY FACK");
     cartTotalFormsInput.text(parseInt(cartForms) + parseInt(priceForms) + ',00');
+    // var data = {'pk':product_pk, 'qty':qty};
+    // console.log(data);
     $.ajax({
         method: 'post',
         url: href,
-        data: {'pk': product_pk},
+        data:  {'pk':product_pk},
         headers: {
             'X-CSRFToken': getCookie('csrftoken')
         }
@@ -93,5 +112,4 @@ function setUpCartButtons() {
     $('.cartadd').click(cartAdd);
     $('.cartdelete').click(cartDelete);
 }
-
 $(document).ready(setUpCartButtons);

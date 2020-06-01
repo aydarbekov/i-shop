@@ -73,10 +73,22 @@
                             <div class="qty-add-cart-left d-flex mb-0 mb-3">
                                 <div class="input-number">
                                     <div class="input-number__minus">-</div>
-                                    <input class="input-number__input" type="text" pattern="^[0-9]+$" value="1">
+{#                                    <input class="input-number__input" type="text" pattern="^[0-9]+$" id="gty-{{ product.pk }}"#}
+{#                                               value="{{ product.qty }}">#}
+                                    <input class="input-number__input" type="text" pattern="^[0-9]+$" value="1" id="gty-{{ product.pk }}">
                                     <div class="input-number__plus">+</div>
+                                    <div class="input-number__plus">
+{#                                        <a href="{% url "webapp:cartadditem" %}?pk={{ item.product.pk }}" id="cart-add-{{ product.pk }}"#}
+{#                               data-product-pk="{{ product.pk }}"#}
+{#                               class="cartadd">+</a>#}
+{#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:cart' %}">+</a>#}
+                                    </div>
                                 </div>
-                                <button type="button" class="to-cart btn btn-success mt-0 ml-3 w-75">Добавить в
+{#                                <a type="button" href="{% url "webapp:carouseladditem" %}" id="carousel-add-{{ product.pk }}"#}
+{#                               data-product-pk="{{ product.pk }}"#}
+{#                               class="to-cart btn btn-success mt-0 ml-3 w-75 {% if product.carousel_product.all %}d-none{% endif %}">Добавить в корзину</a>#}
+                                <button type="button" class="to-cart btn btn-success mt-0 ml-3 w-75 cartadd" href="{% url "webapp:cartadditem" %}"
+                                        data-product-pk="{{ product.pk }}" id="cart-add-{{ product.pk }}" >Добавить в
                                     корзину
                                 </button>
                             </div>
@@ -326,4 +338,5 @@
             $('.review').rating();
         });
     </script>
+{#    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
 {% endblock %}
