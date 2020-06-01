@@ -24,7 +24,7 @@ class ProductView(DetailView):
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
     model = Product
-    template_name = 'base_CRUD/add.html'
+    template_name = 'products/product_add.html'
     fields = ('name', 'category', 'price','in_stock', 'description', 'color', 'discount', 'quantity', 'brand')
     success_url = reverse_lazy('webapp:index')
     permission_required = 'webapp.add_product'
