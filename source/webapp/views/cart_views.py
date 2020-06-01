@@ -106,8 +106,6 @@ class CartView(CreateView):
 def cartdeleteitem(request):
     products = request.session.get('products', [])
     pk = request.POST.get('pk')
-    new_products = []
-    print(pk, "THIS IS DELETE PK")
     for product_pk in products:
         if product_pk == pk:
             products.remove(product_pk)
@@ -115,27 +113,17 @@ def cartdeleteitem(request):
     request.session['products'] = products
     request.session['products_count'] = len(products)
     print("DELETED")
-    # product = get_object_or_404(Product, pk=request.POST.get('pk'))
-    # carousel = get_object_or_404(Carousel, product=product)
-    # carousel.delete()
     return JsonResponse({'pk': products})
 
 
 def cartadditem(request):
-    print("CARTADD")
+    action = request.POST.get('action')
+    print(action, "THIS IS ACTION")
     products = request.session.get('products', [])
-    print(products, "PRODUCTS")
     pk = request.POST.get('pk')
-    # action = request.GET.get('action')
-    # print(action, "action")
-    print(pk, "THIS IS PK")
     product = get_object_or_404(Product, pk=request.POST.get('pk'))
-    # print("Producr.quantity", product.quantity)
-    # if product.quantity > 0:
     products.append(pk)
     print("ADDED")
-    # product = get_object_or_404(Product, pk=request.POST.get('pk'))
-    # Carousel.objects.get_or_create(product=product)
     request.session['products'] = products
     request.session['products_count'] = len(products)
     return JsonResponse({'pk': product.pk})

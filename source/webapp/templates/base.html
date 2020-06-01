@@ -87,43 +87,34 @@
     <div class="cart-modal">
         <h3>Корзина</h3>
         <div class="products-in-cart-modal">
+            {% for item in cart_products %}
             <div class="product-in-cart-modal d-flex">
                 <div class="photo-back">
-                    <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">
+                    {% if item.product.images %}
+                        <img src="{{ item.product.images.first.image.url }}" class="product-photo card-img-top" alt="...">
+                    {% else %}
+                        <img src="{% static "images/no_photo.jpg" %}" class="product-photo card-img-top" alt="...">
+                    {% endif %}
+{#                    <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">#}
                 </div>
                 <div class="cart-modal-center">
-                    <p>Принтер для печати</p>
-                    <span class='qty'>2x</span>
-                    <span class="price ml-3">$200</span>
+                    <p>{{ item.product.name }}</p>
+                    <span class='qty'>{{ item.qty }}</span>
+                    <span class="price ml-3">{{ item.product.price }}</span>
                 </div>
-                <div><a href=""><div class="delete-from-cart"></div></a></div>
+                <div>
+                    <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">
+                        <div class="delete-from-cart">
+                        </div></a>
+                </div>
             </div>
-            <div class="product-in-cart-modal d-flex">
-                <div class="photo-back">
-                    <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">
-                </div>
-                <div class="cart-modal-center">
-                    <p>Принтер для печати</p>
-                    <span class='qty'>1x</span>
-                    <span class="price ml-3">$300</span>
-                </div>
-                <div><a href=""><div class="delete-from-cart"></div></a></div>
-            </div>
-            <div class="product-in-cart-modal d-flex">
-                <div class="photo-back">
-                    <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">
-                </div>
-                <div class="cart-modal-center">
-                    <p>Принтер для печати</p>
-                    <span class='qty'>1x</span>
-                    <span class="price ml-3">$500</span>
-                </div>
-                <div><a href=""><div class="delete-from-cart"></div></a></div>
-            </div>
+            {% endfor %}
         </div>
         <div class="cart-modal-summ d-flex justify-content-between my-4">
             <span class="name">Итого:</span>
-            <span class="summ">$1000</span>
+{#            {% for item in cart_products %}#}
+            <span class="summ">{{ cart_total }}</span>
+{#            {% endfor %}#}
         </div>
         <a href="{% url "webapp:cart" %}" class="btn cart-modal-to-cart">Корзина</a>
         <a class="btn cart-modal-check" href="">Проверить</a>

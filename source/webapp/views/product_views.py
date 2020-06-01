@@ -15,6 +15,8 @@ class IndexView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         context['categories'] = Category.objects.all()
+        context['products'] = Product.objects.all()
+        print(context['products'], "PRODUCTS INDEX")
         return context
 
 class ProductView(DetailView):
