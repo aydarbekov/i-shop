@@ -192,3 +192,13 @@ class Carousel(models.Model):
         return self.product.name
 
 
+class Favorite(models.Model):
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='favored_by')
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='favorites')
+
+    def __str__(self):
+        return self.product.name
+
+    class Meta:
+        verbose_name = 'Избранное'
+        verbose_name_plural = 'Избранное'

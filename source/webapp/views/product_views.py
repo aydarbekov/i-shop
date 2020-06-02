@@ -1,10 +1,12 @@
-from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect, JsonResponse
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from webapp.forms import ProductForm, ImageFormset
-from webapp.models import Product, Category, Image, Carousel
+from webapp.models import Product, Category, Carousel, Favorite
 
 
 class IndexView(ListView):
@@ -27,7 +29,7 @@ class ProductView(DetailView):
 class ProductCreateView(PermissionRequiredMixin, CreateView):
     model = Product
     template_name = 'products/product_add.html'
-    fields = ('name', 'category', 'price','in_stock', 'description', 'color', 'discount', 'quantity', 'brand')
+    form_class = ProductForm
     success_url = reverse_lazy('webapp:index')
     permission_required = 'webapp.add_product'
     permission_denied_message = '403 Доступ запрещён!'
@@ -63,7 +65,7 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
 class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     model = Product
     template_name = 'base_CRUD/edit.html'
-    fields = ('name', 'category', 'price','in_stock', 'description', 'color', 'discount', 'quantity', 'brand')
+    form_class = ProductForm
     context_object_name = 'product'
     permission_required = 'webapp.change_product'
 
@@ -123,3 +125,29 @@ class ProductListView(ListView):
         return context
 
 
+class AddToFavorites(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        product = get_object_or_404(Product, pk=request.POST.get('pk'))
+        Favorite.objects.get_or_create(user=user, product=product)
+        return JsonResponse({'pk': product.pk})
+
+
+class DeleteFromFavorites(LoginRequiredMixin, View):
+    permission_required = "webapp.delete_favorite"
+
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        product = get_object_or_404(Product, pk=request.POST.get('pk'))
+        Favorite.objects.filter(product=product, user=user).delete()
+        return JsonResponse({'pk': product.pk})
+
+
+class FavoritesList(ListView):
+    model = Favorite
+    template_name = 'products/products.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['products'] = Favorite.objects.filter(user=self.request.user)
+        return context

@@ -78,7 +78,7 @@
                     <a class="login  d-none d-md-flex" href="{% url 'accounts:login' %}">Войти</a>
                     <a class="login  d-none d-md-flex" href="{% url 'accounts:register' %}">Зарегистрироваться</a>
                 {% endif %}
-                <a class="favorites d-none d-md-flex" href="#"></a>
+                <a class="favorites d-none d-md-flex" href="{% url 'webapp:favorite_products' %}"></a>
                 <a class="compare d-none d-md-flex" href="#"><div class="circle-count d-flex align-items-center justify-content-center">1</div></a>
                 <button class="cart btn">
                     <div class="circle-count d-flex align-items-center justify-content-center">
@@ -364,6 +364,7 @@
 <script type="text/javascript" src="{% static "js/slick.min.js" %}"></script>
 <script type="application/javascript" src="{% static "js/base.js" %}"></script>
 <script type="application/javascript" src="{% static "js/review.js" %}"></script>
+<script type="application/javascript" src="{% static "js/favorite.js" %}"></script>
 
 {% block scripts %}{% endblock %}
 </body>

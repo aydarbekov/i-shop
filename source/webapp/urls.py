@@ -1,9 +1,8 @@
 from django.urls import path
-
 from webapp.views.brand_views import BrandListView, BrandCreateView, BrandUpdateView, BrandDeleteView
 from webapp.views.category_views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView
 from webapp.views.product_views import IndexView, ProductView, ProductCreateView, ProductUpdateView, ProductDeleteView, \
-    ProductListView
+    ProductListView, AddToFavorites, DeleteFromFavorites, FavoritesList
 from webapp.views.review_views import ReviewCreateView
 from webapp.views.subcategory_views import SubCategoryDeleteView, SubCategoryCreateView, SubCategoryUpdateView
 from .views.cart_views import CartChangeView, CartView, cartdeleteitem, cartadditem
@@ -55,5 +54,7 @@ urlpatterns = [
     path('carouseladditem/', carouseladditem, name='carouseladditem'),
     path('cartdeleteitem/', cartdeleteitem, name='cartdeleteitem'),
     path('cartadditem/', cartadditem, name='cartadditem'),
-
+    path('product/add-to-favorites/', AddToFavorites.as_view(), name='add_to_favorites'),
+    path('product/delete-from-favorites/', DeleteFromFavorites.as_view(), name='delete_from_favorites'),
+    path('products_favorites', FavoritesList.as_view(), name='favorite_products')
 ]

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load is_favorite %}
 {% load review %}
 {% block title %}{{ product.name }}{% endblock %}
 {% block styles %}
@@ -19,7 +20,8 @@
                         {% endif %}
                     <div class="photo-back">
                         {% if product.images %}
-                            <img src="{{ product.images.first.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                            <img src="{{ product.images.first.image.url }}" class="card-img-top"
+                                 alt="{{ product.name }}">
                         {% else %}
                             <img src="{% static 'default_image.png' %}" class="img-fluid" alt="No photo">
                         {% endif %}
@@ -101,11 +103,21 @@
                                 </button>
                             </div>
                             <div class="d-flex align-items-center mr-4 ml-4 mb-4">
-                                <button class="promo-btn-in-product promo-button-favorite2 mr-3">
-                                    <p class="d-inline-block d-sm-none">
-                                        Избранное
-                                    </p>
-                                </button>
+                                {% with favorite=product|is_favorite:request.user %}
+                                    <button href="{% url 'webapp:add_to_favorites' %}"
+                                            class="promo-btn-in-product promo-button-favorite2 mr-3 favorite-add {% if favorite %}d-none{% endif %}"
+                                            data-product-pk="{{ product.pk }}"
+                                            id="add-to-favorites-{{ product.pk }}"></button>
+                                    <button href="{% url "webapp:delete_from_favorites" %}"
+                                            id="delete-from-favorites-{{ product.pk }}" class="promo-btn-in-product promo-button-favorite2 mr-3 favorite-delete
+                 {% if not favorite %}d-none{% endif %}"
+                                            data-product-pk="{{ product.pk }}"></button>
+                                {% endwith %}
+{#                                <button class="promo-btn-in-product promo-button-favorite2 mr-3">#}
+{#                                    <p class="d-inline-block d-sm-none">#}
+{#                                        Избранное#}
+{#                                    </p>#}
+{#                                </button>#}
                                 <button class="promo-btn-in-product promo-button-compare2 ml-4 ">
                                     <p class="d-inline-block d-sm-none">
                                         Сравнение цен
