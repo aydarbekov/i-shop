@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -72,7 +73,6 @@ class Product(models.Model):
     quantity = models.IntegerField(verbose_name='Количество', null=True, blank=True)
     brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Бренд', related_name='products')
 
-
     def __str__(self):
         return self.name
 
@@ -100,9 +100,10 @@ class DeliveryAddress(models.Model):
 class DeliveryCost(models.Model):
     cost = models.IntegerField(verbose_name='Стоимость доставки')
     free_from = models.IntegerField(verbose_name='Бесплатная доставка при сумме заказа от')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 
     def __str__(self):
-        return f'{self.cost} / бесплатно от {self.free_from}'
+        return f'{self.cost} / бесплатно от {self.free_from} / {self.created_at.date()}'
 
     class Meta:
         verbose_name = 'Стоимость доставки'

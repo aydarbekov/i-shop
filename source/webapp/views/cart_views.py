@@ -3,10 +3,9 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic.base import View
 from webapp.forms import CartOrderCreateForm
-from webapp.models import Product, Order, OrderProduct
+from webapp.models import Product, Order, OrderProduct, DeliveryCost
 from django.contrib import messages
 from django.http import JsonResponse
-
 
 
 class CartChangeView(View):
@@ -50,7 +49,18 @@ class CartView(CreateView):
         cart, cart_total = self._prepare_cart()
         kwargs['cart'] = cart
         kwargs['cart_total'] = cart_total
+        shipping = self.get_shipping_cost(cart_total)
+        kwargs['shipping_cost'] = shipping
+        kwargs['total'] = shipping + cart_total
         return super().get_context_data(**kwargs)
+
+    def get_shipping_cost(self, cart_total):
+        deliverycost_object = DeliveryCost.objects.latest('created_at')
+        if cart_total > deliverycost_object.free_from:
+            shipping = 0
+        else:
+            shipping = deliverycost_object.cost
+        return shipping
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
