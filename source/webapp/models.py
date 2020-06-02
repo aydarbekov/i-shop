@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -72,7 +73,6 @@ class Product(models.Model):
     quantity = models.IntegerField(verbose_name='Количество', null=True, blank=True)
     brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Бренд', related_name='products')
 
-
     def __str__(self):
         return self.name
 
@@ -97,6 +97,19 @@ class DeliveryAddress(models.Model):
         verbose_name_plural = 'Адреса доставки'
 
 
+class DeliveryCost(models.Model):
+    cost = models.IntegerField(verbose_name='Стоимость доставки')
+    free_from = models.IntegerField(verbose_name='Бесплатная доставка при сумме заказа от')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+
+    def __str__(self):
+        return f'{self.cost} / бесплатно от {self.free_from} / {self.created_at.date()}'
+
+    class Meta:
+        verbose_name = 'Стоимость доставки'
+        verbose_name_plural = 'Стоимость доставки'
+
+
 class Order(models.Model):
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='Пользователь', related_name='orders')
     first_name = models.CharField(max_length=100, verbose_name='Имя')
@@ -104,6 +117,7 @@ class Order(models.Model):
     email = models.EmailField(max_length=50, verbose_name='Email')
     phone = models.CharField(max_length=20, verbose_name='Телефон')
     address = models.ForeignKey(DeliveryAddress, on_delete=models.PROTECT, verbose_name="Адрес доставки")
+    shipping_cost = models.ForeignKey(DeliveryCost, on_delete=models.PROTECT, verbose_name="Стоимость доставки", null=True)
     products = models.ManyToManyField(Product, through='OrderProduct', through_fields=('order', 'product'), verbose_name='Товары', related_name='orders')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
@@ -176,3 +190,5 @@ class Carousel(models.Model):
 
     def _str_(self):
         return self.product.name
+
+
