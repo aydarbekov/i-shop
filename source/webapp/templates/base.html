@@ -42,10 +42,9 @@
                 <input class="search form-control rounded-left" type="search" placeholder="Поиск" aria-label="Search">
                 <p class="m-0"><select>
                     <option selected>Категория</option>
-                    <option value="Чебурашка">Чебурашка</option>
-                    <option value="Крокодил Гена">Крокодил Гена</option>
-                    <option value="Шапокляк">Шапокляк</option>
-                    <option value="Крыса Лариса">Крыса Лариса</option>
+                    {% for category in categories %}
+                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                    {% endfor %}
                 </select></p>
                 <button class="search-button btn my-2 my-sm-0 rounded-right" type="submit"><i class="fas fa-search"></i></button>
             </form>
@@ -81,7 +80,15 @@
                 {% endif %}
                 <a class="favorites d-none d-md-flex" href="#"></a>
                 <a class="compare d-none d-md-flex" href="#"><div class="circle-count d-flex align-items-center justify-content-center">1</div></a>
-                <button class="cart btn"><div class="circle-count d-flex align-items-center justify-content-center">5</div></button>            </div>
+                <button class="cart btn">
+                    <div class="circle-count d-flex align-items-center justify-content-center">
+{#                        {% for item in cart_products.all %}#}
+{#                            {{ item.order_set.count }}#}
+{#                        {% endfor %}#}
+                        {{ cart_products|length }}
+                    </div>
+                </button>
+            </div>
         </nav>
     </div>
     <div class="cart-modal">
