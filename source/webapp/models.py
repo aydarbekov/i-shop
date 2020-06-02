@@ -179,9 +179,13 @@ class Carousel(models.Model):
 
 
 class DeliveryCost(models.Model):
-    cost = models.IntegerField(verbose_name='Цена доставки')
+    cost = models.IntegerField(verbose_name='Стоимость доставки')
     free_from = models.IntegerField(verbose_name='Бесплатная доставка при сумме заказа от')
 
     def _str_(self):
-        return self.cost
+        return str(self.cost)
+
+    class Meta:
+        verbose_name = 'Стоимость доставки'
+        verbose_name_plural = 'Стоимость доставки'
 

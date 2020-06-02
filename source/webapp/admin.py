@@ -1,5 +1,6 @@
 from django.contrib import admin
-from webapp.models import Category, Product, SubCategory, DeliveryAddress, Order, OrderProduct, Review, News, Image, Brand
+from webapp.models import Category, Product, SubCategory, DeliveryAddress, Order, \
+    OrderProduct, Review, News, Image, Brand, DeliveryCost
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -61,4 +62,5 @@ admin.site.register(DeliveryAddress, DeliveryAddressAdmin)
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Image)
+admin.site.register(DeliveryCost)
 admin.site.register(Brand, BrandAdmin)
