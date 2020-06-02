@@ -17,7 +17,6 @@
                             {% load static %}<a href="{% static "images/no_photo.jpg" %}" data-fancybox="gallery"
                                                 data-caption="Caption #1">
                         {% endif %}
-
                     <div class="photo-back">
                         {% if product.images %}
                             <img src="{{ product.images.first.image.url }}" class="card-img-top" alt="{{ product.name }}">
@@ -27,21 +26,30 @@
                     </div>
                     </a>
                     <div class="lil-imgs justify-content-between mt-4 d-none d-sm-flex">
-                        <a href="{% static 'images/chair.png' %}" data-fancybox="gallery" data-caption="Caption #1">
+                        {% for image in product.images.all %}
+                            {% if image.image.url != product.images.first.image.url %}
+                        <a href="{{ image.image.url }}" data-fancybox="gallery" data-caption="Caption #1">
                             <div class="photo-back-little">
-                                <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">
+                                <img src="{{ image.image.url }}" class="card-img-top" alt="...">
                             </div>
                         </a>
-                        <a href="{% static 'images/printer3.png' %}" data-fancybox="gallery" data-caption="Caption #1">
-                            <div class="photo-back-little">
-                                <img src="{% static 'images/printer3.png' %}" class="card-img-top" alt="...">
-                            </div>
-                        </a>
-                        <a href="{% static 'images/printer3.png' %}" data-fancybox="gallery" data-caption="Caption #1">
-                            <div class="photo-back-little">
-                                <img src="{% static 'images/printer3.png' %}" class="card-img-top" alt="...">
-                            </div>
-                        </a>
+                            {% endif %}
+                        {% endfor %}
+{#                        <a href="{% static 'images/chair.png' %}" data-fancybox="gallery" data-caption="Caption #1">#}
+{#                            <div class="photo-back-little">#}
+{#                                <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">#}
+{#                            </div>#}
+{#                        </a>#}
+{#                        <a href="{% static 'images/printer3.png' %}" data-fancybox="gallery" data-caption="Caption #1">#}
+{#                            <div class="photo-back-little">#}
+{#                                <img src="{% static 'images/printer3.png' %}" class="card-img-top" alt="...">#}
+{#                            </div>#}
+{#                        </a>#}
+{#                        <a href="{% static 'images/printer3.png' %}" data-fancybox="gallery" data-caption="Caption #1">#}
+{#                            <div class="photo-back-little">#}
+{#                                <img src="{% static 'images/printer3.png' %}" class="card-img-top" alt="...">#}
+{#                            </div>#}
+{#                        </a>#}
                     </div>
 
                 </div>

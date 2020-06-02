@@ -92,33 +92,39 @@
     <div class="bestseller my-5">
         <p class="bestseller-text-background">Bestseller</p>
         <div class="container d-flex flex-nowrap bestseller bg-transparent bestseller-slide">
+            {% for carousel in carouseles %}
             <div class="d-flex flex-nowrap bg-transparent">
-                <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">
+                <img class="bestseller-img" src="{{ carousel.product.images.first.image.url }}" alt="{{ carousel.product.name }}" style="">
                 <div class="bestseller-content">
-                    <h3>Кресло для офиса</h3>
-                    <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
-                    <p class="bestseller-price">$8</p>
+                    <h3>{{ carousel.product.name }}</h3>
+                    {% if carousel.product.description %}
+                    <p class="bestseller-text">{{ carousel.product.description }}</p>
+                    {% endif %}
+                    <p class="bestseller-price">${{ carousel.product.price }}</p>
+                <a href="{% url 'webapp:cart_change' %}?pk={{ carousel.product.pk }}&action=add&next={% url 'webapp:index' %}">
                     <button type="button" class="btn bestseller-button mr-4">в корзину</button>
+                    </a>
                 </div>
             </div>
-            <div class="d-flex flex-nowrap bg-transparent">
-                <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">
-                <div class="bestseller-content">
-                    <h3>Кресло для офиса</h3>
-                    <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
-                    <p class="bestseller-price">$8</p>
-                    <button type="button" class="btn bestseller-button mr-4">в корзину</button>
-                </div>
-            </div>
-            <div class="d-flex flex-nowrap bg-transparent">
-                <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">
-                <div class="bestseller-content">
-                    <h3>Кресло для офиса</h3>
-                    <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
-                    <p class="bestseller-price">$8</p>
-                    <button type="button" class="btn bestseller-button mr-4">в корзину</button>
-                </div>
-            </div>
+            {% endfor %}
+{#            <div class="d-flex flex-nowrap bg-transparent">#}
+{#                <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">#}
+{#                <div class="bestseller-content">#}
+{#                    <h3>Кресло для офиса</h3>#}
+{#                    <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>#}
+{#                    <p class="bestseller-price">$8</p>#}
+{#                    <button type="button" class="btn bestseller-button mr-4">в корзину</button>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="d-flex flex-nowrap bg-transparent">#}
+{#                <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">#}
+{#                <div class="bestseller-content">#}
+{#                    <h3>Кресло для офиса</h3>#}
+{#                    <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>#}
+{#                    <p class="bestseller-price">$8</p>#}
+{#                    <button type="button" class="btn bestseller-button mr-4">в корзину</button>#}
+{#                </div>#}
+{#            </div>#}
         </div>
     </div>
     <div class="promos container">

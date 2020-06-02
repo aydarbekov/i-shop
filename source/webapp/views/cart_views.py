@@ -14,12 +14,10 @@ class CartChangeView(View):
         products = request.session.get('products', [])
         pk = request.GET.get('pk')
         action = request.GET.get('action')
-        print(action, "action")
         next_url = request.GET.get('next', reverse('webapp:index'))
 
         if action == 'add':
             product = get_object_or_404(Product, pk=pk)
-            print("Producr.quantity", product.quantity)
             # if product.quantity > 0:
             products.append(pk)
         elif action == 'delete':
@@ -112,7 +110,6 @@ def cartdeleteitem(request):
             break
     request.session['products'] = products
     request.session['products_count'] = len(products)
-    print("DELETED")
     return JsonResponse({'pk': products})
 
 

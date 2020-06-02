@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from webapp.forms import ProductForm, ImageFormset
-from webapp.models import Product, Category, Image
+from webapp.models import Product, Category, Image, Carousel
 
 
 class IndexView(ListView):
@@ -16,7 +16,7 @@ class IndexView(ListView):
         context = super().get_context_data()
         context['categories'] = Category.objects.all()
         context['products'] = Product.objects.all()
-        print(context['products'], "PRODUCTS INDEX")
+        context['carouseles'] = Carousel.objects.all()
         return context
 
 class ProductView(DetailView):
