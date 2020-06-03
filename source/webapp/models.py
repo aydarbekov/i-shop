@@ -72,6 +72,7 @@ class Product(models.Model):
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
     quantity = models.IntegerField(verbose_name='Количество', null=True, blank=True)
     brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Бренд', related_name='products')
+    tags = models.ManyToManyField('Tag', blank=True, related_name='products', verbose_name='Теги')
 
     def __str__(self):
         return self.name
