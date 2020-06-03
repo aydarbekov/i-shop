@@ -202,3 +202,11 @@ class Favorite(models.Model):
     class Meta:
         verbose_name = 'Избранное'
         verbose_name_plural = 'Избранное'
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=31, verbose_name='Тег')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
+
+    def __str__(self):
+        return self.name
