@@ -17,8 +17,8 @@ function getCookie(name) {
 function favoriteAddSuccess(data) {
     console.log(data);
     let productPk = data.pk;
-    $('#add-to-favorites-' + productPk).addClass('d-none').css('background-color', 'red');
-    $('#delete-from-favorites-' + productPk).removeClass('d-none').css('background-color', 'white');
+    $('#add-to-favorites-' + productPk).addClass('d-none');
+    $('#delete-from-favorites-' + productPk).removeClass('d-none');
 }
 
 function favoriteDeleteSuccess(data) {

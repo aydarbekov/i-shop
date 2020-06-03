@@ -1,7 +1,6 @@
-from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
-from django.contrib.auth.models import User
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -21,6 +20,7 @@ class IndexView(ListView):
         context['carouseles'] = Carousel.objects.all()
         return context
 
+
 class ProductView(DetailView):
     model = Product
     template_name = 'products/product_detail.html'
@@ -34,14 +34,12 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
     permission_required = 'webapp.add_product'
     permission_denied_message = '403 Доступ запрещён!'
 
-
     def get_context_data(self, **kwargs):
         if 'formset' not in kwargs:
             kwargs['formset'] = ImageFormset()
         return super().get_context_data(**kwargs)
 
     def post(self, request, *args, **kwargs):
-        print('post')
         self.object = None
         form = self.get_form()
         formset = ImageFormset(self.request.POST,self.request.FILES)
@@ -73,36 +71,29 @@ class ProductUpdateView(PermissionRequiredMixin, UpdateView):
         return reverse('webapp:product_detail', kwargs={'pk': self.object.pk})
 
 
-class ProductDeleteView(PermissionRequiredMixin, DeleteView):
-    model = Product
-    template_name = 'products/product_delete.html'
-    success_url = reverse_lazy('webapp:index')
-    context_object_name = 'product'
-    permission_required = 'webapp.delete_product'
-
-    def delete(self, request, *args, **kwargs):
-        product = self.object = self.get_object()
-        product.in_stock = False
-        product.save()
-        return HttpResponseRedirect(self.get_success_url())
-
-# class ProductDeleteView(PermissionRequiredMixin, View):
+# class ProductDeleteView(PermissionRequiredMixin, DeleteView):
 #     model = Product
-#     # template_name = 'product_delete.html'
-#     # success_url = reverse_lazy('webapp:index')
+#     template_name = 'products/product_delete.html'
+#     success_url = reverse_lazy('webapp:index')
 #     context_object_name = 'product'
 #     permission_required = 'webapp.delete_product'
 #
-#     def get(self, request, *args, **kwargs):
-#         pk = self.kwargs.get('pk')
-#         product = get_object_or_404(Product, id=pk)
-#         # product = self.object
-#         if product.in_stock == True:
-#             product.in_stock = False
-#         else:
-#             product.in_stock = True
+#     def delete(self, request, *args, **kwargs):
+#         product = self.object = self.get_object()
+#         product.in_stock = False
 #         product.save()
-#         return HttpResponseRedirect('webapp:product_detail', product.pk)
+#         return HttpResponseRedirect(self.get_success_url())
+
+class ProductDeleteView(UserPassesTestMixin, DeleteView):
+    model = Product
+    template_name = 'base_CRUD/delete.html'
+    success_url = reverse_lazy('webapp:products_all')
+    permission_required = 'webapp.delete_product'
+    permission_denied_message = "Доступ запрещен"
+
+    def test_func(self):
+        user = self.request.user
+        return user.is_staff
 
 
 class ProductListView(ListView):
@@ -117,37 +108,31 @@ class ProductListView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         context['categories'] = Category.objects.all()
-        category_pk = self.kwargs.get('pk')
-        product_category = Category.objects.get(pk=category_pk)
-        context['product_category'] = product_category
-        context['products'] = Product.objects.filter(category_id=category_pk)
+        context['product_category'] = Category.objects.get(pk=self.kwargs.get('pk'))
+        context['products'] = Product.objects.filter(category_id=self.kwargs.get('pk'))
         self.get_url()
         return context
 
 
 class AddToFavorites(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        user = request.user
         product = get_object_or_404(Product, pk=request.POST.get('pk'))
-        Favorite.objects.get_or_create(user=user, product=product)
+        Favorite.objects.get_or_create(user=request.user, product=product)
         return JsonResponse({'pk': product.pk})
 
 
 class DeleteFromFavorites(LoginRequiredMixin, View):
-    permission_required = "webapp.delete_favorite"
-
     def post(self, request, *args, **kwargs):
-        user = request.user
         product = get_object_or_404(Product, pk=request.POST.get('pk'))
-        Favorite.objects.filter(product=product, user=user).delete()
+        Favorite.objects.filter(product=product, user=request.user).delete()
         return JsonResponse({'pk': product.pk})
 
 
 class FavoritesList(ListView):
     model = Favorite
-    template_name = 'products/products.html'
+    template_name = 'favorites.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        context['products'] = Favorite.objects.filter(user=self.request.user)
+        context['favorite_products'] = Favorite.objects.filter(user=self.request.user)
         return context

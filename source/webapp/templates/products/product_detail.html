@@ -12,12 +12,13 @@
         <div class="product-content">
             <div class="row">
                 <div class="col-12 col-md-5 mt-5">
-                        {% if product.images %}
-                            <a href="{{ product.images.first.image.url }}" data-fancybox="gallery" data-caption="Caption #1">
-                        {% else %}
-                            {% load static %}<a href="{% static "images/no_photo.jpg" %}" data-fancybox="gallery"
-                                                data-caption="Caption #1">
-                        {% endif %}
+                    {% if product.images %}
+                        <a href="{{ product.images.first.image.url }}" data-fancybox="gallery"
+                           data-caption="Caption #1">
+                    {% else %}
+                        {% load static %}<a href="{% static "images/no_photo.jpg" %}" data-fancybox="gallery"
+                                            data-caption="Caption #1">
+                    {% endif %}
                     <div class="photo-back">
                         {% if product.images %}
                             <img src="{{ product.images.first.image.url }}" class="card-img-top"
@@ -30,28 +31,28 @@
                     <div class="lil-imgs justify-content-between mt-4 d-none d-sm-flex">
                         {% for image in product.images.all %}
                             {% if image.image.url != product.images.first.image.url %}
-                        <a href="{{ image.image.url }}" data-fancybox="gallery" data-caption="Caption #1">
-                            <div class="photo-back-little">
-                                <img src="{{ image.image.url }}" class="card-img-top" alt="...">
-                            </div>
-                        </a>
+                                <a href="{{ image.image.url }}" data-fancybox="gallery" data-caption="Caption #1">
+                                    <div class="photo-back-little">
+                                        <img src="{{ image.image.url }}" class="card-img-top" alt="...">
+                                    </div>
+                                </a>
                             {% endif %}
                         {% endfor %}
-{#                        <a href="{% static 'images/chair.png' %}" data-fancybox="gallery" data-caption="Caption #1">#}
-{#                            <div class="photo-back-little">#}
-{#                                <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">#}
-{#                            </div>#}
-{#                        </a>#}
-{#                        <a href="{% static 'images/printer3.png' %}" data-fancybox="gallery" data-caption="Caption #1">#}
-{#                            <div class="photo-back-little">#}
-{#                                <img src="{% static 'images/printer3.png' %}" class="card-img-top" alt="...">#}
-{#                            </div>#}
-{#                        </a>#}
-{#                        <a href="{% static 'images/printer3.png' %}" data-fancybox="gallery" data-caption="Caption #1">#}
-{#                            <div class="photo-back-little">#}
-{#                                <img src="{% static 'images/printer3.png' %}" class="card-img-top" alt="...">#}
-{#                            </div>#}
-{#                        </a>#}
+                        {#                        <a href="{% static 'images/chair.png' %}" data-fancybox="gallery" data-caption="Caption #1">#}
+                        {#                            <div class="photo-back-little">#}
+                        {#                                <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">#}
+                        {#                            </div>#}
+                        {#                        </a>#}
+                        {#                        <a href="{% static 'images/printer3.png' %}" data-fancybox="gallery" data-caption="Caption #1">#}
+                        {#                            <div class="photo-back-little">#}
+                        {#                                <img src="{% static 'images/printer3.png' %}" class="card-img-top" alt="...">#}
+                        {#                            </div>#}
+                        {#                        </a>#}
+                        {#                        <a href="{% static 'images/printer3.png' %}" data-fancybox="gallery" data-caption="Caption #1">#}
+                        {#                            <div class="photo-back-little">#}
+                        {#                                <img src="{% static 'images/printer3.png' %}" class="card-img-top" alt="...">#}
+                        {#                            </div>#}
+                        {#                        </a>#}
                     </div>
 
                 </div>
@@ -83,41 +84,45 @@
                             <div class="qty-add-cart-left d-flex mb-0 mb-3">
                                 <div class="input-number">
                                     <div class="input-number__minus">-</div>
-{#                                    <input class="input-number__input" type="text" pattern="^[0-9]+$" id="gty-{{ product.pk }}"#}
-{#                                               value="{{ product.qty }}">#}
-                                    <input class="input-number__input" type="text" pattern="^[0-9]+$" value="1" id="gty-{{ product.pk }}">
+                                    {#                                    <input class="input-number__input" type="text" pattern="^[0-9]+$" id="gty-{{ product.pk }}"#}
+                                    {#                                               value="{{ product.qty }}">#}
+                                    <input class="input-number__input" type="text" pattern="^[0-9]+$" value="1"
+                                           id="gty-{{ product.pk }}">
                                     <div class="input-number__plus">+</div>
                                     <div class="input-number__plus">
-{#                                        <a href="{% url "webapp:cartadditem" %}?pk={{ item.product.pk }}" id="cart-add-{{ product.pk }}"#}
-{#                               data-product-pk="{{ product.pk }}"#}
-{#                               class="cartadd">+</a>#}
-{#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:cart' %}">+</a>#}
+                                        {#                                        <a href="{% url "webapp:cartadditem" %}?pk={{ item.product.pk }}" id="cart-add-{{ product.pk }}"#}
+                                        {#                               data-product-pk="{{ product.pk }}"#}
+                                        {#                               class="cartadd">+</a>#}
+                                        {#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:cart' %}">+</a>#}
                                     </div>
                                 </div>
-{#                                <a type="button" href="{% url "webapp:carouseladditem" %}" id="carousel-add-{{ product.pk }}"#}
-{#                               data-product-pk="{{ product.pk }}"#}
-{#                               class="to-cart btn btn-success mt-0 ml-3 w-75 {% if product.carousel_product.all %}d-none{% endif %}">Добавить в корзину</a>#}
-                                <button type="button" class="to-cart btn btn-success mt-0 ml-3 w-75 cartadd" href="{% url "webapp:cartadditem" %}"
-                                        data-product-pk="{{ product.pk }}" id="cart-add-{{ product.pk }}" >Добавить в
+                                {#                                <a type="button" href="{% url "webapp:carouseladditem" %}" id="carousel-add-{{ product.pk }}"#}
+                                {#                               data-product-pk="{{ product.pk }}"#}
+                                {#                               class="to-cart btn btn-success mt-0 ml-3 w-75 {% if product.carousel_product.all %}d-none{% endif %}">Добавить в корзину</a>#}
+                                <button type="button" class="to-cart btn btn-success mt-0 ml-3 w-75 cartadd"
+                                        href="{% url "webapp:cartadditem" %}"
+                                        data-product-pk="{{ product.pk }}" id="cart-add-{{ product.pk }}">Добавить в
                                     корзину
                                 </button>
                             </div>
                             <div class="d-flex align-items-center mr-4 ml-4 mb-4">
-                                {% with favorite=product|is_favorite:request.user %}
-                                    <button href="{% url 'webapp:add_to_favorites' %}"
-                                            class="promo-btn-in-product promo-button-favorite2 mr-3 favorite-add {% if favorite %}d-none{% endif %}"
-                                            data-product-pk="{{ product.pk }}"
-                                            id="add-to-favorites-{{ product.pk }}"></button>
-                                    <button href="{% url "webapp:delete_from_favorites" %}"
-                                            id="delete-from-favorites-{{ product.pk }}" class="promo-btn-in-product promo-button-favorite2 mr-3 favorite-delete
+                                {% if request.user.is_authenticated %}
+                                    {% with favorite=product|is_favorite:request.user %}
+                                        <button href="{% url 'webapp:add_to_favorites' %}"
+                                                class="promo-btn-in-product promo-button-favorite2 mr-3 favorite-add {% if favorite %}d-none{% endif %}"
+                                                data-product-pk="{{ product.pk }}"
+                                                id="add-to-favorites-{{ product.pk }}"></button>
+                                        <button href="{% url "webapp:delete_from_favorites" %}"
+                                                id="delete-from-favorites-{{ product.pk }}" class="promo-btn-in-product promo-button-favorite2 mr-3 favorite-delete
                  {% if not favorite %}d-none{% endif %}"
-                                            data-product-pk="{{ product.pk }}"></button>
-                                {% endwith %}
-{#                                <button class="promo-btn-in-product promo-button-favorite2 mr-3">#}
-{#                                    <p class="d-inline-block d-sm-none">#}
-{#                                        Избранное#}
-{#                                    </p>#}
-{#                                </button>#}
+                                                data-product-pk="{{ product.pk }}"></button>
+                                    {% endwith %}
+                                {% endif %}
+                                {#                                <button class="promo-btn-in-product promo-button-favorite2 mr-3">#}
+                                {#                                    <p class="d-inline-block d-sm-none">#}
+                                {#                                        Избранное#}
+                                {#                                    </p>#}
+                                {#                                </button>#}
                                 <button class="promo-btn-in-product promo-button-compare2 ml-4 ">
                                     <p class="d-inline-block d-sm-none">
                                         Сравнение цен
@@ -358,5 +363,5 @@
             $('.review').rating();
         });
     </script>
-{#    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
+    {#    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
 {% endblock %}
