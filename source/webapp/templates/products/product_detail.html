@@ -152,8 +152,12 @@
                                 <p class="category-tag-name">{{ product.category }}</p>
                             </div>
                             <div class="tags d-flex">
-                                <p>Tags:</p>
-                                <p class="category-tag-name">ТЕГИ</p>
+                                    {% if product.tags.all %}
+                                        <p>Tags:</p>
+                                        {% for tag in product.tags.all %}
+                                            <p class="category-tag-name">#{{ tag }}</p>
+                                        {% endfor %}
+                                    {% endif %}
                             </div>
 
                             <div class="share d-none d-sm-block">

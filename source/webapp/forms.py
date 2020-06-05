@@ -1,4 +1,3 @@
-# from django import forms
 # from django.contrib.auth.models import User
 # from django.forms import widgets
 # from webapp.models import Status, Type, Task, Project, Team
@@ -62,6 +61,7 @@
 
 # class SimpleSearchForm(forms.Form):
 #     search = forms.CharField(max_length=100, required=False, label="Search")
+from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm, inlineformset_factory
 from webapp.models import OrderProduct, Order, Product, Image
@@ -118,10 +118,19 @@ class OrderProductForm(ModelForm):
         model = OrderProduct
         fields = ['product', 'amount']
 
-class ProductForm(ModelForm):
+class ProductForm(forms.ModelForm):
+    tags = forms.CharField(max_length=101, required=False, label='Тэги')
+
     class Meta:
         model = Product
-        exclude = ['in_stock', 'date']
+        exclude = ['in_stock', 'date', 'tags']
+
+    def clean_tags(self):
+        tags = self.cleaned_data.get('tags', '')
+        tags = tags.split(',')
+        tags = [tag.strip() for tag in tags]
+        tags = filter(lambda tag: len(tag) > 0, tags)
+        return tags
 
 ImageFormset = inlineformset_factory(Product, Image, fields='__all__', extra=1, validate_min=False, min_num=0, can_delete=True)
 

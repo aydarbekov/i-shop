@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from webapp.forms import ProductForm, ImageFormset
-from webapp.models import Product, Category, Carousel, Favorite
+from webapp.models import Product, Category, Carousel, Favorite, Tag
 
 
 class IndexView(ListView):
@@ -47,8 +47,14 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
             return self.form_valid(form, formset)
         return self.form_invalid(form, formset)
 
+    def tags_create(self, tags):
+        for tag in tags:
+            product_tag, _ = Tag.objects.get_or_create(name=tag)
+            self.object.tags.add(product_tag)
+
     def form_valid(self, form, formset):
         self.object = form.save()
+        self.tags_create(form.cleaned_data.get('tags'))
         formset.instance = self.object
         formset.save()
         return HttpResponseRedirect(self.get_success_url())
@@ -66,6 +72,25 @@ class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     form_class = ProductForm
     context_object_name = 'product'
     permission_required = 'webapp.change_product'
+
+    def get_initial(self):
+        return {'tags': self.get_tag_string()}
+
+    def get_tag_string(self):
+        tags = self.object.tags.all()
+        tag_names = [tag.name for tag in tags]
+        return ', '.join(tag_names)
+
+    def form_valid(self, form):
+        tags = form.cleaned_data.get('tags')
+        self.save_tags(tags)
+        return super().form_valid(form)
+
+    def save_tags(self, tags):
+        self.object.tags.clear()
+        for tag_name in tags:
+            tag, _ = Tag.objects.get_or_create(name=tag_name)
+            self.object.tags.add(tag)
 
     def get_success_url(self):
         return reverse('webapp:product_detail', kwargs={'pk': self.object.pk})
