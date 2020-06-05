@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Удалить{% endblock %}
 {% block content %}
-    <h3>Вы уверены что хотите удалить:<br>"{{ object }}"?</h3>
-    <form method="POST"  class="text-center">
-        {% csrf_token %}
-        <div class="confirm d-flex justify-content-center">
-            <p><input type="submit" value="Да" class="btn btn-danger mt-5"></p>
-            <p><a href="{% url 'webapp:index' %}" class="btn btn-primary">Нет, выход</a></p>
-        </div>
-    </form>
+    <div class="container mt-4" style="width: 800px">
+        <h4>Вы уверены что хотите удалить:  "{{ object }}"?</h4>
+        <form method="POST" class="text-center">
+            {% csrf_token %}
+            <div class="confirm d-flex justify-content-center my-3">
+                <p><input type="submit" value="Да" class="btn btn-danger mr-3"></p>
+                <p><a href="{% url 'webapp:index' %}" class="btn btn-primary">Нет, выход</a></p>
+            </div>
+        </form>
+    </div>
 {% endblock %}

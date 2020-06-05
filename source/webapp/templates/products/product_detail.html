@@ -130,6 +130,14 @@
                                 </button>
                             </div>
                         </div>
+                        <div>
+                            {% if request.user.is_staff %}
+                                <a class='btn update hiddenbutton'
+                                   href="{% url 'webapp:product_update' product.pk %}">Редактировать</a>
+                                <a class='btn delete hiddenbutton'
+                                   href="{% url 'webapp:product_delete' product.pk %}" style="color: red">Удалить</a>
+                            {% endif %}
+                        </div>
                         <div class="color-category-tags mb-2">
                             <hr/>
                             <div class="color d-flex align-items-center">
@@ -152,12 +160,12 @@
                                 <p class="category-tag-name">{{ product.category }}</p>
                             </div>
                             <div class="tags d-flex">
-                                    {% if product.tags.all %}
-                                        <p>Tags:</p>
-                                        {% for tag in product.tags.all %}
-                                            <p class="category-tag-name">#{{ tag }}</p>
-                                        {% endfor %}
-                                    {% endif %}
+                                {% if product.tags.all %}
+                                    <p>Tags:</p>
+                                    {% for tag in product.tags.all %}
+                                        <p class="category-tag-name">#{{ tag }}</p>
+                                    {% endfor %}
+                                {% endif %}
                             </div>
 
                             <div class="share d-none d-sm-block">
