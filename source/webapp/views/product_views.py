@@ -42,7 +42,7 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
     def post(self, request, *args, **kwargs):
         self.object = None
         form = self.get_form()
-        formset = ImageFormset(self.request.POST,self.request.FILES)
+        formset = ImageFormset(request.POST, request.FILES)
         if form.is_valid() and formset.is_valid():
             return self.form_valid(form, formset)
         return self.form_invalid(form, formset)
@@ -54,6 +54,7 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form, formset):
         self.object = form.save()
+        self.object.save()
         self.tags_create(form.cleaned_data.get('tags'))
         formset.instance = self.object
         formset.save()
