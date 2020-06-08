@@ -64,7 +64,8 @@
 #     search = forms.CharField(max_length=100, required=False, label="Search")
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm, inlineformset_factory
-from webapp.models import OrderProduct, Order, Product, Image
+from webapp.models import OrderProduct, Order, Product, Image, Category
+from django import forms
 
 
 class CartOrderCreateForm(ModelForm):
@@ -128,3 +129,7 @@ ImageFormset = inlineformset_factory(Product, Image, fields='__all__', extra=1, 
 
 ProductsFormset = inlineformset_factory(Order, OrderProduct, OrderProductForm, extra=0,
                                         validate_min=True, min_num=1, can_delete=True)
+
+
+class SimpleSearchForm(forms.Form):
+    search = forms.CharField(max_length=100, required=False, label='Найти')

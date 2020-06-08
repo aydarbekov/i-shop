@@ -38,8 +38,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="nav-link logo mx-auto ml-md-4 mr-md-0" href="{% url 'webapp:index' %}"></a>
-            <form class="form-inline d-none d-md-flex align-items-center">
+
+            <form class="form-inline d-none d-md-flex align-items-center" method="get" action="#">
                 <input class="search form-control rounded-left" type="search" placeholder="Поиск" aria-label="Search">
+{{ form }}
+
                 <p class="m-0"><select>
                     <option selected>Категория</option>
                     {% for category in categories %}
@@ -82,9 +85,6 @@
                 <a class="compare d-none d-md-flex" href="#"><div class="circle-count d-flex align-items-center justify-content-center">1</div></a>
                 <button class="cart btn">
                     <div class="circle-count d-flex align-items-center justify-content-center">
-{#                        {% for item in cart_products.all %}#}
-{#                            {{ item.order_set.count }}#}
-{#                        {% endfor %}#}
                         {{ cart_products|length }}
                     </div>
                 </button>

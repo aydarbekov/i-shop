@@ -10,7 +10,6 @@ from .views.cart_views import CartChangeView, CartView, cartdeleteitem, cartaddi
 from .views.orders_view import OrderListView, OrderDetailView, OrderUpdateView, OrderProductUpdateView, OrderProductDeleteView
 from .views.news_views import NewsView, NewsAddView, NewsDetailView, NewsDeleteView, NewsEditView
 from .views.carousel_views import *
-
 app_name = 'webapp'
 
 
@@ -55,5 +54,5 @@ urlpatterns = [
     path('carouseladditem/', carouseladditem, name='carouseladditem'),
     path('cartdeleteitem/', cartdeleteitem, name='cartdeleteitem'),
     path('cartadditem/', cartadditem, name='cartadditem'),
-
+    path('cartadditem/', cartadditem, name='cartadditem'),
 ]
