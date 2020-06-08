@@ -113,7 +113,7 @@
                                                 data-product-pk="{{ product.pk }}"
                                                 id="add-to-favorites-{{ product.pk }}"></button>
                                         <button href="{% url "webapp:delete_from_favorites" %}"
-                                                id="delete-from-favorites-{{ product.pk }}" class="promo-btn-in-product promo-button-favorite2 mr-3 favorite-delete
+                                                id="delete-from-favorites-{{ product.pk }}" class="red2 mr-3 favorite-delete
                  {% if not favorite %}d-none{% endif %}"
                                                 data-product-pk="{{ product.pk }}"></button>
                                     {% endwith %}
@@ -131,7 +131,7 @@
                             </div>
                         </div>
                         <div>
-                            {% if request.user.is_staff %}
+                            {% if request.user.is_authenticated %}
                                 <a class='btn update hiddenbutton'
                                    href="{% url 'webapp:product_update' product.pk %}">Редактировать</a>
                                 <a class='btn delete hiddenbutton'
