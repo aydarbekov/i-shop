@@ -140,5 +140,30 @@ ProductsFormset = inlineformset_factory(Order, OrderProduct, OrderProductForm, e
                                         validate_min=True, min_num=1, can_delete=True)
 
 
-class SimpleSearchForm(forms.Form):
-    search = forms.CharField(max_length=100, required=False, label='Найти')
+class FullSearchForm(forms.Form):
+    text = forms.CharField(max_length=100, required=False, label='Поиск')
+    category = forms.ModelChoiceField(label='Категория', queryset=Category.objects.all(), required=False)
+
+    def clean(self):
+        super().clean()
+        data = self.cleaned_data
+        text = data.get('text')
+        category_name = self.cleaned_data.get('category')
+        category = data.get('category')
+        # user = data.get('user')
+        # if not (text):
+        #     raise ValidationError('Вы не ввели текст поиска!',
+        #                           code='text_search_empty')
+        # errors = []
+        # # if text:
+        # #     # in_username = data.get('in_username')
+        # #     # in_first_name = data.get('in_first_name')
+        # #     # in_phone = data.get('in_phone')
+        # #     if not (in_username or in_first_name or in_phone):
+        # #         errors.append(ValidationError(
+        # #             'Пожулайста отметте критерии поиска, выставите галочки, где необходимо искать',
+        # #             code='text_search_criteria_empty'
+        # #         ))
+        # if errors:
+        #     raise ValidationError(errors)
+        return data
