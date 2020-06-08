@@ -1,169 +1,212 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load is_favorite %}
 {% block title %}Kanctorg{% endblock %}
 {% block menu %}
-{#    {% if perms.webapp.product_add %}#}
-{#        <a href="{% url 'webapp:product_create' %}" class="login  d-none d-md-flex">Доб тов</a>#}
-{#        <a href="{% url 'webapp:orders' %}" class="login  d-none d-md-flex">Зак</a>#}
-{#    {% endif %}#}
+    {#    {% if perms.webapp.product_add %}#}
+    {#        <a href="{% url 'webapp:product_create' %}" class="login  d-none d-md-flex">Доб тов</a>#}
+    {#        <a href="{% url 'webapp:orders' %}" class="login  d-none d-md-flex">Зак</a>#}
+    {#    {% endif %}#}
 {% endblock %}
 {% block content %}
-    <div class="category-detail-headline">
-{#        <img src="{% static 'images/category_images/kanc-header3.webp' %}" alt="">#}
-        <img src="{{ product_category.photo.url }}" alt="">
-        <h4>{{ product_category }}</h4>
-    </div>
-    <div class="container">
-        <div class="category-block-content d-flex">
-            <div class="filter d-lg-block collapse" id="collapseExample1">
-                <div class="category-detail-filter">
-                    <div class="filter-price mb-5">
-                        <p class="filter-header">Фильтр по цене</p>
-                        <div id="slider-range"></div>
-                        <p class="filter-price-text">
-                            <label for="amount">Цена:</label>
-                            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                        </p>
-                    </div>
-                    <hr/>
-                    <div class="filter-color d-flex flex-column mb-5">
-                        <p class="filter-header">Фильтр по цвету</p>
-                        <button type="button" class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
-                            <div class="category-filter-color-circle" style="background-color: #F0DEBA;"></div>
-                            Beige
-                            <div class="category-filter-color-number">2</div>
-                        </button>
-                        <button type="button" class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
-                            <div class="category-filter-color-circle" style="background-color: green;"></div>
-                            Green
-                            <div class="category-filter-color-number">4</div>
-                        </button>
-                        <button type="button" class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
-                            <div class="category-filter-color-circle" style="background-color: grey;"></div>
-                            Grey
-                            <div class="category-filter-color-number">1</div>
-                        </button>
-                        <button type="button" class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
-                            <div class="category-filter-color-circle" style="background-color: blue;"></div>
-                            Blue
-                            <div class="category-filter-color-number">5</div>
-                        </button>
-                    </div>
-                    <hr/>
-                    <div class="filter-brand mb-5">
-                        <p class="filter-header">Фильтр по бренду</p>
-                        <div class="filter-brand-imgs">
-                            <button type="button" class="btn btn-light"><img class='filter-brand-img' src="{% static 'images/icons/partners/qiwi.png' %}" alt=""></button>
-                            <button type="button" class="btn btn-light"><img class='filter-brand-img' src="{% static 'images/icons/partners/qiwi.png' %}" alt=""></button>
-                            <button type="button" class="btn btn-light"><img class='filter-brand-img' src="{% static 'images/icons/partners/samsung.png' %}" alt=""></button>
-                            <button type="button" class="btn btn-light"><img class='filter-brand-img' src="{% static 'images/icons/partners/kia.png' %}" alt=""></button>
-                            <button type="button" class="btn btn-light"><img class='filter-brand-img' src="{% static 'images/icons/partners/Mail.png' %}" alt=""></button>
-                            <button type="button" class="btn btn-light"><img class='filter-brand-img' src="{% static 'images/icons/partners/samsung.png' %}" alt=""></button>
-                        </div>
-                    </div>
-                    <hr/>
-                    <div class="bestseller-in-filter">
-                        <div class="bestseller p-5 mb-0 mt-5">
-                            <p class="bestseller-text-background-in-category-page">Bestseller</p>
-                            <div class="bestseller-content mt-0">
-                                <h3>Office chair</h3>
-                                <p class="bestseller-text pr-0 mt-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
-                                <img class="bestseller-img mb-5" src="{% static 'images/chair.png' %}" alt="Кресло" style="">
-                                <p class="bestseller-price ml-0">$8</p>
-                                <button type="button" class="btn bestseller-button mr-0">в корзину</button>
-                            </div>
-                        </div>
+<div class="category-detail-headline">
+    {#        <img src="{% static 'images/category_images/kanc-header3.webp' %}" alt="">#}
+    <img src="{{ product_category.photo.url }}" alt="">
+    <h4>{{ product_category }}</h4>
+</div>
+<div class="container">
+    <div class="category-block-content d-flex">
+        <div class="filter d-lg-block collapse" id="collapseExample1">
+            <div class="category-detail-filter">
+                <div class="filter-price mb-5">
+                    <p class="filter-header">Фильтр по цене</p>
+                    <div id="slider-range"></div>
+                    <p class="filter-price-text">
+                        <label for="amount">Цена:</label>
+                        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    </p>
+                </div>
+                <hr/>
+                <div class="filter-color d-flex flex-column mb-5">
+                    <p class="filter-header">Фильтр по цвету</p>
+                    <button type="button"
+                            class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
+                        <div class="category-filter-color-circle" style="background-color: #F0DEBA;"></div>
+                        Beige
+                        <div class="category-filter-color-number">2</div>
+                    </button>
+                    <button type="button"
+                            class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
+                        <div class="category-filter-color-circle" style="background-color: green;"></div>
+                        Green
+                        <div class="category-filter-color-number">4</div>
+                    </button>
+                    <button type="button"
+                            class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
+                        <div class="category-filter-color-circle" style="background-color: grey;"></div>
+                        Grey
+                        <div class="category-filter-color-number">1</div>
+                    </button>
+                    <button type="button"
+                            class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
+                        <div class="category-filter-color-circle" style="background-color: blue;"></div>
+                        Blue
+                        <div class="category-filter-color-number">5</div>
+                    </button>
+                </div>
+                <hr/>
+                <div class="filter-brand mb-5">
+                    <p class="filter-header">Фильтр по бренду</p>
+                    <div class="filter-brand-imgs">
+                        <button type="button" class="btn btn-light"><img class='filter-brand-img'
+                                                                         src="{% static 'images/icons/partners/qiwi.png' %}"
+                                                                         alt=""></button>
+                        <button type="button" class="btn btn-light"><img class='filter-brand-img'
+                                                                         src="{% static 'images/icons/partners/qiwi.png' %}"
+                                                                         alt=""></button>
+                        <button type="button" class="btn btn-light"><img class='filter-brand-img'
+                                                                         src="{% static 'images/icons/partners/samsung.png' %}"
+                                                                         alt=""></button>
+                        <button type="button" class="btn btn-light"><img class='filter-brand-img'
+                                                                         src="{% static 'images/icons/partners/kia.png' %}"
+                                                                         alt=""></button>
+                        <button type="button" class="btn btn-light"><img class='filter-brand-img'
+                                                                         src="{% static 'images/icons/partners/Mail.png' %}"
+                                                                         alt=""></button>
+                        <button type="button" class="btn btn-light"><img class='filter-brand-img'
+                                                                         src="{% static 'images/icons/partners/samsung.png' %}"
+                                                                         alt=""></button>
                     </div>
                 </div>
-                <div class="content-products">
-                    <div class="bread"></div>
-                    <div class="hidden-filter-button"></div>
-                    <div class="product-list"></div>
+                <hr/>
+                <div class="bestseller-in-filter">
+                    <div class="bestseller p-5 mb-0 mt-5">
+                        <p class="bestseller-text-background-in-category-page">Bestseller</p>
+                        <div class="bestseller-content mt-0">
+                            <h3>Office chair</h3>
+                            <p class="bestseller-text pr-0 mt-0">Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
+                            <img class="bestseller-img mb-5" src="{% static 'images/chair.png' %}" alt="Кресло"
+                                 style="">
+                            <p class="bestseller-price ml-0">$8</p>
+                            <button type="button" class="btn bestseller-button mr-0">в корзину</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="content-without-filter w-100 ml-3">
-                <div class="bread-pagination-sort d-flex align-items-baseline">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{ product_category }}</li>
-                        </ol>
-                    </nav>
-                    <div class="pagination ml-auto d-none d-lg-block">
-                        <p>Страница: 9 / 12 / 24</p>
-                    </div>
-                    <div class="sort-incategory-dropdown dropdown d-none d-lg-block">
-                        <button class="btn btn-light dropdown-toggle ml-5" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Сортировка
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">По убыванию</a>
-                            <a class="dropdown-item" href="#">По возрастанию</a>
-                            <a class="dropdown-item" href="#">еще как-то</a>
-                        </div>
-                    </div>
+            <div class="content-products">
+                <div class="bread"></div>
+                <div class="hidden-filter-button"></div>
+                <div class="product-list"></div>
+            </div>
+        </div>
+        <div class="content-without-filter w-100 ml-3">
+            <div class="bread-pagination-sort d-flex align-items-baseline">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ product_category }}</li>
+                    </ol>
+                </nav>
+                <div class="pagination ml-auto d-none d-lg-block">
+                    <p>Страница: 9 / 12 / 24</p>
                 </div>
-                <div class="button-and-sort d-flex align-items-center d-block d-lg-none my-3">
-                    <button class="filter-btn navbar-toggler navbar-light filter-slider-appereance-btn btn" type="button">
-                        <span class="navbar-toggler-icon mr-2"></span><p>Фильтр</p>
+                <div class="sort-incategory-dropdown dropdown d-none d-lg-block">
+                    <button class="btn btn-light dropdown-toggle ml-5" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Сортировка
                     </button>
-
-                    <button type="button" class="btn sort-btn"></button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">По убыванию</a>
+                        <a class="dropdown-item" href="#">По возрастанию</a>
+                        <a class="dropdown-item" href="#">еще как-то</a>
+                    </div>
                 </div>
-                <div class="products-in-category">
-                    <div class="row mx-0">
-                        {% for product in products %}
-                            <div class="col-6 col-md-4 px-2">
-                            <a href="{% url "webapp:product_detail" product.pk %}">
-                                <div class="card">
-                                    <div class="photo-back">
-                                        {% if product.images %}
-                                            <img src="{{ product.images.first.image.url}}" class="card-img-top" alt="...">
-                                        {% else %}
-                                            {% load static %}<img src="{% static "images/no_photo.jpg" %}" class="card-img-top" alt="no-photo">
-                                        {% endif %}
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="card-text d-flex flex-column align-items-center px-3">
-                                            <a href="{% url "webapp:product_detail" product.pk %}"><h5>{{ product }}</h5></a>
-                                            <p>{{ product.category }}</p>
-                                            <p class="price">{{ product.price }}</p>
-                                            <div class="discount-count d-flex align-items-center justify-content-center">5%</div>
+            </div>
+            <div class="button-and-sort d-flex align-items-center d-block d-lg-none my-3">
+                <button class="filter-btn navbar-toggler navbar-light filter-slider-appereance-btn btn"
+                        type="button">
+                    <span class="navbar-toggler-icon mr-2"></span>
+                    <p>Фильтр</p>
+                </button>
+
+                <button type="button" class="btn sort-btn"></button>
+            </div>
+            <div class="products-in-category">
+                <div class="row mx-0">
+                    {% for product in products %}
+                    <div class="col-6 col-md-4 px-2">
+                        <a href="{% url "webapp:product_detail" product.pk %}">
+                            <div class="card">
+                                <div class="photo-back">
+                                    {% if product.images %}
+                                        <img src="{{ product.images.first.image.url }}" class="card-img-top"
+                                             alt="...">
+                                    {% else %}
+                                        {% load static %}
+                                        <img src="{% static "images/no_photo.jpg" %}" class="card-img-top"
+                                             alt="no-photo">
+                                    {% endif %}
+                                </div>
+                                <div class="card-body">
+                                    <div class="card-text d-flex flex-column align-items-center px-3">
+                                        <a href="{% url "webapp:product_detail" product.pk %}">
+                                            <h5>{{ product }}</h5></a>
+                                        <p>{{ product.category }}</p>
+                                        <p class="price">{{ product.price }}</p>
+                                        <div class="discount-count d-flex align-items-center justify-content-center">
+                                            5%
                                         </div>
-                                        <div class="position-for-hidden position-relative">
-                                            <div class="hidden-part text-center">
-                                                <p class="card-text">Some quick example text to build on the card content.</p>
-                                                <div class="promo-icons d-flex justify-content-center">
-                                                    <button class="promo-button-favorite"></button>
-                                                    <button class="promo-button-compare"></button>
-                                                    <button class="promo-button-share"></button>
-                                                </div>
-                                                <a href="{% url "webapp:cartadditem" %}" id="cart-add-{{ product.pk }}" data-product-pk="{{ product.pk }}"
-                               class="cartadd btn btn-success to-cart">В корзину</a>
-{#                                                <a href="{% url 'webapp:cart_change' %}?pk={{ product.pk }}&action=add&next={% url 'webapp:products_category' product_category.pk %}" class="to-cart btn btn-success">В корзину</a>#}
-{#                                                <button type="button" class="to-cart btn btn-success">В корзину</button>#}
+                                    </div>
+                                    <div class="position-for-hidden position-relative">
+                                        <div class="hidden-part text-center">
+                                            <p class="card-text">Some quick example text to build on the card
+                                                content.</p>
+                                            <div class="promo-icons d-flex justify-content-center">
+                                                {% if request.user.is_authenticated %}
+                                                    {% with favorite=product|is_favorite:request.user %}
+                                                        <button href="{% url 'webapp:add_to_favorites' %}"
+                                                                class="promo-button-favorite favorite-add {% if favorite %}d-none{% endif %}"
+                                                                data-product-pk="{{ product.pk }}"
+                                                                id="add-to-favorites-{{ product.pk }}"></button>
+                                                        <button href="{% url "webapp:delete_from_favorites" %}"
+                                                                id="delete-from-favorites-{{ product.pk }}"
+                                                                class="promo-button-favorite favorite-delete
+                 {% if not favorite %}d-none{% endif %}"
+                                                                data-product-pk="{{ product.pk }}"></button>
+                                                    {% endwith %}
+                                                {% endif %}
+                                                <button class="promo-button-compare"></button>
+                                                <button class="promo-button-share"></button>
                                             </div>
+                                            <a href="{% url "webapp:cartadditem" %}"
+                                               id="cart-add-{{ product.pk }}" data-product-pk="{{ product.pk }}"
+                                               class="cartadd btn btn-success to-cart">В корзину</a>
+                                            {#                                                <a href="{% url 'webapp:cart_change' %}?pk={{ product.pk }}&action=add&next={% url 'webapp:products_category' product_category.pk %}" class="to-cart btn btn-success">В корзину</a>#}
+                                            {#                                                <button type="button" class="to-cart btn btn-success">В корзину</button>#}
                                         </div>
                                     </div>
                                 </div>
-                            </a>
                             </div>
-                        {% endfor %}
+                        </a>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
-    <div class="bestseller mb-0 mt-3 pb-3 d-lg-none">
-        <p class="bestseller-text-background">Bestseller</p>
-        <img class="bestseller-img" src="{% static 'images/chair.png' %}" alt="Кресло" style="">
-        <div class="bestseller-content">
-            <h3>Кресло для офиса</h3>
-            <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
-            <p class="bestseller-price">$8</p>
-            <button type="button" class="btn bestseller-button mr-4">в корзину</button>
-        </div>
+</div>
+<div class="bestseller mb-0 mt-3 pb-3 d-lg-none">
+    <p class="bestseller-text-background">Bestseller</p>
+    <img class="bestseller-img" src="{% static 'images/chair.png' %}" alt="Кресло" style="">
+    <div class="bestseller-content">
+        <h3>Кресло для офиса</h3>
+        <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione
+            maiores harum. Aliquid, sed.</p>
+        <p class="bestseller-price">$8</p>
+        <button type="button" class="btn bestseller-button mr-4">в корзину</button>
     </div>
+</div>
 {% endblock %}
 {% block scripts %}
     <script type="application/javascript" src="{% static "js/products.js" %}"></script>

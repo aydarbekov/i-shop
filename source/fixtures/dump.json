@@ -1,5 +1,181 @@
 [
 {
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "webapp",
+    "model": "category"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "webapp",
+    "model": "product"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "webapp",
+    "model": "subcategory"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "webapp",
+    "model": "deliveryaddress"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "webapp",
+    "model": "order"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "webapp",
+    "model": "orderproduct"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "webapp",
+    "model": "review"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "webapp",
+    "model": "image"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "webapp",
+    "model": "news"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 16,
+  "fields": {
+    "app_label": "webapp",
+    "model": "brand"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 17,
+  "fields": {
+    "app_label": "webapp",
+    "model": "carousel"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 18,
+  "fields": {
+    "app_label": "webapp",
+    "model": "deliverycost"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 19,
+  "fields": {
+    "app_label": "webapp",
+    "model": "favorite"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 20,
+  "fields": {
+    "app_label": "accounts",
+    "model": "token"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 21,
+  "fields": {
+    "app_label": "accounts",
+    "model": "profile"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 22,
+  "fields": {
+    "app_label": "webapp",
+    "model": "tag"
+  }
+},
+{
   "model": "sessions.session",
   "pk": "5ur4ii2hvrwoi15pzzf5uw5s5v737iun",
   "fields": {
@@ -21,6 +197,14 @@
   "fields": {
     "session_data": "Mzg3MzA0NWM2NDZhYTJjZTRkOGRmMjNiOWQ2MDRmNGM0ZGI5NzM4YTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxY2MxYWE2ZGNlNDkxZWMzMDhhMWNiNDNmZTQ2MzFhNjgzMDlmYzc1In0=",
     "expire_date": "2020-05-16T13:36:35.356Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "wgtrstp5xq82dslsynatx5hir6vttyd8",
+  "fields": {
+    "session_data": "Mzg3MzA0NWM2NDZhYTJjZTRkOGRmMjNiOWQ2MDRmNGM0ZGI5NzM4YTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxY2MxYWE2ZGNlNDkxZWMzMDhhMWNiNDNmZTQ2MzFhNjgzMDlmYzc1In0=",
+    "expire_date": "2020-06-16T19:51:54.924Z"
   }
 },
 {
@@ -224,6 +408,46 @@
   }
 },
 {
+  "model": "webapp.tag",
+  "pk": 5,
+  "fields": {
+    "name": "crayon",
+    "created_at": "2020-06-05T06:27:57.288Z"
+  }
+},
+{
+  "model": "webapp.tag",
+  "pk": 6,
+  "fields": {
+    "name": "\u0442\u0432\u043e\u0440\u0447\u0435\u0441\u0442\u0432\u043e",
+    "created_at": "2020-06-05T06:27:57.302Z"
+  }
+},
+{
+  "model": "webapp.tag",
+  "pk": 7,
+  "fields": {
+    "name": "\u0445\u0443\u0434\u043e\u0436\u043d\u0438\u043a",
+    "created_at": "2020-06-05T06:27:57.309Z"
+  }
+},
+{
+  "model": "webapp.tag",
+  "pk": 8,
+  "fields": {
+    "name": "\u0446\u0435\u043b\u043b\u044e\u043b\u043e\u0437\u0430",
+    "created_at": "2020-06-05T10:14:23.338Z"
+  }
+},
+{
+  "model": "webapp.tag",
+  "pk": 9,
+  "fields": {
+    "name": "\u0431\u0435\u043b\u044b\u0439",
+    "created_at": "2020-06-05T10:14:23.370Z"
+  }
+},
+{
   "model": "webapp.product",
   "pk": 1,
   "fields": {
@@ -231,12 +455,17 @@
     "category": 2,
     "price": "200.00",
     "in_stock": true,
-    "description": null,
+    "description": "",
     "color": "#F0DEBA;",
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
     "quantity": null,
-    "brand": null
+    "brand": null,
+    "tags": [
+      5,
+      6,
+      7
+    ]
   }
 },
 {
@@ -252,7 +481,8 @@
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
     "quantity": null,
-    "brand": null
+    "brand": null,
+    "tags": []
   }
 },
 {
@@ -268,7 +498,8 @@
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
     "quantity": null,
-    "brand": null
+    "brand": null,
+    "tags": []
   }
 },
 {
@@ -279,12 +510,16 @@
     "category": 1,
     "price": "250.00",
     "in_stock": true,
-    "description": null,
+    "description": "",
     "color": "#F0DEBA;",
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
     "quantity": null,
-    "brand": null
+    "brand": null,
+    "tags": [
+      8,
+      9
+    ]
   }
 },
 {
@@ -295,12 +530,16 @@
     "category": 2,
     "price": "300.00",
     "in_stock": true,
-    "description": null,
+    "description": "",
     "color": "#F0DEBA;",
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
     "quantity": null,
-    "brand": null
+    "brand": null,
+    "tags": [
+      6,
+      7
+    ]
   }
 },
 {
@@ -311,12 +550,16 @@
     "category": 2,
     "price": "70.00",
     "in_stock": true,
-    "description": null,
+    "description": "",
     "color": "#F0DEBA;",
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
     "quantity": null,
-    "brand": null
+    "brand": null,
+    "tags": [
+      6,
+      7
+    ]
   }
 },
 {
@@ -332,7 +575,8 @@
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
     "quantity": null,
-    "brand": null
+    "brand": null,
+    "tags": []
   }
 },
 {
@@ -348,7 +592,8 @@
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
     "quantity": null,
-    "brand": null
+    "brand": null,
+    "tags": []
   }
 },
 {
@@ -364,7 +609,8 @@
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
     "quantity": null,
-    "brand": null
+    "brand": null,
+    "tags": []
   }
 },
 {
@@ -1440,11 +1686,227 @@
   }
 },
 {
+  "model": "auth.permission",
+  "pk": 105,
+  "fields": {
+    "name": "Can add carousel",
+    "content_type": 17,
+    "codename": "add_carousel"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 106,
+  "fields": {
+    "name": "Can change carousel",
+    "content_type": 17,
+    "codename": "change_carousel"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 107,
+  "fields": {
+    "name": "Can delete carousel",
+    "content_type": 17,
+    "codename": "delete_carousel"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 108,
+  "fields": {
+    "name": "Can view carousel",
+    "content_type": 17,
+    "codename": "view_carousel"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 109,
+  "fields": {
+    "name": "Can add \u0421\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
+    "content_type": 18,
+    "codename": "add_deliverycost"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 110,
+  "fields": {
+    "name": "Can change \u0421\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
+    "content_type": 18,
+    "codename": "change_deliverycost"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 111,
+  "fields": {
+    "name": "Can delete \u0421\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
+    "content_type": 18,
+    "codename": "delete_deliverycost"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 112,
+  "fields": {
+    "name": "Can view \u0421\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
+    "content_type": 18,
+    "codename": "view_deliverycost"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 113,
+  "fields": {
+    "name": "Can add \u0418\u0437\u0431\u0440\u0430\u043d\u043d\u043e\u0435",
+    "content_type": 19,
+    "codename": "add_favorite"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 114,
+  "fields": {
+    "name": "Can change \u0418\u0437\u0431\u0440\u0430\u043d\u043d\u043e\u0435",
+    "content_type": 19,
+    "codename": "change_favorite"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 115,
+  "fields": {
+    "name": "Can delete \u0418\u0437\u0431\u0440\u0430\u043d\u043d\u043e\u0435",
+    "content_type": 19,
+    "codename": "delete_favorite"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 116,
+  "fields": {
+    "name": "Can view \u0418\u0437\u0431\u0440\u0430\u043d\u043d\u043e\u0435",
+    "content_type": 19,
+    "codename": "view_favorite"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 117,
+  "fields": {
+    "name": "Can add tag",
+    "content_type": 22,
+    "codename": "add_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 118,
+  "fields": {
+    "name": "Can change tag",
+    "content_type": 22,
+    "codename": "change_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 119,
+  "fields": {
+    "name": "Can delete tag",
+    "content_type": 22,
+    "codename": "delete_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 120,
+  "fields": {
+    "name": "Can view tag",
+    "content_type": 22,
+    "codename": "view_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 121,
+  "fields": {
+    "name": "Can add token",
+    "content_type": 20,
+    "codename": "add_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 122,
+  "fields": {
+    "name": "Can change token",
+    "content_type": 20,
+    "codename": "change_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 123,
+  "fields": {
+    "name": "Can delete token",
+    "content_type": 20,
+    "codename": "delete_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 124,
+  "fields": {
+    "name": "Can view token",
+    "content_type": 20,
+    "codename": "view_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 125,
+  "fields": {
+    "name": "Can add Profile",
+    "content_type": 21,
+    "codename": "add_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 126,
+  "fields": {
+    "name": "Can change Profile",
+    "content_type": 21,
+    "codename": "change_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 127,
+  "fields": {
+    "name": "Can delete Profile",
+    "content_type": 21,
+    "codename": "delete_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 128,
+  "fields": {
+    "name": "Can view Profile",
+    "content_type": 21,
+    "codename": "view_profile"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$150000$uSFUOF4e7Zf3$vrIYIWOGUY5ss0MB5sKCnpScwXPnoVKyNpf7OR7awyo=",
-    "last_login": "2020-05-26T21:46:19.179Z",
+    "last_login": "2020-06-02T19:51:54.918Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -1532,6 +1994,14 @@
     "text": "test",
     "author": 1,
     "date": "2020-05-22"
+  }
+},
+{
+  "model": "webapp.favorite",
+  "pk": 19,
+  "fields": {
+    "product": 4,
+    "user": 1
   }
 },
 {
@@ -2234,6 +2704,227 @@
     "object_repr": "Image object (21)",
     "action_flag": 1,
     "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 69,
+  "fields": {
+    "action_time": "2020-06-05T06:19:50.287Z",
+    "user": 1,
+    "content_type": 22,
+    "object_id": "3",
+    "object_repr": "tyuu",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 70,
+  "fields": {
+    "action_time": "2020-06-05T06:19:50.299Z",
+    "user": 1,
+    "content_type": 22,
+    "object_id": "2",
+    "object_repr": "gfr",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 71,
+  "fields": {
+    "action_time": "2020-06-05T06:19:50.302Z",
+    "user": 1,
+    "content_type": 22,
+    "object_id": "1",
+    "object_repr": "test",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 72,
+  "fields": {
+    "action_time": "2020-06-05T06:19:57.082Z",
+    "user": 1,
+    "content_type": 22,
+    "object_id": "4",
+    "object_repr": "dodo",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 73,
+  "fields": {
+    "action_time": "2020-06-05T06:20:22.998Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "22",
+    "object_repr": "dodo",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 74,
+  "fields": {
+    "action_time": "2020-06-05T06:20:23.009Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "21",
+    "object_repr": "uyyutiukjhb",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 75,
+  "fields": {
+    "action_time": "2020-06-05T06:20:23.013Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "20",
+    "object_repr": "testtest",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 76,
+  "fields": {
+    "action_time": "2020-06-05T06:20:23.016Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "19",
+    "object_repr": "testtest",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 77,
+  "fields": {
+    "action_time": "2020-06-05T06:20:23.018Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "18",
+    "object_repr": "test000",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 78,
+  "fields": {
+    "action_time": "2020-06-05T06:20:23.020Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "17",
+    "object_repr": "test000",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 79,
+  "fields": {
+    "action_time": "2020-06-05T06:20:23.022Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "16",
+    "object_repr": "test5",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 80,
+  "fields": {
+    "action_time": "2020-06-05T06:20:23.024Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "15",
+    "object_repr": "test5",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 81,
+  "fields": {
+    "action_time": "2020-06-05T06:20:23.025Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "14",
+    "object_repr": "test5",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 82,
+  "fields": {
+    "action_time": "2020-06-05T06:20:23.027Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "13",
+    "object_repr": "test4",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 83,
+  "fields": {
+    "action_time": "2020-06-05T06:20:23.029Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "12",
+    "object_repr": "test3",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 84,
+  "fields": {
+    "action_time": "2020-06-05T06:20:23.031Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "11",
+    "object_repr": "test3",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 85,
+  "fields": {
+    "action_time": "2020-06-05T06:20:23.033Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "10",
+    "object_repr": "test",
+    "action_flag": 3,
+    "change_message": ""
   }
 }
 ]

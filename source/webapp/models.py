@@ -59,6 +59,13 @@ class Brand(models.Model):
         verbose_name = 'Бренд'
         verbose_name_plural = 'Бренды'
 
+class Tag(models.Model):
+    name = models.CharField(max_length=31, verbose_name='Тег')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
+
+    def __str__(self):
+        return self.name
+
 
 class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name='Товар')
@@ -72,6 +79,7 @@ class Product(models.Model):
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
     quantity = models.IntegerField(verbose_name='Количество', null=True, blank=True)
     brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Бренд', related_name='products')
+    tags = models.ManyToManyField(Tag, blank=True, related_name='products', verbose_name='Теги')
 
     def __str__(self):
         return self.name
@@ -192,3 +200,13 @@ class Carousel(models.Model):
         return self.product.name
 
 
+class Favorite(models.Model):
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='favored_by')
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='favorites')
+
+    def __str__(self):
+        return self.product.name
+
+    class Meta:
+        verbose_name = 'Избранное'
+        verbose_name_plural = 'Избранное'
