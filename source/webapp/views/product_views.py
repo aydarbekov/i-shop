@@ -11,35 +11,28 @@ from django.utils.http import urlencode
 from django.shortcuts import redirect
 
 
-# class IndexView(SimpleSearchView):
-#     template_name = 'index.html'
-#     model = Product
-#     context_object_name = "products"
-#
-#     def get_context_data(self, *, object_list=None, **kwargs):
-#         context = super().get_context_data(object_list=object_list, **kwargs)
-#         context['categories'] = Category.objects.all()
-#         context['products'] = Product.objects.all()
-#         context['carouseles'] = Carousel.objects.all()
-#         return context
-#
-#     def get_query(self):
-#         return Q(name__icontains=self.search_query) \
-#                 | Q(tags__name__iexact=self.search_query)
-
-
-class IndexView(FormView):
-    template_name = 'index.html'
-    model = Product
-    context_object_name = "products"
+class SearchView(FormView):
     form_class = FullSearchForm
-
 
     def form_valid(self, form):
         query = urlencode(form.cleaned_data)
         # url = reverse('webapp:search_results') + '?' + query
         url = reverse('webapp:search_results') + '?' + query
         return redirect(url)
+
+
+class IndexView(SearchView):
+    template_name = 'index.html'
+    model = Product
+    context_object_name = "products"
+    # form_class = FullSearchForm
+    #
+    #
+    # def form_valid(self, form):
+    #     query = urlencode(form.cleaned_data)
+    #     # url = reverse('webapp:search_results') + '?' + query
+    #     url = reverse('webapp:search_results') + '?' + query
+    #     return redirect(url)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
@@ -49,9 +42,16 @@ class IndexView(FormView):
         return context
 
 
-class ProductView(DetailView):
+class ProductView(DetailView, SearchView):
     model = Product
     template_name = 'products/product_detail.html'
+    # form_class = FullSearchForm
+    #
+    # def form_valid(self, form):
+    #     query = urlencode(form.cleaned_data)
+    #     # url = reverse('webapp:search_results') + '?' + query
+    #     url = reverse('webapp:search_results') + '?' + query
+    #     return redirect(url)
 
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
@@ -150,7 +150,7 @@ class ProductDeleteView(UserPassesTestMixin, DeleteView):
         return user.is_staff
 
 
-class ProductListView(ListView):
+class ProductListView(ListView, SearchView):
     template_name = 'products/products.html'
     model = Product
 
@@ -166,6 +166,14 @@ class ProductListView(ListView):
         context['products'] = Product.objects.filter(category_id=self.kwargs.get('pk'))
         self.get_url()
         return context
+
+
+class ProductALLListView(ListView, SearchView):
+    model = Product
+    template_name = 'products/products_list.html'
+    context_object_name = 'products'
+    # paginate_by = 5
+    # paginate_orphans = 1
 
 
 class AddToFavorites(LoginRequiredMixin, View):
@@ -191,6 +199,7 @@ class FavoritesList(ListView):
         context['favorite_products'] = Favorite.objects.filter(user=self.request.user)
         return context
 
+
 class SearchResultsView(ListView):
     model = Product
     template_name = 'products/products.html'
@@ -202,7 +211,6 @@ class SearchResultsView(ListView):
         global site
         site = self.request.get_full_path()
         return site
-
 
     def get_context_data(self, *, text=None, **kwargs):
         form = FullSearchForm(data=self.request.GET)

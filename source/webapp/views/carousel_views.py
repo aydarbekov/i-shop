@@ -10,6 +10,8 @@ from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
 from django.shortcuts import render
 
+from webapp.views.product_views import SearchView
+
 
 class CarouselListView(UserPassesTestMixin, ListView):
     template_name = 'carousel.html'
@@ -74,14 +76,6 @@ class CarouselDeleteView(UserPassesTestMixin, DeleteView):
     def test_func(self):
         user = self.request.user
         return user.is_staff
-
-
-class ProductALLListView(ListView):
-    model = Product
-    template_name = 'products/products_list.html'
-    context_object_name = 'products'
-    # paginate_by = 5
-    # paginate_orphans = 1
 
 
 class CarouselAddView(View):
