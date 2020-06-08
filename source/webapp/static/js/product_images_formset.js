@@ -3,7 +3,7 @@ function setFormId(form, formsNumber) {
     let oldId = form.prop('id');
     form.prop('id', formId);
 
-    let fields = ['image', 'id', 'DELETE'];
+    let fields = ['image', 'id'];
     fields.forEach(function(field) {
         let element = form.find('#id_' + oldId + '-' + field);
         let fieldName = formId + '-' + field;
