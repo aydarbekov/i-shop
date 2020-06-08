@@ -49,7 +49,6 @@ class CartView(CreateView):
         kwargs['cart'] = cart
         kwargs['cart_total'] = cart_total
         shipping = self.get_shipping_cost(cart_total)
-        # kwargs['shipping_cost'] = shipping
         if shipping >= 0:
             kwargs['total'] = shipping + cart_total
             kwargs['shipping_cost'] = shipping
@@ -62,7 +61,7 @@ class CartView(CreateView):
     def get_shipping_cost(self, cart_total):
         try:
             deliverycost_object = DeliveryCost.objects.latest('created_at')
-            if cart_total > deliverycost_object.free_from:
+            if cart_total >= deliverycost_object.free_from:
                 shipping = 0
             else:
                 shipping = deliverycost_object.cost
