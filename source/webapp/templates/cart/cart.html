@@ -29,14 +29,15 @@
                         {% for item in cart %}
                             <tr class="product-{{ item.product.pk }}">
                                 <td class="table-first-column">
-                                    <div class="delete-from-cart">
-                                        <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">X</a>
-                                    </div>
+                                    <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">
+                                        <div class="delete-from-cart">
+                                        </div>
+                                    </a>
                                 </td>
                                 <td class="table-second-column">
                                     <div class="photo-back-table">
-                                        {% if item.photo %}
-                                            <img src="{{ item.photo.url }}" class="product-photo card-img-top"
+                                        {% if item.product.images %}
+                                            <img src="{{ item.product.images.first.image.url }}" class="product-photo card-img-top"
                                                  alt="...">
                                         {% else %}
                                             <img src="{% static "images/no_photo.jpg" %}"
@@ -96,14 +97,17 @@
                         </tr>
                         <tr>
                             <th class="cart-summ-itog-header" scope="row">Доставка</th>
-                            <td class="cart-summ-delivery">10</td>
+                            <td class="cart-summ-delivery">{{ shipping_cost }}</td>
+                            {% if shipping_message %}
+                                <p style="color: red">{{ shipping_message }}</p>
+                            {% endif %}
                         </tr>
                         </tbody>
                         <tfoot>
                         <tr>
                             <th class="cart-summ-itogo-header" scope="row">Итого</th>
                             <td class="cart-summ-itogo"><div class="cart-total">
-                                {{ cart_total }}</div></td>
+                                {{ total }}</div></td>
                         </tr>
                         </tfoot>
                     </table>

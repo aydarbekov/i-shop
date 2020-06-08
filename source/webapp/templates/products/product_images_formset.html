@@ -4,7 +4,7 @@
 {% endfor %}
 <div id="image_forms">
     {% for image_form in formset %}
-        <div class="form-row" id="product_images-{{ forloop.counter0 }}">
+        <div class="form-row justify-content-between" id="images-{{ forloop.counter0 }}">
             <div class="form-group col-md-5">
                 {% include 'partial/form_field.html' with field=image_form.image %}
             </div>

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from webapp.models import Category, Product, SubCategory, DeliveryAddress, Order, OrderProduct, Review, News, Image, Brand
+from webapp.models import Category, Product, SubCategory, DeliveryAddress, Order, \
+    OrderProduct, Review, News, Image, Brand, DeliveryCost, Favorite, Tag
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -31,7 +32,7 @@ class OrderProductInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'first_name', 'last_name', 'phone', 'email', 'address', 'created_at')
+    list_display = ('pk', 'first_name', 'last_name', 'phone', 'email', 'address', 'shipping_cost', 'created_at')
     inlines = (OrderProductInline, )
 
 
@@ -61,4 +62,7 @@ admin.site.register(DeliveryAddress, DeliveryAddressAdmin)
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Image)
+admin.site.register(DeliveryCost)
 admin.site.register(Brand, BrandAdmin)
+admin.site.register(Favorite)
+admin.site.register(Tag)

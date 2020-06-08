@@ -1,35 +1,66 @@
-from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin, UserPassesTestMixin
+from django.http import HttpResponseRedirect, JsonResponse
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from webapp.forms import ProductForm, ImageFormset
-from webapp.models import Product, Category, Image
+from django.views import View
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
+from webapp.forms import ProductForm, ImageFormset, FullSearchForm
+from webapp.models import Product, Category, Carousel, Favorite, Tag
+from django.db.models import Q
+from django.utils.http import urlencode
+from django.shortcuts import redirect
 
 
-class IndexView(ListView):
+class SearchView(FormView):
+    form_class = FullSearchForm
+
+    def form_valid(self, form):
+        query = urlencode(form.cleaned_data)
+        # url = reverse('webapp:search_results') + '?' + query
+        url = reverse('webapp:search_results') + '?' + query
+        return redirect(url)
+
+
+class IndexView(SearchView):
     template_name = 'index.html'
     model = Product
     context_object_name = "products"
+    # form_class = FullSearchForm
+    #
+    #
+    # def form_valid(self, form):
+    #     query = urlencode(form.cleaned_data)
+    #     # url = reverse('webapp:search_results') + '?' + query
+    #     url = reverse('webapp:search_results') + '?' + query
+    #     return redirect(url)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         context['categories'] = Category.objects.all()
+        context['products'] = Product.objects.all()
+        context['carouseles'] = Carousel.objects.all()
         return context
 
-class ProductView(DetailView):
+
+class ProductView(DetailView, SearchView):
     model = Product
     template_name = 'products/product_detail.html'
+    # form_class = FullSearchForm
+    #
+    # def form_valid(self, form):
+    #     query = urlencode(form.cleaned_data)
+    #     # url = reverse('webapp:search_results') + '?' + query
+    #     url = reverse('webapp:search_results') + '?' + query
+    #     return redirect(url)
 
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
     model = Product
-    template_name = 'base_CRUD/product_add.html'
-    fields = ('name', 'category', 'price','in_stock', 'description', 'color', 'discount', 'quantity', 'brand')
+    template_name = 'products/product_add.html'
+    form_class = ProductForm
     success_url = reverse_lazy('webapp:index')
     permission_required = 'webapp.add_product'
     permission_denied_message = '403 Доступ запрещён!'
-
 
     def get_context_data(self, **kwargs):
         if 'formset' not in kwargs:
@@ -37,16 +68,22 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
         return super().get_context_data(**kwargs)
 
     def post(self, request, *args, **kwargs):
-        print('post')
         self.object = None
         form = self.get_form()
-        formset = ImageFormset(self.request.POST,self.request.FILES)
+        formset = ImageFormset(request.POST, request.FILES)
         if form.is_valid() and formset.is_valid():
             return self.form_valid(form, formset)
         return self.form_invalid(form, formset)
 
+    def tags_create(self, tags):
+        for tag in tags:
+            product_tag, _ = Tag.objects.get_or_create(name=tag)
+            self.object.tags.add(product_tag)
+
     def form_valid(self, form, formset):
         self.object = form.save()
+        self.object.save()
+        self.tags_create(form.cleaned_data.get('tags'))
         formset.instance = self.object
         formset.save()
         return HttpResponseRedirect(self.get_success_url())
@@ -61,47 +98,59 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
 class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     model = Product
     template_name = 'base_CRUD/edit.html'
-    fields = ('name', 'category', 'price','in_stock', 'description', 'color', 'discount', 'quantity', 'brand')
+    form_class = ProductForm
     context_object_name = 'product'
     permission_required = 'webapp.change_product'
+
+    def get_initial(self):
+        return {'tags': self.get_tag_string()}
+
+    def get_tag_string(self):
+        tags = self.object.tags.all()
+        tag_names = [tag.name for tag in tags]
+        return ', '.join(tag_names)
+
+    def form_valid(self, form):
+        tags = form.cleaned_data.get('tags')
+        self.save_tags(tags)
+        return super().form_valid(form)
+
+    def save_tags(self, tags):
+        self.object.tags.clear()
+        for tag_name in tags:
+            tag, _ = Tag.objects.get_or_create(name=tag_name)
+            self.object.tags.add(tag)
 
     def get_success_url(self):
         return reverse('webapp:product_detail', kwargs={'pk': self.object.pk})
 
 
-class ProductDeleteView(PermissionRequiredMixin, DeleteView):
-    model = Product
-    template_name = 'products/product_delete.html'
-    success_url = reverse_lazy('webapp:index')
-    context_object_name = 'product'
-    permission_required = 'webapp.delete_product'
-
-    def delete(self, request, *args, **kwargs):
-        product = self.object = self.get_object()
-        product.in_stock = False
-        product.save()
-        return HttpResponseRedirect(self.get_success_url())
-
-# class ProductDeleteView(PermissionRequiredMixin, View):
+# class ProductDeleteView(PermissionRequiredMixin, DeleteView):
 #     model = Product
-#     # template_name = 'product_delete.html'
-#     # success_url = reverse_lazy('webapp:index')
+#     template_name = 'products/product_delete.html'
+#     success_url = reverse_lazy('webapp:index')
 #     context_object_name = 'product'
 #     permission_required = 'webapp.delete_product'
 #
-#     def get(self, request, *args, **kwargs):
-#         pk = self.kwargs.get('pk')
-#         product = get_object_or_404(Product, id=pk)
-#         # product = self.object
-#         if product.in_stock == True:
-#             product.in_stock = False
-#         else:
-#             product.in_stock = True
+#     def delete(self, request, *args, **kwargs):
+#         product = self.object = self.get_object()
+#         product.in_stock = False
 #         product.save()
-#         return HttpResponseRedirect('webapp:product_detail', product.pk)
+#         return HttpResponseRedirect(self.get_success_url())
+
+class ProductDeleteView(UserPassesTestMixin, DeleteView):
+    model = Product
+    template_name = 'base_CRUD/delete.html'
+    success_url = reverse_lazy('webapp:products_all')
+    permission_required = 'webapp.delete_product'
+    permission_denied_message = "Доступ запрещен"
+
+    def test_func(self):
+        user = self.request.user
+        return user.is_staff
 
 
-class ProductListView(ListView):
+class ProductListView(ListView, SearchView):
     template_name = 'products/products.html'
     model = Product
 
@@ -113,11 +162,73 @@ class ProductListView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         context['categories'] = Category.objects.all()
-        category_pk = self.kwargs.get('pk')
-        product_category = Category.objects.get(pk=category_pk)
-        context['product_category'] = product_category
-        context['products'] = Product.objects.filter(category_id=category_pk)
+        context['product_category'] = Category.objects.get(pk=self.kwargs.get('pk'))
+        context['products'] = Product.objects.filter(category_id=self.kwargs.get('pk'))
         self.get_url()
         return context
 
+
+class ProductALLListView(ListView, SearchView):
+    model = Product
+    template_name = 'products/products_list.html'
+    context_object_name = 'products'
+    # paginate_by = 5
+    # paginate_orphans = 1
+
+
+class AddToFavorites(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        product = get_object_or_404(Product, pk=request.POST.get('pk'))
+        Favorite.objects.get_or_create(user=request.user, product=product)
+        return JsonResponse({'pk': product.pk})
+
+
+class DeleteFromFavorites(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        product = get_object_or_404(Product, pk=request.POST.get('pk'))
+        Favorite.objects.filter(product=product, user=request.user).delete()
+        return JsonResponse({'pk': product.pk})
+
+
+class FavoritesList(ListView):
+    model = Favorite
+    template_name = 'favorites.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['favorite_products'] = Favorite.objects.filter(user=self.request.user)
+        return context
+
+
+class SearchResultsView(ListView):
+    model = Product
+    template_name = 'products/products.html'
+    context_object_name = 'products'
+    # paginate_by = 2
+    # paginate_orphans = 1
+
+    def get_url(self):
+        global site
+        site = self.request.get_full_path()
+        return site
+
+    def get_context_data(self, *, text=None, **kwargs):
+        form = FullSearchForm(data=self.request.GET)
+        if form.is_valid():
+            text = form.cleaned_data.get("text")
+            category = form.cleaned_data.get('category')
+        query = self.get_query_string()
+        text = form.cleaned_data.get("text").capitalize()
+        category = form.cleaned_data.get("category")
+        products = Product.objects.filter(Q(name__icontains=text, category_id=category) | Q(tags__name__icontains=text))
+        return super().get_context_data(
+            form=form, query=query, products=products
+        )
+
+    def get_query_string(self):
+        data = {}
+        for key in self.request.GET:
+            if key != 'page':
+                data[key] = self.request.GET.get(key)
+        return data
 

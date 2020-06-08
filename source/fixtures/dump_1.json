@@ -1,181 +1,5 @@
 [
 {
-  "model": "contenttypes.contenttype",
-  "pk": 1,
-  "fields": {
-    "app_label": "admin",
-    "model": "logentry"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 2,
-  "fields": {
-    "app_label": "auth",
-    "model": "permission"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 3,
-  "fields": {
-    "app_label": "auth",
-    "model": "group"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 4,
-  "fields": {
-    "app_label": "auth",
-    "model": "user"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 5,
-  "fields": {
-    "app_label": "contenttypes",
-    "model": "contenttype"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 6,
-  "fields": {
-    "app_label": "sessions",
-    "model": "session"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 7,
-  "fields": {
-    "app_label": "webapp",
-    "model": "category"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 8,
-  "fields": {
-    "app_label": "webapp",
-    "model": "product"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 9,
-  "fields": {
-    "app_label": "webapp",
-    "model": "subcategory"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 10,
-  "fields": {
-    "app_label": "webapp",
-    "model": "deliveryaddress"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 11,
-  "fields": {
-    "app_label": "webapp",
-    "model": "order"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 12,
-  "fields": {
-    "app_label": "webapp",
-    "model": "orderproduct"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 13,
-  "fields": {
-    "app_label": "webapp",
-    "model": "review"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 14,
-  "fields": {
-    "app_label": "webapp",
-    "model": "image"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 15,
-  "fields": {
-    "app_label": "webapp",
-    "model": "news"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 16,
-  "fields": {
-    "app_label": "webapp",
-    "model": "brand"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 17,
-  "fields": {
-    "app_label": "webapp",
-    "model": "carousel"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 18,
-  "fields": {
-    "app_label": "webapp",
-    "model": "deliverycost"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 19,
-  "fields": {
-    "app_label": "webapp",
-    "model": "favorite"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 20,
-  "fields": {
-    "app_label": "accounts",
-    "model": "token"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 21,
-  "fields": {
-    "app_label": "accounts",
-    "model": "profile"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 22,
-  "fields": {
-    "app_label": "webapp",
-    "model": "tag"
-  }
-},
-{
   "model": "sessions.session",
   "pk": "5ur4ii2hvrwoi15pzzf5uw5s5v737iun",
   "fields": {
@@ -201,10 +25,10 @@
 },
 {
   "model": "sessions.session",
-  "pk": "wgtrstp5xq82dslsynatx5hir6vttyd8",
+  "pk": "twe3b0reqkcc2irjecyv0aip41uxlccj",
   "fields": {
-    "session_data": "Mzg3MzA0NWM2NDZhYTJjZTRkOGRmMjNiOWQ2MDRmNGM0ZGI5NzM4YTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxY2MxYWE2ZGNlNDkxZWMzMDhhMWNiNDNmZTQ2MzFhNjgzMDlmYzc1In0=",
-    "expire_date": "2020-06-16T19:51:54.924Z"
+    "session_data": "OGYwNWE2ZDlmNGZhMzJiMTM1NGNhYjZmMTQ2NjNiMDE1YjZmM2I4Zjp7InByb2R1Y3RzIjpbIjMiLCIzIiwiMyIsIjMiLCIxIiwiMSJdLCJwcm9kdWN0c19jb3VudCI6NiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6IjFjYzFhYTZkY2U0OTFlYzMwOGExY2I0M2ZlNDYzMWE2ODMwOWZjNzUifQ==",
+    "expire_date": "2020-06-16T06:00:55.487Z"
   }
 },
 {
@@ -408,46 +232,6 @@
   }
 },
 {
-  "model": "webapp.tag",
-  "pk": 5,
-  "fields": {
-    "name": "crayon",
-    "created_at": "2020-06-05T06:27:57.288Z"
-  }
-},
-{
-  "model": "webapp.tag",
-  "pk": 6,
-  "fields": {
-    "name": "\u0442\u0432\u043e\u0440\u0447\u0435\u0441\u0442\u0432\u043e",
-    "created_at": "2020-06-05T06:27:57.302Z"
-  }
-},
-{
-  "model": "webapp.tag",
-  "pk": 7,
-  "fields": {
-    "name": "\u0445\u0443\u0434\u043e\u0436\u043d\u0438\u043a",
-    "created_at": "2020-06-05T06:27:57.309Z"
-  }
-},
-{
-  "model": "webapp.tag",
-  "pk": 8,
-  "fields": {
-    "name": "\u0446\u0435\u043b\u043b\u044e\u043b\u043e\u0437\u0430",
-    "created_at": "2020-06-05T10:14:23.338Z"
-  }
-},
-{
-  "model": "webapp.tag",
-  "pk": 9,
-  "fields": {
-    "name": "\u0431\u0435\u043b\u044b\u0439",
-    "created_at": "2020-06-05T10:14:23.370Z"
-  }
-},
-{
   "model": "webapp.product",
   "pk": 1,
   "fields": {
@@ -455,17 +239,12 @@
     "category": 2,
     "price": "200.00",
     "in_stock": true,
-    "description": "",
+    "description": null,
     "color": "#F0DEBA;",
     "discount": null,
-    "date": "2020-04-29T11:41:22Z",
+    "date": "2021-03-29T11:41:22Z",
     "quantity": null,
-    "brand": null,
-    "tags": [
-      5,
-      6,
-      7
-    ]
+    "brand": null
   }
 },
 {
@@ -479,10 +258,9 @@
     "description": null,
     "color": "#F0DEBA;",
     "discount": null,
-    "date": "2020-04-29T11:41:22Z",
+    "date": "2021-03-29T11:41:22Z",
     "quantity": null,
-    "brand": null,
-    "tags": []
+    "brand": null
   }
 },
 {
@@ -496,10 +274,9 @@
     "description": null,
     "color": "#F0DEBA;",
     "discount": null,
-    "date": "2020-04-29T11:41:22Z",
+    "date": "2021-03-29T11:41:22Z",
     "quantity": null,
-    "brand": null,
-    "tags": []
+    "brand": null
   }
 },
 {
@@ -510,16 +287,12 @@
     "category": 1,
     "price": "250.00",
     "in_stock": true,
-    "description": "",
+    "description": null,
     "color": "#F0DEBA;",
     "discount": null,
-    "date": "2020-04-29T11:41:22Z",
+    "date": "2021-03-29T11:41:22Z",
     "quantity": null,
-    "brand": null,
-    "tags": [
-      8,
-      9
-    ]
+    "brand": null
   }
 },
 {
@@ -530,16 +303,12 @@
     "category": 2,
     "price": "300.00",
     "in_stock": true,
-    "description": "",
+    "description": null,
     "color": "#F0DEBA;",
     "discount": null,
-    "date": "2020-04-29T11:41:22Z",
+    "date": "2021-03-29T11:41:22Z",
     "quantity": null,
-    "brand": null,
-    "tags": [
-      6,
-      7
-    ]
+    "brand": null
   }
 },
 {
@@ -550,16 +319,12 @@
     "category": 2,
     "price": "70.00",
     "in_stock": true,
-    "description": "",
+    "description": null,
     "color": "#F0DEBA;",
     "discount": null,
-    "date": "2020-04-29T11:41:22Z",
+    "date": "2021-03-29T11:41:22Z",
     "quantity": null,
-    "brand": null,
-    "tags": [
-      6,
-      7
-    ]
+    "brand": null
   }
 },
 {
@@ -573,10 +338,9 @@
     "description": null,
     "color": "#F0DEBA;",
     "discount": null,
-    "date": "2020-04-29T11:41:22Z",
+    "date": "2021-03-29T11:41:22Z",
     "quantity": null,
-    "brand": null,
-    "tags": []
+    "brand": null
   }
 },
 {
@@ -590,10 +354,9 @@
     "description": null,
     "color": "#F0DEBA;",
     "discount": null,
-    "date": "2020-04-29T11:41:22Z",
+    "date": "2021-03-29T11:41:22Z",
     "quantity": null,
-    "brand": null,
-    "tags": []
+    "brand": null
   }
 },
 {
@@ -607,10 +370,46 @@
     "description": null,
     "color": "#F0DEBA;",
     "discount": null,
-    "date": "2020-04-29T11:41:22Z",
+    "date": "2021-03-29T11:41:22Z",
     "quantity": null,
-    "brand": null,
-    "tags": []
+    "brand": null
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 10,
+  "fields": {
+    "name": "test",
+    "category": 1,
+    "price": "100.00",
+    "in_stock": false,
+    "description": null,
+    "color": "#F0DEBA;",
+    "discount": null,
+    "date": "2021-03-29T11:41:22Z",
+    "quantity": null,
+    "brand": null
+  }
+},
+{
+  "model": "webapp.deliveryaddress",
+  "pk": 1,
+  "fields": {
+    "city": "Bishkek",
+    "street": "\u041f\u0430\u043d\u0444\u0438\u043b\u043e\u0432\u0430",
+    "building_number": "170",
+    "entrance_number": "1",
+    "flat_number": "17",
+    "additional_info": null
+  }
+},
+{
+  "model": "webapp.deliverycost",
+  "pk": 2,
+  "fields": {
+    "cost": 150,
+    "free_from": 3000,
+    "created_at": "2020-06-02T06:34:30.798Z"
   }
 },
 {
@@ -754,7 +553,10 @@
   "pk": 1,
   "fields": {
     "name": "Can add log entry",
-    "content_type": 1,
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
     "codename": "add_logentry"
   }
 },
@@ -763,7 +565,10 @@
   "pk": 2,
   "fields": {
     "name": "Can change log entry",
-    "content_type": 1,
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
     "codename": "change_logentry"
   }
 },
@@ -772,7 +577,10 @@
   "pk": 3,
   "fields": {
     "name": "Can delete log entry",
-    "content_type": 1,
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
     "codename": "delete_logentry"
   }
 },
@@ -781,7 +589,10 @@
   "pk": 4,
   "fields": {
     "name": "Can view log entry",
-    "content_type": 1,
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
     "codename": "view_logentry"
   }
 },
@@ -790,7 +601,10 @@
   "pk": 5,
   "fields": {
     "name": "Can add permission",
-    "content_type": 2,
+    "content_type": [
+      "auth",
+      "permission"
+    ],
     "codename": "add_permission"
   }
 },
@@ -799,7 +613,10 @@
   "pk": 6,
   "fields": {
     "name": "Can change permission",
-    "content_type": 2,
+    "content_type": [
+      "auth",
+      "permission"
+    ],
     "codename": "change_permission"
   }
 },
@@ -808,7 +625,10 @@
   "pk": 7,
   "fields": {
     "name": "Can delete permission",
-    "content_type": 2,
+    "content_type": [
+      "auth",
+      "permission"
+    ],
     "codename": "delete_permission"
   }
 },
@@ -817,7 +637,10 @@
   "pk": 8,
   "fields": {
     "name": "Can view permission",
-    "content_type": 2,
+    "content_type": [
+      "auth",
+      "permission"
+    ],
     "codename": "view_permission"
   }
 },
@@ -826,7 +649,10 @@
   "pk": 9,
   "fields": {
     "name": "Can add group",
-    "content_type": 3,
+    "content_type": [
+      "auth",
+      "group"
+    ],
     "codename": "add_group"
   }
 },
@@ -835,7 +661,10 @@
   "pk": 10,
   "fields": {
     "name": "Can change group",
-    "content_type": 3,
+    "content_type": [
+      "auth",
+      "group"
+    ],
     "codename": "change_group"
   }
 },
@@ -844,7 +673,10 @@
   "pk": 11,
   "fields": {
     "name": "Can delete group",
-    "content_type": 3,
+    "content_type": [
+      "auth",
+      "group"
+    ],
     "codename": "delete_group"
   }
 },
@@ -853,7 +685,10 @@
   "pk": 12,
   "fields": {
     "name": "Can view group",
-    "content_type": 3,
+    "content_type": [
+      "auth",
+      "group"
+    ],
     "codename": "view_group"
   }
 },
@@ -862,7 +697,10 @@
   "pk": 13,
   "fields": {
     "name": "Can add user",
-    "content_type": 4,
+    "content_type": [
+      "auth",
+      "user"
+    ],
     "codename": "add_user"
   }
 },
@@ -871,7 +709,10 @@
   "pk": 14,
   "fields": {
     "name": "Can change user",
-    "content_type": 4,
+    "content_type": [
+      "auth",
+      "user"
+    ],
     "codename": "change_user"
   }
 },
@@ -880,7 +721,10 @@
   "pk": 15,
   "fields": {
     "name": "Can delete user",
-    "content_type": 4,
+    "content_type": [
+      "auth",
+      "user"
+    ],
     "codename": "delete_user"
   }
 },
@@ -889,7 +733,10 @@
   "pk": 16,
   "fields": {
     "name": "Can view user",
-    "content_type": 4,
+    "content_type": [
+      "auth",
+      "user"
+    ],
     "codename": "view_user"
   }
 },
@@ -898,7 +745,10 @@
   "pk": 17,
   "fields": {
     "name": "Can add content type",
-    "content_type": 5,
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
     "codename": "add_contenttype"
   }
 },
@@ -907,7 +757,10 @@
   "pk": 18,
   "fields": {
     "name": "Can change content type",
-    "content_type": 5,
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
     "codename": "change_contenttype"
   }
 },
@@ -916,7 +769,10 @@
   "pk": 19,
   "fields": {
     "name": "Can delete content type",
-    "content_type": 5,
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
     "codename": "delete_contenttype"
   }
 },
@@ -925,7 +781,10 @@
   "pk": 20,
   "fields": {
     "name": "Can view content type",
-    "content_type": 5,
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
     "codename": "view_contenttype"
   }
 },
@@ -934,7 +793,10 @@
   "pk": 21,
   "fields": {
     "name": "Can add session",
-    "content_type": 6,
+    "content_type": [
+      "sessions",
+      "session"
+    ],
     "codename": "add_session"
   }
 },
@@ -943,7 +805,10 @@
   "pk": 22,
   "fields": {
     "name": "Can change session",
-    "content_type": 6,
+    "content_type": [
+      "sessions",
+      "session"
+    ],
     "codename": "change_session"
   }
 },
@@ -952,7 +817,10 @@
   "pk": 23,
   "fields": {
     "name": "Can delete session",
-    "content_type": 6,
+    "content_type": [
+      "sessions",
+      "session"
+    ],
     "codename": "delete_session"
   }
 },
@@ -961,7 +829,10 @@
   "pk": 24,
   "fields": {
     "name": "Can view session",
-    "content_type": 6,
+    "content_type": [
+      "sessions",
+      "session"
+    ],
     "codename": "view_session"
   }
 },
@@ -970,7 +841,10 @@
   "pk": 25,
   "fields": {
     "name": "Can add category",
-    "content_type": 7,
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "codename": "add_category"
   }
 },
@@ -979,7 +853,10 @@
   "pk": 26,
   "fields": {
     "name": "Can change category",
-    "content_type": 7,
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "codename": "change_category"
   }
 },
@@ -988,7 +865,10 @@
   "pk": 27,
   "fields": {
     "name": "Can delete category",
-    "content_type": 7,
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "codename": "delete_category"
   }
 },
@@ -997,7 +877,10 @@
   "pk": 28,
   "fields": {
     "name": "Can view category",
-    "content_type": 7,
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "codename": "view_category"
   }
 },
@@ -1006,7 +889,10 @@
   "pk": 29,
   "fields": {
     "name": "Can add \u0422\u043e\u0432\u0430\u0440",
-    "content_type": 8,
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "codename": "add_product"
   }
 },
@@ -1015,7 +901,10 @@
   "pk": 30,
   "fields": {
     "name": "Can change \u0422\u043e\u0432\u0430\u0440",
-    "content_type": 8,
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "codename": "change_product"
   }
 },
@@ -1024,7 +913,10 @@
   "pk": 31,
   "fields": {
     "name": "Can delete \u0422\u043e\u0432\u0430\u0440",
-    "content_type": 8,
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "codename": "delete_product"
   }
 },
@@ -1033,7 +925,10 @@
   "pk": 32,
   "fields": {
     "name": "Can view \u0422\u043e\u0432\u0430\u0440",
-    "content_type": 8,
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "codename": "view_product"
   }
 },
@@ -1042,7 +937,10 @@
   "pk": 33,
   "fields": {
     "name": "Can add sub category",
-    "content_type": 9,
+    "content_type": [
+      "webapp",
+      "subcategory"
+    ],
     "codename": "add_subcategory"
   }
 },
@@ -1051,7 +949,10 @@
   "pk": 34,
   "fields": {
     "name": "Can change sub category",
-    "content_type": 9,
+    "content_type": [
+      "webapp",
+      "subcategory"
+    ],
     "codename": "change_subcategory"
   }
 },
@@ -1060,7 +961,10 @@
   "pk": 35,
   "fields": {
     "name": "Can delete sub category",
-    "content_type": 9,
+    "content_type": [
+      "webapp",
+      "subcategory"
+    ],
     "codename": "delete_subcategory"
   }
 },
@@ -1069,7 +973,10 @@
   "pk": 36,
   "fields": {
     "name": "Can view sub category",
-    "content_type": 9,
+    "content_type": [
+      "webapp",
+      "subcategory"
+    ],
     "codename": "view_subcategory"
   }
 },
@@ -1078,7 +985,10 @@
   "pk": 37,
   "fields": {
     "name": "Can add token",
-    "content_type": 10,
+    "content_type": [
+      "webapp",
+      "deliveryaddress"
+    ],
     "codename": "add_token"
   }
 },
@@ -1087,7 +997,10 @@
   "pk": 38,
   "fields": {
     "name": "Can change token",
-    "content_type": 10,
+    "content_type": [
+      "webapp",
+      "deliveryaddress"
+    ],
     "codename": "change_token"
   }
 },
@@ -1096,7 +1009,10 @@
   "pk": 39,
   "fields": {
     "name": "Can delete token",
-    "content_type": 10,
+    "content_type": [
+      "webapp",
+      "deliveryaddress"
+    ],
     "codename": "delete_token"
   }
 },
@@ -1105,7 +1021,10 @@
   "pk": 40,
   "fields": {
     "name": "Can view token",
-    "content_type": 10,
+    "content_type": [
+      "webapp",
+      "deliveryaddress"
+    ],
     "codename": "view_token"
   }
 },
@@ -1114,7 +1033,10 @@
   "pk": 41,
   "fields": {
     "name": "Can add \u0410\u0434\u0440\u0435\u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
-    "content_type": 11,
+    "content_type": [
+      "webapp",
+      "order"
+    ],
     "codename": "add_deliveryaddress"
   }
 },
@@ -1123,7 +1045,10 @@
   "pk": 42,
   "fields": {
     "name": "Can change \u0410\u0434\u0440\u0435\u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
-    "content_type": 11,
+    "content_type": [
+      "webapp",
+      "order"
+    ],
     "codename": "change_deliveryaddress"
   }
 },
@@ -1132,7 +1057,10 @@
   "pk": 43,
   "fields": {
     "name": "Can delete \u0410\u0434\u0440\u0435\u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
-    "content_type": 11,
+    "content_type": [
+      "webapp",
+      "order"
+    ],
     "codename": "delete_deliveryaddress"
   }
 },
@@ -1141,7 +1069,10 @@
   "pk": 44,
   "fields": {
     "name": "Can view \u0410\u0434\u0440\u0435\u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
-    "content_type": 11,
+    "content_type": [
+      "webapp",
+      "order"
+    ],
     "codename": "view_deliveryaddress"
   }
 },
@@ -1150,7 +1081,10 @@
   "pk": 45,
   "fields": {
     "name": "Can add \u0417\u0430\u043a\u0430\u0437",
-    "content_type": 12,
+    "content_type": [
+      "webapp",
+      "orderproduct"
+    ],
     "codename": "add_order"
   }
 },
@@ -1159,7 +1093,10 @@
   "pk": 46,
   "fields": {
     "name": "Can change \u0417\u0430\u043a\u0430\u0437",
-    "content_type": 12,
+    "content_type": [
+      "webapp",
+      "orderproduct"
+    ],
     "codename": "change_order"
   }
 },
@@ -1168,7 +1105,10 @@
   "pk": 47,
   "fields": {
     "name": "Can delete \u0417\u0430\u043a\u0430\u0437",
-    "content_type": 12,
+    "content_type": [
+      "webapp",
+      "orderproduct"
+    ],
     "codename": "delete_order"
   }
 },
@@ -1177,7 +1117,10 @@
   "pk": 48,
   "fields": {
     "name": "Can view \u0417\u0430\u043a\u0430\u0437",
-    "content_type": 12,
+    "content_type": [
+      "webapp",
+      "orderproduct"
+    ],
     "codename": "view_order"
   }
 },
@@ -1186,7 +1129,10 @@
   "pk": 49,
   "fields": {
     "name": "Can add \u0422\u043e\u0432\u0430\u0440 \u0432 \u0437\u0430\u043a\u0430\u0437\u0435",
-    "content_type": 13,
+    "content_type": [
+      "webapp",
+      "review"
+    ],
     "codename": "add_orderproduct"
   }
 },
@@ -1195,7 +1141,10 @@
   "pk": 50,
   "fields": {
     "name": "Can change \u0422\u043e\u0432\u0430\u0440 \u0432 \u0437\u0430\u043a\u0430\u0437\u0435",
-    "content_type": 13,
+    "content_type": [
+      "webapp",
+      "review"
+    ],
     "codename": "change_orderproduct"
   }
 },
@@ -1204,7 +1153,10 @@
   "pk": 51,
   "fields": {
     "name": "Can delete \u0422\u043e\u0432\u0430\u0440 \u0432 \u0437\u0430\u043a\u0430\u0437\u0435",
-    "content_type": 13,
+    "content_type": [
+      "webapp",
+      "review"
+    ],
     "codename": "delete_orderproduct"
   }
 },
@@ -1213,7 +1165,10 @@
   "pk": 52,
   "fields": {
     "name": "Can view \u0422\u043e\u0432\u0430\u0440 \u0432 \u0437\u0430\u043a\u0430\u0437\u0435",
-    "content_type": 13,
+    "content_type": [
+      "webapp",
+      "review"
+    ],
     "codename": "view_orderproduct"
   }
 },
@@ -1222,7 +1177,10 @@
   "pk": 53,
   "fields": {
     "name": "Can add Profile",
-    "content_type": 14,
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "codename": "add_profile"
   }
 },
@@ -1231,7 +1189,10 @@
   "pk": 54,
   "fields": {
     "name": "Can change Profile",
-    "content_type": 14,
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "codename": "change_profile"
   }
 },
@@ -1240,7 +1201,10 @@
   "pk": 55,
   "fields": {
     "name": "Can delete Profile",
-    "content_type": 14,
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "codename": "delete_profile"
   }
 },
@@ -1249,7 +1213,10 @@
   "pk": 56,
   "fields": {
     "name": "Can view Profile",
-    "content_type": 14,
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "codename": "view_profile"
   }
 },
@@ -1258,7 +1225,10 @@
   "pk": 57,
   "fields": {
     "name": "Can add review",
-    "content_type": 15,
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "codename": "add_review"
   }
 },
@@ -1267,7 +1237,10 @@
   "pk": 58,
   "fields": {
     "name": "Can change review",
-    "content_type": 15,
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "codename": "change_review"
   }
 },
@@ -1276,7 +1249,10 @@
   "pk": 59,
   "fields": {
     "name": "Can delete review",
-    "content_type": 15,
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "codename": "delete_review"
   }
 },
@@ -1285,7 +1261,10 @@
   "pk": 60,
   "fields": {
     "name": "Can view review",
-    "content_type": 15,
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "codename": "view_review"
   }
 },
@@ -1294,7 +1273,10 @@
   "pk": 61,
   "fields": {
     "name": "Can add \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435",
-    "content_type": 16,
+    "content_type": [
+      "webapp",
+      "brand"
+    ],
     "codename": "add_image"
   }
 },
@@ -1303,7 +1285,10 @@
   "pk": 62,
   "fields": {
     "name": "Can change \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435",
-    "content_type": 16,
+    "content_type": [
+      "webapp",
+      "brand"
+    ],
     "codename": "change_image"
   }
 },
@@ -1312,7 +1297,10 @@
   "pk": 63,
   "fields": {
     "name": "Can delete \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435",
-    "content_type": 16,
+    "content_type": [
+      "webapp",
+      "brand"
+    ],
     "codename": "delete_image"
   }
 },
@@ -1321,7 +1309,10 @@
   "pk": 64,
   "fields": {
     "name": "Can view \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435",
-    "content_type": 16,
+    "content_type": [
+      "webapp",
+      "brand"
+    ],
     "codename": "view_image"
   }
 },
@@ -1330,7 +1321,10 @@
   "pk": 65,
   "fields": {
     "name": "Can add news",
-    "content_type": 17,
+    "content_type": [
+      "accounts",
+      "token"
+    ],
     "codename": "add_news"
   }
 },
@@ -1339,7 +1333,10 @@
   "pk": 66,
   "fields": {
     "name": "Can change news",
-    "content_type": 17,
+    "content_type": [
+      "accounts",
+      "token"
+    ],
     "codename": "change_news"
   }
 },
@@ -1348,7 +1345,10 @@
   "pk": 67,
   "fields": {
     "name": "Can delete news",
-    "content_type": 17,
+    "content_type": [
+      "accounts",
+      "token"
+    ],
     "codename": "delete_news"
   }
 },
@@ -1357,7 +1357,10 @@
   "pk": 68,
   "fields": {
     "name": "Can view news",
-    "content_type": 17,
+    "content_type": [
+      "accounts",
+      "token"
+    ],
     "codename": "view_news"
   }
 },
@@ -1366,7 +1369,10 @@
   "pk": 69,
   "fields": {
     "name": "Can add Profile",
-    "content_type": 18,
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
     "codename": "add_profile"
   }
 },
@@ -1375,7 +1381,10 @@
   "pk": 70,
   "fields": {
     "name": "Can change Profile",
-    "content_type": 18,
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
     "codename": "change_profile"
   }
 },
@@ -1384,7 +1393,10 @@
   "pk": 71,
   "fields": {
     "name": "Can delete Profile",
-    "content_type": 18,
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
     "codename": "delete_profile"
   }
 },
@@ -1393,7 +1405,10 @@
   "pk": 72,
   "fields": {
     "name": "Can view Profile",
-    "content_type": 18,
+    "content_type": [
+      "accounts",
+      "profile"
+    ],
     "codename": "view_profile"
   }
 },
@@ -1402,7 +1417,10 @@
   "pk": 73,
   "fields": {
     "name": "Can add \u0410\u0434\u0440\u0435\u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
-    "content_type": 10,
+    "content_type": [
+      "webapp",
+      "deliveryaddress"
+    ],
     "codename": "add_deliveryaddress"
   }
 },
@@ -1411,7 +1429,10 @@
   "pk": 74,
   "fields": {
     "name": "Can change \u0410\u0434\u0440\u0435\u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
-    "content_type": 10,
+    "content_type": [
+      "webapp",
+      "deliveryaddress"
+    ],
     "codename": "change_deliveryaddress"
   }
 },
@@ -1420,7 +1441,10 @@
   "pk": 75,
   "fields": {
     "name": "Can delete \u0410\u0434\u0440\u0435\u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
-    "content_type": 10,
+    "content_type": [
+      "webapp",
+      "deliveryaddress"
+    ],
     "codename": "delete_deliveryaddress"
   }
 },
@@ -1429,7 +1453,10 @@
   "pk": 76,
   "fields": {
     "name": "Can view \u0410\u0434\u0440\u0435\u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
-    "content_type": 10,
+    "content_type": [
+      "webapp",
+      "deliveryaddress"
+    ],
     "codename": "view_deliveryaddress"
   }
 },
@@ -1438,7 +1465,10 @@
   "pk": 77,
   "fields": {
     "name": "Can add \u0417\u0430\u043a\u0430\u0437",
-    "content_type": 11,
+    "content_type": [
+      "webapp",
+      "order"
+    ],
     "codename": "add_order"
   }
 },
@@ -1447,7 +1477,10 @@
   "pk": 78,
   "fields": {
     "name": "Can change \u0417\u0430\u043a\u0430\u0437",
-    "content_type": 11,
+    "content_type": [
+      "webapp",
+      "order"
+    ],
     "codename": "change_order"
   }
 },
@@ -1456,7 +1489,10 @@
   "pk": 79,
   "fields": {
     "name": "Can delete \u0417\u0430\u043a\u0430\u0437",
-    "content_type": 11,
+    "content_type": [
+      "webapp",
+      "order"
+    ],
     "codename": "delete_order"
   }
 },
@@ -1465,7 +1501,10 @@
   "pk": 80,
   "fields": {
     "name": "Can view \u0417\u0430\u043a\u0430\u0437",
-    "content_type": 11,
+    "content_type": [
+      "webapp",
+      "order"
+    ],
     "codename": "view_order"
   }
 },
@@ -1474,7 +1513,10 @@
   "pk": 81,
   "fields": {
     "name": "Can add \u0422\u043e\u0432\u0430\u0440 \u0432 \u0437\u0430\u043a\u0430\u0437\u0435",
-    "content_type": 12,
+    "content_type": [
+      "webapp",
+      "orderproduct"
+    ],
     "codename": "add_orderproduct"
   }
 },
@@ -1483,7 +1525,10 @@
   "pk": 82,
   "fields": {
     "name": "Can change \u0422\u043e\u0432\u0430\u0440 \u0432 \u0437\u0430\u043a\u0430\u0437\u0435",
-    "content_type": 12,
+    "content_type": [
+      "webapp",
+      "orderproduct"
+    ],
     "codename": "change_orderproduct"
   }
 },
@@ -1492,7 +1537,10 @@
   "pk": 83,
   "fields": {
     "name": "Can delete \u0422\u043e\u0432\u0430\u0440 \u0432 \u0437\u0430\u043a\u0430\u0437\u0435",
-    "content_type": 12,
+    "content_type": [
+      "webapp",
+      "orderproduct"
+    ],
     "codename": "delete_orderproduct"
   }
 },
@@ -1501,7 +1549,10 @@
   "pk": 84,
   "fields": {
     "name": "Can view \u0422\u043e\u0432\u0430\u0440 \u0432 \u0437\u0430\u043a\u0430\u0437\u0435",
-    "content_type": 12,
+    "content_type": [
+      "webapp",
+      "orderproduct"
+    ],
     "codename": "view_orderproduct"
   }
 },
@@ -1510,7 +1561,10 @@
   "pk": 85,
   "fields": {
     "name": "Can add \u041e\u0442\u0437\u044b\u0432",
-    "content_type": 13,
+    "content_type": [
+      "webapp",
+      "review"
+    ],
     "codename": "add_review"
   }
 },
@@ -1519,7 +1573,10 @@
   "pk": 86,
   "fields": {
     "name": "Can change \u041e\u0442\u0437\u044b\u0432",
-    "content_type": 13,
+    "content_type": [
+      "webapp",
+      "review"
+    ],
     "codename": "change_review"
   }
 },
@@ -1528,7 +1585,10 @@
   "pk": 87,
   "fields": {
     "name": "Can delete \u041e\u0442\u0437\u044b\u0432",
-    "content_type": 13,
+    "content_type": [
+      "webapp",
+      "review"
+    ],
     "codename": "delete_review"
   }
 },
@@ -1537,7 +1597,10 @@
   "pk": 88,
   "fields": {
     "name": "Can view \u041e\u0442\u0437\u044b\u0432",
-    "content_type": 13,
+    "content_type": [
+      "webapp",
+      "review"
+    ],
     "codename": "view_review"
   }
 },
@@ -1546,7 +1609,10 @@
   "pk": 89,
   "fields": {
     "name": "Can add \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435",
-    "content_type": 14,
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "codename": "add_image"
   }
 },
@@ -1555,7 +1621,10 @@
   "pk": 90,
   "fields": {
     "name": "Can change \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435",
-    "content_type": 14,
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "codename": "change_image"
   }
 },
@@ -1564,7 +1633,10 @@
   "pk": 91,
   "fields": {
     "name": "Can delete \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435",
-    "content_type": 14,
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "codename": "delete_image"
   }
 },
@@ -1573,7 +1645,10 @@
   "pk": 92,
   "fields": {
     "name": "Can view \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435",
-    "content_type": 14,
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "codename": "view_image"
   }
 },
@@ -1582,7 +1657,10 @@
   "pk": 93,
   "fields": {
     "name": "Can add \u041d\u043e\u0432\u043e\u0441\u0442\u044c",
-    "content_type": 15,
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "codename": "add_news"
   }
 },
@@ -1591,7 +1669,10 @@
   "pk": 94,
   "fields": {
     "name": "Can change \u041d\u043e\u0432\u043e\u0441\u0442\u044c",
-    "content_type": 15,
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "codename": "change_news"
   }
 },
@@ -1600,7 +1681,10 @@
   "pk": 95,
   "fields": {
     "name": "Can delete \u041d\u043e\u0432\u043e\u0441\u0442\u044c",
-    "content_type": 15,
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "codename": "delete_news"
   }
 },
@@ -1609,7 +1693,10 @@
   "pk": 96,
   "fields": {
     "name": "Can view \u041d\u043e\u0432\u043e\u0441\u0442\u044c",
-    "content_type": 15,
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "codename": "view_news"
   }
 },
@@ -1618,7 +1705,10 @@
   "pk": 97,
   "fields": {
     "name": "Can add \u0411\u0440\u0435\u043d\u0434",
-    "content_type": 16,
+    "content_type": [
+      "webapp",
+      "brand"
+    ],
     "codename": "add_brand"
   }
 },
@@ -1627,7 +1717,10 @@
   "pk": 98,
   "fields": {
     "name": "Can change \u0411\u0440\u0435\u043d\u0434",
-    "content_type": 16,
+    "content_type": [
+      "webapp",
+      "brand"
+    ],
     "codename": "change_brand"
   }
 },
@@ -1636,7 +1729,10 @@
   "pk": 99,
   "fields": {
     "name": "Can delete \u0411\u0440\u0435\u043d\u0434",
-    "content_type": 16,
+    "content_type": [
+      "webapp",
+      "brand"
+    ],
     "codename": "delete_brand"
   }
 },
@@ -1645,7 +1741,10 @@
   "pk": 100,
   "fields": {
     "name": "Can view \u0411\u0440\u0435\u043d\u0434",
-    "content_type": 16,
+    "content_type": [
+      "webapp",
+      "brand"
+    ],
     "codename": "view_brand"
   }
 },
@@ -1654,7 +1753,10 @@
   "pk": 101,
   "fields": {
     "name": "Can add token",
-    "content_type": 17,
+    "content_type": [
+      "accounts",
+      "token"
+    ],
     "codename": "add_token"
   }
 },
@@ -1663,7 +1765,10 @@
   "pk": 102,
   "fields": {
     "name": "Can change token",
-    "content_type": 17,
+    "content_type": [
+      "accounts",
+      "token"
+    ],
     "codename": "change_token"
   }
 },
@@ -1672,7 +1777,10 @@
   "pk": 103,
   "fields": {
     "name": "Can delete token",
-    "content_type": 17,
+    "content_type": [
+      "accounts",
+      "token"
+    ],
     "codename": "delete_token"
   }
 },
@@ -1681,7 +1789,10 @@
   "pk": 104,
   "fields": {
     "name": "Can view token",
-    "content_type": 17,
+    "content_type": [
+      "accounts",
+      "token"
+    ],
     "codename": "view_token"
   }
 },
@@ -1690,7 +1801,10 @@
   "pk": 105,
   "fields": {
     "name": "Can add carousel",
-    "content_type": 17,
+    "content_type": [
+      "webapp",
+      "carousel"
+    ],
     "codename": "add_carousel"
   }
 },
@@ -1699,7 +1813,10 @@
   "pk": 106,
   "fields": {
     "name": "Can change carousel",
-    "content_type": 17,
+    "content_type": [
+      "webapp",
+      "carousel"
+    ],
     "codename": "change_carousel"
   }
 },
@@ -1708,7 +1825,10 @@
   "pk": 107,
   "fields": {
     "name": "Can delete carousel",
-    "content_type": 17,
+    "content_type": [
+      "webapp",
+      "carousel"
+    ],
     "codename": "delete_carousel"
   }
 },
@@ -1717,7 +1837,10 @@
   "pk": 108,
   "fields": {
     "name": "Can view carousel",
-    "content_type": 17,
+    "content_type": [
+      "webapp",
+      "carousel"
+    ],
     "codename": "view_carousel"
   }
 },
@@ -1725,8 +1848,11 @@
   "model": "auth.permission",
   "pk": 109,
   "fields": {
-    "name": "Can add \u0421\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
-    "content_type": 18,
+    "name": "Can add delivery cost",
+    "content_type": [
+      "webapp",
+      "deliverycost"
+    ],
     "codename": "add_deliverycost"
   }
 },
@@ -1734,8 +1860,11 @@
   "model": "auth.permission",
   "pk": 110,
   "fields": {
-    "name": "Can change \u0421\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
-    "content_type": 18,
+    "name": "Can change delivery cost",
+    "content_type": [
+      "webapp",
+      "deliverycost"
+    ],
     "codename": "change_deliverycost"
   }
 },
@@ -1743,8 +1872,11 @@
   "model": "auth.permission",
   "pk": 111,
   "fields": {
-    "name": "Can delete \u0421\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
-    "content_type": 18,
+    "name": "Can delete delivery cost",
+    "content_type": [
+      "webapp",
+      "deliverycost"
+    ],
     "codename": "delete_deliverycost"
   }
 },
@@ -1752,153 +1884,12 @@
   "model": "auth.permission",
   "pk": 112,
   "fields": {
-    "name": "Can view \u0421\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438",
-    "content_type": 18,
+    "name": "Can view delivery cost",
+    "content_type": [
+      "webapp",
+      "deliverycost"
+    ],
     "codename": "view_deliverycost"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 113,
-  "fields": {
-    "name": "Can add \u0418\u0437\u0431\u0440\u0430\u043d\u043d\u043e\u0435",
-    "content_type": 19,
-    "codename": "add_favorite"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 114,
-  "fields": {
-    "name": "Can change \u0418\u0437\u0431\u0440\u0430\u043d\u043d\u043e\u0435",
-    "content_type": 19,
-    "codename": "change_favorite"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 115,
-  "fields": {
-    "name": "Can delete \u0418\u0437\u0431\u0440\u0430\u043d\u043d\u043e\u0435",
-    "content_type": 19,
-    "codename": "delete_favorite"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 116,
-  "fields": {
-    "name": "Can view \u0418\u0437\u0431\u0440\u0430\u043d\u043d\u043e\u0435",
-    "content_type": 19,
-    "codename": "view_favorite"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 117,
-  "fields": {
-    "name": "Can add tag",
-    "content_type": 22,
-    "codename": "add_tag"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 118,
-  "fields": {
-    "name": "Can change tag",
-    "content_type": 22,
-    "codename": "change_tag"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 119,
-  "fields": {
-    "name": "Can delete tag",
-    "content_type": 22,
-    "codename": "delete_tag"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 120,
-  "fields": {
-    "name": "Can view tag",
-    "content_type": 22,
-    "codename": "view_tag"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 121,
-  "fields": {
-    "name": "Can add token",
-    "content_type": 20,
-    "codename": "add_token"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 122,
-  "fields": {
-    "name": "Can change token",
-    "content_type": 20,
-    "codename": "change_token"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 123,
-  "fields": {
-    "name": "Can delete token",
-    "content_type": 20,
-    "codename": "delete_token"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 124,
-  "fields": {
-    "name": "Can view token",
-    "content_type": 20,
-    "codename": "view_token"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 125,
-  "fields": {
-    "name": "Can add Profile",
-    "content_type": 21,
-    "codename": "add_profile"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 126,
-  "fields": {
-    "name": "Can change Profile",
-    "content_type": 21,
-    "codename": "change_profile"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 127,
-  "fields": {
-    "name": "Can delete Profile",
-    "content_type": 21,
-    "codename": "delete_profile"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 128,
-  "fields": {
-    "name": "Can view Profile",
-    "content_type": 21,
-    "codename": "view_profile"
   }
 },
 {
@@ -1906,7 +1897,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$150000$uSFUOF4e7Zf3$vrIYIWOGUY5ss0MB5sKCnpScwXPnoVKyNpf7OR7awyo=",
-    "last_login": "2020-06-02T19:51:54.918Z",
+    "last_login": "2020-06-01T06:32:25.489Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -1926,7 +1917,9 @@
     "product": 1,
     "grade": 3,
     "text": "test",
-    "author": 1,
+    "author": [
+      "admin"
+    ],
     "date": "2020-05-21"
   }
 },
@@ -1937,7 +1930,9 @@
     "product": 2,
     "grade": 5,
     "text": "test",
-    "author": 1,
+    "author": [
+      "admin"
+    ],
     "date": "2020-05-22"
   }
 },
@@ -1948,7 +1943,9 @@
     "product": 3,
     "grade": 3,
     "text": "test",
-    "author": 1,
+    "author": [
+      "admin"
+    ],
     "date": "2020-05-22"
   }
 },
@@ -1959,7 +1956,9 @@
     "product": 4,
     "grade": 3,
     "text": "test",
-    "author": 1,
+    "author": [
+      "admin"
+    ],
     "date": "2020-05-22"
   }
 },
@@ -1970,7 +1969,9 @@
     "product": 5,
     "grade": 2,
     "text": "test",
-    "author": 1,
+    "author": [
+      "admin"
+    ],
     "date": "2020-05-22"
   }
 },
@@ -1981,7 +1982,9 @@
     "product": 6,
     "grade": 5,
     "text": "test",
-    "author": 1,
+    "author": [
+      "admin"
+    ],
     "date": "2020-05-22"
   }
 },
@@ -1992,16 +1995,10 @@
     "product": 8,
     "grade": 1,
     "text": "test",
-    "author": 1,
+    "author": [
+      "admin"
+    ],
     "date": "2020-05-22"
-  }
-},
-{
-  "model": "webapp.favorite",
-  "pk": 19,
-  "fields": {
-    "product": 4,
-    "user": 1
   }
 },
 {
@@ -2009,8 +2006,13 @@
   "pk": 1,
   "fields": {
     "action_time": "2020-05-02T13:36:55.012Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "1",
     "object_repr": "\u0411\u0443\u043c\u0430\u0433\u0430",
     "action_flag": 1,
@@ -2022,8 +2024,13 @@
   "pk": 2,
   "fields": {
     "action_time": "2020-05-02T13:37:00.218Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "2",
     "object_repr": "\u041a\u0440\u0430\u0441\u043a\u0438",
     "action_flag": 1,
@@ -2035,8 +2042,13 @@
   "pk": 3,
   "fields": {
     "action_time": "2020-05-02T13:37:07.097Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "3",
     "object_repr": "\u041f\u043b\u0430\u0441\u0442\u0438\u043b\u0438\u043d\u044b",
     "action_flag": 1,
@@ -2048,8 +2060,13 @@
   "pk": 4,
   "fields": {
     "action_time": "2020-05-02T13:37:15.048Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "4",
     "object_repr": "\u0422\u0435\u0442\u0440\u0430\u0434\u0438",
     "action_flag": 1,
@@ -2061,8 +2078,13 @@
   "pk": 5,
   "fields": {
     "action_time": "2020-05-02T13:37:18.657Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "5",
     "object_repr": "\u041a\u0440\u0430\u0441\u043a\u0438",
     "action_flag": 1,
@@ -2074,8 +2096,13 @@
   "pk": 6,
   "fields": {
     "action_time": "2020-05-02T13:41:59.313Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "2",
     "object_repr": "\u041a\u0430\u0440\u0430\u043d\u0434\u0430\u0448\u0438",
     "action_flag": 2,
@@ -2087,8 +2114,13 @@
   "pk": 7,
   "fields": {
     "action_time": "2020-05-02T13:43:04.614Z",
-    "user": 1,
-    "content_type": 8,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "object_id": "1",
     "object_repr": "\u041a\u0430\u0440\u0430\u043d\u0434\u0430\u0448",
     "action_flag": 1,
@@ -2100,8 +2132,13 @@
   "pk": 8,
   "fields": {
     "action_time": "2020-05-02T13:43:25.038Z",
-    "user": 1,
-    "content_type": 8,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "object_id": "2",
     "object_repr": "\u041a\u0430\u0440\u0430\u043d\u0434\u0430\u0448",
     "action_flag": 1,
@@ -2113,8 +2150,13 @@
   "pk": 9,
   "fields": {
     "action_time": "2020-05-02T13:43:53.105Z",
-    "user": 1,
-    "content_type": 8,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "object_id": "3",
     "object_repr": "\u0411\u0443\u043c\u0430\u0433\u0430 \u0421\u043d\u0435\u0433\u0443\u0440\u043e\u0447\u043a\u0430",
     "action_flag": 1,
@@ -2126,8 +2168,13 @@
   "pk": 10,
   "fields": {
     "action_time": "2020-05-02T13:44:10.715Z",
-    "user": 1,
-    "content_type": 8,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "object_id": "4",
     "object_repr": "\u0411\u0443\u043c\u0430\u0433\u0430",
     "action_flag": 1,
@@ -2139,8 +2186,13 @@
   "pk": 11,
   "fields": {
     "action_time": "2020-05-02T13:44:49.009Z",
-    "user": 1,
-    "content_type": 8,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "object_id": "5",
     "object_repr": "\u041a\u0440\u0430\u0441\u043a\u0438",
     "action_flag": 1,
@@ -2152,8 +2204,13 @@
   "pk": 12,
   "fields": {
     "action_time": "2020-05-02T13:45:01.232Z",
-    "user": 1,
-    "content_type": 8,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "object_id": "2",
     "object_repr": "\u041a\u0430\u0440\u0430\u043d\u0434\u0430\u0448",
     "action_flag": 2,
@@ -2165,8 +2222,13 @@
   "pk": 13,
   "fields": {
     "action_time": "2020-05-02T13:45:14.495Z",
-    "user": 1,
-    "content_type": 8,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "object_id": "1",
     "object_repr": "\u041a\u0430\u0440\u0430\u043d\u0434\u0430\u0448",
     "action_flag": 2,
@@ -2178,8 +2240,13 @@
   "pk": 14,
   "fields": {
     "action_time": "2020-05-02T13:45:32.294Z",
-    "user": 1,
-    "content_type": 8,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "object_id": "6",
     "object_repr": "\u041f\u043b\u0430\u0441\u0442\u0438\u043b\u0438\u043d",
     "action_flag": 1,
@@ -2191,8 +2258,13 @@
   "pk": 15,
   "fields": {
     "action_time": "2020-05-02T13:45:51.923Z",
-    "user": 1,
-    "content_type": 8,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "object_id": "7",
     "object_repr": "\u041f\u043b\u0430\u0441\u0442\u0438\u043b\u0438\u043d",
     "action_flag": 1,
@@ -2204,8 +2276,13 @@
   "pk": 16,
   "fields": {
     "action_time": "2020-05-02T13:46:13.509Z",
-    "user": 1,
-    "content_type": 8,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "object_id": "8",
     "object_repr": "\u0422\u0435\u0442\u0440\u0430\u0434\u0438",
     "action_flag": 1,
@@ -2217,8 +2294,13 @@
   "pk": 17,
   "fields": {
     "action_time": "2020-05-02T13:46:30.400Z",
-    "user": 1,
-    "content_type": 8,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
     "object_id": "9",
     "object_repr": "\u0422\u0435\u0442\u0440\u0430\u0434\u0438",
     "action_flag": 1,
@@ -2230,8 +2312,13 @@
   "pk": 18,
   "fields": {
     "action_time": "2020-05-21T10:22:33.501Z",
-    "user": 1,
-    "content_type": 15,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "object_id": "1",
     "object_repr": "test",
     "action_flag": 1,
@@ -2243,8 +2330,13 @@
   "pk": 19,
   "fields": {
     "action_time": "2020-05-22T09:38:59.993Z",
-    "user": 1,
-    "content_type": 15,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "object_id": "2",
     "object_repr": "test",
     "action_flag": 1,
@@ -2256,8 +2348,13 @@
   "pk": 20,
   "fields": {
     "action_time": "2020-05-22T09:39:11.789Z",
-    "user": 1,
-    "content_type": 15,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "object_id": "3",
     "object_repr": "test",
     "action_flag": 1,
@@ -2269,8 +2366,13 @@
   "pk": 21,
   "fields": {
     "action_time": "2020-05-22T09:39:22.272Z",
-    "user": 1,
-    "content_type": 15,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "object_id": "4",
     "object_repr": "test",
     "action_flag": 1,
@@ -2282,8 +2384,13 @@
   "pk": 22,
   "fields": {
     "action_time": "2020-05-22T09:39:36.406Z",
-    "user": 1,
-    "content_type": 15,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "object_id": "5",
     "object_repr": "test",
     "action_flag": 1,
@@ -2295,8 +2402,13 @@
   "pk": 23,
   "fields": {
     "action_time": "2020-05-22T09:39:48.417Z",
-    "user": 1,
-    "content_type": 15,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "object_id": "6",
     "object_repr": "test",
     "action_flag": 1,
@@ -2308,8 +2420,13 @@
   "pk": 24,
   "fields": {
     "action_time": "2020-05-22T09:39:57.378Z",
-    "user": 1,
-    "content_type": 15,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "news"
+    ],
     "object_id": "7",
     "object_repr": "test",
     "action_flag": 1,
@@ -2321,8 +2438,13 @@
   "pk": 25,
   "fields": {
     "action_time": "2020-05-22T10:02:59.331Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "1",
     "object_repr": "\u0411\u0443\u043c\u0430\u0436\u043d\u0430\u044f \u043f\u0440\u043e\u0434\u0443\u043a\u0446\u0438\u044f",
     "action_flag": 2,
@@ -2334,8 +2456,13 @@
   "pk": 26,
   "fields": {
     "action_time": "2020-05-22T10:14:52Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "2",
     "object_repr": "\u0422\u043e\u0432\u0430\u0440\u044b \u0434\u043b\u044f \u0442\u0432\u043e\u0440\u0447\u0435\u0441\u0442\u0432\u0430",
     "action_flag": 2,
@@ -2347,8 +2474,13 @@
   "pk": 27,
   "fields": {
     "action_time": "2020-05-22T10:14:59.747Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "2",
     "object_repr": "\u0422\u043e\u0432\u0430\u0440\u044b \u0434\u043b\u044f \u0442\u0432\u043e\u0440\u0447\u0435\u0441\u0442\u0432\u0430",
     "action_flag": 2,
@@ -2360,8 +2492,13 @@
   "pk": 28,
   "fields": {
     "action_time": "2020-05-22T10:15:12.393Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "3",
     "object_repr": "\u041a\u0430\u043d\u0446\u0442\u043e\u0432\u0430\u0440\u044b",
     "action_flag": 2,
@@ -2373,8 +2510,13 @@
   "pk": 29,
   "fields": {
     "action_time": "2020-05-22T10:15:47.420Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "4",
     "object_repr": "\u0425\u043e\u0437\u044f\u0439\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0435 \u0442\u043e\u0432\u0430\u0440\u044b",
     "action_flag": 2,
@@ -2386,8 +2528,13 @@
   "pk": 30,
   "fields": {
     "action_time": "2020-05-22T10:16:19.614Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "5",
     "object_repr": "\u041a\u043e\u043c\u043f\u044c\u044e\u0442\u0435\u0440\u044b \u0438 \u043f\u0435\u0440\u0438\u0444\u0435\u0440\u0438\u044f",
     "action_flag": 2,
@@ -2399,8 +2546,13 @@
   "pk": 31,
   "fields": {
     "action_time": "2020-05-22T10:16:27.369Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "7",
     "object_repr": "\u041a\u0430\u0440\u0442\u0440\u0438\u0434\u0436\u0438",
     "action_flag": 2,
@@ -2412,8 +2564,13 @@
   "pk": 32,
   "fields": {
     "action_time": "2020-05-22T10:16:34.032Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "8",
     "object_repr": "\u0422\u043e\u0432\u0430\u0440\u044b \u0434\u043b\u044f \u0448\u043a\u043e\u043b\u044b",
     "action_flag": 2,
@@ -2425,8 +2582,13 @@
   "pk": 33,
   "fields": {
     "action_time": "2020-05-22T10:16:43.556Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "9",
     "object_repr": "\u041e\u0444\u0438\u0441\u043d\u0430\u044f \u0442\u0435\u0445\u043d\u0438\u043a\u0430",
     "action_flag": 2,
@@ -2438,8 +2600,13 @@
   "pk": 34,
   "fields": {
     "action_time": "2020-05-22T10:17:08.308Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "10",
     "object_repr": "\u041f\u043e\u0441\u0443\u0434\u0430 \u0438 \u0442\u0435\u043a\u0441\u0442\u0438\u043b\u044c",
     "action_flag": 2,
@@ -2451,8 +2618,13 @@
   "pk": 35,
   "fields": {
     "action_time": "2020-05-22T10:17:15.757Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "11",
     "object_repr": "\u0422\u043e\u0432\u0430\u0440\u044b \u0434\u043b\u044f \u0442\u043e\u0440\u0433\u043e\u0432\u043b\u0438",
     "action_flag": 2,
@@ -2464,8 +2636,13 @@
   "pk": 36,
   "fields": {
     "action_time": "2020-05-22T11:18:23.170Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "13",
     "object_repr": "Test",
     "action_flag": 3,
@@ -2477,8 +2654,13 @@
   "pk": 37,
   "fields": {
     "action_time": "2020-05-22T11:18:32.086Z",
-    "user": 1,
-    "content_type": 7,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "category"
+    ],
     "object_id": "1",
     "object_repr": "\u0411\u0443\u043c\u0430\u0436\u043d\u0430\u044f \u043f\u0440\u043e\u0434\u0443\u043a\u0446\u0438\u044f",
     "action_flag": 2,
@@ -2490,8 +2672,13 @@
   "pk": 52,
   "fields": {
     "action_time": "2020-05-31T16:16:46.345Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "5",
     "object_repr": "Image object (5)",
     "action_flag": 1,
@@ -2503,8 +2690,13 @@
   "pk": 53,
   "fields": {
     "action_time": "2020-05-31T16:16:57.154Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "6",
     "object_repr": "Image object (6)",
     "action_flag": 1,
@@ -2516,8 +2708,13 @@
   "pk": 54,
   "fields": {
     "action_time": "2020-05-31T16:17:06.173Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "7",
     "object_repr": "Image object (7)",
     "action_flag": 1,
@@ -2529,8 +2726,13 @@
   "pk": 55,
   "fields": {
     "action_time": "2020-05-31T16:17:14.384Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "8",
     "object_repr": "Image object (8)",
     "action_flag": 1,
@@ -2542,8 +2744,13 @@
   "pk": 56,
   "fields": {
     "action_time": "2020-05-31T16:17:44.742Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "9",
     "object_repr": "Image object (9)",
     "action_flag": 1,
@@ -2555,8 +2762,13 @@
   "pk": 57,
   "fields": {
     "action_time": "2020-05-31T16:17:57.305Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "10",
     "object_repr": "Image object (10)",
     "action_flag": 1,
@@ -2568,8 +2780,13 @@
   "pk": 58,
   "fields": {
     "action_time": "2020-05-31T16:18:37.210Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "11",
     "object_repr": "Image object (11)",
     "action_flag": 1,
@@ -2581,8 +2798,13 @@
   "pk": 59,
   "fields": {
     "action_time": "2020-05-31T16:19:11.467Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "12",
     "object_repr": "Image object (12)",
     "action_flag": 1,
@@ -2594,8 +2816,13 @@
   "pk": 60,
   "fields": {
     "action_time": "2020-05-31T16:19:20.391Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "13",
     "object_repr": "Image object (13)",
     "action_flag": 1,
@@ -2607,8 +2834,13 @@
   "pk": 61,
   "fields": {
     "action_time": "2020-05-31T16:19:31.997Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "14",
     "object_repr": "Image object (14)",
     "action_flag": 1,
@@ -2620,8 +2852,13 @@
   "pk": 62,
   "fields": {
     "action_time": "2020-05-31T16:19:42.718Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "15",
     "object_repr": "Image object (15)",
     "action_flag": 1,
@@ -2633,8 +2870,13 @@
   "pk": 63,
   "fields": {
     "action_time": "2020-05-31T16:19:52.523Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "16",
     "object_repr": "Image object (16)",
     "action_flag": 1,
@@ -2646,8 +2888,13 @@
   "pk": 64,
   "fields": {
     "action_time": "2020-05-31T16:20:07.280Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "17",
     "object_repr": "Image object (17)",
     "action_flag": 1,
@@ -2659,8 +2906,13 @@
   "pk": 65,
   "fields": {
     "action_time": "2020-05-31T16:20:16.819Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "18",
     "object_repr": "Image object (18)",
     "action_flag": 1,
@@ -2672,8 +2924,13 @@
   "pk": 66,
   "fields": {
     "action_time": "2020-05-31T16:20:24.851Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "19",
     "object_repr": "Image object (19)",
     "action_flag": 1,
@@ -2685,8 +2942,13 @@
   "pk": 67,
   "fields": {
     "action_time": "2020-05-31T16:20:32.011Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "20",
     "object_repr": "Image object (20)",
     "action_flag": 1,
@@ -2698,8 +2960,13 @@
   "pk": 68,
   "fields": {
     "action_time": "2020-05-31T16:20:40.189Z",
-    "user": 1,
-    "content_type": 14,
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "image"
+    ],
     "object_id": "21",
     "object_repr": "Image object (21)",
     "action_flag": 1,
@@ -2710,63 +2977,88 @@
   "model": "admin.logentry",
   "pk": 69,
   "fields": {
-    "action_time": "2020-06-05T06:19:50.287Z",
-    "user": 1,
-    "content_type": 22,
-    "object_id": "3",
-    "object_repr": "tyuu",
-    "action_flag": 3,
-    "change_message": ""
+    "action_time": "2020-06-02T04:45:26.288Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "deliverycost"
+    ],
+    "object_id": "1",
+    "object_repr": "DeliveryCost object (1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
   }
 },
 {
   "model": "admin.logentry",
   "pk": 70,
   "fields": {
-    "action_time": "2020-06-05T06:19:50.299Z",
-    "user": 1,
-    "content_type": 22,
-    "object_id": "2",
-    "object_repr": "gfr",
-    "action_flag": 3,
-    "change_message": ""
+    "action_time": "2020-06-02T05:20:05.410Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "deliveryaddress"
+    ],
+    "object_id": "1",
+    "object_repr": "Bishkek/\u041f\u0430\u043d\u0444\u0438\u043b\u043e\u0432\u0430/170",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
   }
 },
 {
   "model": "admin.logentry",
   "pk": 71,
   "fields": {
-    "action_time": "2020-06-05T06:19:50.302Z",
-    "user": 1,
-    "content_type": 22,
+    "action_time": "2020-06-02T05:21:03.021Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "order"
+    ],
     "object_id": "1",
-    "object_repr": "test",
-    "action_flag": 3,
-    "change_message": ""
+    "object_repr": "ivan.s@gmail.com / 0700325667",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0422\\u043e\\u0432\\u0430\\u0440 \\u0432 \\u0437\\u0430\\u043a\\u0430\\u0437\\u0435\", \"object\": \"\\u041a\\u0430\\u0440\\u0430\\u043d\\u0434\\u0430\\u0448 ivan.s@gmail.com / 0700325667\"}}, {\"added\": {\"name\": \"\\u0422\\u043e\\u0432\\u0430\\u0440 \\u0432 \\u0437\\u0430\\u043a\\u0430\\u0437\\u0435\", \"object\": \"\\u0411\\u0443\\u043c\\u0430\\u0433\\u0430 \\u0421\\u043d\\u0435\\u0433\\u0443\\u0440\\u043e\\u0447\\u043a\\u0430 ivan.s@gmail.com / 0700325667\"}}, {\"added\": {\"name\": \"\\u0422\\u043e\\u0432\\u0430\\u0440 \\u0432 \\u0437\\u0430\\u043a\\u0430\\u0437\\u0435\", \"object\": \"\\u041f\\u043b\\u0430\\u0441\\u0442\\u0438\\u043b\\u0438\\u043d ivan.s@gmail.com / 0700325667\"}}]"
   }
 },
 {
   "model": "admin.logentry",
   "pk": 72,
   "fields": {
-    "action_time": "2020-06-05T06:19:57.082Z",
-    "user": 1,
-    "content_type": 22,
-    "object_id": "4",
-    "object_repr": "dodo",
-    "action_flag": 3,
-    "change_message": ""
+    "action_time": "2020-06-02T05:31:42.380Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "order"
+    ],
+    "object_id": "1",
+    "object_repr": "ivan.s@gmail.com / 0700325667",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"shipping_cost\"]}}]"
   }
 },
 {
   "model": "admin.logentry",
   "pk": 73,
   "fields": {
-    "action_time": "2020-06-05T06:20:22.998Z",
-    "user": 1,
-    "content_type": 8,
-    "object_id": "22",
-    "object_repr": "dodo",
+    "action_time": "2020-06-02T06:17:58.064Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "order"
+    ],
+    "object_id": "1",
+    "object_repr": "ivan.s@gmail.com / 0700325667",
     "action_flag": 3,
     "change_message": ""
   }
@@ -2775,11 +3067,16 @@
   "model": "admin.logentry",
   "pk": 74,
   "fields": {
-    "action_time": "2020-06-05T06:20:23.009Z",
-    "user": 1,
-    "content_type": 8,
-    "object_id": "21",
-    "object_repr": "uyyutiukjhb",
+    "action_time": "2020-06-02T06:18:05.865Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "deliverycost"
+    ],
+    "object_id": "1",
+    "object_repr": "150 / \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e \u043e\u0442 2000",
     "action_flag": 3,
     "change_message": ""
   }
@@ -2788,24 +3085,34 @@
   "model": "admin.logentry",
   "pk": 75,
   "fields": {
-    "action_time": "2020-06-05T06:20:23.013Z",
-    "user": 1,
-    "content_type": 8,
-    "object_id": "20",
-    "object_repr": "testtest",
-    "action_flag": 3,
-    "change_message": ""
+    "action_time": "2020-06-02T06:27:42.245Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "deliverycost"
+    ],
+    "object_id": "1",
+    "object_repr": "48 / \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e \u043e\u0442 200",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
   }
 },
 {
   "model": "admin.logentry",
   "pk": 76,
   "fields": {
-    "action_time": "2020-06-05T06:20:23.016Z",
-    "user": 1,
-    "content_type": 8,
-    "object_id": "19",
-    "object_repr": "testtest",
+    "action_time": "2020-06-02T06:34:22.912Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "deliverycost"
+    ],
+    "object_id": "1",
+    "object_repr": "48 / \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e \u043e\u0442 200 / 2020-06-02",
     "action_flag": 3,
     "change_message": ""
   }
@@ -2814,117 +3121,18 @@
   "model": "admin.logentry",
   "pk": 77,
   "fields": {
-    "action_time": "2020-06-05T06:20:23.018Z",
-    "user": 1,
-    "content_type": 8,
-    "object_id": "18",
-    "object_repr": "test000",
-    "action_flag": 3,
-    "change_message": ""
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 78,
-  "fields": {
-    "action_time": "2020-06-05T06:20:23.020Z",
-    "user": 1,
-    "content_type": 8,
-    "object_id": "17",
-    "object_repr": "test000",
-    "action_flag": 3,
-    "change_message": ""
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 79,
-  "fields": {
-    "action_time": "2020-06-05T06:20:23.022Z",
-    "user": 1,
-    "content_type": 8,
-    "object_id": "16",
-    "object_repr": "test5",
-    "action_flag": 3,
-    "change_message": ""
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 80,
-  "fields": {
-    "action_time": "2020-06-05T06:20:23.024Z",
-    "user": 1,
-    "content_type": 8,
-    "object_id": "15",
-    "object_repr": "test5",
-    "action_flag": 3,
-    "change_message": ""
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 81,
-  "fields": {
-    "action_time": "2020-06-05T06:20:23.025Z",
-    "user": 1,
-    "content_type": 8,
-    "object_id": "14",
-    "object_repr": "test5",
-    "action_flag": 3,
-    "change_message": ""
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 82,
-  "fields": {
-    "action_time": "2020-06-05T06:20:23.027Z",
-    "user": 1,
-    "content_type": 8,
-    "object_id": "13",
-    "object_repr": "test4",
-    "action_flag": 3,
-    "change_message": ""
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 83,
-  "fields": {
-    "action_time": "2020-06-05T06:20:23.029Z",
-    "user": 1,
-    "content_type": 8,
-    "object_id": "12",
-    "object_repr": "test3",
-    "action_flag": 3,
-    "change_message": ""
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 84,
-  "fields": {
-    "action_time": "2020-06-05T06:20:23.031Z",
-    "user": 1,
-    "content_type": 8,
-    "object_id": "11",
-    "object_repr": "test3",
-    "action_flag": 3,
-    "change_message": ""
-  }
-},
-{
-  "model": "admin.logentry",
-  "pk": 85,
-  "fields": {
-    "action_time": "2020-06-05T06:20:23.033Z",
-    "user": 1,
-    "content_type": 8,
-    "object_id": "10",
-    "object_repr": "test",
-    "action_flag": 3,
-    "change_message": ""
+    "action_time": "2020-06-02T06:34:30.798Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "deliverycost"
+    ],
+    "object_id": "2",
+    "object_repr": "150 / \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e \u043e\u0442 3000 / 2020-06-02",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
   }
 }
 ]

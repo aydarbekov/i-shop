@@ -1,25 +1,16 @@
-{#{% extends 'base.html' %}#}
-{#{% block title %}Создать{% endblock %}#}
-{#{% block content %}#}
-{#    <h1 class="text-center">Создать</h1>#}
-{#    <form method="POST" enctype="multipart/form-data">#}
-{#        {% include 'partial/form.html' %}#}
-{#        <p class="text-center"><input type="submit" value="Создать" class="btn btn-success"></p>#}
-{#    </form>#}
-{#    {% for message in messages %}#}
-{#        <h3 class="text-center" style="color: red">#}
-{#            {{ message }}#}
-{#        </h3>#}
-{#    {% endfor %}#}
-{#{% endblock %}#}
-
 {% extends 'base.html' %}
 {% block content %}
-        <h1 class="text-center">Создать</h1>
-        <div class="container" style="width: 500px">
-        <form method="POST" enctype="multipart/form-data">
+    <div class="container mt-3" style="width: 800px">
+        <h4 class="text-center">Создать</h4>
+        <form method="POST" enctype="multipart/form-data" action="">
             {% include "partial/form.html" %}
-            <p class="text-center"><input type="submit" value="Создать" class="btn" style="background-color: #83B734; color: white"></p>
+            <p class="text-center"><input type="submit" value="Создать" class="btn"
+                                          style="background-color: #83B734; color: white"></p>
         </form>
-        </div>
+        {% for message in messages %}
+            <h5 class="text-center" style="color: red">
+                {{ message }}
+            </h5>
+        {% endfor %}
+    </div>
 {% endblock %}

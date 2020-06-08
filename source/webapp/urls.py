@@ -3,12 +3,13 @@ from django.urls import path
 from webapp.views.brand_views import BrandListView, BrandCreateView, BrandUpdateView, BrandDeleteView
 from webapp.views.category_views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView
 from webapp.views.product_views import IndexView, ProductView, ProductCreateView, ProductUpdateView, ProductDeleteView, \
-    ProductListView
+    ProductListView, ProductALLListView, AddToFavorites, DeleteFromFavorites, FavoritesList, SearchResultsView
 from webapp.views.review_views import ReviewCreateView
 from webapp.views.subcategory_views import SubCategoryDeleteView, SubCategoryCreateView, SubCategoryUpdateView
 from .views.cart_views import CartChangeView, CartView, cartdeleteitem, cartadditem
 from .views.orders_view import OrderListView, OrderDetailView, OrderUpdateView, OrderProductUpdateView, OrderProductDeleteView
 from .views.news_views import NewsView, NewsAddView, NewsDetailView, NewsDeleteView, NewsEditView
+from .views.delivery_cost import DeliveryCostList, DeliveryCostAdd
 from .views.carousel_views import *
 
 app_name = 'webapp'
@@ -18,9 +19,12 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('products/<int:pk>/', ProductView.as_view(), name='product_detail'),
     path('product/add/', ProductCreateView.as_view(), name='product_create'),
-    path('products/<int:pk>/update/', ProductUpdateView.as_view(), name='product_update'),
-    path('products/<int:pk>/delete/', ProductDeleteView.as_view(), name='product_delete'),
+    path('product/<int:pk>/update/', ProductUpdateView.as_view(), name='product_update'),
+    path('product/<int:pk>/delete/', ProductDeleteView.as_view(), name='product_delete'),
     path('product_category/<int:pk>', ProductListView.as_view(), name='products_category'),
+    path('product/add-to-favorites/', AddToFavorites.as_view(), name='add_to_favorites'),
+    path('product/delete-from-favorites/', DeleteFromFavorites.as_view(), name='delete_from_favorites'),
+    path('products_favorites', FavoritesList.as_view(), name='favorite_products'),
     path('categories/', CategoryListView.as_view(), name='categories_list'),
     path('category/add/', CategoryCreateView.as_view(), name='category_add'),
     path('category/change/<int:pk>/', CategoryUpdateView.as_view(), name='category_change'),
@@ -55,5 +59,8 @@ urlpatterns = [
     path('carouseladditem/', carouseladditem, name='carouseladditem'),
     path('cartdeleteitem/', cartdeleteitem, name='cartdeleteitem'),
     path('cartadditem/', cartadditem, name='cartadditem'),
+    path('product/search/results/', SearchResultsView.as_view(), name='search_results'),
+    path('deliverycost/', DeliveryCostList.as_view(), name='delivery_cost'),
+    path('deliverycost/add/', DeliveryCostAdd.as_view(), name='delivery_cost_add'),
 
 ]

@@ -1,12 +1,12 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.views.generic.base import View
 from webapp.forms import CartOrderCreateForm
-from webapp.models import Product, Order, OrderProduct
+from webapp.models import Product, Order, OrderProduct, DeliveryCost
 from django.contrib import messages
 from django.http import JsonResponse
-
+from webapp.views.product_views import SearchView
 
 
 class CartChangeView(View):
@@ -14,12 +14,10 @@ class CartChangeView(View):
         products = request.session.get('products', [])
         pk = request.GET.get('pk')
         action = request.GET.get('action')
-        print(action, "action")
         next_url = request.GET.get('next', reverse('webapp:index'))
 
         if action == 'add':
             product = get_object_or_404(Product, pk=pk)
-            print("Producr.quantity", product.quantity)
             # if product.quantity > 0:
             products.append(pk)
         elif action == 'delete':
@@ -50,7 +48,26 @@ class CartView(CreateView):
         cart, cart_total = self._prepare_cart()
         kwargs['cart'] = cart
         kwargs['cart_total'] = cart_total
+        shipping = self.get_shipping_cost(cart_total)
+        if shipping >= 0:
+            kwargs['total'] = shipping + cart_total
+            kwargs['shipping_cost'] = shipping
+        else:
+            kwargs['total'] = cart_total
+            kwargs['shipping_cost'] = 0
+            kwargs['shipping_message'] = "Стоимость доставки будет уточнена операторатором при подтверждении заказа"
         return super().get_context_data(**kwargs)
+
+    def get_shipping_cost(self, cart_total):
+        try:
+            deliverycost_object = DeliveryCost.objects.latest('created_at')
+            if cart_total >= deliverycost_object.free_from:
+                shipping = 0
+            else:
+                shipping = deliverycost_object.cost
+        except:
+            shipping = -1
+        return shipping
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -106,36 +123,27 @@ class CartView(CreateView):
 def cartdeleteitem(request):
     products = request.session.get('products', [])
     pk = request.POST.get('pk')
-    new_products = []
-    print(pk, "THIS IS DELETE PK")
     for product_pk in products:
         if product_pk == pk:
             products.remove(product_pk)
             break
     request.session['products'] = products
     request.session['products_count'] = len(products)
-    print("DELETED")
-    # product = get_object_or_404(Product, pk=request.POST.get('pk'))
-    # carousel = get_object_or_404(Carousel, product=product)
-    # carousel.delete()
     return JsonResponse({'pk': products})
 
 
 def cartadditem(request):
-    print("CARTADD")
     products = request.session.get('products', [])
-    print(products, "PRODUCTS")
     pk = request.POST.get('pk')
-    # action = request.GET.get('action')
-    # print(action, "action")
-    print(pk, "THIS IS PK")
+    qty = request.POST.get('qty')
     product = get_object_or_404(Product, pk=request.POST.get('pk'))
-    # print("Producr.quantity", product.quantity)
-    # if product.quantity > 0:
-    products.append(pk)
-    print("ADDED")
-    # product = get_object_or_404(Product, pk=request.POST.get('pk'))
-    # Carousel.objects.get_or_create(product=product)
+    if qty:
+        for i in range(int(qty)):
+            products.append(pk)
+    else:
+        products.append(pk)
     request.session['products'] = products
     request.session['products_count'] = len(products)
     return JsonResponse({'pk': product.pk})
+
+

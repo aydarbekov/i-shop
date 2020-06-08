@@ -10,6 +10,7 @@ from .forms import UserCreationForm, UserInfoChangeForm, CompanyInfoChangeForm, 
 from main.settings import HOST_NAME
 from accounts.models import Token, Profile
 from django.http import HttpResponseRedirect
+from webapp.views.product_views import SearchView
 
 
 
@@ -149,7 +150,7 @@ class UserPasswordChangeView(UserPassesTestMixin, UpdateView):
         return reverse('accounts:login')
 
 
-class UserListView(ListView):
+class UserListView(ListView, SearchView):
     model = User
     template_name = 'user_list.html'
     context_object_name = 'users'

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load is_favorite %}
 {% block title %}Доставка{% endblock %}
 {% block styles %}{% endblock %}
 {% block content %}
@@ -12,34 +13,56 @@
         </nav>
         <div class="products-in-category">
             <div class="row">
-                <!-- Начало карточки -->
-                <div class="col-6 col-md-3 px-2">
-                    <div class="card">
-                        <div class="photo-back">
-                            <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <div class="card-text d-flex flex-column align-items-center px-3">
-                                <h5>Принтер для печати</h5>
-                                <p>Электроника</p>
-                                <p class="price">250-400 c</p>
-                                <div class="discount-count d-flex align-items-center justify-content-center">5%</div>
+                {% for product in favorite_products %}
+                    <div class="col-6 col-md-3 px-2">
+                        <div class="card">
+                            <div class="photo-back">
+                                {% if product.product.images %}
+                                    <img src="{{ product.product.images.first.image.url }}" class="card-img-top"
+                                         alt="...">
+                                {% else %}
+                                    {% load static %}
+                                    <img src="{% static "images/no_photo.jpg" %}" class="card-img-top"
+                                         alt="no-photo">
+                                {% endif %}
                             </div>
-                            <div class="position-for-hidden position-relative">
-                                <div class="hidden-part text-center">
-                                    <p class="card-text">Some quick example text to build on the card content.</p>
-                                    <div class="promo-icons d-flex justify-content-center">
-                                        <button class="promo-button-favorite"></button>
-                                        <button class="promo-button-compare"></button>
-                                        <button class="promo-button-share"></button>
+                            <div class="card-body">
+                                <div class="card-text d-flex flex-column align-items-center px-3">
+                                    <a href="{% url "webapp:product_detail" product.product.pk %}">
+                                        <h5>{{ product }}</h5></a>
+                                    <p>{{ product.product.category }}</p>
+                                    <p class="price">{{ product.product.price }}</p>
+                                    <div class="discount-count d-flex align-items-center justify-content-center">
+                                        5%
                                     </div>
-                                    <button type="button" class="to-cart btn btn-success">В корзину</button>
+                                </div>
+                                <div class="position-for-hidden position-relative">
+                                    <div class="hidden-part text-center">
+                                        <p class="card-text">Some quick example text to build on the card content.</p>
+                                        <div class="promo-icons d-flex justify-content-center">
+                                            {% if request.user.is_authenticated %}
+                                                {% with favorite=product.product|is_favorite:request.user %}
+                                                    <button href="{% url 'webapp:add_to_favorites' %}"
+                                                            class="promo-button-favorite favorite-add {% if favorite %}d-none{% endif %}"
+                                                            data-product-pk="{{ product.product.pk }}"
+                                                            id="add-to-favorites-{{ product.product.pk }}"></button>
+                                                    <button href="{% url "webapp:delete_from_favorites" %}"
+                                                            id="delete-from-favorites-{{ product.product.pk }}"
+                                                            class="red favorite-delete
+                 {% if not favorite %}d-none{% endif %}"
+                                                            data-product-pk="{{ product.product.pk }}"></button>
+                                                {% endwith %}
+                                            {% endif %}
+                                            <button class="promo-button-compare"></button>
+                                            <button class="promo-button-share"></button>
+                                        </div>
+                                        <button type="button" class="to-cart btn btn-success">В корзину</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Конец карточки -->
+                {% endfor %}
             </div>
         </div>
     </div>
