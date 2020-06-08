@@ -2049,6 +2049,24 @@ table td{
 	font-size: 50px;
 	color: #C1C1C1;
 }
+.card-number{
+	background-image: url(../images/icons/credit-card.png);
+	background-repeat: no-repeat;
+	background-position: 14px 14px;
+}
+.card-date{
+	background-image: url(../images/icons/calendar.png);
+	background-repeat: no-repeat;
+	background-position: 14px 14px;
+}
+.card-name{
+	background-image: url(../images/icons/user-card.png);
+	background-repeat: no-repeat;
+	background-position: 14px 14px;
+}
+.modal-for-card .card-cvc{
+	padding: 20px 10px ;
+}
 @media screen and (min-width:769px){
 	.info-card .card-body{
 		display: block!important;

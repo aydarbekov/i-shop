@@ -89,14 +89,14 @@
         </div>
     </div>
     <div class="empty-collapse-2"><i class="fas fa-times"></i></div>
-    <div class="modal-for-card py-5">
+   	<div class="modal-for-card py-5">
 		<h4>Введите ваши данные</h4>
-		<input form="pay-form" type="text" name="card_number"  placeholder="Номер карты">
+		<input form="pay-form" type="text" name="card_number" class='card-number' placeholder="Номер карты">
 		<div class="date-cvc">
-			<input form="pay-form" type="text" name="date"  placeholder="ММ/ГГ">
-			<input form="pay-form" type="text" name="cvc">
+			<input form="pay-form" type="text" name="date" class='card-date' placeholder="ММ/ГГ">
+			<input form="pay-form" type="text" name="cvc" class='card-cvc' placeholder="CVC (три цифры на обороте)">
 		</div>
-		<input form="pay-form" type="text" name="name"  placeholder="Имя держателя (как на карте)">
+		<input form="pay-form" class='card-name' type="text" name="name"  placeholder="Имя держателя (как на карте)">
 		<button form="pay-form" type="submit" class="to-cart btn btn-success">Оплатить</button>
 	</div>
 {% endblock %}
