@@ -171,7 +171,7 @@
                                                                 id="add-to-favorites-{{ product.pk }}"></button>
                                                         <button href="{% url "webapp:delete_from_favorites" %}"
                                                                 id="delete-from-favorites-{{ product.pk }}"
-                                                                class="promo-button-favorite favorite-delete
+                                                                class="red favorite-delete
                  {% if not favorite %}d-none{% endif %}"
                                                                 data-product-pk="{{ product.pk }}"></button>
                                                     {% endwith %}

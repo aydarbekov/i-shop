@@ -80,7 +80,11 @@
                     <a class="login  d-none d-md-flex" href="{% url 'accounts:login' %}">Войти</a>
                     <a class="login  d-none d-md-flex" href="{% url 'accounts:register' %}">Зарегистрироваться</a>
                 {% endif %}
-                <a class="favorites d-none d-md-flex" href="{% url 'webapp:favorite_products' %}"></a>
+                <button class=" {% if request.user.favorites.all %}red3{% else %}favorites btn{% endif %}" href="{% url 'webapp:favorite_products' %}">
+                    <div class="circle-count d-flex align-items-center justify-content-center">
+                        {{ request.user.favorites.all|length }}
+                    </div>
+                </button>
                 <a class="compare d-none d-md-flex" href="#"><div class="circle-count d-flex align-items-center justify-content-center">1</div></a>
                 <button class="cart btn">
                     <div class="circle-count d-flex align-items-center justify-content-center">
