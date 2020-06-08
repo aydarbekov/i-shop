@@ -49,16 +49,25 @@ class CartView(CreateView):
         kwargs['cart'] = cart
         kwargs['cart_total'] = cart_total
         shipping = self.get_shipping_cost(cart_total)
-        kwargs['shipping_cost'] = shipping
-        kwargs['total'] = shipping + cart_total
+        # kwargs['shipping_cost'] = shipping
+        if shipping >= 0:
+            kwargs['total'] = shipping + cart_total
+            kwargs['shipping_cost'] = shipping
+        else:
+            kwargs['total'] = cart_total
+            kwargs['shipping_cost'] = 0
+            kwargs['shipping_message'] = "Стоимость доставки будет уточнена операторатором при подтверждении заказа"
         return super().get_context_data(**kwargs)
 
     def get_shipping_cost(self, cart_total):
-        deliverycost_object = DeliveryCost.objects.latest('created_at')
-        if cart_total > deliverycost_object.free_from:
-            shipping = 0
-        else:
-            shipping = deliverycost_object.cost
+        try:
+            deliverycost_object = DeliveryCost.objects.latest('created_at')
+            if cart_total > deliverycost_object.free_from:
+                shipping = 0
+            else:
+                shipping = deliverycost_object.cost
+        except:
+            shipping = -1
         return shipping
 
     def get_form_kwargs(self):
@@ -137,3 +146,5 @@ def cartadditem(request):
     request.session['products'] = products
     request.session['products_count'] = len(products)
     return JsonResponse({'pk': product.pk})
+
+
