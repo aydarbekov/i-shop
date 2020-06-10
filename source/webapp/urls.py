@@ -9,7 +9,7 @@ from webapp.views.subcategory_views import SubCategoryDeleteView, SubCategoryCre
 from .views.cart_views import CartChangeView, CartView, cartdeleteitem, cartadditem
 from .views.orders_view import OrderListView, OrderDetailView, OrderUpdateView, OrderProductUpdateView, OrderProductDeleteView
 from .views.news_views import NewsView, NewsAddView, NewsDetailView, NewsDeleteView, NewsEditView
-from .views.delivery_cost import DeliveryCostList, DeliveryCostAdd
+from .views.delivery_cost import DeliveryCostList, DeliveryCostAdd, DeliveryView, ReturnView
 from .views.carousel_views import *
 
 app_name = 'webapp'
@@ -62,5 +62,7 @@ urlpatterns = [
     path('product/search/results/', SearchResultsView.as_view(), name='search_results'),
     path('deliverycost/', DeliveryCostList.as_view(), name='delivery_cost'),
     path('deliverycost/add/', DeliveryCostAdd.as_view(), name='delivery_cost_add'),
+    path('delivery/', DeliveryView.as_view(), name='delivery_view'),
+    path('return/', ReturnView.as_view(), name='return_view'),
 
 ]
