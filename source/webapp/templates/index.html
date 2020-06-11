@@ -82,7 +82,7 @@
                             {% endif %}
                             <h5 class="category-card-title card-title d-inline-block position-absolute">{{ category.category_name }}</h5>
                             <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">
-                                34</p>
+                                {{ category.products.all|length }}</p>
                         </a>
                     </div>
                 </div>

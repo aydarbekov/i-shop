@@ -3,15 +3,36 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from webapp.forms import ProductForm, ImageFormset
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
+from webapp.forms import ProductForm, ImageFormset, FullSearchForm
 from webapp.models import Product, Category, Carousel, Favorite, Tag
+from django.db.models import Q
+from django.utils.http import urlencode
+from django.shortcuts import redirect
 
 
-class IndexView(ListView):
+class SearchView(FormView):
+    form_class = FullSearchForm
+
+    def form_valid(self, form):
+        query = urlencode(form.cleaned_data)
+        # url = reverse('webapp:search_results') + '?' + query
+        url = reverse('webapp:search_results') + '?' + query
+        return redirect(url)
+
+
+class IndexView(SearchView):
     template_name = 'index.html'
     model = Product
     context_object_name = "products"
+    # form_class = FullSearchForm
+    #
+    #
+    # def form_valid(self, form):
+    #     query = urlencode(form.cleaned_data)
+    #     # url = reverse('webapp:search_results') + '?' + query
+    #     url = reverse('webapp:search_results') + '?' + query
+    #     return redirect(url)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
@@ -21,9 +42,16 @@ class IndexView(ListView):
         return context
 
 
-class ProductView(DetailView):
+class ProductView(DetailView, SearchView):
     model = Product
     template_name = 'products/product_detail.html'
+    # form_class = FullSearchForm
+    #
+    # def form_valid(self, form):
+    #     query = urlencode(form.cleaned_data)
+    #     # url = reverse('webapp:search_results') + '?' + query
+    #     url = reverse('webapp:search_results') + '?' + query
+    #     return redirect(url)
 
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
@@ -122,7 +150,7 @@ class ProductDeleteView(UserPassesTestMixin, DeleteView):
         return user.is_staff
 
 
-class ProductListView(ListView):
+class ProductListView(ListView, SearchView):
     template_name = 'products/products.html'
     model = Product
 
@@ -138,6 +166,14 @@ class ProductListView(ListView):
         context['products'] = Product.objects.filter(category_id=self.kwargs.get('pk'))
         self.get_url()
         return context
+
+
+class ProductALLListView(ListView, SearchView):
+    model = Product
+    template_name = 'products/products_list.html'
+    context_object_name = 'products'
+    # paginate_by = 5
+    # paginate_orphans = 1
 
 
 class AddToFavorites(LoginRequiredMixin, View):
@@ -162,3 +198,37 @@ class FavoritesList(ListView):
         context = super().get_context_data()
         context['favorite_products'] = Favorite.objects.filter(user=self.request.user)
         return context
+
+
+class SearchResultsView(ListView):
+    model = Product
+    template_name = 'products/products.html'
+    context_object_name = 'products'
+    # paginate_by = 2
+    # paginate_orphans = 1
+
+    def get_url(self):
+        global site
+        site = self.request.get_full_path()
+        return site
+
+    def get_context_data(self, *, text=None, **kwargs):
+        form = FullSearchForm(data=self.request.GET)
+        if form.is_valid():
+            text = form.cleaned_data.get("text")
+            category = form.cleaned_data.get('category')
+        query = self.get_query_string()
+        text = form.cleaned_data.get("text").capitalize()
+        category = form.cleaned_data.get("category")
+        products = Product.objects.filter(Q(name__icontains=text, category_id=category) | Q(tags__name__icontains=text))
+        return super().get_context_data(
+            form=form, query=query, products=products
+        )
+
+    def get_query_string(self):
+        data = {}
+        for key in self.request.GET:
+            if key != 'page':
+                data[key] = self.request.GET.get(key)
+        return data
+

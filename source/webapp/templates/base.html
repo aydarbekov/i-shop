@@ -38,16 +38,18 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="nav-link logo mx-auto ml-md-4 mr-md-0" href="{% url 'webapp:index' %}"></a>
-            <form class="form-inline d-none d-md-flex align-items-center">
-                <input class="search form-control rounded-left" type="search" placeholder="Поиск" aria-label="Search">
-                <p class="m-0"><select>
-                    <option selected>Категория</option>
-                    {% for category in categories %}
-                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
-                    {% endfor %}
-                </select></p>
-                <button class="search-button btn my-2 my-sm-0 rounded-right" type="submit"><i class="fas fa-search"></i></button>
-            </form>
+{% include 'partial/simple_search.html' %}
+{#            <form class="form-inline d-none d-md-flex align-items-center" method="get" action="#">#}
+{#                <input class="search form-control rounded-left" type="search" placeholder="Поиск" aria-label="Search">#}
+{##}
+{#                <p class="m-0"><select>#}
+{#                    <option selected>Категория</option>#}
+{#                    {% for category in categories %}#}
+{#                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>#}
+{#                    {% endfor %}#}
+{#                </select></p>#}
+{#                <button class="search-button btn my-2 my-sm-0 rounded-right" type="submit"><i class="fas fa-search"></i></button>#}
+{#            </form>#}
             <div class="nav-link text-uppercase ml-md-auto d-flex align-items-center justify-content-between">
                 {% block menu %}{% endblock %}
                 {% if perms.webapp.product_add %}
@@ -67,6 +69,7 @@
                             <a class="dropdown-item" href="{% url 'webapp:news' %}">Новости</a>
                             <a class="dropdown-item" href="{% url 'webapp:carousel_list' %}">Карусель</a>
                             <a class="dropdown-item" href="{% url 'webapp:orders' %}">Заказы</a>
+                            <a class="dropdown-item" href="{% url 'webapp:delivery_cost' %}">Стоимость доставки</a>
                         </div>
                     </div>
                 {% endif %}
@@ -86,9 +89,6 @@
                 <a class="compare d-none d-md-flex" href="#"><div class="circle-count d-flex align-items-center justify-content-center">1</div></a>
                 <button class="cart btn">
                     <div class="circle-count d-flex align-items-center justify-content-center">
-{#                        {% for item in cart_products.all %}#}
-{#                            {{ item.order_set.count }}#}
-{#                        {% endfor %}#}
                         {{ cart_products|length }}
                     </div>
                 </button>
@@ -266,10 +266,10 @@
                         <a class="nav-link" href="#">Оплата</a>
                     </li>
                     <li class="nav-item ml-0 ml-lg-4">
-                        <a class="nav-link" href="#">Доставка</a>
+                        <a class="nav-link" href="{% url 'webapp:delivery_view' %}">Доставка</a>
                     </li>
                     <li class="nav-item ml-0 ml-lg-4">
-                        <a class="nav-link" href="#">Возврат</a>
+                        <a class="nav-link" href="{% url 'webapp:return_view' %}">Возврат</a>
                     </li>
                 </ul>
             </nav>
