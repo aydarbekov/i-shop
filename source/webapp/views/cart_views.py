@@ -9,36 +9,36 @@ from django.http import JsonResponse
 from webapp.views.product_views import SearchView
 
 
-class CartChangeView(SearchView):
-    def get(self, request, *args, **kwargs):
-        products = request.session.get('products', [])
-        pk = request.GET.get('pk')
-        action = request.GET.get('action')
-        next_url = request.GET.get('next', reverse('webapp:index'))
+# class CartChangeView(SearchView):
+#     def get(self, request, *args, **kwargs):
+#         products = request.session.get('products', [])
+#         pk = request.GET.get('pk')
+#         action = request.GET.get('action')
+#         next_url = request.GET.get('next', reverse('webapp:index'))
+#
+#         if action == 'add':
+#             product = get_object_or_404(Product, pk=pk)
+#             # if product.quantity > 0:
+#             products.append(pk)
+#         elif action == 'delete':
+#             new_products = []
+#             for product_pk in products:
+#                 if product_pk != pk:
+#                     new_products.append(product_pk)
+#             products = new_products
+#         else:
+#             for product_pk in products:
+#                 if product_pk == pk:
+#                     products.remove(product_pk)
+#                     break
+#
+#         request.session['products'] = products
+#         request.session['products_count'] = len(products)
+#
+#         return redirect(next_url)
 
-        if action == 'add':
-            product = get_object_or_404(Product, pk=pk)
-            # if product.quantity > 0:
-            products.append(pk)
-        elif action == 'delete':
-            new_products = []
-            for product_pk in products:
-                if product_pk != pk:
-                    new_products.append(product_pk)
-            products = new_products
-        else:
-            for product_pk in products:
-                if product_pk == pk:
-                    products.remove(product_pk)
-                    break
 
-        request.session['products'] = products
-        request.session['products_count'] = len(products)
-
-        return redirect(next_url)
-
-
-class CartView(ListView, SearchView):
+class CartView(SearchView):
     model = Order
     form_class = CartOrderCreateForm
     template_name = 'cart/cart.html'

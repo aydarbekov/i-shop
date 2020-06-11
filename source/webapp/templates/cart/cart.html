@@ -29,10 +29,17 @@
                         {% for item in cart %}
                             <tr class="product-{{ item.product.pk }}">
                                 <td class="table-first-column">
-                                    <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">
-                                        <div class="delete-from-cart">
-                                        </div>
-                                    </a>
+{#                                    <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">#}
+{#                                        <div class="delete-from-cart">#}
+{#                                        </div>#}
+{#                                    </a>#}
+                                    <a href="{% url "webapp:cart_modal_delete" %}" id="cart-delete-{{ item.product.pk }}"
+                               data-product-pk="{{ item.product.pk }}"
+                               class="cart-modal-delete">
+{#                    <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">#}
+                        <div class="delete-from-cart" href="{% url "webapp:cart_modal_delete" %}" id="cart-delete-{{ item.product.pk }}"
+                               data-product-pk="{{ item.product.pk }}">
+                        </div></a>
                                 </td>
                                 <td class="table-second-column">
                                     <div class="photo-back-table">

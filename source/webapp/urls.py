@@ -6,7 +6,7 @@ from webapp.views.product_views import IndexView, ProductView, ProductCreateView
     ProductListView, ProductALLListView, AddToFavorites, DeleteFromFavorites, FavoritesList, SearchResultsView
 from webapp.views.review_views import ReviewCreateView
 from webapp.views.subcategory_views import SubCategoryDeleteView, SubCategoryCreateView, SubCategoryUpdateView
-from .views.cart_views import CartChangeView, CartView, cartdeleteitem, cartadditem, cart_modal_delete
+from .views.cart_views import CartView, cartdeleteitem, cartadditem, cart_modal_delete
 from .views.orders_view import OrderListView, OrderDetailView, OrderUpdateView, OrderProductUpdateView, OrderProductDeleteView
 from .views.news_views import NewsView, NewsAddView, NewsDetailView, NewsDeleteView, NewsEditView
 from .views.delivery_cost import DeliveryCostList, DeliveryCostAdd, DeliveryView, ReturnView
