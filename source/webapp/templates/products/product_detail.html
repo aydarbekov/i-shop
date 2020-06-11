@@ -60,7 +60,7 @@
                     <div class="product-info d-flex flex-column">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'webapp:index' %}">Главная</a></li>
                                 <li class="breadcrumb-item"><a href="#">{{ product.category }}</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
                             </ol>
