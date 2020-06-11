@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, ListView
 from django.views.generic.base import View
-from webapp.forms import CartOrderCreateForm
+from webapp.forms import CartOrderCreateForm, FullSearchForm
 from webapp.models import Product, Order, OrderProduct, DeliveryCost
 from django.contrib import messages
 from django.http import JsonResponse
@@ -40,7 +40,8 @@ from webapp.views.product_views import SearchView
 
 class CartView(SearchView):
     model = Order
-    form_class = CartOrderCreateForm
+    # form_class = CartOrderCreateForm
+    form_class = FullSearchForm
     template_name = 'cart/cart.html'
     success_url = reverse_lazy('webapp:index')
 
@@ -69,10 +70,10 @@ class CartView(SearchView):
             shipping = -1
         return shipping
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.request.user
-        return kwargs
+    # def get_form_kwargs(self):
+    #     kwargs = super().get_form_kwargs()
+    #     kwargs['user'] = self.request.user
+    #     return kwargs
 
     def form_valid(self, form):
         if self._cart_empty():
