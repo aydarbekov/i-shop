@@ -6,11 +6,12 @@ from webapp.views.product_views import IndexView, ProductView, ProductCreateView
     ProductListView, ProductALLListView, AddToFavorites, DeleteFromFavorites, FavoritesList, SearchResultsView
 from webapp.views.review_views import ReviewCreateView
 from webapp.views.subcategory_views import SubCategoryDeleteView, SubCategoryCreateView, SubCategoryUpdateView
-from .views.cart_views import CartChangeView, CartView, cartdeleteitem, cartadditem
+from .views.cart_views import CartChangeView, CartView, cartdeleteitem, cartadditem, cart_modal_delete
 from .views.orders_view import OrderListView, OrderDetailView, OrderUpdateView, OrderProductUpdateView, OrderProductDeleteView
 from .views.news_views import NewsView, NewsAddView, NewsDetailView, NewsDeleteView, NewsEditView
 from .views.delivery_cost import DeliveryCostList, DeliveryCostAdd, DeliveryView, ReturnView
 from .views.carousel_views import *
+from .views.compare_views import compareadditem, comparedeleteitem, CompareView, CompareChangeView
 
 app_name = 'webapp'
 
@@ -37,7 +38,7 @@ urlpatterns = [
     path('orders/<int:pk>/update', OrderUpdateView.as_view(), name='order_update'),
     path('orders/product/update/<int:pk>/<int:id>', OrderProductUpdateView.as_view(), name='order_product_update'),
     path('orders/product/delete/<int:pk>/<int:id>', OrderProductDeleteView.as_view(), name='order_product_delete'),
-    path('cart/change/', CartChangeView.as_view(), name='cart_change'),
+    # path('cart/change/', CartChangeView.as_view(), name='cart_change'),
     path('cart/', CartView.as_view(), name='cart'),
     path('review/add/<int:pk>/', ReviewCreateView.as_view(), name='review_create'),
     path('news/', NewsView.as_view(), name='news'),
@@ -58,11 +59,16 @@ urlpatterns = [
     path('carouseldeleteitem/', carouseldeleteitem, name='carouseldeleteitem'),
     path('carouseladditem/', carouseladditem, name='carouseladditem'),
     path('cartdeleteitem/', cartdeleteitem, name='cartdeleteitem'),
+    path('cartdelete/', cart_modal_delete, name='cart_modal_delete'),
     path('cartadditem/', cartadditem, name='cartadditem'),
     path('product/search/results/', SearchResultsView.as_view(), name='search_results'),
     path('deliverycost/', DeliveryCostList.as_view(), name='delivery_cost'),
     path('deliverycost/add/', DeliveryCostAdd.as_view(), name='delivery_cost_add'),
     path('delivery/', DeliveryView.as_view(), name='delivery_view'),
     path('return/', ReturnView.as_view(), name='return_view'),
+    path('compareadd/', compareadditem, name='compare_add'),
+    path('comparedelete/', comparedeleteitem, name='compare_delete'),
+    path('compares/', CompareView.as_view(), name='compare_list'),
+    path('compare/change/', CompareChangeView.as_view(), name='compare_change'),
 
 ]

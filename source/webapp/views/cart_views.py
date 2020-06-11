@@ -9,7 +9,7 @@ from django.http import JsonResponse
 from webapp.views.product_views import SearchView
 
 
-class CartChangeView(View):
+class CartChangeView(SearchView):
     def get(self, request, *args, **kwargs):
         products = request.session.get('products', [])
         pk = request.GET.get('pk')
@@ -38,7 +38,7 @@ class CartChangeView(View):
         return redirect(next_url)
 
 
-class CartView(CreateView):
+class CartView(ListView, SearchView):
     model = Order
     form_class = CartOrderCreateForm
     template_name = 'cart/cart.html'
@@ -130,6 +130,16 @@ def cartdeleteitem(request):
     request.session['products'] = products
     request.session['products_count'] = len(products)
     return JsonResponse({'pk': products})
+
+def cart_modal_delete(request):
+    products = request.session.get('products', [])
+    pk = request.POST.get('pk')
+    product = get_object_or_404(Product, pk=request.POST.get('pk'))
+    while pk in products:
+        products.remove(pk)
+    request.session['products'] = products
+    request.session['products_count'] = len(products)
+    return JsonResponse({'pk': product.pk})
 
 
 def cartadditem(request):

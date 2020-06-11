@@ -22,3 +22,7 @@ def cart_products(request):
         cart_total += total
         cart.append({'product': product, 'qty': qty, 'total': total, 'cart_total':cart_total})
     return {"cart_products": cart, "cart_total": cart_total}
+
+def compare_products(request):
+    compare_products = request.session.get('compare', [])
+    return {"compare_products": compare_products}

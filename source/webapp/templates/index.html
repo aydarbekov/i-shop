@@ -18,7 +18,7 @@
                     <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo accusantium
                         iste tempore sed delectus quos.Lorem ipsum dolor sit amet..</p>
                     <div class="carousel-button-price d-flex align-items-center">
-                        <a href="{% url 'webapp:cart_change' %}?pk={{ product.pk }}&action=add&next={% url 'webapp:index' %}" class="btn button-in-carousel mr-4">в корзину</a>
+{#                        <a href="{% url 'webapp:cart_change' %}?pk={{ product.pk }}&action=add&next={% url 'webapp:index' %}" class="btn button-in-carousel mr-4">в корзину</a>#}
 
 {#                        <button type="button" class="btn button-in-carousel mr-4">в корзину</button>#}
                         <p class="carousel-price">$8</p>
@@ -101,9 +101,10 @@
                     <p class="bestseller-text">{{ carousel.product.description }}</p>
                     {% endif %}
                     <p class="bestseller-price">${{ carousel.product.price }}</p>
-                <a href="{% url 'webapp:cart_change' %}?pk={{ carousel.product.pk }}&action=add&next={% url 'webapp:index' %}">
-                    <button type="button" class="btn bestseller-button mr-4">в корзину</button>
-                    </a>
+{#                <a href="{% url 'webapp:cart_change' %}?pk={{ carousel.product.pk }}&action=add&next={% url 'webapp:index' %}">#}
+                    <button type="button" class="btn bestseller-button mr-4 cartadd" href="{% url "webapp:cartadditem" %}"#}
+                                        data-product-pk="{{ carousel.product.pk }}" id="cart-add-{{ carousel.product.pk }}">в корзину</button>
+{#                    </a>#}
                 </div>
             </div>
             {% endfor %}
