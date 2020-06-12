@@ -70,6 +70,6 @@ urlpatterns = [
     path('comparedelete/', comparedeleteitem, name='compare_delete'),
     path('compares/', CompareView.as_view(), name='compare_list'),
     path('compare/change/', CompareChangeView.as_view(), name='compare_change'),
-    path('check/', Check.as_view(), name="check"),
+    path('check/', Check.as_view(), name="check_cart"),
 
 ]

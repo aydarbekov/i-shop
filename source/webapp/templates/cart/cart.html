@@ -29,22 +29,26 @@
                         {% for item in cart %}
                             <tr class="product-{{ item.product.pk }}">
                                 <td class="table-first-column">
-{#                                    <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">#}
-{#                                        <div class="delete-from-cart">#}
-{#                                        </div>#}
-{#                                    </a>#}
-                                    <a href="{% url "webapp:cart_modal_delete" %}" id="cart-delete-{{ item.product.pk }}"
-                               data-product-pk="{{ item.product.pk }}"
-                               class="cart-modal-delete">
-{#                    <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">#}
-                        <div class="delete-from-cart" href="{% url "webapp:cart_modal_delete" %}" id="cart-delete-{{ item.product.pk }}"
-                               data-product-pk="{{ item.product.pk }}">
-                        </div></a>
+                                    {#                                    <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">#}
+                                    {#                                        <div class="delete-from-cart">#}
+                                    {#                                        </div>#}
+                                    {#                                    </a>#}
+                                    <a href="{% url "webapp:cart_modal_delete" %}"
+                                       id="cart-delete-{{ item.product.pk }}"
+                                       data-product-pk="{{ item.product.pk }}"
+                                       class="cart-modal-delete">
+                                        {#                    <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">#}
+                                        <div class="delete-from-cart" href="{% url "webapp:cart_modal_delete" %}"
+                                             id="cart-delete-{{ item.product.pk }}"
+                                             data-product-pk="{{ item.product.pk }}">
+                                        </div>
+                                    </a>
                                 </td>
                                 <td class="table-second-column">
                                     <div class="photo-back-table">
                                         {% if item.product.images %}
-                                            <img src="{{ item.product.images.first.image.url }}" class="product-photo card-img-top"
+                                            <img src="{{ item.product.images.first.image.url }}"
+                                                 class="product-photo card-img-top"
                                                  alt="...">
                                         {% else %}
                                             <img src="{% static "images/no_photo.jpg" %}"
@@ -65,27 +69,30 @@
                                     <p class="d-inline-block d-sm-none">Количество</p>
                                     <div class="input-number">
                                         <div class="input-number__minus">
-                                            <a href="{% url "webapp:cartdeleteitem" %}" id="cart-delete-{{ item.product.pk }}"
-                               data-product-pk="{{ item.product.pk }}"
-                               class="cartdelete">-</a>
-{#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=remove&next={% url 'webapp:cart' %}">-</a>#}
+                                            <a href="{% url "webapp:cartdeleteitem" %}"
+                                               id="cart-delete-{{ item.product.pk }}"
+                                               data-product-pk="{{ item.product.pk }}"
+                                               class="cartdelete">-</a>
+                                            {#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=remove&next={% url 'webapp:cart' %}">-</a>#}
                                         </div>
-                                        <input class="input-number__input" type="text" pattern="^[0-9]+$" id="gty-{{ item.product.pk }}"
+                                        <input class="input-number__input" type="text" pattern="^[0-9]+$"
+                                               id="gty-{{ item.product.pk }}"
                                                value="{{ item.qty }}">
                                         <div class="input-number__plus">
                                             <a href="{% url "webapp:cartadditem" %}" id="cart-add-{{ item.product.pk }}"
-                               data-product-pk="{{ item.product.pk }}"
-                               class="cartadd">+</a>
-{#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:cart' %}">+</a>#}
+                                               data-product-pk="{{ item.product.pk }}"
+                                               class="cartadd">+</a>
+                                            {#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:cart' %}">+</a>#}
                                         </div>
 
                                     </div>
                                 </td>
                                 <td class="product-summ table-for-vertical"><p class="d-inline-block d-sm-none">
                                     Итого</p>
-{#                                    <input class="" type="text" id="total-{{ item.product.pk }}"#}
-{#                                               value="{{ item.total }}">#}
-                                <div class="total-{{ item.product.pk }}">{{ item.total }}</div></td>
+                                    {#                                    <input class="" type="text" id="total-{{ item.product.pk }}"#}
+                                    {#                                               value="{{ item.total }}">#}
+                                    <div class="total-{{ item.product.pk }}">{{ item.total }}</div>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -99,8 +106,10 @@
                         <tbody>
                         <tr>
                             <th class="none-top-border cart-summ-itog-header" scope="row">Итог</th>
-                            <td class="none-top-border cart-summ-itog"><div class="cart-total">
-                                {{ cart_total }}</div></td>
+                            <td class="none-top-border cart-summ-itog">
+                                <div class="cart-total">
+                                    {{ cart_total }}</div>
+                            </td>
                         </tr>
                         <tr>
                             <th class="cart-summ-itog-header" scope="row">Доставка</th>
@@ -113,12 +122,15 @@
                         <tfoot>
                         <tr>
                             <th class="cart-summ-itogo-header" scope="row">Итого</th>
-                            <td class="cart-summ-itogo"><div class="cart-total">
-                                {{ total }}</div></td>
+                            <td class="cart-summ-itogo">
+                                <div class="cart-total">
+                                    {{ total }}</div>
+                            </td>
                         </tr>
                         </tfoot>
                     </table>
-                    <button type="button" class="to-cart btn btn-success mt-0 ml-4 w-75">Пройти проверку</button>
+                    <a href="{% url 'webapp:check_cart' %}" class="to-cart btn btn-success mt-0 ml-4 w-75">Пройти
+                        проверку</a>
                 </div>
             </div>
         </div>
@@ -235,5 +247,5 @@
 {#    {% endif %}#}
 {#{% endblock %}#}
 {% block scripts %}
-{#        <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
+    {#        <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
 {% endblock %}

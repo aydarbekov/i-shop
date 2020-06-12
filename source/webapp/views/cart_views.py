@@ -42,7 +42,7 @@ class CartView(SearchView):
     model = Order
     form_class = FullSearchForm
     template_name = 'cart/cart.html'
-    success_url = reverse_lazy('webapp:index')
+    # success_url = reverse_lazy('webapp:index')
 
     def get_context_data(self, **kwargs):
         cart, cart_total = self._prepare_cart()
