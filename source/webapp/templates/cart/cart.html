@@ -64,18 +64,20 @@
                                 <td class="table-quantity table-for-vertical">
                                     <p class="d-inline-block d-sm-none">Количество</p>
                                     <div class="input-number">
-                                        <div class="input-number__minus">
-                                            <a href="{% url "webapp:cartdeleteitem" %}" id="cart-delete-{{ item.product.pk }}"
-                               data-product-pk="{{ item.product.pk }}"
-                               class="cartdelete">-</a>
+                                        <div class="input-number__minus cartdelete" href="{% url "webapp:cartdeleteitem" %}" id="cart-delete-{{ item.product.pk }}"
+                               data-product-pk="{{ item.product.pk }}">-
+{#                                            <a href="{% url "webapp:cartdeleteitem" %}" id="cart-delete-{{ item.product.pk }}"#}
+{#                               data-product-pk="{{ item.product.pk }}"#}
+{#                               class="">-</a>#}
 {#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=remove&next={% url 'webapp:cart' %}">-</a>#}
                                         </div>
                                         <input class="input-number__input" type="text" pattern="^[0-9]+$" id="gty-{{ item.product.pk }}"
                                                value="{{ item.qty }}">
-                                        <div class="input-number__plus">
-                                            <a href="{% url "webapp:cartadditem" %}" id="cart-add-{{ item.product.pk }}"
-                               data-product-pk="{{ item.product.pk }}"
-                               class="cartadd">+</a>
+                                        <div class="input-number__plus cartadd" href="{% url "webapp:cartadditem" %}" id="cart-add-{{ item.product.pk }}"
+                               data-product-pk="{{ item.product.pk }}">
+{#                                            <a href="{% url "webapp:cartadditem" %}" id="cart-add-{{ item.product.pk }}"#}
+{#                               data-product-pk="{{ item.product.pk }}"#}
+{#                               class="">+</a>#}+
 {#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:cart' %}">+</a>#}
                                         </div>
 

@@ -43,6 +43,7 @@ function favoriteAdd(e) {
     })
         .done(favoriteAddSuccess)
         .fail(console.log);
+    location.reload()
 }
 
 function favoriteDelete(e) {
@@ -60,6 +61,7 @@ function favoriteDelete(e) {
     })
         .done(favoriteDeleteSuccess)
         .fail(console.log);
+    location.reload()
 }
 
 function setUpFavoriteButtons() {
