@@ -190,7 +190,7 @@ class DeleteFromFavorites(LoginRequiredMixin, View):
         return JsonResponse({'pk': product.pk})
 
 
-class FavoritesList(ListView):
+class FavoritesList(SearchView):
     model = Favorite
     template_name = 'favorites.html'
 

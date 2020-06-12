@@ -81,14 +81,15 @@
                     <a class="login  d-none d-md-flex" href="{% url 'accounts:login' %}">Войти</a>
                     <a class="login  d-none d-md-flex" href="{% url 'accounts:register' %}">Зарегистрироваться</a>
                 {% endif %}
-                <button class=" {% if request.user.favorites.all %}red3{% else %}favorites btn{% endif %}" href="{% url 'webapp:favorite_products' %}">
+                <a class=" {% if request.user.favorites.all %}red3{% else %}favorites btn{% endif %}" href="{% url 'webapp:favorite_products' %}">
                     <div class="circle-count d-flex align-items-center justify-content-center">
                         {{ request.user.favorites.all|length }}
                     </div>
-                </button>
-                <a class="compare d-none d-md-flex" href="#"><div class="circle-count d-flex align-items-center justify-content-center">1</div></a>
+                </a>
+                <a class="compare d-none d-md-flex" href="{% url 'webapp:compare_list' %}">
+                    <div class="circle-count d-flex align-items-center justify-content-center">{{ compare_products|length }}</div></a>
                 <button class="cart btn">
-                    <div class="circle-count d-flex align-items-center justify-content-center">
+                    <div class="circle-count d-flex align-items-center justify-content-center cart-products">
                         {{ cart_products|length }}
                     </div>
                 </button>
@@ -110,12 +111,16 @@
                 </div>
                 <div class="cart-modal-center">
                     <p>{{ item.product.name }}</p>
-                    <span class='qty'>{{ item.qty }}</span>
+                    <span class='qty-{{ item.product.pk }}'>{{ item.qty }}</span>
                     <span class="price ml-3">{{ item.product.price }}</span>
                 </div>
                 <div>
-                    <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">
-                        <div class="delete-from-cart">
+                    <a href="{% url "webapp:cart_modal_delete" %}" id="cart-delete-{{ item.product.pk }}"
+                               data-product-pk="{{ item.product.pk }}"
+                               class="cart-modal-delete">
+{#                    <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">#}
+                        <div class="delete-from-cart" href="{% url "webapp:cart_modal_delete" %}" id="cart-delete-{{ item.product.pk }}"
+                               data-product-pk="{{ item.product.pk }}">
                         </div></a>
                 </div>
             </div>
@@ -266,10 +271,10 @@
                         <a class="nav-link" href="#">Оплата</a>
                     </li>
                     <li class="nav-item ml-0 ml-lg-4">
-                        <a class="nav-link" href="#">Доставка</a>
+                        <a class="nav-link" href="{% url 'webapp:delivery_view' %}">Доставка</a>
                     </li>
                     <li class="nav-item ml-0 ml-lg-4">
-                        <a class="nav-link" href="#">Возврат</a>
+                        <a class="nav-link" href="{% url 'webapp:return_view' %}">Возврат</a>
                     </li>
                 </ul>
             </nav>
@@ -369,6 +374,8 @@
 <script type="application/javascript" src="{% static "js/base.js" %}"></script>
 <script type="application/javascript" src="{% static "js/review.js" %}"></script>
 <script type="application/javascript" src="{% static "js/favorite.js" %}"></script>
+<script type="application/javascript" src="{% static "js/compare_ajax.js" %}"></script>
+<script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>
 
 {% block scripts %}{% endblock %}
 </body>

@@ -1,10 +1,9 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
-from webapp.models import Category, Brand
+from webapp.forms import BrandForm
+from webapp.models import Brand
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.shortcuts import redirect, get_object_or_404
-from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import redirect
 
 
 class BrandListView(UserPassesTestMixin, ListView):
@@ -25,22 +24,11 @@ class BrandListView(UserPassesTestMixin, ListView):
 class BrandCreateView(UserPassesTestMixin, CreateView):
     model = Brand
     template_name = 'base_CRUD/add.html'
-    fields = ['brand_name', 'photo']
+    form_class = BrandForm
 
     def test_func(self):
         user = self.request.user
         return user.is_staff
-
-    def form_valid(self, form):
-        text = form.cleaned_data['brand_name']
-        photo = form.cleaned_data['photo']
-        if Brand.objects.filter(brand_name=text.capitalize()):
-            messages.error(self.request, 'Бренд с таким названием уже существует!')
-            return render(self.request, 'base_CRUD/add.html', {})
-        else:
-            brand = Brand(brand_name=text.capitalize(), photo=photo)
-            brand.save()
-        return self.get_success_url()
 
     def get_success_url(self):
         return redirect('webapp:brands_list')
@@ -52,24 +40,12 @@ class BrandUpdateView(UserPassesTestMixin, UpdateView):
     fields = ['brand_name', 'photo']
     context_object_name = 'brand'
 
+    def get_success_url(self):
+        return reverse('webapp:brands_list')
+
     def test_func(self):
         user = self.request.user
         return user.is_staff
-
-    # def form_valid(self, form):
-    #     brand = form.cleaned_data['brand_name']
-    #     if Brand.objects.filter(brand_name=brand):
-    #         messages.error(self.request, 'Бренд с таким названием уже существует!')
-    #         return render(self.request, 'edit.html', {})
-    #     else:
-    #         pk = self.kwargs.get('pk')
-    #         brand = get_object_or_404(Brand, id=pk)
-    #         brand.brand_name = brand
-    #         brand.save()
-    #     return self.get_success_url()
-
-    def get_success_url(self):
-        return reverse('webapp:brands_list')
 
 
 class BrandDeleteView(UserPassesTestMixin, DeleteView):

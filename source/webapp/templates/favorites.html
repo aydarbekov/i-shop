@@ -7,7 +7,7 @@
     <div class="container delivery-content mb-5">
         <nav aria-label="breadcrumb" class="my-4">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'webapp:index' %}">Главная</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Избранное</li>
             </ol>
         </nav>
@@ -56,7 +56,10 @@
                                             <button class="promo-button-compare"></button>
                                             <button class="promo-button-share"></button>
                                         </div>
-                                        <button type="button" class="to-cart btn btn-success">В корзину</button>
+                                        <a href="{% url "webapp:cartadditem" %}"
+                                               id="cart-add-{{ product.product.pk }}" data-product-pk="{{ product.product.pk }}"
+                                               class="cartadd btn btn-success to-cart">В корзину</a>
+{#                                        <button type="button" class="to-cart btn btn-success">В корзину</button>#}
                                     </div>
                                 </div>
                             </div>
@@ -67,4 +70,6 @@
         </div>
     </div>
 {% endblock %}
-{% block scripts %}{% endblock %}
+{% block scripts %}
+{#    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
+{% endblock %}

@@ -1,8 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm, inlineformset_factory
-from webapp.models import OrderProduct, Order, Product, Image, Category
-from django import forms
+from webapp.models import OrderProduct, Order, Product, Image, Category, SubCategory, Brand
 
 
 class CartOrderCreateForm(ModelForm):
@@ -75,6 +74,44 @@ ImageFormset = inlineformset_factory(Product, Image, fields='__all__', extra=1, 
 
 ProductsFormset = inlineformset_factory(Order, OrderProduct, OrderProductForm, extra=0,
                                         validate_min=True, min_num=1, can_delete=True)
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['category_name', 'photo']
+
+    def clean_category_name(self):
+        category_name = self.cleaned_data.get('category_name')
+        if Category.objects.filter(category_name__iexact=category_name):
+            raise ValidationError('Категория с таким названием уже существует!')
+        else:
+            return category_name
+
+class SubCategoryForm(forms.ModelForm):
+    class Meta:
+        model = SubCategory
+        fields = ['sub_name']
+
+    def clean_sub_name(self):
+        sub_name = self.cleaned_data.get('sub_name')
+        if SubCategory.objects.filter(sub_name__iexact=sub_name):
+            raise ValidationError('Подраздел с таким названием уже существует!')
+        else:
+            return sub_name
+
+class BrandForm(forms.ModelForm):
+    class Meta:
+        model = Brand
+        fields = ['brand_name', 'photo']
+
+    def clean_brand_name(self):
+        brand_name = self.cleaned_data.get('brand_name')
+        if Brand.objects.filter(brand_name=brand_name):
+            raise ValidationError('Бренд с таким названием уже существует!')
+        else:
+            return brand_name
+
+
 
 
 class FullSearchForm(forms.Form):
