@@ -102,7 +102,7 @@
             <div class="bread-pagination-sort d-flex align-items-baseline">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'webapp:index' %}">Главная</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ product_category }}</li>
                     </ol>
                 </nav>
@@ -169,18 +169,20 @@
                                                         <button href="{% url "webapp:delete_from_favorites" %}"
                                                                 id="delete-from-favorites-{{ product.pk }}"
                                                                 class="red favorite-delete
-                 {% if not favorite %}d-none{% endif %}"
+{% if not favorite %}d-none{% endif %}"
                                                                 data-product-pk="{{ product.pk }}"></button>
                                                     {% endwith %}
                                                 {% endif %}
-                                                <button class="promo-button-compare"></button>
+                                                <button class="promo-button-compare compare-add" href="{% url 'webapp:compare_add' %}" data-product-pk="{{ product.pk }}">
+
+                                                </button>
                                                 <button class="promo-button-share"></button>
                                             </div>
-                                            <a href="{% url "webapp:cartadditem" %}"
-                                               id="cart-add-{{ product.pk }}" data-product-pk="{{ product.pk }}"
-                                               class="cartadd btn btn-success to-cart">В корзину</a>
-                                            {#                                                <a href="{% url 'webapp:cart_change' %}?pk={{ product.pk }}&action=add&next={% url 'webapp:products_category' product_category.pk %}" class="to-cart btn btn-success">В корзину</a>#}
-                                            {#                                                <button type="button" class="to-cart btn btn-success">В корзину</button>#}
+                                        <button type="button" class="to-cart btn btn-success cartadd"
+                                        href="{% url "webapp:cartadditem" %}"
+                                        data-product-pk="{{ product.pk }}" id="cart-add-{{ product.pk }}">В
+                                            корзину</button>
+{#                                            <button type="button" class="to-cart btn btn-success">В корзину</button>#}
                                         </div>
                                     </div>
                                 </div>
@@ -207,5 +209,5 @@
 {% endblock %}
 {% block scripts %}
     <script type="application/javascript" src="{% static "js/products.js" %}"></script>
-    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>
+{#    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
 {% endblock %}

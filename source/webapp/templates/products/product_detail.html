@@ -44,7 +44,7 @@
                     <div class="product-info d-flex flex-column">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'webapp:index' %}">Главная</a></li>
                                 <li class="breadcrumb-item"><a href="#">{{ product.category }}</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
                             </ol>
@@ -81,7 +81,7 @@
                                 {#                                <a type="button" href="{% url "webapp:carouseladditem" %}" id="carousel-add-{{ product.pk }}"#}
                                 {#                               data-product-pk="{{ product.pk }}"#}
                                 {#                               class="to-cart btn btn-success mt-0 ml-3 w-75 {% if product.carousel_product.all %}d-none{% endif %}">Добавить в корзину</a>#}
-                                <button type="button" class="to-cart btn btn-success mt-0 ml-3 w-75 cartadd"
+                                <button type="button" class="to-cart btn btn-success mt-0 ml-3 w-75"
                                         href="{% url "webapp:cartadditem" %}"
                                         data-product-pk="{{ product.pk }}" id="cart-add-{{ product.pk }}">Добавить в
                                     корзину
@@ -360,4 +360,5 @@
         });
     </script>
     {#    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
+{#    <script type="application/javascript" src="{% static "js/compare_ajax.js" %}"></script>#}
 {% endblock %}

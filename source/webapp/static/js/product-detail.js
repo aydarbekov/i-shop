@@ -61,11 +61,12 @@ function cartAdd(e) {
     })
         .done(cartAddSuccess)
         .fail(console.log);
+    location.reload()
 }
 
 
 function setUpCartButtons() {
-    $('.cartadd').click(cartAdd);
+    $('.to-cart').click(cartAdd);
 }
 $(document).ready(setUpCartButtons);
 // $(document).ready(getFullPath);

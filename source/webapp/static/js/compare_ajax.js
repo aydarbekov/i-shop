@@ -14,21 +14,21 @@ function getCookie(name) {
     return cookieValue;
 }
 
-function favoriteAddSuccess(data) {
+function compareAddSuccess(data) {
     console.log(data);
     let productPk = data.pk;
-    $('#add-to-favorites-' + productPk).addClass('d-none');
-    $('#delete-from-favorites-' + productPk).removeClass('d-none');
+    // $('#add-to-favorites-' + productPk).addClass('d-none');
+    // $('#delete-from-favorites-' + productPk).removeClass('d-none');
 }
 
-function favoriteDeleteSuccess(data) {
+function compareDeleteSuccess(data) {
     console.log(data);
     let productPk = data.pk;
-    $('#add-to-favorites-' + productPk).removeClass('d-none');
-    $('#delete-from-favorites-' + productPk).addClass('d-none');
+    // $('#add-to-favorites-' + productPk).removeClass('d-none');
+    // $('#delete-from-favorites-' + productPk).addClass('d-none');
 }
 
-function favoriteAdd(e) {
+function compareAdd(e) {
     e.preventDefault();
     let link = $(e.target);
     let href = link.attr('href');
@@ -41,12 +41,12 @@ function favoriteAdd(e) {
             'X-CSRFToken': getCookie('csrftoken')
         }
     })
-        .done(favoriteAddSuccess)
+        .done(compareAddSuccess)
         .fail(console.log);
     location.reload()
 }
 
-function favoriteDelete(e) {
+function compareDelete(e) {
     e.preventDefault();
     let link = $(e.target);
     let href = link.attr('href');
@@ -59,14 +59,12 @@ function favoriteDelete(e) {
             'X-CSRFToken': getCookie('csrftoken')
         }
     })
-        .done(favoriteDeleteSuccess)
+        .done(compareDeleteSuccess)
         .fail(console.log);
-    location.reload()
 }
 
-function setUpFavoriteButtons() {
-    $('.favorite-add').click(favoriteAdd);
-    $('.favorite-delete').click(favoriteDelete);
+function setUpCompareButtons() {
+    $('.compare-add').click(compareAdd);
+    $('.compare-delete').click(compareDelete);
 }
-
-$(document).ready(setUpFavoriteButtons);
+$(document).ready(setUpCompareButtons);
