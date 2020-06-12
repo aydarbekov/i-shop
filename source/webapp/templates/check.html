@@ -38,17 +38,25 @@
                     <div class="order-summ-table">
                         <table class="table">
                             <tbody>
+                            {% for item in cart_products %}
                             <tr>
-                                <td class="none-top-border order-product-name">Принтер для печати</td>
-                                <td class="none-top-border order-product-qty">х2</td>
-                                <td class="none-top-border order-product-summ">$200</td>
+                                <td class="none-top-border order-product-name">{{ item.product.name }}</td>
+                                <td class="none-top-border order-product-qty">х{{ item.qty }}</td>
+                                <td class="none-top-border order-product-summ">{{ item.total }}</td>
                             </tr>
-                            <tr>
-                                <td class="none-top-border order-product-name">Принтер для печати</td>
-                                <td class="none-top-border order-product-qty">х2</td>
-                                <td class="none-top-border order-product-summ">$200</td>
-                            </tr>
-                            <tr>
+                            {% endfor %}
+                            {{ cart }}
+{#                            <tr>#}
+{#                                <td class="none-top-border order-product-name">Принтер для печати</td>#}
+{#                                <td class="none-top-border order-product-qty">х2</td>#}
+{#                                <td class="none-top-border order-product-summ">$200</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <td class="none-top-border order-product-name">Принтер для печати</td>#}
+{#                                <td class="none-top-border order-product-qty">х2</td>#}
+{#                                <td class="none-top-border order-product-summ">$200</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
                                 <th class="none-top-border order-header" colspan="2" scope="row">Доставка</th>
                                 <td class="none-top-border order-summ-delivery">{{ shipping_cost }}</td>
                                 {% if shipping_message %}
