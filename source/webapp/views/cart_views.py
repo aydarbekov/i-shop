@@ -46,34 +46,37 @@ class CartView(SearchView):
 
     def get_context_data(self, **kwargs):
         cart, cart_total = self._prepare_cart()
+        shipping_cost, shipping_message = self._get_shipping_cost()
         kwargs['cart'] = cart
         kwargs['cart_total'] = cart_total
-        shipping = self.get_shipping_cost(cart_total)
-        if shipping >= 0:
-            total = shipping + cart_total
-            shipping_cost = shipping
-            # kwargs['total'] = shipping + cart_total
-            # kwargs['shipping_cost'] = shipping
-        else:
-            total = cart_total
-            shipping_cost = 0
-            # kwargs['total'] = cart_total
-            # kwargs['shipping_cost'] = 0
-            kwargs['shipping_message'] = "Стоимость доставки будет уточнена операторатором при подтверждении заказа"
         kwargs['shipping_cost'] = shipping_cost
-        kwargs['total'] = total
+        kwargs['shipping_message'] = shipping_message
+        # shipping = self.get_shipping_cost(cart_total)
+        # if shipping >= 0:
+        #     total = shipping + cart_total
+        #     shipping_cost = shipping
+        #     # kwargs['total'] = shipping + cart_total
+        #     # kwargs['shipping_cost'] = shipping
+        # else:
+        #     total = cart_total
+        #     shipping_cost = 0
+        #     # kwargs['total'] = cart_total
+        #     # kwargs['shipping_cost'] = 0
+        #     kwargs['shipping_message'] = "Стоимость доставки будет уточнена операторатором при подтверждении заказа"
+        # kwargs['shipping_cost'] = shipping_cost
+        # kwargs['total'] = total
         return super().get_context_data(**kwargs)
 
-    def get_shipping_cost(self, cart_total):
-        try:
-            deliverycost_object = DeliveryCost.objects.latest('created_at')
-            if cart_total >= deliverycost_object.free_from:
-                shipping = 0
-            else:
-                shipping = deliverycost_object.cost
-        except:
-            shipping = -1
-        return shipping
+    # def get_shipping_cost(self, cart_total):
+    #     try:
+    #         deliverycost_object = DeliveryCost.objects.latest('created_at')
+    #         if cart_total >= deliverycost_object.free_from:
+    #             shipping = 0
+    #         else:
+    #             shipping = deliverycost_object.cost
+    #     except:
+    #         shipping = -1
+    #     return shipping
 
     # def get_form_kwargs(self):
     #     kwargs = super().get_form_kwargs()
@@ -109,6 +112,11 @@ class CartView(SearchView):
                 totals[product_pk] = 0
             totals[product_pk] += 1
         return totals
+
+    def _get_shipping_cost(self):
+        shipping_cost = self.request.session.get('shipping_cost', [])
+        shipping_message = self.request.session.get('shipping_message', [])
+        return shipping_cost, shipping_message
 
     def _cart_empty(self):
         products = self.request.session.get('products', [])
@@ -163,3 +171,8 @@ def cartadditem(request):
     return JsonResponse({'pk': product.pk})
 
 
+class Check(CreateView):
+    model = Order
+    fields = ['user', 'first_name', 'last_name', 'email', 'phone', 'address', 'shipping_cost', 'products']
+    template_name = "check.html"
+    success_url = reverse_lazy('webapp:index')
