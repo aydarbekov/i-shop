@@ -297,6 +297,14 @@
   }
 },
 {
+  "model": "webapp.tag",
+  "pk": 10,
+  "fields": {
+    "name": "\u0440\u0443\u0447\u043a\u0430",
+    "created_at": "2020-06-12T10:17:27.622Z"
+  }
+},
+{
   "model": "webapp.product",
   "pk": 1,
   "fields": {
@@ -308,8 +316,8 @@
     "color": "#F0DEBA;",
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
-    "quantity": null,
-    "brand": null,
+    "quantity": 199,
+    "brand": 5,
     "tags": [
       5,
       6,
@@ -326,11 +334,11 @@
     "price": "150.00",
     "in_stock": true,
     "description": "\u0418\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442 \u0432 \u0432\u0438\u0434\u0435 \u0441\u0442\u0435\u0440\u0436\u043d\u044f, \u0438\u0437\u0433\u043e\u0442\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c\u043e\u0433\u043e \u0438\u0437 \u043f\u0438\u0448\u0443\u0449\u0435\u0433\u043e \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u0430 (\u0443\u0433\u043b\u044f, \u0433\u0440\u0430\u0444\u0438\u0442\u0430, \u0441\u0443\u0445\u0438\u0445 \u043a\u0440\u0430\u0441\u043e\u043a \u0438 \u0442\u043e\u043c\u0443 \u043f\u043e\u0434\u043e\u0431\u043d\u043e\u0433\u043e), \u043f\u0440\u0438\u043c\u0435\u043d\u044f\u0435\u043c\u044b\u0439 \u0434\u043b\u044f \u043f\u0438\u0441\u044c\u043c\u0430, \u0440\u0438\u0441\u043e\u0432\u0430\u043d\u0438\u044f, \u0447\u0435\u0440\u0447\u0435\u043d\u0438\u044f, \u043c\u0430\u0440\u043a\u0438\u0440\u043e\u0432\u043a\u0438, \u0440\u0430\u0437\u043c\u0435\u0442\u043a\u0438 (\u0432 \u0441\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u0435 \u0438 \u043d\u0430 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0441\u0442\u0432\u0435), \u0430 \u0442\u0430\u043a\u0436\u0435 \u0432 \u043a\u043e\u0441\u043c\u0435\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0445 \u0438 \u0434\u0440\u0443\u0433\u0438\u0445 \u043f\u043e\u0445\u043e\u0436\u0438\u0445 \u0446\u0435\u043b\u044f\u0445. \u0427\u0430\u0441\u0442\u043e, \u0432 \u0446\u0435\u043b\u044f\u0445 \u0443\u0434\u043e\u0431\u0441\u0442\u0432\u0430, \u043f\u0438\u0448\u0443\u0449\u0438\u0439 \u0441\u0442\u0435\u0440\u0436\u0435\u043d\u044c \u043a\u0430\u0440\u0430\u043d\u0434\u0430\u0448\u0430 \u0432\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u0432 \u0441\u043f\u0435\u0446\u0438\u0430\u043b\u044c\u043d\u0443\u044e \u043e\u043f\u0440\u0430\u0432\u0443.",
-    "color": "#F0DEBA;",
+    "color": "purple",
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
-    "quantity": null,
-    "brand": null,
+    "quantity": 16,
+    "brand": 6,
     "tags": []
   }
 },
@@ -343,10 +351,10 @@
     "price": "120.00",
     "in_stock": true,
     "description": "\u0412\u043e\u043b\u043e\u043a\u043d\u0438\u0441\u0442\u044b\u0439 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b \u0441 \u043c\u0438\u043d\u0435\u0440\u0430\u043b\u044c\u043d\u044b\u043c\u0438 \u0434\u043e\u0431\u0430\u0432\u043a\u0430\u043c\u0438. \u041f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u0435\u043d \u0432 \u0432\u0438\u0434\u0435 \u043b\u0438\u0441\u0442\u043e\u0432 \u0434\u043b\u044f \u043f\u0438\u0441\u044c\u043c\u0430, \u0440\u0438\u0441\u043e\u0432\u0430\u043d\u0438\u044f, \u0443\u043f\u0430\u043a\u043e\u0432\u043a\u0438 \u0438 \u043f\u0440\u043e\u0447\u0435\u0433\u043e, \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u043c\u044b\u0439 \u0438\u0437 \u0446\u0435\u043b\u043b\u044e\u043b\u043e\u0437\u044b: \u0440\u0430\u0441\u0442\u0435\u043d\u0438\u0439, \u0430 \u0442\u0430\u043a\u0436\u0435 \u0432\u0442\u043e\u0440\u0441\u044b\u0440\u044c\u044f (\u0442\u0440\u044f\u043f\u044c\u044f \u0438 \u043c\u0430\u043a\u0443\u043b\u0430\u0442\u0443\u0440\u044b).",
-    "color": "#F0DEBA;",
+    "color": "white",
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
-    "quantity": null,
+    "quantity": 10000,
     "brand": null,
     "tags": []
   }
@@ -363,7 +371,7 @@
     "color": "#F0DEBA;",
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
-    "quantity": null,
+    "quantity": 1000,
     "brand": null,
     "tags": [
       8,
@@ -383,8 +391,8 @@
     "color": "#F0DEBA;",
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
-    "quantity": null,
-    "brand": null,
+    "quantity": 11,
+    "brand": 3,
     "tags": [
       6,
       7
@@ -403,8 +411,8 @@
     "color": "#F0DEBA;",
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
-    "quantity": null,
-    "brand": null,
+    "quantity": 10,
+    "brand": 4,
     "tags": [
       6,
       7
@@ -423,8 +431,8 @@
     "color": "#F0DEBA;",
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
-    "quantity": null,
-    "brand": null,
+    "quantity": 100,
+    "brand": 4,
     "tags": []
   }
 },
@@ -437,11 +445,11 @@
     "price": "30.00",
     "in_stock": true,
     "description": "\u041f\u0435\u0447\u0430\u0442\u043d\u044b\u0439 \u0438\u043b\u0438 \u043f\u0438\u0441\u044c\u043c\u0435\u043d\u043d\u044b\u0439 \u043d\u043e\u0441\u0438\u0442\u0435\u043b\u044c \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438, \u0441\u043e\u0441\u0442\u043e\u044f\u0449\u0438\u0439 \u0438\u0437 \u0441\u043e\u0433\u043d\u0443\u0442\u044b\u0445 \u043f\u043e\u043f\u043e\u043b\u0430\u043c \u043b\u0438\u0441\u0442\u043e\u0432 \u0431\u0443\u043c\u0430\u0433\u0438 \u0438 \u043f\u0435\u0440\u0435\u043f\u043b\u0435\u0442\u0451\u043d\u043d\u044b\u0445 \u0432 \u043c\u0435\u0441\u0442\u0435 \u0441\u0433\u0438\u0431\u0430 \u043d\u0438\u0442\u043a\u0430\u043c\u0438 \u0438\u043b\u0438 \u0441\u043a\u043e\u0431\u0430\u043c\u0438. \u0422\u0430\u043a\u0436\u0435 \u0442\u0435\u0442\u0440\u0430\u0434\u044c\u044e \u043c\u043e\u0433\u0443\u0442 \u043d\u0430\u0437\u044b\u0432\u0430\u0442\u044c\u0441\u044f \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u044b\u0435 \u043b\u0438\u0441\u0442\u044b \u0434\u043b\u044f \u043f\u0438\u0441\u044c\u043c\u0430, \u0441\u043a\u0440\u0435\u043f\u043b\u0435\u043d\u043d\u044b\u0435 \u043a\u043b\u0435\u0435\u043c \u0438\u043b\u0438 \u043f\u0440\u043e\u0432\u043e\u043b\u043e\u0447\u043d\u043e\u0439 \u0441\u043f\u0438\u0440\u0430\u043b\u044c\u044e.",
-    "color": "#F0DEBA;",
+    "color": "pink",
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
-    "quantity": null,
-    "brand": null,
+    "quantity": 100,
+    "brand": 6,
     "tags": []
   }
 },
@@ -457,9 +465,47 @@
     "color": "#F0DEBA;",
     "discount": null,
     "date": "2020-04-29T11:41:22Z",
-    "quantity": null,
-    "brand": null,
+    "quantity": 100,
+    "brand": 5,
     "tags": []
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 10,
+  "fields": {
+    "name": "\u0420\u0443\u0447\u043a\u0430",
+    "category": 3,
+    "price": "35.00",
+    "in_stock": true,
+    "description": "\u0420\u0443\u0447\u043a\u0430 \u0448\u0430\u0440\u0438\u043a\u043e\u0432\u0430\u044f",
+    "color": "green",
+    "discount": null,
+    "date": "2020-06-12T10:17:27.609Z",
+    "quantity": 200,
+    "brand": 2,
+    "tags": [
+      10
+    ]
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 11,
+  "fields": {
+    "name": "\u0420\u0443\u0447\u043a\u0430",
+    "category": 3,
+    "price": "35.00",
+    "in_stock": true,
+    "description": "\u0420\u0443\u0447\u043a\u0430 \u0448\u0430\u0440\u0438\u043a\u043e\u0432\u0430\u044f",
+    "color": "blue",
+    "discount": null,
+    "date": "2020-06-12T10:23:53.361Z",
+    "quantity": 200,
+    "brand": 2,
+    "tags": [
+      10
+    ]
   }
 },
 {
@@ -687,6 +733,30 @@
   "fields": {
     "image": "product_images/8_FJfgp06.jpg",
     "product": 9
+  }
+},
+{
+  "model": "webapp.image",
+  "pk": 23,
+  "fields": {
+    "image": "product_images/123.jpg",
+    "product": 10
+  }
+},
+{
+  "model": "webapp.image",
+  "pk": 24,
+  "fields": {
+    "image": "product_images/234.jpg",
+    "product": 10
+  }
+},
+{
+  "model": "webapp.image",
+  "pk": 25,
+  "fields": {
+    "image": "product_images/345.jpg",
+    "product": 11
   }
 },
 {
@@ -2157,6 +2227,168 @@
     "object_repr": "\u041a\u0430\u0440\u0430\u043d\u0434\u0430\u0448",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 95,
+  "fields": {
+    "action_time": "2020-06-12T09:47:58.844Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
+    "object_id": "9",
+    "object_repr": "\u0422\u0435\u0442\u0440\u0430\u0434\u0438",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"quantity\", \"brand\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 96,
+  "fields": {
+    "action_time": "2020-06-12T09:48:21.784Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
+    "object_id": "8",
+    "object_repr": "\u0422\u0435\u0442\u0440\u0430\u0434\u0438",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"color\", \"quantity\", \"brand\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 97,
+  "fields": {
+    "action_time": "2020-06-12T09:48:32.969Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
+    "object_id": "7",
+    "object_repr": "\u041f\u043b\u0430\u0441\u0442\u0438\u043b\u0438\u043d",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"quantity\", \"brand\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 98,
+  "fields": {
+    "action_time": "2020-06-12T09:48:47.705Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
+    "object_id": "6",
+    "object_repr": "\u041f\u043b\u0430\u0441\u0442\u0438\u043b\u0438\u043d",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"quantity\", \"brand\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 99,
+  "fields": {
+    "action_time": "2020-06-12T09:49:01.058Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
+    "object_id": "5",
+    "object_repr": "\u041a\u0440\u0430\u0441\u043a\u0438",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"quantity\", \"brand\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 100,
+  "fields": {
+    "action_time": "2020-06-12T09:49:19.387Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
+    "object_id": "4",
+    "object_repr": "\u0411\u0443\u043c\u0430\u0433\u0430",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"quantity\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 101,
+  "fields": {
+    "action_time": "2020-06-12T09:49:34.068Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
+    "object_id": "3",
+    "object_repr": "\u0411\u0443\u043c\u0430\u0433\u0430 \u0421\u043d\u0435\u0433\u0443\u0440\u043e\u0447\u043a\u0430",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"color\", \"quantity\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 102,
+  "fields": {
+    "action_time": "2020-06-12T09:50:03.669Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
+    "object_id": "2",
+    "object_repr": "\u041a\u0430\u0440\u0430\u043d\u0434\u0430\u0448",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"color\", \"quantity\", \"brand\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 103,
+  "fields": {
+    "action_time": "2020-06-12T09:50:19.876Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "webapp",
+      "product"
+    ],
+    "object_id": "1",
+    "object_repr": "\u041a\u0430\u0440\u0430\u043d\u0434\u0430\u0448",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"quantity\", \"brand\"]}}]"
   }
 }
 ]
