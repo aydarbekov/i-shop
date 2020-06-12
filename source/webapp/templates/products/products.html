@@ -4,13 +4,11 @@
 {% block title %}Kanctorg{% endblock %}
 {% block menu %}
     {#    {% if perms.webapp.product_add %}#}
-    {#        <a href="{% url 'webapp:product_create' %}" class="login  d-none d-md-flex">Доб тов</a>#}
     {#        <a href="{% url 'webapp:orders' %}" class="login  d-none d-md-flex">Зак</a>#}
     {#    {% endif %}#}
 {% endblock %}
 {% block content %}
 <div class="category-detail-headline">
-    {#        <img src="{% static 'images/category_images/kanc-header3.webp' %}" alt="">#}
     <img src="{{ product_category.photo.url }}" alt="">
     <h4>{{ product_category }}</h4>
 </div>
@@ -88,7 +86,7 @@
                                 elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
                             <img class="bestseller-img mb-5" src="{% static 'images/chair.png' %}" alt="Кресло"
                                  style="">
-                            <p class="bestseller-price ml-0">$8</p>
+                            <p class="bestseller-price ml-0">8</p>
                             <button type="button" class="btn bestseller-button mr-0">в корзину</button>
                         </div>
                     </div>
@@ -153,15 +151,14 @@
                                         <a href="{% url "webapp:product_detail" product.pk %}">
                                             <h5>{{ product }}</h5></a>
                                         <p>{{ product.category }}</p>
-                                        <p class="price">{{ product.price }}</p>
+                                        <p class="price">{{ product.price }} сом</p>
                                         <div class="discount-count d-flex align-items-center justify-content-center">
                                             5%
                                         </div>
                                     </div>
                                     <div class="position-for-hidden position-relative">
                                         <div class="hidden-part text-center">
-                                            <p class="card-text">Some quick example text to build on the card
-                                                content.</p>
+                                            <p class="card-text">{{ product.description }}</p>
                                             <div class="promo-icons d-flex justify-content-center">
                                                 {% if request.user.is_authenticated %}
                                                     {% with favorite=product|is_favorite:request.user %}

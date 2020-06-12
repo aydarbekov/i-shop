@@ -19,7 +19,7 @@
     <div class="top-header">
         <div class="container h-100">
             <nav class="nav d-flex flex-nowrap align-items-center h-100">
-                <p class="promo nav-link m-0 d-none d-md-block pl-0" >Подпишись на наши соц сети и получи 10% скидку</p>
+                <p class="promo nav-link m-0 d-none d-md-block pl-0">Подпишись на наши соц сети и получи 10% скидку</p>
                 <div class="nav-link mr-auto mr-md-0 ml-auto d-flex h-100 align-items-center pr-4">
                     <a class='social-icons icon_fb' href="#"></a>
                     <a class='social-icons icon_insta' href="#"></a>
@@ -28,28 +28,31 @@
                 <div class="nav-phone nav-link align-items-center h-100 pl-5 pr-4 text-nowrap d-none d-md-flex">
                     0559 011 356
                 </div>
-                <a class="promo contacts nav-link align-items-center h-100 px-4 text-uppercase d-none d-md-flex" href="#">Контакты</a>
+                <a class="promo contacts nav-link align-items-center h-100 px-4 text-uppercase d-none d-md-flex"
+                   href="#">Контакты</a>
             </nav>
         </div>
     </div>
     <div class="middle-header container">
         <nav class="nav d-flex flex-nowrap align-items-center h-100 navbar-light">
-            <button class="burger-button navbar-toggler d-md-none" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="burger-button navbar-toggler d-md-none" type="button" data-toggle="collapse"
+                    data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="nav-link logo mx-auto ml-md-4 mr-md-0" href="{% url 'webapp:index' %}"></a>
-{% include 'partial/simple_search.html' %}
-{#            <form class="form-inline d-none d-md-flex align-items-center" method="get" action="#">#}
-{#                <input class="search form-control rounded-left" type="search" placeholder="Поиск" aria-label="Search">#}
-{##}
-{#                <p class="m-0"><select>#}
-{#                    <option selected>Категория</option>#}
-{#                    {% for category in categories %}#}
-{#                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>#}
-{#                    {% endfor %}#}
-{#                </select></p>#}
-{#                <button class="search-button btn my-2 my-sm-0 rounded-right" type="submit"><i class="fas fa-search"></i></button>#}
-{#            </form>#}
+            {% include 'partial/simple_search.html' %}
+            {#            <form class="form-inline d-none d-md-flex align-items-center" method="get" action="#">#}
+            {#                <input class="search form-control rounded-left" type="search" placeholder="Поиск" aria-label="Search">#}
+            {##}
+            {#                <p class="m-0"><select>#}
+            {#                    <option selected>Категория</option>#}
+            {#                    {% for category in categories %}#}
+            {#                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>#}
+            {#                    {% endfor %}#}
+            {#                </select></p>#}
+            {#                <button class="search-button btn my-2 my-sm-0 rounded-right" type="submit"><i class="fas fa-search"></i></button>#}
+            {#            </form>#}
             <div class="nav-link text-uppercase ml-md-auto d-flex align-items-center justify-content-between">
                 {% block menu %}{% endblock %}
                 {% if perms.webapp.product_add %}
@@ -75,18 +78,24 @@
                 {% endif %}
 
                 {% if request.user.is_authenticated %}
-                    <a class="login  d-none d-md-flex" href="{% url 'accounts:user_detail' request.user.pk %}">{{ request.user }}!</a>
+                    <a class="login  d-none d-md-flex"
+                       href="{% url 'accounts:user_detail' request.user.pk %}">{{ request.user }}!</a>
                     <a class="login  d-none d-md-flex" href="{% url 'accounts:logout' %}">Выйти</a>
                 {% else %}
                     <a class="login  d-none d-md-flex" href="{% url 'accounts:login' %}">Войти</a>
                     <a class="login  d-none d-md-flex" href="{% url 'accounts:register' %}">Зарегистрироваться</a>
                 {% endif %}
-                <a class=" {% if request.user.favorites.all %}red3{% else %}favorites btn{% endif %}" href="{% url 'webapp:favorite_products' %}">
-                    <div class="circle-count d-flex align-items-center justify-content-center">
-                        {{ request.user.favorites.all|length }}
-                    </div>
+                {% if request.user.is_authenticated %}
+                    <a class=" {% if request.user.favorites.all %}red3{% else %}favorites btn{% endif %}"
+                       href="{% url 'webapp:favorite_products' %}">
+                        <div class="circle-count d-flex align-items-center justify-content-center">
+                            {{ request.user.favorites.all|length }}
+                        </div>
+                    </a>
+                {% endif %}
+                <a class="compare d-none d-md-flex" href="#">
+                    <div class="circle-count d-flex align-items-center justify-content-center">1</div>
                 </a>
-                <a class="compare d-none d-md-flex" href="#"><div class="circle-count d-flex align-items-center justify-content-center">1</div></a>
                 <button class="cart btn">
                     <div class="circle-count d-flex align-items-center justify-content-center">
                         {{ cart_products|length }}
@@ -99,33 +108,35 @@
         <h3>Корзина</h3>
         <div class="products-in-cart-modal">
             {% for item in cart_products %}
-            <div class="product-in-cart-modal d-flex">
-                <div class="photo-back">
-                    {% if item.product.images %}
-                        <img src="{{ item.product.images.first.image.url }}" class="product-photo card-img-top" alt="...">
-                    {% else %}
-                        <img src="{% static "images/no_photo.jpg" %}" class="product-photo card-img-top" alt="...">
-                    {% endif %}
-{#                    <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">#}
+                <div class="product-in-cart-modal d-flex">
+                    <div class="photo-back">
+                        {% if item.product.images %}
+                            <img src="{{ item.product.images.first.image.url }}" class="product-photo card-img-top"
+                                 alt="...">
+                        {% else %}
+                            <img src="{% static "images/no_photo.jpg" %}" class="product-photo card-img-top" alt="...">
+                        {% endif %}
+                        {#                    <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">#}
+                    </div>
+                    <div class="cart-modal-center">
+                        <p>{{ item.product.name }}</p>
+                        <span class='qty'>{{ item.qty }}</span>
+                        <span class="price ml-3">{{ item.product.price }}</span>
+                    </div>
+                    <div>
+                        <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">
+                            <div class="delete-from-cart">
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="cart-modal-center">
-                    <p>{{ item.product.name }}</p>
-                    <span class='qty'>{{ item.qty }}</span>
-                    <span class="price ml-3">{{ item.product.price }}</span>
-                </div>
-                <div>
-                    <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:cart' %}">
-                        <div class="delete-from-cart">
-                        </div></a>
-                </div>
-            </div>
             {% endfor %}
         </div>
         <div class="cart-modal-summ d-flex justify-content-between my-4">
             <span class="name">Итого:</span>
-{#            {% for item in cart_products %}#}
+            {#            {% for item in cart_products %}#}
             <span class="summ">{{ cart_total }}</span>
-{#            {% endfor %}#}
+            {#            {% endfor %}#}
         </div>
         <a href="{% url "webapp:cart" %}" class="btn cart-modal-to-cart">Корзина</a>
         <a class="btn cart-modal-check" href="">Проверить</a>
@@ -145,115 +156,30 @@
             <nav class="navbar navbar-expand navbar-light d-none d-md-flex p-0 ">
                 <ul class="navbar-nav h-100 align-items-center h-100">
                     <li class=" dropdown h-100">
-                        <a class="all-category nav-link dropdown-toggle d-inline-block h-100 d-flex align-items-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="all-category nav-link dropdown-toggle d-inline-block h-100 d-flex align-items-center"
+                           href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
                             <p>Все категории</p>
                         </a>
                         {#                        <li class="active"><a href="/blog/category/{{ category.slug }}?page={{ pag }}">{{ pag }}</a></li>#}
                         <div class="dropdown-menu mt-0 rounded-0" aria-labelledby="navbarDropdownMenuLink">
                             {% for category in categories %}
                                 <div class="dropdown-item dropright">
-                                    <a class="category nav-link d-flex align-items-center pl-0" href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <a href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}" class="category nav-link dropdown-toggle d-flex align-items-center pl-0"><p>{{ category.category_name }}</p></a>
+                                    <a class="category nav-link d-flex align-items-center pl-0"
+                                       href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}"
+                                       id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown"
+                                       aria-haspopup="true" aria-expanded="false">
+                                        <a href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}"
+                                           class="category nav-link dropdown-toggle d-flex align-items-center pl-0">
+                                            <p>{{ category.category_name }}</p></a>
                                     </a>
                                     <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">
                                         {% for subcategory in category.subcategories.all %}
-                                            {#                                        <a class="dropdown-item" href="#">1Another action</a>#}
-                                            {#                                        <a class="dropdown-item" href="#">2Another action</a>#}
                                             <a class="dropdown-item" href="#">{{ subcategory.sub_name }}</a>
                                         {% endfor %}
                                     </div>
                                 </div>
                             {% endfor %}
-                            {#                            <div class="dropdown-item dropright">#}
-                            {#                                <a class="category nav-link dropdown-toggle d-flex align-items-center pl-0" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-                            {#                                    <p>Канцтовары</p>#}
-                            {#                                </a>#}
-                            {#                                <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">#}
-                            {#                                    <a class="dropdown-item" href="#">3Action</a>#}
-                            {#                                    <a class="dropdown-item" href="#">4Another action</a>#}
-                            {#                                </div>#}
-                            {#                            </div>#}
-                            {#                            <div class="dropdown-item dropright">#}
-                            {#                                <a class="category nav-link dropdown-toggle d-flex align-items-center pl-0" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-                            {#                                    <p>Хозяйственные товары</p>#}
-                            {#                                </a>#}
-                            {#                                <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">#}
-                            {#                                    <a class="dropdown-item" href="#">5Action</a>#}
-                            {#                                    <a class="dropdown-item" href="#">6Another action</a>#}
-                            {#                                </div>#}
-                            {#                            </div>#}
-                            {#                            <div class="dropdown-item dropright">#}
-                            {#                                <a class="category nav-link dropdown-toggle d-flex align-items-center pl-0" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-                            {#                                    <p>Компьютеры и периферия</p>#}
-                            {#                                </a>#}
-                            {#                                <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">#}
-                            {#                                    <a class="dropdown-item" href="#">7Action</a>#}
-                            {#                                    <a class="dropdown-item" href="#">8Another action</a>#}
-                            {#                                </div>#}
-                            {#                            </div>#}
-                            {#                            <div class="dropdown-item dropright">#}
-                            {#                                <a class="category nav-link dropdown-toggle d-flex align-items-center pl-0" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-                            {#                                    <p>Картриджи</p>#}
-                            {#                                </a>#}
-                            {#                                <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">#}
-                            {#                                    <a class="dropdown-item" href="#">9Action</a>#}
-                            {#                                    <a class="dropdown-item" href="#">10Another action</a>#}
-                            {#                                </div>#}
-                            {#                            </div>#}
-                            {#                            <div class="dropdown-item dropright">#}
-                            {#                                <a class="category nav-link dropdown-toggle d-flex align-items-center pl-0" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-                            {#                                    <p>Товары для школы</p>#}
-                            {#                                </a>#}
-                            {#                                <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">#}
-                            {#                                    <a class="dropdown-item" href="#">9Action</a>#}
-                            {#                                    <a class="dropdown-item" href="#">10Another action</a>#}
-                            {#                                </div>#}
-                            {#                            </div>#}
-                            {#                            <div class="dropdown-item dropright">#}
-                            {#                                <a class="category nav-link dropdown-toggle d-flex align-items-center pl-0" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-                            {#                                    <p>Офисная техника</p>#}
-                            {#                                </a>#}
-                            {#                                <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">#}
-                            {#                                    <a class="dropdown-item" href="#">9Action</a>#}
-                            {#                                    <a class="dropdown-item" href="#">10Another action</a>#}
-                            {#                                </div>#}
-                            {#                            </div>#}
-                            {#                            <div class="dropdown-item dropright">#}
-                            {#                                <a class="category nav-link dropdown-toggle d-flex align-items-center pl-0" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-                            {#                                    <p>Посуда и текстиль</p>#}
-                            {#                                </a>#}
-                            {#                                <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">#}
-                            {#                                    <a class="dropdown-item" href="#">9Action</a>#}
-                            {#                                    <a class="dropdown-item" href="#">10Another action</a>#}
-                            {#                                </div>#}
-                            {#                            </div>#}
-                            {#                            <div class="dropdown-item dropright">#}
-                            {#                                <a class="category nav-link dropdown-toggle d-flex align-items-center pl-0" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-                            {#                                    <p>Товары для творчества</p>#}
-                            {#                                </a>#}
-                            {#                                <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">#}
-                            {#                                    <a class="dropdown-item" href="#">9Action</a>#}
-                            {#                                    <a class="dropdown-item" href="#">10Another action</a>#}
-                            {#                                </div>#}
-                            {#                            </div>#}
-                            {#                            <div class="dropdown-item dropright">#}
-                            {#                                <a class="category nav-link dropdown-toggle d-flex align-items-center pl-0" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-                            {#                                    <p>Товары для торговли</p>#}
-                            {#                                </a>#}
-                            {#                                <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">#}
-                            {#                                    <a class="dropdown-item" href="#">9Action</a>#}
-                            {#                                    <a class="dropdown-item" href="#">10Another action</a>#}
-                            {#                                </div>#}
-                            {#                            </div>#}
-                            {#                            <div class="dropdown-item dropright">#}
-                            {#                                <a class="category nav-link dropdown-toggle d-flex align-items-center pl-0" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-                            {#                                    <p>Уцененные товары</p>#}
-                            {#                                </a>#}
-                            {#                                <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">#}
-                            {#                                    <a class="dropdown-item" href="#">9Action</a>#}
-                            {#                                    <a class="dropdown-item" href="#">10Another action</a>#}
-                            {#                                </div>#}
-                            {#                            </div>#}
                         </div>
                     </li>
                     <li class="nav-item ml-0 ml-lg-4">
@@ -290,10 +216,12 @@
     <div class="info-block row" id="accordionExample">
         <div class="col-10 col-md-3">
             <div class="info-card">
-                <button class="info-btn" type="button" data-toggle="collapse" data-target="#infoOne" aria-expanded="true" aria-controls="infoOne">
+                <button class="info-btn" type="button" data-toggle="collapse" data-target="#infoOne"
+                        aria-expanded="true" aria-controls="infoOne">
                     <span>Заголовок_1</span>
                 </button>
-                <div id="infoOne" class="collapse card-body" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="infoOne" class="collapse card-body" aria-labelledby="headingOne"
+                     data-parent="#accordionExample">
                     <p>Lorem ipsum dolor.</p>
                     <p>Lorem ipsum dolor.</p>
                     <p>Lorem ipsum dolor.</p>
@@ -307,10 +235,12 @@
         </div>
         <div class="col-10 col-md-3">
             <div class="info-card">
-                <button class="info-btn" type="button" data-toggle="collapse" data-target="#infoTwo" aria-expanded="true" aria-controls="infoOne">
+                <button class="info-btn" type="button" data-toggle="collapse" data-target="#infoTwo"
+                        aria-expanded="true" aria-controls="infoOne">
                     <span>Заголовок_2</span>
                 </button>
-                <div id="infoTwo" class="collapse card-body" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="infoTwo" class="collapse card-body" aria-labelledby="headingOne"
+                     data-parent="#accordionExample">
                     <p>Lorem ipsum dolor.</p>
                     <p>Lorem ipsum dolor.</p>
                     <p>Lorem ipsum dolor.</p>
@@ -324,10 +254,12 @@
         </div>
         <div class="col-10 col-md-3">
             <div class="info-card">
-                <button class="info-btn" type="button" data-toggle="collapse" data-target="#infoThree" aria-expanded="true" aria-controls="infoOne">
+                <button class="info-btn" type="button" data-toggle="collapse" data-target="#infoThree"
+                        aria-expanded="true" aria-controls="infoOne">
                     <span>Заголовок_3</span>
                 </button>
-                <div id="infoThree" class="collapse card-body" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="infoThree" class="collapse card-body" aria-labelledby="headingOne"
+                     data-parent="#accordionExample">
                     <p>Lorem ipsum dolor.</p>
                     <p>Lorem ipsum dolor.</p>
                     <p>Lorem ipsum dolor.</p>
@@ -341,10 +273,12 @@
         </div>
         <div class="col-10 col-md-3">
             <div class="info-card">
-                <button class="info-btn" type="button" data-toggle="collapse" data-target="#infoFour" aria-expanded="true" aria-controls="infoOne">
+                <button class="info-btn" type="button" data-toggle="collapse" data-target="#infoFour"
+                        aria-expanded="true" aria-controls="infoOne">
                     <span>Заголовок_4</span>
                 </button>
-                <div id="infoFour" class="collapse card-body" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="infoFour" class="collapse card-body" aria-labelledby="headingOne"
+                     data-parent="#accordionExample">
                     <p>Lorem ipsum dolor.</p>
                     <p>Lorem ipsum dolor.</p>
                     <p>Lorem ipsum dolor.</p>
@@ -362,7 +296,9 @@
 
 <script type="application/javascript" src="{% static "js/jquery-3.5.1.js" %}"></script>
 <script type="text/javascript" src='{% static "js/jquery-ui.min.js" %}'></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
 <script type="application/javascript" src="{% static "js/bootstrap.js" %}"></script>
 <script type="application/javascript" src="{% static "js/fontawsome.js" %}"></script>
 <script type="text/javascript" src="{% static "js/slick.min.js" %}"></script>
