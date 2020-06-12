@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.views import View
 
 from webapp.models import Category, Product, OrderProduct, DeliveryCost
@@ -26,13 +27,9 @@ def cart_products(request):
         total = shipping + cart_total
         shipping_cost = shipping
         shipping_message = None
-        # kwargs['total'] = shipping + cart_total
-        # kwargs['shipping_cost'] = shipping
     else:
         total = cart_total
         shipping_cost = 0
-        # kwargs['total'] = cart_total
-        # kwargs['shipping_cost'] = 0
         shipping_message = "Стоимость доставки будет уточнена операторатором при подтверждении заказа"
     return {"cart_products": cart, "cart_total": cart_total, "shipping_message": shipping_message, "shipping_cost": shipping_cost, "total": total}
 

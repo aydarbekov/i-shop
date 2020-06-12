@@ -46,11 +46,11 @@ class CartView(SearchView):
 
     def get_context_data(self, **kwargs):
         cart, cart_total = self._prepare_cart()
-        shipping_cost, shipping_message = self._get_shipping_cost()
+        # shipping_cost, shipping_message = self._get_shipping_cost()
         kwargs['cart'] = cart
         kwargs['cart_total'] = cart_total
-        kwargs['shipping_cost'] = shipping_cost
-        kwargs['shipping_message'] = shipping_message
+        # kwargs['shipping_cost'] = shipping_cost
+        # kwargs['shipping_message'] = shipping_message
         # shipping = self.get_shipping_cost(cart_total)
         # if shipping >= 0:
         #     total = shipping + cart_total
@@ -83,15 +83,15 @@ class CartView(SearchView):
     #     kwargs['user'] = self.request.user
     #     return kwargs
 
-    def form_valid(self, form):
-        if self._cart_empty():
-            form.add_error(None, 'В корзине отсутствуют товары!')
-            return self.form_invalid(form)
-        response = super().form_valid(form)
-        self._save_order_products()
-        self._clean_cart()
-        messages.success(self.request, 'Заказ оформлен!')
-        return response
+    # def form_valid(self, form):
+    #     if self._cart_empty():
+    #         form.add_error(None, 'В корзине отсутствуют товары!')
+    #         return self.form_invalid(form)
+    #     response = super().form_valid(form)
+    #     self._save_order_products()
+    #     self._clean_cart()
+    #     messages.success(self.request, 'Заказ оформлен!')
+    #     return response
 
     def _prepare_cart(self):
         totals = self._get_totals()
@@ -113,25 +113,26 @@ class CartView(SearchView):
             totals[product_pk] += 1
         return totals
 
-    def _get_shipping_cost(self):
-        shipping_cost = self.request.session.get('shipping_cost', [])
-        shipping_message = self.request.session.get('shipping_message', [])
-        return shipping_cost, shipping_message
+    # def _get_shipping_cost(self):
+    #     shipping_cost = self.request.session.get('shipping_cost', [])
+    #     print(shipping_cost)
+    #     shipping_message = self.request.session.get('shipping_message', [])
+    #     return shipping_cost, shipping_message
 
-    def _cart_empty(self):
-        products = self.request.session.get('products', [])
-        return len(products) == 0
-
-    def _save_order_products(self):
-        totals = self._get_totals()
-        for pk, qty in totals.items():
-            OrderProduct.objects.create(product_id=pk, order=self.object, amount=qty)
-
-    def _clean_cart(self):
-        if 'products' in self.request.session:
-            self.request.session.pop('products')
-        if 'products_count' in self.request.session:
-            self.request.session.pop('products_count')
+    # def _cart_empty(self):
+    #     products = self.request.session.get('products', [])
+    #     return len(products) == 0
+    #
+    # def _save_order_products(self):
+    #     totals = self._get_totals()
+    #     for pk, qty in totals.items():
+    #         OrderProduct.objects.create(product_id=pk, order=self.object, amount=qty)
+    #
+    # def _clean_cart(self):
+    #     if 'products' in self.request.session:
+    #         self.request.session.pop('products')
+    #     if 'products_count' in self.request.session:
+    #         self.request.session.pop('products_count')
 
 
 def cartdeleteitem(request):
