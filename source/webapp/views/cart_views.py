@@ -40,7 +40,6 @@ from webapp.views.product_views import SearchView
 
 class CartView(SearchView):
     model = Order
-    # form_class = CartOrderCreateForm
     form_class = FullSearchForm
     template_name = 'cart/cart.html'
     success_url = reverse_lazy('webapp:index')
@@ -51,12 +50,18 @@ class CartView(SearchView):
         kwargs['cart_total'] = cart_total
         shipping = self.get_shipping_cost(cart_total)
         if shipping >= 0:
-            kwargs['total'] = shipping + cart_total
-            kwargs['shipping_cost'] = shipping
+            total = shipping + cart_total
+            shipping_cost = shipping
+            # kwargs['total'] = shipping + cart_total
+            # kwargs['shipping_cost'] = shipping
         else:
-            kwargs['total'] = cart_total
-            kwargs['shipping_cost'] = 0
+            total = cart_total
+            shipping_cost = 0
+            # kwargs['total'] = cart_total
+            # kwargs['shipping_cost'] = 0
             kwargs['shipping_message'] = "Стоимость доставки будет уточнена операторатором при подтверждении заказа"
+        kwargs['shipping_cost'] = shipping_cost
+        kwargs['total'] = total
         return super().get_context_data(**kwargs)
 
     def get_shipping_cost(self, cart_total):
