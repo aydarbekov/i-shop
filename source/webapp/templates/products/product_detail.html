@@ -12,13 +12,14 @@
         <div class="product-content">
             <div class="row">
                 <div class="col-12 col-md-5 mt-5">
-                    {% if product.images %}
-                        <a href="{{ product.images.first.image.url }}" data-fancybox="gallery"
-                           data-caption="Caption #1">
-                    {% else %}
-                        {% load static %}<a href="{% static "images/no_photo.jpg" %}" data-fancybox="gallery"
-                                            data-caption="Caption #1">
-                    {% endif %}
+{#                    {% for product in same_products.all %}#}
+                        {% if product.images %}
+                            <a href="{{ product.images.first.image.url }}" data-fancybox="gallery"
+                               data-caption="Caption #1">
+                        {% else %}
+                            {% load static %}<a href="{% static "images/no_photo.jpg" %}" data-fancybox="gallery"
+                                                data-caption="Caption #1">
+                        {% endif %}
                     <div class="photo-back">
                         {% if product.images %}
                             <img src="{{ product.images.first.image.url }}" class="card-img-top"
@@ -28,7 +29,7 @@
                         {% endif %}
                     </div>
                     </a>
-                    <div class="lil-imgs justify-content-between mt-4 d-none d-sm-flex">
+                        <div class="lil-imgs justify-content-between mt-4 d-none d-sm-flex">
                         {% for image in product.images.all %}
                             {% if image.image.url != product.images.first.image.url %}
                                 <a href="{{ image.image.url }}" data-fancybox="gallery" data-caption="Caption #1">
@@ -38,6 +39,7 @@
                                 </a>
                             {% endif %}
                         {% endfor %}
+{#                    {% endfor %}#}
                     </div>
                 </div>
                 <div class="col-12 col-md-7 mt-5">
@@ -126,18 +128,21 @@
                             <hr/>
                             <div class="color d-flex align-items-center">
                                 <p class="mr-3 mb-0">Цвета:</p>
-                                <button type="button" class="btn color-btn" style="background-color: {{ product.color }}">
-                                    <p class="btns-inside-white"></p>
-                                </button>
-{#                                <button type="button" class="btn color-btn" style="background-color: #83B734;;">#}
-{#                                    <p class="btns-inside-white"></p>#}
-{#                                </button>#}
-{#                                <button type="button" class="btn color-btn" style="background-color: #585858;;">#}
-{#                                    <p class="btns-inside-white"></p>#}
-{#                                </button>#}
-{#                                <button type="button" class="btn color-btn" style="background-color: #6CC1E4;;">#}
-{#                                    <p class="btns-inside-white"></p>#}
-{#                                </button>#}
+                                {% for prod in same_products.all %}
+                                    <button type="button" class="btn color-btn"
+                                            style="background-color:{{ prod.color }}">
+                                        <p class="btns-inside-white"></p>
+                                    </button>
+                                {% endfor %}
+                                {#                                <button type="button" class="btn color-btn" style="background-color: #83B734;;">#}
+                                {#                                    <p class="btns-inside-white"></p>#}
+                                {#                                </button>#}
+                                {#                                <button type="button" class="btn color-btn" style="background-color: #585858;;">#}
+                                {#                                    <p class="btns-inside-white"></p>#}
+                                {#                                </button>#}
+                                {#                                <button type="button" class="btn color-btn" style="background-color: #6CC1E4;;">#}
+                                {#                                    <p class="btns-inside-white"></p>#}
+                                {#                                </button>#}
                             </div>
                             <div class="category d-flex">
                                 <p>Категория:</p>
@@ -360,5 +365,5 @@
         });
     </script>
     {#    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
-{#    <script type="application/javascript" src="{% static "js/compare_ajax.js" %}"></script>#}
+    {#    <script type="application/javascript" src="{% static "js/compare_ajax.js" %}"></script>#}
 {% endblock %}
