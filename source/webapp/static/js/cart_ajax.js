@@ -124,9 +124,30 @@ function cartModalDelete(e) {
     location.reload();
 }
 
+function cartCartAdd(e) {
+    e.preventDefault();
+    let link = $(e.target);
+    let href = link.attr('href');
+    let product_pk = link.data('product-pk');
+    let qtyFormsInput = $("#gty-" + product_pk);
+    let qty = qtyFormsInput.val();
+    $.ajax({
+        method: 'post',
+        url: href,
+        data:  {'pk':product_pk, 'qty':qty},
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+    })
+        .done(cartAddSuccess)
+        .fail(console.log);
+    location.reload()
+}
+
 function setUpCartButtons() {
     $('.cartadd').click(cartAdd);
     $('.cartdelete').click(cartDelete);
     $('.cart-modal-delete').click(cartModalDelete);
+    $('.cart-cart-add').click(cartCartAdd);
 }
 $(document).ready(setUpCartButtons);

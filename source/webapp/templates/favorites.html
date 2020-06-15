@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="position-for-hidden position-relative">
                                     <div class="hidden-part text-center">
-                                        <p class="card-text">Some quick example text to build on the card content.</p>
+                                        <p class="card-text">{{ product.product.description }}</p>
                                         <div class="promo-icons d-flex justify-content-center">
                                             {% if request.user.is_authenticated %}
                                                 {% with favorite=product.product|is_favorite:request.user %}

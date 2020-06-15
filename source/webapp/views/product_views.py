@@ -53,6 +53,11 @@ class ProductView(DetailView, SearchView):
     #     url = reverse('webapp:search_results') + '?' + query
     #     return redirect(url)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['same_products'] = Product.objects.filter(name=self.object, brand=self.object.brand)
+        return context
+
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
     model = Product
