@@ -7,6 +7,7 @@ CITY_CHOICES = (
     ('Bishkek', 'Бишкек'),
 )
 COLOR_CHOICES = (
+    ('none', 'нет'),
     ('white', 'Белый'),
     ('green', 'Зеленый'),
     ('grey', 'Серый'),
@@ -16,7 +17,7 @@ COLOR_CHOICES = (
     ('black', 'Черный'),
     ('orange', 'Оранжевый'),
     ('brown', 'Коричневый'),
-    ('#F0DEBA;', 'Бежевый'),
+    ('#F0DEBA', 'Бежевый'),
     ('pink', 'Розовый'),
     ('purple', 'Фиолетовый'),
     ('darkblue', 'Темно-синий'),

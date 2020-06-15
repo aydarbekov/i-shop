@@ -15,6 +15,7 @@
                 <th scope="col">Название</th>
                 <th scope="col">Категория</th>
                 <th scope="col">Бренд</th>
+                <th scope="col">Количество</th>
                 <th class="symbol hiddenbutton" scope="col">Добавить в Карусель</th>
                 <th class="symbol hiddenbutton" scope="col">Редактировать</th>
                 <th class="symbol hiddenbutton" scope="col">Удалить</th>
@@ -35,6 +36,7 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.category }}</td>
                     <td>{{ product.brand }}</td>
+                    <td>{{ product.quantity }}</td>
                     <td>
 {#                        {% if  not product.carousel_product.all %}#}
                             {% csrf_token %}

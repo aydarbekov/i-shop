@@ -15,14 +15,23 @@
                         </ol>
                     </nav>
                     <h4>Платежные реквизиты</h4>
-                    <form id='pay-form' action="">
+                    <form method="POST" enctype="multipart/form-data" id='pay-form' action="{% url "webapp:check_cart"%}">
+                        {% csrf_token %}
                         <div class="first-last-name">
+{#                            <form method="POST" enctype="multipart/form-data" action="{% url "webapp:check_cart" %}">#}
+{#                              <form method="POST" action="{% url "article_add" %}">#}
+{#                                  {% csrf_token %}#}
+{#                            <p><label>Title</label> <input type="text" name="title"></p>#}
+{#                            <p><label>Author</label> <input type="text" name="author"></p>#}
+{#                                  <p><label>Text</label> <textarea name="text"></textarea></p>#}
+{#                            <p><input type="submit" value="Submit"></p>#}
+{#                             </form>#}
                             <input type="text" name="first_name" autofocus placeholder="Ваше Имя">
                             <input type="text" name="last_name"  placeholder="Ваша фамилия">
                         </div>
                         <input type="text" name="company_name"  placeholder="Имя компании">
                         <input type="text" name="city"  placeholder="Город">
-                        <input type="text" name="adress"  placeholder="Адрес">
+                        <input type="text" name="address"  placeholder="Адрес">
                         <input type="text" name="phone"  placeholder="Номер телефона">
                         <input type="text" name="mail"  placeholder="Почта">
                         <div class="create-account-checkbox">
@@ -38,27 +47,27 @@
                     <div class="order-summ-table">
                         <table class="table">
                             <tbody>
+                            {% for item in cart_products %}
                             <tr>
-                                <td class="none-top-border order-product-name">Принтер для печати</td>
-                                <td class="none-top-border order-product-qty">х2</td>
-                                <td class="none-top-border order-product-summ">$200</td>
+                                <td class="none-top-border order-product-name">{{ item.product.name }}</td>
+                                <td class="none-top-border order-product-qty">х{{ item.qty }}</td>
+                                <td class="none-top-border order-product-summ">{{ item.total }}</td>
                             </tr>
-                            <tr>
-                                <td class="none-top-border order-product-name">Принтер для печати</td>
-                                <td class="none-top-border order-product-qty">х2</td>
-                                <td class="none-top-border order-product-summ">$200</td>
-                            </tr>
-                            <tr>
+                            {% endfor %}
+                            {{ cart }}
                                 <th class="none-top-border order-header" colspan="2" scope="row">Доставка</th>
-                                <td class="none-top-border order-summ-delivery">$50</td>
+                                <td class="none-top-border order-summ-delivery">{{ shipping_cost }}</td>
+                                {% if shipping_message %}
+                                <p style="color: red">{{ shipping_message }}</p>
+                                {% endif %}
                             </tr>
                             <tr>
                                 <th class="none-top-border order-header pb-4" colspan="2" scope="row">Итог</th>
-                                <td class="none-top-border order-summ-delivery pb-4">$10</td>
+                                <td class="none-top-border order-summ-delivery pb-4">{{ cart_total }}</td>
                             </tr>
                             <tr>
                                 <th class="order-header-itog" colspan="2" scope="row">Общий итог</th>
-                                <td class="order-product-summ">$1210</td>
+                                <td class="order-product-summ">{{ total }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -81,9 +90,18 @@
                         <input type="checkbox" id="agree" name="agree">
                         <label for="agree">Я прочитал и согласен с условиями сайта</label>
                     </div>
-                    <div class="pay-btn">
-                        <button type="button" class="to-cart btn btn-success" disabled>Перейти к оплате</button>
-                    </div>
+{#                    <div class="pay-btn">#}
+{#                        <button type="button" class="to-cart btn btn-success" disabled>Перейти к оплате</button>#}
+{#                    </div>#}
+{#                    <form method="POST" enctype="multipart/form-data" action="">#}
+{#            {% include "partial/form.html" %}#}
+{#                        {% csrf_token %}#}
+                        <div class="pay-btn">
+{#                            <p type="button" class="to-cart btn btn-success" disabled><input type="submit" value="Перейти к оплате"#}
+{#                                          style="background-color: #83B734; color: white"></p>#}
+                            <button type="button" class="to-cart btn btn-success" disabled><input type="submit" value="Перейти к оплате"></button>
+                        </div>
+        </form>
                 </div>
             </div>
         </div>
