@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, ListView
 from django.views.generic.base import View
@@ -42,6 +42,7 @@ class CartView(SearchView):
     model = Order
     form_class = FullSearchForm
     template_name = 'cart/cart.html'
+
     # success_url = reverse_lazy('webapp:index')
 
     def get_context_data(self, **kwargs):
@@ -146,6 +147,7 @@ def cartdeleteitem(request):
     request.session['products_count'] = len(products)
     return JsonResponse({'pk': products})
 
+
 def cart_modal_delete(request):
     products = request.session.get('products', [])
     pk = request.POST.get('pk')
@@ -177,3 +179,109 @@ class Check(CreateView):
     fields = ['user', 'first_name', 'last_name', 'email', 'phone', 'address', 'shipping_cost', 'products']
     template_name = "check.html"
     success_url = reverse_lazy('webapp:index')
+
+    def get_initial(self):
+        first_name = "Vasys"
+        last_name = "JJFNNJ"
+        phone = "+996555444855"
+        return {
+            'first_name': first_name,
+            "last_name": last_name,
+            "phone": phone,
+        }
+
+    # def get_context_data(self, **kwargs):
+    #     self.first_name = "Vasys"
+    #     kwargs['first_name'] = self.first_name
+    #     return super().get_context_data(**kwargs)
+
+    def get(self, request, *args, **kwargs):
+        user = self.request.user
+        print("USER", user)
+        if user.is_authenticated:
+            print("user", user)
+            first_name = user.first_name
+            last_name = user.last_name
+            email = user.email
+            phone = user.profile.mobile_phone
+            # address = user.address
+            print("first-name", first_name)
+            print("last-name", last_name)
+            print("PHoNE", phone)
+            print("email", email)
+            # self.request['first_name'] = first_name
+        else:
+            first_name = "NNNNNN"
+        return render(request, 'check.html', context={'first_name': first_name})
+    #
+    # def form_valid(self, form):
+    #     name = self.kwargs.get('name')
+    #     print("NAME", name)
+
+    def post(self, request, *args, **kwargs):
+        user = self.request.user
+        name = self.request.POST.get("first_name", '')
+        last_name = self.request.POST.get('last_name', '')
+        email = self.request.POST.get('email', '')
+        phone = self.request.POST.get('phone', '')
+        # print(first_name)
+        print("NAME", name)
+        delivery = DeliveryCost.objects.latest('created_at')
+        return redirect('webapp:index')
+
+    def _cart_empty(self):
+        products = self.request.session.get('products', [])
+        return len(products) == 0
+
+    def form_valid(self, form):
+        if self._cart_empty():
+            form.add_error(None, 'В корзине отсутствуют товары!')
+            return self.form_invalid(form)
+        response = super().form_valid(form)
+        self._save_order_products()
+        self._clean_cart()
+        messages.success(self.request, 'Заказ оформлен!')
+        return response
+
+    def _prepare_cart(self):
+        totals = self._get_totals()
+        cart = []
+        cart_total = 0
+        for pk, qty in totals.items():
+            product = Product.objects.get(pk=int(pk))
+            total = product.price * qty
+            cart_total += total
+            cart.append({'product': product, 'qty': qty, 'total': total})
+        return cart, cart_total
+
+    def _get_totals(self):
+        products = self.request.session.get('products', [])
+        totals = {}
+        for product_pk in products:
+            if product_pk not in totals:
+                totals[product_pk] = 0
+            totals[product_pk] += 1
+        return totals
+
+    def _save_order_products(self):
+        totals = self._get_totals()
+        for pk, qty in totals.items():
+            OrderProduct.objects.create(product_id=pk, order=self.object, amount=qty)
+
+    def _clean_cart(self):
+        if 'products' in self.request.session:
+            self.request.session.pop('products')
+        if 'products_count' in self.request.session:
+            self.request.session.pop('products_count')
+
+    # def form_valid(self, form):
+    #     product = get_object_or_404(Product, pk=self.kwargs.get('pk'))
+    #     review = Review(
+    #         product=product,
+    #         grade=self.request.POST.get('example'),
+    #         text=form.cleaned_data['text'],
+    #         author=self.request.user
+    #     )
+    #     review.save()
+    #     return render(request, 'check.html', context={'order': order})
+
