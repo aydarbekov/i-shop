@@ -37,10 +37,10 @@ $( function() {
     $( "#slider-range" ).slider({
         range: true,
         min: 0,
-        max: 500,
-        values: [ 75, 300 ],
+        max: 3000,
+        values: [ 15, 1000 ],
         slide: function( event, ui ) {
-            $( "#amount" ).val( "$"  + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+            $( "#amount" ).val( ui.values[ 0 ]+" с."  +  " - " + ui.values[ 1 ] + " с." );
             var array_elements = jQuery.makeArray($(".products"));
             var array_price = jQuery.makeArray($(".product-price"));
             var array_elements_length = array_elements.length;
@@ -74,6 +74,6 @@ $( function() {
 
 
     });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-        " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    $( "#amount" ).val(  $( "#slider-range" ).slider( "values", 0 ) + " с." +
+        " - " + $( "#slider-range" ).slider( "values", 1 ) + " с." );
 } );
