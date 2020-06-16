@@ -5,8 +5,8 @@ from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from webapp.forms import ProductForm, ImageFormset, FullSearchForm
-from webapp.models import Product, Category, Carousel, Favorite, Tag
-from django.db.models import Q
+from webapp.models import Product, Category, Carousel, Favorite, Tag, COLOR_CHOICES, Brand
+from django.db.models import Q, Count
 from django.utils.http import urlencode
 from django.shortcuts import redirect
 
@@ -52,6 +52,11 @@ class ProductView(DetailView, SearchView):
     #     # url = reverse('webapp:search_results') + '?' + query
     #     url = reverse('webapp:search_results') + '?' + query
     #     return redirect(url)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['same_products'] = Product.objects.filter(name=self.object, brand=self.object.brand)
+        return context
 
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
@@ -164,6 +169,9 @@ class ProductListView(ListView, SearchView):
         context['categories'] = Category.objects.all()
         context['product_category'] = Category.objects.get(pk=self.kwargs.get('pk'))
         context['products'] = Product.objects.filter(category_id=self.kwargs.get('pk'))
+        context['colors'] = COLOR_CHOICES
+        context['same_color_products'] = Product.objects.filter(category_id=self.kwargs.get('pk')).values_list('color', flat=None).annotate(Count('pk'))
+        context['one_category_brands'] = Brand.objects.filter(products__category_id=self.kwargs.get('pk')).distinct()
         self.get_url()
         return context
 
