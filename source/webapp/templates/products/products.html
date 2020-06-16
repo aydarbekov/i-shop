@@ -30,10 +30,11 @@
                         {% for color in same_color_products %}
                             <button type="button"
                                     class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
-                                <div class="category-filter-color-circle" style="background-color:{{ color.0 }}; border-color:{% if prod.color == 'white' %}black{% endif %}"></div>
-                                    {% for key, value in colors %}
-                                        {% if color.0 in key %}{{ value }}{% endif%}
-                                    {% endfor %}
+                                <div class="category-filter-color-circle"
+                                     style="background-color:{{ color.0 }}; border-color: {% if color.0 == 'white' %}black{% endif %}"></div>
+                                {% for key, value in colors %}
+                                    {% if color.0 in key %}{{ value }}{% endif %}
+                                {% endfor %}
                                 <div class="category-filter-color-number">{{ color.1 }}</div>
                             </button>
                         {% endfor %}
@@ -42,24 +43,11 @@
                     <div class="filter-brand mb-5">
                         <p class="filter-header">Фильтр по бренду</p>
                         <div class="filter-brand-imgs">
-                            <button type="button" class="btn btn-light"><img class='filter-brand-img'
-                                                                             src="{% static 'images/icons/partners/qiwi.png' %}"
-                                                                             alt=""></button>
-                            <button type="button" class="btn btn-light"><img class='filter-brand-img'
-                                                                             src="{% static 'images/icons/partners/qiwi.png' %}"
-                                                                             alt=""></button>
-                            <button type="button" class="btn btn-light"><img class='filter-brand-img'
-                                                                             src="{% static 'images/icons/partners/samsung.png' %}"
-                                                                             alt=""></button>
-                            <button type="button" class="btn btn-light"><img class='filter-brand-img'
-                                                                             src="{% static 'images/icons/partners/kia.png' %}"
-                                                                             alt=""></button>
-                            <button type="button" class="btn btn-light"><img class='filter-brand-img'
-                                                                             src="{% static 'images/icons/partners/Mail.png' %}"
-                                                                             alt=""></button>
-                            <button type="button" class="btn btn-light"><img class='filter-brand-img'
-                                                                             src="{% static 'images/icons/partners/samsung.png' %}"
-                                                                             alt=""></button>
+                            {% for brand in one_category_brands %}
+                                <button type="button" class="btn btn-light"><img class='filter-brand-img'
+                                                                                 src="{{ brand.photo.url }}"
+                                                                                 alt=""></button>
+                            {% endfor %}
                         </div>
                     </div>
                     <hr/>

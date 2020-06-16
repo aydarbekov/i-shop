@@ -991,6 +991,8 @@ footer{
 }
 .filter-brand-img{
 	margin: 0 0;
+    height: 50px;
+    width: 70px;
 }
 .filter-brand-imgs button{
 	padding: 0;
