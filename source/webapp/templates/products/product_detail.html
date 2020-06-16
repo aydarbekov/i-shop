@@ -130,7 +130,7 @@
                                 <p class="mr-3 mb-0">Цвета:</p>
                                 {% for prod in same_products.all %}
                                     <button type="button" class="btn color-btn"
-                                            style="background-color:{{ prod.color }}">
+                                            style="background-color:{{ prod.color }}; border-color:{% if prod.color == 'white' %}black{% endif %}">
                                         <p class="btns-inside-white"></p>
                                     </button>
                                 {% endfor %}

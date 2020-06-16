@@ -27,30 +27,16 @@
                     <hr/>
                     <div class="filter-color d-flex flex-column mb-5">
                         <p class="filter-header">Фильтр по цвету</p>
-                        <button type="button"
-                                class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
-                            <div class="category-filter-color-circle" style="background-color: #F0DEBA;"></div>
-                            Beige
-                            <div class="category-filter-color-number">2</div>
-                        </button>
-                        <button type="button"
-                                class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
-                            <div class="category-filter-color-circle" style="background-color: green;"></div>
-                            Green
-                            <div class="category-filter-color-number">4</div>
-                        </button>
-                        <button type="button"
-                                class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
-                            <div class="category-filter-color-circle" style="background-color: grey;"></div>
-                            Grey
-                            <div class="category-filter-color-number">1</div>
-                        </button>
-                        <button type="button"
-                                class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
-                            <div class="category-filter-color-circle" style="background-color: blue;"></div>
-                            Blue
-                            <div class="category-filter-color-number">5</div>
-                        </button>
+                        {% for color in same_color_products %}
+                            <button type="button"
+                                    class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
+                                <div class="category-filter-color-circle" style="background-color:{{ color.0 }}; border-color:{% if prod.color == 'white' %}black{% endif %}"></div>
+                                    {% for key, value in colors %}
+                                        {% if color.0 in key %}{{ value }}{% endif%}
+                                    {% endfor %}
+                                <div class="category-filter-color-number">{{ color.1 }}</div>
+                            </button>
+                        {% endfor %}
                     </div>
                     <hr/>
                     <div class="filter-brand mb-5">

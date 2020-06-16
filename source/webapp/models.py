@@ -7,7 +7,7 @@ CITY_CHOICES = (
     ('Bishkek', 'Бишкек'),
 )
 COLOR_CHOICES = (
-    ('none', 'нет'),
+    ('none', 'Любой'),
     ('white', 'Белый'),
     ('green', 'Зеленый'),
     ('grey', 'Серый'),
@@ -17,11 +17,9 @@ COLOR_CHOICES = (
     ('black', 'Черный'),
     ('orange', 'Оранжевый'),
     ('brown', 'Коричневый'),
-    ('#F0DEBA', 'Бежевый'),
+    ('beige', 'Бежевый'),
     ('pink', 'Розовый'),
     ('purple', 'Фиолетовый'),
-    ('darkblue', 'Темно-синий'),
-    ('darkgreen', 'Темно-зеленый'),
 )
 
 class Category(models.Model):
