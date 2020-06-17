@@ -11,6 +11,7 @@ from .views.news_views import NewsView, NewsAddView, NewsDetailView, NewsDeleteV
 from .views.delivery_cost import DeliveryCostList, DeliveryCostAdd, DeliveryView, ReturnView
 from .views.carousel_views import *
 from .views.compare_views import compareadditem, comparedeleteitem, CompareView, CompareChangeView
+from .views.main_carousel_views import MainCarouselListView, MainCarouselCreateView, MainCarouselUpdateView, MainCarouselDeleteView
 
 app_name = 'webapp'
 
@@ -73,5 +74,9 @@ urlpatterns = [
     path('compares/', CompareView.as_view(), name='compare_list'),
     path('compare/change/', CompareChangeView.as_view(), name='compare_change'),
     path('check/', Check.as_view(), name="check_cart"),
+    path('main-carousel/', MainCarouselListView.as_view(), name='main_carousel_list'),
+    path('main-carousel/add/', MainCarouselCreateView.as_view(), name='main_carousel_add'),
+    path('main-carousel/change/<int:pk>/', MainCarouselUpdateView.as_view(), name='main_carousel_change'),
+    path('maincarousel/delete/<int:pk>/', MainCarouselDeleteView.as_view(), name='main_carousel_delete'),
 
 ]
