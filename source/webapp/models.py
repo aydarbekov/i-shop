@@ -23,6 +23,7 @@ COLOR_CHOICES = (
     ('darkgreen', 'Темно-зеленый'),
 )
 
+
 class Category(models.Model):
     category_name = models.CharField(max_length=50, verbose_name='Категория')
     photo = models.ImageField(upload_to='category_images', null=True, blank=True, verbose_name='Изображение')
@@ -59,6 +60,7 @@ class Brand(models.Model):
         verbose_name = 'Бренд'
         verbose_name_plural = 'Бренды'
 
+
 class Tag(models.Model):
     name = models.CharField(max_length=31, verbose_name='Тег')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
@@ -90,6 +92,7 @@ class Product(models.Model):
 
 
 class DeliveryAddress(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', related_name='address')
     city = models.CharField(max_length=20, choices=CITY_CHOICES, default=CITY_CHOICES[0][0], verbose_name="Город")
     street = models.CharField(max_length=50, verbose_name="Улица")
     building_number = models.CharField(max_length=10, verbose_name="Номер дома")

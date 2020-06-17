@@ -248,6 +248,18 @@ class Check(CreateView):
             print('email', email)
             phone = user.profile.mobile_phone
             context.update({'first_name': first_name, 'last_name': last_name, 'email': email, "phone": phone})
+            if user.profile.delivery_address:
+                print("user.profile.delivery_address", user.profile.delivery_address)
+                city = user.profile.delivery_address.city
+                street = user.profile.delivery_address.street
+                building_number = user.profile.delivery_address.building_number
+                entrance_number = user.profile.delivery_address.entrance_number
+                flat_number = user.profile.delivery_address.flat_number
+                additional_info = user.profile.delivery_address.additional_info
+                context.update({'city': city, 'street': street, 'building_number': building_number,
+                                'entrance_number': entrance_number, "flat_number": flat_number, "additional_info": additional_info})
+
+            # context.update({'first_name': first_name, 'last_name': last_name, 'email': email, "phone": phone})
         return context
 
     def get_form_kwargs(self):
@@ -272,17 +284,24 @@ class Check(CreateView):
         # order = self.object
         if self.request.user.is_authenticated:
             print("YES")
-            order.user = self.request.user
+            user = self.request.user
+            order.user = user
             # order.user = user
             print(self.request.user)
             print(order.user)
+            print("ADDRESS", user.profile.delivery_address)
+
         order.first_name = form.cleaned_data['first_name']
         # first_name = user.first_name
         order.last_name = form.cleaned_data['last_name']
         order.email = form.cleaned_data['email']
         order.phone = form.cleaned_data['phone']
         shipping_cost = DeliveryCost.objects.latest('created_at')
+        # city = form.cleaned_data['city']
+        # street = form.changed_data['street']
+        # building_number =
         address = DeliveryAddress.objects.first() #изменить адресс на модель у юзера
+
         print("Shipping cost", shipping_cost)
         print("AddRess", address)
         order.address = address
@@ -337,19 +356,8 @@ class Check(CreateView):
     def _save_order_products(self, order):
         totals = self._get_totals()
         print("TOTALS", totals)
-        # shipping_cost = DeliveryCost.objects.latest('created_at')
-        # address = DeliveryAddress.objects.latest('created_at')
-        # print("Shipping cost", shipping_cost)
-        # print("AddRess", address)
-        # order = self.object
-        # order.address = address
-        # order.shipping_cost = shipping_cost
-        # order.save()
-        # print("ThIS is ORDER", order)
         for pk, qty in totals.items():
             OrderProduct.objects.create(order=order, product_id=pk, amount=qty)
-
-            # OrderProduct.objects.create(product_id=pk, order=self.object, amount=qty)
 
     def _cart_empty(self):
         products = self.request.session.get('products', [])
@@ -360,15 +368,3 @@ class Check(CreateView):
             self.request.session.pop('products')
         if 'products_count' in self.request.session:
             self.request.session.pop('products_count')
-
-    # def form_valid(self, form):
-    #     product = get_object_or_404(Product, pk=self.kwargs.get('pk'))
-    #     review = Review(
-    #         product=product,
-    #         grade=self.request.POST.get('example'),
-    #         text=form.cleaned_data['text'],
-    #         author=self.request.user
-    #     )
-    #     review.save()
-    #     return render(request, 'check.html', context={'order': order})
-

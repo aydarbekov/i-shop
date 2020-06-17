@@ -30,9 +30,20 @@
                             <input type="text" name="last_name" value="{{ last_name }}" placeholder="Ваша фамилия">
                         </div>
                         <input type="text" name="company_name"  placeholder="Имя компании">
-                        <input type="text" name="city"  placeholder="Город">
-                        <input type="text" name="address" value="{{ address }}" placeholder="Адрес">
-                        <input type="text" name="phone" value="{{ phone }}"  placeholder="Номер телефона">
+                        <p>{{ user }}</p>
+{#                        <select id="address">#}
+{#                            {% for address in user.profile.delivery_address %}#}
+{#                            <option value="{{ address }}">{{ address }}</option>#}
+{#                            {% endfor %}#}
+{#                        </select>#}
+{#                        <input type="text" name="city" value="{{ city }}" placeholder="Город">#}
+{#                        <input type="text" name="street" value="{{ street }}" placeholder="Улица / Мкр">#}
+{#                        <input type="text" name="building_number" value="{{ building_number }}" placeholder="Номер дома">#}
+{#                        <input type="text" name="entrance_number" value="{{ entrance_number|default_if_none:"" }}" placeholder="Подъезд">#}
+{#                        <input type="text" name="flat_number" value="{{ flat_number|default_if_none:"" }}" placeholder="Номер квартиры / офиса">#}
+{#                        <input type="text" name="additional_info"  value="{{ additional_info|default_if_none:"" }}" placeholder="Дополнительная информация">#}
+{#                        <input type="text" name="address" value="{{ address }}" placeholder="Адрес">#}
+                        <input type="text" name="phone" value="{{ phone }}"  placeholder="Номер телефона +996500123456">
                         <input type="text" name="email" value="{{ email }}" placeholder="Почта">
                         <div class="create-account-checkbox">
                             <input type="checkbox" id="create_account" name="create_account">
