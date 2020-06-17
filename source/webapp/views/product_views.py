@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from webapp.forms import ProductForm, ImageFormset, FullSearchForm
-from webapp.models import Product, Category, Carousel, Favorite, Tag, COLOR_CHOICES, Brand
+from webapp.models import Product, Category, Carousel, Favorite, Tag, COLOR_CHOICES, Brand, MainCarousel
 from django.db.models import Q, Count
 from django.utils.http import urlencode
 from django.shortcuts import redirect
@@ -39,6 +39,7 @@ class IndexView(SearchView):
         context['categories'] = Category.objects.all()
         context['products'] = Product.objects.all()
         context['carouseles'] = Carousel.objects.all()
+        context['main_carousel'] = MainCarousel.objects.all()
         return context
 
 

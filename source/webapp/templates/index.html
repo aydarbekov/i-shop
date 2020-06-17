@@ -11,46 +11,68 @@
             <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
         </ol>
         <div class="carousel-div carousel-inner">
-            <div class="carousel-item active">
+{#            <div class="carousel-item active">#}
+{#                <a href="#">#}
+{#                    <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">#}
+{#                    <div class="carousel-content carousel-caption">#}
+{#                        <h5 class="carousel-title">Блокнот</h5>#}
+{#                        <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,#}
+{#                            porro.</p>#}
+{#                        <div class="carousel-button-price d-flex align-items-center">#}
+{#                            <button type="button" class="btn button-in-carousel mr-4">в корзину</button>#}
+{#                            <p class="carousel-price">$15</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </a>#}
+{#            </div>#}
+            {% for item_carousel in main_carousel %}
+{#                <div class="carousel-item">#}
+                {% if forloop.counter == 1 %}
+                    <div class="carousel-item active">
+                {% else %}
+                    <div class="carousel-item">
+                    {% endif %}
+{#                <div {% if loop.index0 == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>#}
                 <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">
                 <div class="carousel-content carousel-caption">
-                    <h5 class="carousel-title">Скетчбук</h5>
-                    <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo accusantium
-                        iste tempore sed delectus quos.Lorem ipsum dolor sit amet..</p>
+                <img class="bestseller-img" src="{{ item_carousel.photo.url }}" alt="...">
+                    <h5 class="carousel-title">{{ item_carousel.title }}</h5>
+                    <p class="carousel-text">{{ item_carousel.text }}</p>
                     <div class="carousel-button-price d-flex align-items-center">
-{#                        <a href="{% url 'webapp:cart_change' %}?pk={{ product.pk }}&action=add&next={% url 'webapp:index' %}" class="btn button-in-carousel mr-4">в корзину</a>#}
+                        <a href="{{ item_carousel.link }}" class="btn button-in-carousel mr-4">подробнее</a>
 
 {#                        <button type="button" class="btn button-in-carousel mr-4">в корзину</button>#}
-                        <p class="carousel-price">$8</p>
+                        <p class="carousel-price">сом {{ item_carousel.price }}</p>
                     </div>
                 </div>
             </div>
-            <div class="carousel-item">
-                <a href="#">
-                    <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">
-                    <div class="carousel-content carousel-caption">
-                        <h5 class="carousel-title">Блокнот</h5>
-                        <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,
-                            porro.</p>
-                        <div class="carousel-button-price d-flex align-items-center">
-                            <button type="button" class="btn button-in-carousel mr-4">в корзину</button>
-                            <p class="carousel-price">$15</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="carousel-item">
-                <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">
-                <div class="carousel-content carousel-caption">
-                    <h5 class="carousel-title">Книга</h5>
-                    <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero sint,
-                        repellendus officiis!</p>
-                    <div class="carousel-button-price d-flex align-items-center">
-                        <button type="button" class="btn button-in-carousel mr-4">в корзину</button>
-                        <p class="carousel-price">$20</p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+{#            <div class="carousel-item">#}
+{#                <a href="#">#}
+{#                    <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">#}
+{#                    <div class="carousel-content carousel-caption">#}
+{#                        <h5 class="carousel-title">Блокнот</h5>#}
+{#                        <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,#}
+{#                            porro.</p>#}
+{#                        <div class="carousel-button-price d-flex align-items-center">#}
+{#                            <button type="button" class="btn button-in-carousel mr-4">в корзину</button>#}
+{#                            <p class="carousel-price">$15</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </a>#}
+{#            </div>#}
+{#            <div class="carousel-item">#}
+{#                <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">#}
+{#                <div class="carousel-content carousel-caption">#}
+{#                    <h5 class="carousel-title">Книга</h5>#}
+{#                    <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero sint,#}
+{#                        repellendus officiis!</p>#}
+{#                    <div class="carousel-button-price d-flex align-items-center">#}
+{#                        <button type="button" class="btn button-in-carousel mr-4">в корзину</button>#}
+{#                        <p class="carousel-price">$20</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
         </div>
         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
