@@ -3,9 +3,6 @@
 {% load is_favorite %}
 {% block title %}Kanctorg{% endblock %}
 {% block menu %}
-    {#    {% if perms.webapp.product_add %}#}
-    {#        <a href="{% url 'webapp:orders' %}" class="login  d-none d-md-flex">Зак</a>#}
-    {#    {% endif %}#}
 {% endblock %}
 {% block content %}
     <div class="category-detail-headline">
@@ -28,7 +25,7 @@
                     <div class="filter-color d-flex flex-column mb-5">
                         <p class="filter-header">Фильтр по цвету</p>
                         {% for color in same_color_products %}
-                            <a href="{% url 'webapp:products_category' product_category.pk %}?color={{ color.0 }}"
+                            <a href="{% url 'webapp:offer_products' %}?color={{ color.0 }}"
                                class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
                                 <div class="category-filter-color-circle"
                                      style="background-color:{{ color.0 }}; border-color: {% if color.0 == 'white' %}black{% endif %}"></div>
@@ -44,7 +41,7 @@
                         <p class="filter-header">Фильтр по бренду</p>
                         <div class="filter-brand-imgs">
                             {% for brand in one_category_brands %}
-                                <a href="{% url 'webapp:products_category' product_category.pk %}?brand={{ brand }}"
+                                <a href="{% url 'webapp:offer_products' %}?brand={{ brand }}"
                                    class="btn btn-light"><img class='filter-brand-img' src="{{ brand.photo.url }}"
                                                               alt=""></a>
                             {% endfor %}
@@ -161,7 +158,6 @@
                                                             id="cart-add-{{ product.pk }}">В
                                                         корзину
                                                     </button>
-                                                    {#                                            <button type="button" class="to-cart btn btn-success">В корзину</button>#}
                                                 </div>
                                             </div>
                                         </div>
@@ -188,5 +184,4 @@
 {% endblock %}
 {% block scripts %}
     <script type="application/javascript" src="{% static "js/products.js" %}"></script>
-    {#    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
 {% endblock %}
