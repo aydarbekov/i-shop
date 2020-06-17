@@ -49,11 +49,10 @@
                         <p>ОКПО: {{ user.profile.okpo }}
                     {% endif %}
                 </div>
-                {% if user.profile.type == 'client' %}
-                    <a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a>
-                {% endif %}
-                {% if user.profile.type == 'company' %}
-                    <a href="{% url 'accounts:company_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a>
+                {% if user.profile.type == 'client' or request.user.is_staff %}
+                    <a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success hiddenbutton">Редактировать</a>
+                {% elif user.profile.type == 'company' or requesr.user.is_staff %}
+                    <a href="{% url 'accounts:company_update' user.pk %}" class="btn btn-success hiddenbutton">Редактировать</a>
                 {% endif %}
             </div>
         </div>
