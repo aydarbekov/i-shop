@@ -32,9 +32,11 @@
                                         <h5>{{ product }}</h5></a>
                                     <p>{{ product.product.category }}</p>
                                     <p class="price">{{ product.product.price }}</p>
-                                    <div class="discount-count d-flex align-items-center justify-content-center">
-                                        5%
-                                    </div>
+                                    {% if product.product.discount %}
+                                        <div class="discount-count d-flex align-items-center justify-content-center">
+                                            {{ product.product.discount }}%
+                                        </div>
+                                    {% endif %}
                                 </div>
                                 <div class="position-for-hidden position-relative">
                                     <div class="hidden-part text-center">
@@ -57,9 +59,10 @@
                                             <button class="promo-button-share"></button>
                                         </div>
                                         <a href="{% url "webapp:cartadditem" %}"
-                                               id="cart-add-{{ product.product.pk }}" data-product-pk="{{ product.product.pk }}"
-                                               class="cartadd btn btn-success to-cart">В корзину</a>
-{#                                        <button type="button" class="to-cart btn btn-success">В корзину</button>#}
+                                           id="cart-add-{{ product.product.pk }}"
+                                           data-product-pk="{{ product.product.pk }}"
+                                           class="cartadd btn btn-success to-cart">В корзину</a>
+                                        {#                                        <button type="button" class="to-cart btn btn-success">В корзину</button>#}
                                     </div>
                                 </div>
                             </div>
@@ -71,5 +74,5 @@
     </div>
 {% endblock %}
 {% block scripts %}
-{#    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
+    {#    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
 {% endblock %}

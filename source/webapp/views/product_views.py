@@ -5,8 +5,8 @@ from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from webapp.forms import ProductForm, ImageFormset, FullSearchForm
-from webapp.models import Product, Category, Carousel, Favorite, Tag
-from django.db.models import Q
+from webapp.models import Product, Category, Carousel, Favorite, Tag, COLOR_CHOICES, Brand
+from django.db.models import Q, Count
 from django.utils.http import urlencode
 from django.shortcuts import redirect
 
@@ -169,6 +169,15 @@ class ProductListView(ListView, SearchView):
         context['categories'] = Category.objects.all()
         context['product_category'] = Category.objects.get(pk=self.kwargs.get('pk'))
         context['products'] = Product.objects.filter(category_id=self.kwargs.get('pk'))
+        context['colors'] = COLOR_CHOICES
+        context['same_color_products'] = Product.objects.filter(category_id=self.kwargs.get('pk')).values_list('color', flat=None).annotate(Count('pk'))
+        context['one_category_brands'] = Brand.objects.filter(products__category_id=self.kwargs.get('pk')).distinct()
+        brand = self.request.GET.get('brand')
+        color = self.request.GET.get('color')
+        if brand:
+            context['products'] = Product.objects.filter(Q(brand__brand_name=brand), Q(category=self.kwargs.get('pk')))
+        elif color:
+            context['products'] = Product.objects.filter(Q(color=color), Q(category=self.kwargs.get('pk')))
         self.get_url()
         return context
 
@@ -237,3 +246,37 @@ class SearchResultsView(ListView):
                 data[key] = self.request.GET.get(key)
         return data
 
+
+class ProductsOfferListView(ListView):
+    template_name = 'offers.html'
+    model = Product
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context['products'] = Product.objects.filter(Q(offer=True)|Q(discount__isnull=False))
+        context['colors'] = COLOR_CHOICES
+        context['same_color_products'] = Product.objects.filter(Q(offer=True)|Q(discount__isnull=False)).values_list('color',                                                            flat=None).annotate(Count('pk'))
+        context['one_category_brands'] = Brand.objects.filter(Q(products__offer=True)|Q(products__discount__isnull=False)).distinct()
+        brand = self.request.GET.get('brand')
+        color = self.request.GET.get('color')
+        if brand:
+            context['products'] = Product.objects.filter(Q(offer=True) | Q(discount__isnull=False), brand__brand_name=brand)
+        elif color:
+            context['products'] = Product.objects.filter(Q(offer=True) | Q(discount__isnull=False), color=color)
+        return context
+
+
+class AddToOffer(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        product = get_object_or_404(Product, pk=request.POST.get('pk'))
+        product.offer=True
+        product.save()
+        return JsonResponse({'pk': product.pk})
+
+
+class DeleteFromOffer(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        product = get_object_or_404(Product, pk=request.POST.get('pk'))
+        product.offer = False
+        product.save()
+        return JsonResponse({'pk': product.pk})

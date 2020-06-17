@@ -7,7 +7,7 @@ CITY_CHOICES = (
     ('Bishkek', 'Бишкек'),
 )
 COLOR_CHOICES = (
-    ('none', 'нет'),
+    ('none', 'Любой'),
     ('white', 'Белый'),
     ('green', 'Зеленый'),
     ('grey', 'Серый'),
@@ -17,12 +17,11 @@ COLOR_CHOICES = (
     ('black', 'Черный'),
     ('orange', 'Оранжевый'),
     ('brown', 'Коричневый'),
-    ('#F0DEBA', 'Бежевый'),
+    ('beige', 'Бежевый'),
     ('pink', 'Розовый'),
     ('purple', 'Фиолетовый'),
-    ('darkblue', 'Темно-синий'),
-    ('darkgreen', 'Темно-зеленый'),
 )
+
 
 class Category(models.Model):
     category_name = models.CharField(max_length=50, verbose_name='Категория')
@@ -60,6 +59,7 @@ class Brand(models.Model):
         verbose_name = 'Бренд'
         verbose_name_plural = 'Бренды'
 
+
 class Tag(models.Model):
     name = models.CharField(max_length=31, verbose_name='Тег')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
@@ -81,6 +81,7 @@ class Product(models.Model):
     quantity = models.IntegerField(verbose_name='Количество', null=True, blank=True)
     brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Бренд', related_name='products')
     tags = models.ManyToManyField(Tag, blank=True, related_name='products', verbose_name='Теги')
+    offer = models.BooleanField(verbose_name='Акция', default=False)
 
     def __str__(self):
         return self.name
@@ -91,6 +92,7 @@ class Product(models.Model):
 
 
 class DeliveryAddress(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', related_name='address')
     city = models.CharField(max_length=20, choices=CITY_CHOICES, default=CITY_CHOICES[0][0], verbose_name="Город")
     street = models.CharField(max_length=50, verbose_name="Улица")
     building_number = models.CharField(max_length=10, verbose_name="Номер дома")

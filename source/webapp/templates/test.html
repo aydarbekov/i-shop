@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-3" style="width: 800px">
+        <h4 class="text-center">Создать</h4>
+        <form method="POST" enctype="multipart/form-data" action="">
+            {% load widget_tweaks %}
+            {% csrf_token %}
+            {% for error in form.non_field_errors %}
+                <p class="text-danger">{{ error }}</p>
+            {% endfor %}
+{#            {% for field in form %}#}
+            <p><input type="text" name="first_name" value="{{ first_name }}" autofocus placeholder="Ваше Имя"></p>
+                <input type="text" name="last_name" value="{{ last_name }}" placeholder="Ваша фамилия">
+                <input type="text" name="address"  value="{{ address }}" placeholder="Адрес">
+                <input type="text" name="phone"  value="{{ phone }}" placeholder="Номер телефона">
+                <input type="text" name="email" value="{{ email }}" placeholder="Почта">
+{#                <div class="form-group">#}
+{#                    <label for="{{ field.id_for_label }}" class="mr-3">{{ field.label }}</label>#}
+{#                    {% if field|field_type == 'imagefield' or field|field_type == 'filefield' %}#}
+{#                        {{ field }}#}
+{#                    {% else %}#}
+{#                        {{ field|add_class:"form-control" }}#}
+{#                    {% endif %}#}
+                    {% for error in field.errors %}
+                        <p class="text-danger">{{ error }}</p>
+                    {% endfor %}
+{#                </div>#}
+{#            {% endfor %}#}
+            <p class="text-center"><input type="submit" value="Создать" class="btn"
+                                          style="background-color: #83B734; color: white"></p>
+        </form>
+    </div>
+{% endblock %}
