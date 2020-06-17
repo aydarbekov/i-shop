@@ -56,6 +56,8 @@ class ProductView(DetailView, SearchView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['same_products'] = Product.objects.filter(name=self.object, brand=self.object.brand)
+        if self.object.discount:
+            context['price_with_discount'] = self.object.price - self.object.discount
         return context
 
 

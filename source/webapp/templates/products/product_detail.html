@@ -54,8 +54,12 @@
                         <div class="name-price mt-4 d-flex">
                             <div class="name-price-2">
                                 <h3>{{ product.name }}, {{ product.brand }}</h3>
-                                <p class="product-price">{{ product.price }} сом</p>
-                                <p class="price-without-discount">{{ product.price }} сом</p>
+                                {% if product.discount %}
+                                    <p class="product-price">{{ price_with_discount }} сом</p>
+                                    <p class="price-without-discount">{{ product.price }} сом</p>
+                                {% else %}
+                                    <p class="product-price">{{ product.price }} сом</p>
+                                {% endif %}
                             </div>
                             <div class="name-price-share d-block d-sm-none">
                                 <button class="social-icons"></button>
