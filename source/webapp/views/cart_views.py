@@ -248,16 +248,19 @@ class Check(CreateView):
             print('email', email)
             phone = user.profile.mobile_phone
             context.update({'first_name': first_name, 'last_name': last_name, 'email': email, "phone": phone})
-            if user.profile.delivery_address:
-                print("user.profile.delivery_address", user.profile.delivery_address)
-                city = user.profile.delivery_address.city
-                street = user.profile.delivery_address.street
-                building_number = user.profile.delivery_address.building_number
-                entrance_number = user.profile.delivery_address.entrance_number
-                flat_number = user.profile.delivery_address.flat_number
-                additional_info = user.profile.delivery_address.additional_info
-                context.update({'city': city, 'street': street, 'building_number': building_number,
-                                'entrance_number': entrance_number, "flat_number": flat_number, "additional_info": additional_info})
+            if user.profile.company_name:
+                company_name = user.profile.company_name
+                context.update({"company_name": company_name})
+            # if user.profile.delivery_address:
+            #     print("user.profile.delivery_address", user.profile.delivery_address)
+            #     city = user.profile.delivery_address.city
+            #     street = user.profile.delivery_address.street
+            #     building_number = user.profile.delivery_address.building_number
+            #     entrance_number = user.profile.delivery_address.entrance_number
+            #     flat_number = user.profile.delivery_address.flat_number
+            #     additional_info = user.profile.delivery_address.additional_info
+            #     context.update({'city': city, 'street': street, 'building_number': building_number,
+            #                     'entrance_number': entrance_number, "flat_number": flat_number, "additional_info": additional_info})
 
             # context.update({'first_name': first_name, 'last_name': last_name, 'email': email, "phone": phone})
         return context
