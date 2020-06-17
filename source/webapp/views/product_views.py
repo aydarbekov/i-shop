@@ -172,17 +172,24 @@ class ProductListView(ListView, SearchView):
         context['colors'] = COLOR_CHOICES
         context['same_color_products'] = Product.objects.filter(category_id=self.kwargs.get('pk')).values_list('color', flat=None).annotate(Count('pk'))
         context['one_category_brands'] = Brand.objects.filter(products__category_id=self.kwargs.get('pk')).distinct()
-        self.get_url()
-        return context
-
-    def get_queryset(self, *args, **kwargs):
         brand = self.request.GET.get('brand')
         color = self.request.GET.get('color')
         if brand:
-            return Product.objects.filter(Q(brand__brand_name=brand), Q(category=self.kwargs.get('pk')))
+            context['products'] = Product.objects.filter(Q(brand__brand_name=brand), Q(category=self.kwargs.get('pk')))
         elif color:
-            return Product.objects.filter(Q(color=color), Q(category=self.kwargs.get('pk')))
-        return Product.objects.filter(Q(category=self.kwargs.get('pk')))
+            context['products'] = Product.objects.filter(Q(color=color), Q(category=self.kwargs.get('pk')))
+        self.get_url()
+        return context
+
+    # def get_queryset(self, *args, **kwargs):
+    #     brand = self.request.GET.get('brand')
+    #     color = self.request.GET.get('color')
+    #     if brand:
+    #         return Product.objects.filter(Q(brand__brand_name=brand), Q(category=self.kwargs.get('pk')))
+    #     elif color:
+    #         return Product.objects.filter(Q(color=color), Q(category=self.kwargs.get('pk')))
+    #     return Product.objects.filter(Q(category=self.kwargs.get('pk')))
+
 
 
 class ProductALLListView(ListView, SearchView):
