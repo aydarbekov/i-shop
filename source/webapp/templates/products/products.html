@@ -105,7 +105,7 @@
                 <div class="products-in-category">
                     <div class="row mx-0">
                         {% for product in products %}
-                            <div class="col-6 col-md-4 px-2">
+                            <div class="col-6 col-md-4 px-2 products product-pk-element-{{ product.pk  }}" id="{{ product.pk }}">
                                 <a href="{% url "webapp:product_detail" product.pk %}">
                                     <div class="card">
                                         <div class="photo-back">
@@ -123,7 +123,7 @@
                                                 <a href="{% url "webapp:product_detail" product.pk %}">
                                                     <h5>{{ product }}</h5></a>
                                                 <p>{{ product.category }}</p>
-                                                <p class="price">{{ product.price }} сом</p>
+                                                <p class="price product-price" id="{{ product.price }}">{{ product.price }} сом</p>
                                                 <div class="discount-count d-flex align-items-center justify-content-center">
                                                     5%
                                                 </div>
@@ -184,5 +184,5 @@
 {% endblock %}
 {% block scripts %}
     <script type="application/javascript" src="{% static "js/products.js" %}"></script>
-    {#    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
+{#    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
 {% endblock %}
