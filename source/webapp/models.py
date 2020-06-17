@@ -79,6 +79,7 @@ class Product(models.Model):
     quantity = models.IntegerField(verbose_name='Количество', null=True, blank=True)
     brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Бренд', related_name='products')
     tags = models.ManyToManyField(Tag, blank=True, related_name='products', verbose_name='Теги')
+    offer = models.BooleanField(verbose_name='Акция', default=False)
 
     def __str__(self):
         return self.name
