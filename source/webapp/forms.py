@@ -7,28 +7,44 @@ from webapp.models import OrderProduct, Order, Product, Image, Category, SubCate
 class CartOrderCreateForm(ModelForm):
     def __init__(self, user=None, **kwargs):
         self.user = user
+    #     print('user', user)
+    #     # print(kwargs)
+    #     # print(self.cleaned_data)
         if user and not user.is_authenticated:
             self.user = None
         super().__init__(**kwargs)
 
     def clean_first_name(self):
+        print("self.cleaned_data", self.cleaned_data)
+        print('clean_fir_name')
+        print(self.user.first_name)
+        print(self.cleaned_data.get('first_name'))
         if not self.user and not self.cleaned_data.get('first_name'):
+        # if not self.cleaned_data.get('first_name'):
             raise ValidationError('Вы должны авторизоваться либо указать ваше имя!')
-
-    def clean_email(self):
-        if not self.user and not self.cleaned_data.get('email'):
-            raise ValidationError('Вы должны авторизоваться либо указать ваш email!')
-
-    def clean_phone(self):
-        if not self.user and not self.cleaned_data.get('phone'):
-            raise ValidationError('Вы должны авторизоваться либо указать ваш телефон!')
-
-    def save(self, commit=True):
-        self.instance.user = self.user
-        return super().save(commit)
+        # if self.cleaned_data.get('first_name') == "Vadim":
+        #     raise ValidationError("Вадиму НЕЛЬЗЯ!!!")
+        print('FDVT')
+        return self.cleaned_data.get('first_name')
+    #
+    # def clean_email(self):
+    #     print(self.user.email)
+    #     if not self.user and not self.cleaned_data.get('email'):
+    #         raise ValidationError('Вы должны авторизоваться либо указать ваш email!')
+    #
+    # def clean_phone(self):
+    #     print(self.user.profile.mobile_phone)
+    #     if not self.user and not self.cleaned_data.get('phone'):
+    #         raise ValidationError('Вы должны авторизоваться либо указать ваш телефон!')
+    #
+    # def save(self, commit=True):
+    #     print("|SAVE")
+    #     self.instance.user = self.user
+    #     return super().save(commit)
 
     class Meta:
         model = Order
+        # fields = ['first_name']
         fields = ['first_name', 'last_name', 'email', 'phone']
 
 

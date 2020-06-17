@@ -26,14 +26,14 @@
 {#                                  <p><label>Text</label> <textarea name="text"></textarea></p>#}
 {#                            <p><input type="submit" value="Submit"></p>#}
 {#                             </form>#}
-                            <input type="text" name="first_name" autofocus placeholder="Ваше Имя">
-                            <input type="text" name="last_name"  placeholder="Ваша фамилия">
+                            <input type="text" name="first_name" value="{{ first_name }}" autofocus placeholder="Ваше Имя">
+                            <input type="text" name="last_name" value="{{ last_name }}" placeholder="Ваша фамилия">
                         </div>
                         <input type="text" name="company_name"  placeholder="Имя компании">
                         <input type="text" name="city"  placeholder="Город">
-                        <input type="text" name="address"  placeholder="Адрес">
-                        <input type="text" name="phone"  placeholder="Номер телефона">
-                        <input type="text" name="mail"  placeholder="Почта">
+                        <input type="text" name="address" value="{{ address }}" placeholder="Адрес">
+                        <input type="text" name="phone" value="{{ phone }}"  placeholder="Номер телефона">
+                        <input type="text" name="email" value="{{ email }}" placeholder="Почта">
                         <div class="create-account-checkbox">
                             <input type="checkbox" id="create_account" name="create_account">
                             <label for="create_account">Создать аккаунт?</label>
