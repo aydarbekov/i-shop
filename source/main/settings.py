@@ -137,8 +137,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/uploads/'
 
 # Для тестирования с mailtrap впишите сюда свои настройки с mailtrap.
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = 'e2aea783b75a0e'  # ваш user
-EMAIL_HOST_PASSWORD = '856b5e808cbd8b'  # ваш пароль
-EMAIL_PORT = '2525'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'noreply.kanctorg.kg@gmail.com'  # ваш user
+EMAIL_HOST_PASSWORD = 'kanctorg'  # ваш пароль
+EMAIL_PORT = 587
 

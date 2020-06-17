@@ -7,6 +7,7 @@ CITY_CHOICES = (
     ('Bishkek', 'Бишкек'),
 )
 COLOR_CHOICES = (
+    ('none', 'Любой'),
     ('white', 'Белый'),
     ('green', 'Зеленый'),
     ('grey', 'Серый'),
@@ -16,11 +17,9 @@ COLOR_CHOICES = (
     ('black', 'Черный'),
     ('orange', 'Оранжевый'),
     ('brown', 'Коричневый'),
-    ('#F0DEBA;', 'Бежевый'),
+    ('beige', 'Бежевый'),
     ('pink', 'Розовый'),
     ('purple', 'Фиолетовый'),
-    ('darkblue', 'Темно-синий'),
-    ('darkgreen', 'Темно-зеленый'),
 )
 
 
@@ -82,6 +81,7 @@ class Product(models.Model):
     quantity = models.IntegerField(verbose_name='Количество', null=True, blank=True)
     brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Бренд', related_name='products')
     tags = models.ManyToManyField(Tag, blank=True, related_name='products', verbose_name='Теги')
+    offer = models.BooleanField(verbose_name='Акция', default=False)
 
     def __str__(self):
         return self.name

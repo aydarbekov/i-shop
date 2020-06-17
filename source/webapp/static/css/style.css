@@ -55,7 +55,7 @@ body{
 	border: none;
 }
 .logo{
-	background-image: url(../images/icons/logo.png);
+	background-image: url(../images/icons/logo_kanctorg.png);
 	display: inline-block;
 	height: 60px;
 	width: 90px;
@@ -991,6 +991,8 @@ footer{
 }
 .filter-brand-img{
 	margin: 0 0;
+    height: 50px;
+    width: 70px;
 }
 .filter-brand-imgs button{
 	padding: 0;
