@@ -182,16 +182,6 @@ class ProductListView(ListView, SearchView):
         self.get_url()
         return context
 
-    # def get_queryset(self, *args, **kwargs):
-    #     brand = self.request.GET.get('brand')
-    #     color = self.request.GET.get('color')
-    #     if brand:
-    #         return Product.objects.filter(Q(brand__brand_name=brand), Q(category=self.kwargs.get('pk')))
-    #     elif color:
-    #         return Product.objects.filter(Q(color=color), Q(category=self.kwargs.get('pk')))
-    #     return Product.objects.filter(Q(category=self.kwargs.get('pk')))
-
-
 
 class ProductALLListView(ListView, SearchView):
     model = Product
@@ -257,3 +247,37 @@ class SearchResultsView(ListView):
                 data[key] = self.request.GET.get(key)
         return data
 
+
+class ProductsOfferListView(ListView):
+    template_name = 'offers.html'
+    model = Product
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context['products'] = Product.objects.filter(Q(offer=True)|Q(discount__isnull=False))
+        context['colors'] = COLOR_CHOICES
+        context['same_color_products'] = Product.objects.filter(Q(offer=True)|Q(discount__isnull=False)).values_list('color',                                                            flat=None).annotate(Count('pk'))
+        context['one_category_brands'] = Brand.objects.filter(Q(products__offer=True)|Q(products__discount__isnull=False)).distinct()
+        brand = self.request.GET.get('brand')
+        color = self.request.GET.get('color')
+        if brand:
+            context['products'] = Product.objects.filter(Q(offer=True) | Q(discount__isnull=False), brand__brand_name=brand)
+        elif color:
+            context['products'] = Product.objects.filter(Q(offer=True) | Q(discount__isnull=False), color=color)
+        return context
+
+
+class AddToOffer(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        product = get_object_or_404(Product, pk=request.POST.get('pk'))
+        product.offer=True
+        product.save()
+        return JsonResponse({'pk': product.pk})
+
+
+class DeleteFromOffer(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        product = get_object_or_404(Product, pk=request.POST.get('pk'))
+        product.offer = False
+        product.save()
+        return JsonResponse({'pk': product.pk})

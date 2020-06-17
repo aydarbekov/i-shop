@@ -2,12 +2,11 @@ from django.urls import path
 
 from webapp.views.brand_views import BrandListView, BrandCreateView, BrandUpdateView, BrandDeleteView
 from webapp.views.category_views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView
-from webapp.views.product_views import IndexView, ProductView, ProductCreateView, ProductUpdateView, ProductDeleteView, \
-    ProductListView, ProductALLListView, AddToFavorites, DeleteFromFavorites, FavoritesList, SearchResultsView
+from webapp.views.product_views import IndexView, ProductView, ProductCreateView, ProductUpdateView, ProductDeleteView, ProductListView, ProductALLListView, AddToFavorites, DeleteFromFavorites, FavoritesList, SearchResultsView, ProductsOfferListView, AddToOffer, DeleteFromOffer
 from webapp.views.review_views import ReviewCreateView
 from webapp.views.subcategory_views import SubCategoryDeleteView, SubCategoryCreateView, SubCategoryUpdateView
 from .views.cart_views import CartView, cartdeleteitem, cartadditem, cart_modal_delete, Check
-from .views.orders_view import OrderListView, OrderDetailView, OrderUpdateView, OrderProductUpdateView, OrderProductDeleteView
+from .views.orders_view import OrderListView, OrderDetailView, OrderProductUpdateView, OrderProductDeleteView, OrderUpdateView
 from .views.news_views import NewsView, NewsAddView, NewsDetailView, NewsDeleteView, NewsEditView
 from .views.delivery_cost import DeliveryCostList, DeliveryCostAdd, DeliveryView, ReturnView
 from .views.carousel_views import *
@@ -27,6 +26,9 @@ urlpatterns = [
     path('product/add-to-favorites/', AddToFavorites.as_view(), name='add_to_favorites'),
     path('product/delete-from-favorites/', DeleteFromFavorites.as_view(), name='delete_from_favorites'),
     path('products_favorites', FavoritesList.as_view(), name='favorite_products'),
+    path('product/add-to-offer/', AddToOffer.as_view(), name='add_to_offer'),
+    path('product/delete-from-offer/', DeleteFromOffer.as_view(), name='delete_from_offer'),
+    path('products_in_offer', ProductsOfferListView.as_view(), name='offer_products'),
     path('categories/', CategoryListView.as_view(), name='categories_list'),
     path('category/add/', CategoryCreateView.as_view(), name='category_add'),
     path('category/change/<int:pk>/', CategoryUpdateView.as_view(), name='category_change'),
