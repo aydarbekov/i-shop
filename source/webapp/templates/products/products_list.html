@@ -17,6 +17,7 @@
                 <th scope="col">Бренд</th>
                 <th scope="col">Количество</th>
                 <th class="symbol hiddenbutton" scope="col">Добавить в Карусель</th>
+                <th class="symbol hiddenbutton" scope="col">Акции</th>
                 <th class="symbol hiddenbutton" scope="col">Редактировать</th>
                 <th class="symbol hiddenbutton" scope="col">Удалить</th>
             </tr>
@@ -55,6 +56,7 @@
 {#                        {% endif %}#}
                     </div>
                         </td>
+                        <td>{% include 'partial/offer_buttons.html'%}</td>
                         <td class="symbol"><a class='update hiddenbutton'
                                               href="{% url 'webapp:product_update' product.pk %}">&#x270E;</a></td>
                         <td class="symbol"><a class='delete hiddenbutton'

@@ -121,6 +121,7 @@
                                     <a class='btn delete hiddenbutton'
                                        href="{% url 'webapp:product_delete' product.pk %}"
                                        style="color: red">Удалить</a>
+                                    {% include 'partial/offer_buttons.html' %}
                                 </div>
                             {% endif %}
                         </div>

@@ -1,0 +1,12 @@
+<div id="offer-button-{{ product.pk }}">
+    <a href="{% url "webapp:add_to_offer" %}"
+       id="add-to-offer-{{ product.pk }}"
+       class="btn offer-add
+                  {% if product.offer %}d-none{% endif %}"
+       data-product-pk="{{ product.pk }}" style="color: blue">Добавить в Акции</a>
+    <a href="{% url "webapp:delete_from_offer" %}"
+       id="delete-from-offer-{{ product.pk }}"
+       class="btn offer-delete
+                 {% if not product.offer %}d-none{% endif %}"
+       data-product-pk="{{ product.pk }}" style="color: blue">Удалить из Акций</a>
+</div>
