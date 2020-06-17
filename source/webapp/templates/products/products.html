@@ -28,7 +28,7 @@
                     <div class="filter-color d-flex flex-column mb-5">
                         <p class="filter-header">Фильтр по цвету</p>
                         {% for color in same_color_products %}
-                            <button type="button"
+                            <a href="{% url 'webapp:products_category' product_category.pk %}?color={{ color.0 }}"
                                     class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
                                 <div class="category-filter-color-circle"
                                      style="background-color:{{ color.0 }}; border-color: {% if color.0 == 'white' %}black{% endif %}"></div>
@@ -36,7 +36,7 @@
                                     {% if color.0 in key %}{{ value }}{% endif %}
                                 {% endfor %}
                                 <div class="category-filter-color-number">{{ color.1 }}</div>
-                            </button>
+                            </a>
                         {% endfor %}
                     </div>
                     <hr/>
@@ -44,9 +44,7 @@
                         <p class="filter-header">Фильтр по бренду</p>
                         <div class="filter-brand-imgs">
                             {% for brand in one_category_brands %}
-                                <button type="button" class="btn btn-light"><img class='filter-brand-img'
-                                                                                 src="{{ brand.photo.url }}"
-                                                                                 alt=""></button>
+                                <a href="{% url 'webapp:products_category' product_category.pk %}?brand={{ brand }}" class="btn btn-light"><img class='filter-brand-img' src="{{ brand.photo.url }}" alt=""></a>
                             {% endfor %}
                         </div>
                     </div>
