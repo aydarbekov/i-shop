@@ -181,16 +181,6 @@ class ProductListView(ListView, SearchView):
         self.get_url()
         return context
 
-    # def get_queryset(self, *args, **kwargs):
-    #     brand = self.request.GET.get('brand')
-    #     color = self.request.GET.get('color')
-    #     if brand:
-    #         return Product.objects.filter(Q(brand__brand_name=brand), Q(category=self.kwargs.get('pk')))
-    #     elif color:
-    #         return Product.objects.filter(Q(color=color), Q(category=self.kwargs.get('pk')))
-    #     return Product.objects.filter(Q(category=self.kwargs.get('pk')))
-
-
 
 class ProductALLListView(ListView, SearchView):
     model = Product
@@ -276,3 +266,17 @@ class ProductsOfferListView(ListView):
         return context
 
 
+class AddToOffer(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        product = get_object_or_404(Product, pk=request.POST.get('pk'))
+        product.offer=True
+        product.save()
+        return JsonResponse({'pk': product.pk})
+
+
+class DeleteFromOffer(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        product = get_object_or_404(Product, pk=request.POST.get('pk'))
+        product.offer = False
+        product.save()
+        return JsonResponse({'pk': product.pk})
