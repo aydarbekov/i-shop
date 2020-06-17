@@ -130,19 +130,6 @@ class ProductUpdateView(PermissionRequiredMixin, UpdateView):
         return reverse('webapp:product_detail', kwargs={'pk': self.object.pk})
 
 
-# class ProductDeleteView(PermissionRequiredMixin, DeleteView):
-#     model = Product
-#     template_name = 'products/product_delete.html'
-#     success_url = reverse_lazy('webapp:index')
-#     context_object_name = 'product'
-#     permission_required = 'webapp.delete_product'
-#
-#     def delete(self, request, *args, **kwargs):
-#         product = self.object = self.get_object()
-#         product.in_stock = False
-#         product.save()
-#         return HttpResponseRedirect(self.get_success_url())
-
 class ProductDeleteView(UserPassesTestMixin, DeleteView):
     model = Product
     template_name = 'base_CRUD/delete.html'
@@ -174,10 +161,13 @@ class ProductListView(ListView, SearchView):
         context['one_category_brands'] = Brand.objects.filter(products__category_id=self.kwargs.get('pk')).distinct()
         brand = self.request.GET.get('brand')
         color = self.request.GET.get('color')
+        tag = self.request.GET.get('tag')
         if brand:
             context['products'] = Product.objects.filter(Q(brand__brand_name=brand), Q(category=self.kwargs.get('pk')))
         elif color:
             context['products'] = Product.objects.filter(Q(color=color), Q(category=self.kwargs.get('pk')))
+        elif tag:
+            context['products'] = Product.objects.filter(tags__name__iexact=tag)
         self.get_url()
         return context
 

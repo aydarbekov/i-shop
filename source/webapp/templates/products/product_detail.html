@@ -135,15 +135,6 @@
                                         <p class="btns-inside-white"></p>
                                     </button>
                                 {% endfor %}
-                                {#                                <button type="button" class="btn color-btn" style="background-color: #83B734;;">#}
-                                {#                                    <p class="btns-inside-white"></p>#}
-                                {#                                </button>#}
-                                {#                                <button type="button" class="btn color-btn" style="background-color: #585858;;">#}
-                                {#                                    <p class="btns-inside-white"></p>#}
-                                {#                                </button>#}
-                                {#                                <button type="button" class="btn color-btn" style="background-color: #6CC1E4;;">#}
-                                {#                                    <p class="btns-inside-white"></p>#}
-                                {#                                </button>#}
                             </div>
                             <div class="category d-flex">
                                 <p>Категория:</p>
@@ -153,11 +144,10 @@
                                 {% if product.tags.all %}
                                     <p>Tags:</p>
                                     {% for tag in product.tags.all %}
-                                        <p class="category-tag-name">#{{ tag }}</p>
+                                        <a href="{% url 'webapp:products_category' product.category.pk %}?tag={{ tag }}" class="category-tag-name" style="color: black">#{{ tag }}</a>
                                     {% endfor %}
                                 {% endif %}
                             </div>
-
                             <div class="share d-none d-sm-block">
                                 <hr/>
                                 <p>Поделиться:</p>
