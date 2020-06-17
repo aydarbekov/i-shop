@@ -5,30 +5,49 @@ from webapp.models import OrderProduct, Order, Product, Image, Category, SubCate
 
 
 class CartOrderCreateForm(ModelForm):
+    # discipline = forms.ModelChoiceField(required=False, queryset=Discipline.objects.all(), label="По дисциплине",
+    #                                     widget=forms.Select
+    #                                     (attrs={'class': 'form-control'}))
     def __init__(self, user=None, **kwargs):
         self.user = user
+    #     print('user', user)
+    #     # print(kwargs)
+    #     # print(self.cleaned_data)
         if user and not user.is_authenticated:
             self.user = None
         super().__init__(**kwargs)
 
     def clean_first_name(self):
+        print("self.cleaned_data", self.cleaned_data)
+        print('clean_fir_name')
+        # print(self.user.first_name)
+        print(self.cleaned_data.get('first_name'))
         if not self.user and not self.cleaned_data.get('first_name'):
+        # if not self.cleaned_data.get('first_name'):
             raise ValidationError('Вы должны авторизоваться либо указать ваше имя!')
-
-    def clean_email(self):
-        if not self.user and not self.cleaned_data.get('email'):
-            raise ValidationError('Вы должны авторизоваться либо указать ваш email!')
-
-    def clean_phone(self):
-        if not self.user and not self.cleaned_data.get('phone'):
-            raise ValidationError('Вы должны авторизоваться либо указать ваш телефон!')
-
-    def save(self, commit=True):
-        self.instance.user = self.user
-        return super().save(commit)
+        # if self.cleaned_data.get('first_name') == "Vadim":
+        #     raise ValidationError("Вадиму НЕЛЬЗЯ!!!")
+        print('FDVT')
+        return self.cleaned_data.get('first_name')
+    #
+    # def clean_email(self):
+    #     print(self.user.email)
+    #     if not self.user and not self.cleaned_data.get('email'):
+    #         raise ValidationError('Вы должны авторизоваться либо указать ваш email!')
+    #
+    # def clean_phone(self):
+    #     print(self.user.profile.mobile_phone)
+    #     if not self.user and not self.cleaned_data.get('phone'):
+    #         raise ValidationError('Вы должны авторизоваться либо указать ваш телефон!')
+    #
+    # def save(self, commit=True):
+    #     print("|SAVE")
+    #     self.instance.user = self.user
+    #     return super().save(commit)
 
     class Meta:
         model = Order
+        # fields = ['first_name']
         fields = ['first_name', 'last_name', 'email', 'phone']
 
 
@@ -55,6 +74,7 @@ class OrderProductForm(ModelForm):
         model = OrderProduct
         fields = ['product', 'amount']
 
+
 class ProductForm(forms.ModelForm):
     tags = forms.CharField(max_length=101, required=False, label='Тэги')
 
@@ -69,11 +89,13 @@ class ProductForm(forms.ModelForm):
         tags = filter(lambda tag: len(tag) > 0, tags)
         return tags
 
+
 ImageFormset = inlineformset_factory(Product, Image, fields='__all__', extra=1, validate_min=False, min_num=0, can_delete=True)
 
 
 ProductsFormset = inlineformset_factory(Order, OrderProduct, OrderProductForm, extra=0,
                                         validate_min=True, min_num=1, can_delete=True)
+
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -87,6 +109,7 @@ class CategoryForm(forms.ModelForm):
         else:
             return category_name
 
+
 class SubCategoryForm(forms.ModelForm):
     class Meta:
         model = SubCategory
@@ -99,6 +122,7 @@ class SubCategoryForm(forms.ModelForm):
         else:
             return sub_name
 
+
 class BrandForm(forms.ModelForm):
     class Meta:
         model = Brand
@@ -110,8 +134,6 @@ class BrandForm(forms.ModelForm):
             raise ValidationError('Бренд с таким названием уже существует!')
         else:
             return brand_name
-
-
 
 
 class FullSearchForm(forms.Form):

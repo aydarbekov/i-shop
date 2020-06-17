@@ -12,6 +12,7 @@ STAFF_TYPE_CHOICES = (
     ('admin', 'Администратор'),
 )
 
+
 class StaffCreationForm(forms.Form):
     username = forms.CharField(max_length=20, label='Username', required=True)
     first_name = forms.CharField(max_length=20, label='Имя', required=True)
@@ -51,7 +52,6 @@ class StaffCreationForm(forms.Form):
             raise ValidationError('Passwords do not match',
                                   code='passwords_do_not_match')
         return password_2
-
 
     class Meta:
         model = User
@@ -121,7 +121,6 @@ class UserInfoChangeForm(forms.ModelForm):
         if commit:
             profile.save()
         return profile
-
 
     class Meta:
         model = User

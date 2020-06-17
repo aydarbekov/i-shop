@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from uuid import uuid4
 from phonenumber_field.modelfields import PhoneNumberField
+from webapp.models import DeliveryAddress
 
 PROFILE_TYPE_CHOICES = (
     ('client', 'Физическое лицо'),
@@ -35,7 +36,7 @@ class Profile(models.Model):
     company_name = models.CharField(verbose_name='Название компании', max_length=30, null=True, blank=True)
     inn = models.CharField(verbose_name="ИНН", max_length=50, null=True, blank=True)
     okpo = models.CharField(verbose_name="ИНН", max_length=50, null=True, blank=True)
-    phone = PhoneNumberField(max_length=20, verbose_name='Телефон контактного лица',blank=True, null=True)
+    phone = PhoneNumberField(max_length=20, verbose_name='Телефон контактного лица', blank=True, null=True)
 
     def __str__(self):
         return self.user.get_full_name() + "'s Profile"
