@@ -54,19 +54,15 @@ $( function() {
             }
             // var for_show = [];
             let product_show = [];
-            console.log(product_show, "THIS IS PRODUCT SHOW");
             var product_hide = [];
-             console.log(product_hide, "THIS IS PRODUCT Hide");
             for (i in price_array) {
                 if (price_array[i] >= min_value && price_array[i] <= max_value) {
                     // for_show.push(price_array[i]);
                     product_show.push(array[i]);
-                    console.log(product_show, "PRODUCT SHOW ADDED ARRAY");
                  // $('.product-pk-element-'+product_show[i]).show();
                 }
                 else {
                     product_hide.push(array[i]);
-                    console.log(product_hide, "PRODUCT HIDE ADDED ARRAY");
                     // $('.product-pk-element-'+product_hide[i]).hide();
                 }
 }

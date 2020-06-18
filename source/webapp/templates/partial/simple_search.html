@@ -12,5 +12,8 @@
                 </p>
             {% endif %}
         {% endfor %}
+{% for error in field.errors %}
+    <p class="text-danger">{{ error }}</p>
+{% endfor %}
     <button class="search-button btn my-2 my-sm-0 rounded-right" type="submit"><i class="fas fa-search"></i></button>
 </form>

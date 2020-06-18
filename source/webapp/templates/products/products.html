@@ -125,7 +125,7 @@
                                         <div class="card-body">
                                             <div class="card-text d-flex flex-column align-items-center px-3">
                                                 <a href="{% url "webapp:product_detail" product.pk %}">
-                                                    <h5 class="products" id="{{ product.pk }}">{{ product }}{{ product.pk }}</h5></a>
+                                                    <h5 class="products" id="{{ product.pk }}">{{ product }} "</h5></a>
                                                 <p>{{ product.category }}</p>
                                                 <p class="product-price" id="{{ product.price }}">{{ product.price }} сом</p>
                                                 {% if product.discount %}
