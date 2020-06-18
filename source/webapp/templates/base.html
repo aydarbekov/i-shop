@@ -140,7 +140,7 @@
 {#            {% endfor %}#}
         </div>
         <a href="{% url "webapp:cart" %}" class="btn cart-modal-to-cart">Корзина</a>
-        <a class="btn cart-modal-check" href="">Проверить</a>
+        <a href="{% url 'webapp:check_cart' %}" class="btn cart-modal-check">Проверить</a>
     </div>
     <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-light px-2 pt-2 pb-3">
