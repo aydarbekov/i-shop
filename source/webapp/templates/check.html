@@ -61,10 +61,12 @@
                         {#                        <input type="text" name="address" value="{{ address }}" placeholder="Адрес">#}
                         <input type="text" name="phone" value="{{ phone }}" placeholder="Номер телефона +996500123456" required>
                         <input type="text" name="email" value="{{ email }}" placeholder="Почта" required>
+                        {% if user.is_anonymous %}
                         <div class="create-account-checkbox">
                             <input type="checkbox" id="create_account" name="create_account">
                             <label for="create_account">Создать аккаунт?</label>
                         </div>
+                        {% endif %}
                     </form>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, ListView
@@ -196,7 +197,7 @@ class Check(CreateView):
             email = user.email
             phone = user.profile.mobile_phone
             addresses = user.address.all()
-            context.update({'first_name': first_name, 'last_name': last_name, 'email': email, "phone": phone, "addresses": addresses})
+            context.update({'user': user, 'first_name': first_name, 'last_name': last_name, 'email': email, "phone": phone, "addresses": addresses})
             if user.profile.company_name:
                 company_name = user.profile.company_name
                 context.update({"company_name": company_name})
@@ -253,10 +254,14 @@ class Check(CreateView):
                                                      entrance_number=entrance_number, flat_number=flat_number,
                                                      additional_info=additional_info)
 
-        order.first_name = form.cleaned_data['first_name']
-        order.last_name = form.cleaned_data['last_name']
-        order.email = form.cleaned_data['email']
-        order.phone = form.cleaned_data['phone']
+        first_name = form.cleaned_data['first_name']
+        order.first_name = first_name
+        last_name = form.cleaned_data['last_name']
+        order.last_name = last_name
+        email = form.cleaned_data['email']
+        order.email = email
+        phone = form.cleaned_data['phone']
+        order.phone = phone
         shipping_cost = DeliveryCost.objects.latest('created_at')
         # if self.request.user.is_anonymous:
         #     city = form.cleaned_data['city']
@@ -275,30 +280,18 @@ class Check(CreateView):
         # address_2 = DeliveryAddress.objects.get(user=self.request.user, street=splited_addr[1], building_number=splited_addr[2])
         # print("ADDRESS", address)
         # print("address_2", address_2)
-
-
-
-
-
         # print("AddRess", address)
         order.address = address
-        # order.address = address_2
         order.shipping_cost = shipping_cost
-
-        # order = order(first_name=first_name, last_name=last_name, email=email, phone=phone,
-        #               address=address, shipping_cost=shipping_cost)
-        # order.shipping_cost = shipping_cost
         order.save()
-        # response = super().form_valid(form)
+
+        create_account = self.request.POST.get('create_account')
+        print("create_account".upper(), create_account)
+        if create_account == "on":
+            user = User(username=email, first_name=first_name, last_name=last_name, email=email)
         self._save_order_products(order)
-        # order.save()
-        # self._clean_cart()
-        # response = super().form_valid(form)
-        # print("ДОШЛИ ДО СЮДА")
         self.object = order
         print(self.object.address)
-        # order.user = request.user
-        # order.save()
         messages.success(self.request, 'Заказ оформлен!')
         # return super().form_valid(form)
         return HttpResponseRedirect(self.get_success_url())
