@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from webapp.forms import ProductForm, ImageFormset, FullSearchForm
-from webapp.models import Product, Category, Carousel, Favorite, Tag, COLOR_CHOICES, Brand
+from webapp.models import Product, Category, Carousel, Favorite, Tag, COLOR_CHOICES, Brand, MainCarousel
 from django.db.models import Q, Count
 from django.utils.http import urlencode
 from django.shortcuts import redirect
@@ -39,6 +39,7 @@ class IndexView(SearchView):
         context['categories'] = Category.objects.all()
         context['products'] = Product.objects.all()
         context['carouseles'] = Carousel.objects.all()
+        context['main_carousel'] = MainCarousel.objects.all()
         return context
 
 
@@ -56,6 +57,8 @@ class ProductView(DetailView, SearchView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['same_products'] = Product.objects.filter(name=self.object, brand=self.object.brand)
+        if self.object.discount:
+            context['price_with_discount'] = self.object.price - self.object.discount
         return context
 
 
@@ -130,19 +133,6 @@ class ProductUpdateView(PermissionRequiredMixin, UpdateView):
         return reverse('webapp:product_detail', kwargs={'pk': self.object.pk})
 
 
-# class ProductDeleteView(PermissionRequiredMixin, DeleteView):
-#     model = Product
-#     template_name = 'products/product_delete.html'
-#     success_url = reverse_lazy('webapp:index')
-#     context_object_name = 'product'
-#     permission_required = 'webapp.delete_product'
-#
-#     def delete(self, request, *args, **kwargs):
-#         product = self.object = self.get_object()
-#         product.in_stock = False
-#         product.save()
-#         return HttpResponseRedirect(self.get_success_url())
-
 class ProductDeleteView(UserPassesTestMixin, DeleteView):
     model = Product
     template_name = 'base_CRUD/delete.html'
@@ -174,10 +164,13 @@ class ProductListView(ListView, SearchView):
         context['one_category_brands'] = Brand.objects.filter(products__category_id=self.kwargs.get('pk')).distinct()
         brand = self.request.GET.get('brand')
         color = self.request.GET.get('color')
+        tag = self.request.GET.get('tag')
         if brand:
             context['products'] = Product.objects.filter(Q(brand__brand_name=brand), Q(category=self.kwargs.get('pk')))
         elif color:
             context['products'] = Product.objects.filter(Q(color=color), Q(category=self.kwargs.get('pk')))
+        elif tag:
+            context['products'] = Product.objects.filter(tags__name__iexact=tag)
         self.get_url()
         return context
 
