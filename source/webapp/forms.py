@@ -1,18 +1,27 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm, inlineformset_factory
-from webapp.models import OrderProduct, Order, Product, Image, Category, SubCategory, Brand
+from webapp.models import OrderProduct, Order, Product, Image, Category, SubCategory, Brand, DeliveryAddress
 
 
 class CartOrderCreateForm(ModelForm):
-    # discipline = forms.ModelChoiceField(required=False, queryset=Discipline.objects.all(), label="По дисциплине",
-    #                                     widget=forms.Select
-    #                                     (attrs={'class': 'form-control'}))
-    def __init__(self, user=None, **kwargs):
+    # address = forms.ChoiceField(label='address_id', widget=forms.Select)
+    # address = forms.ModelChoiceField(queryset=DeliveryAddress.objects.all(), empty_label="Адрес доставки")
+    # address = forms.ModelChoiceField(queryset=DeliveryAddress.objects.all(), widget=forms.Select(attrs={'class': 'address'}))
+
+    def __init__(self, user=None, *args, **kwargs):
+        # super(CartOrderCreateForm, self).__init__(*args, **kwargs)
         self.user = user
-    #     print('user', user)
-    #     # print(kwargs)
-    #     # print(self.cleaned_data)
+        print('user', user)
+        print(kwargs)
+
+        # self.fields['address'].queryset = DeliveryAddress.objects.filter(user=user)
+        # self.fields['address'].queryset = DeliveryAddress.objects.all()
+
+        # print(self.cleaned_data)
+    #     addresses = DeliveryAddress.objects.all()
+        # address = [(i.product.id, i.product.name) for i in variants]
+        # self.fields['address'] = forms.ChoiceField
         if user and not user.is_authenticated:
             self.user = None
         super().__init__(**kwargs)
@@ -45,10 +54,18 @@ class CartOrderCreateForm(ModelForm):
     #     self.instance.user = self.user
     #     return super().save(commit)
 
+    # def clean_address(self):
+    #     print("self.cleaned_data", self.cleaned_data)
+    #     print('clean_ADDRESS')
+    #     # print(self.user.first_name)
+    #     print(self.cleaned_data.get('address'))
+    #     return self.cleaned_data.get('address')
+
     class Meta:
         model = Order
         # fields = ['first_name']
         fields = ['first_name', 'last_name', 'email', 'phone']
+        # address_fields = ['city', 'street', 'building_number', 'entrance_number', 'flat_number', 'additional_info']
 
 
 class ManualOrderForm(ModelForm):

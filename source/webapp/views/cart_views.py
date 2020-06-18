@@ -183,54 +183,6 @@ class Check(CreateView):
     # template_name = 'base_CRUD/add.html'
     success_url = reverse_lazy('webapp:index')
 
-    # def get_context_data(self, **kwargs):
-    #     self.first_name = "Vasys"
-    #     kwargs['first_name'] = self.first_name
-    #     return super().get_context_data(**kwargs)
-
-    # def get(self, request, *args, **kwargs):
-    #     user = self.request.user
-    #     print("USER", user)
-    #     if user.is_authenticated:
-    #         print("user", user)
-    #         first_name = user.first_name
-    #         last_name = user.last_name
-    #         email = user.email
-    #         phone = user.profile.mobile_phone
-    #         # address = user.address
-    #         print("first-name", first_name)
-    #         print("last-name", last_name)
-    #         print("PHoNE", phone)
-    #         print("email", email)
-    #         # self.request['first_name'] = first_name
-    #     else:
-    #         first_name = "NNNNNN"
-    #     return render(request, 'check.html', context={'first_name': first_name})
-    #
-    # def form_valid(self, form):
-    #     name = self.kwargs.get('name')
-    #     print("NAME", name)
-
-    # def post(self, request, *args, **kwargs):
-    #     user = self.request.user
-    #     name = self.request.POST.get("first_name", '')
-    #     last_name = self.request.POST.get('last_name', '')
-    #     email = self.request.POST.get('email', '')
-    #     phone = self.request.POST.get('phone', '')
-    #     # print(first_name)
-    #     print("NAME", name)
-    #     delivery = DeliveryCost.objects.latest('created_at')
-    #     return redirect('webapp:index')
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     user = User.objects.filter(pk=self.kwargs['pk'])
-    #     groups = StudyGroup.objects.all()
-    #     context.update({
-    #         'user': user,
-    #         'groups': groups,
-    #     })
-    #     return context
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         basket, basket_total = self._prepare_cart()
@@ -239,30 +191,15 @@ class Check(CreateView):
         user = self.request.user
 
         if user.is_authenticated:
-            print("self.request.user", self.request.user)
-            print(self.request.method)
             first_name = user.first_name
-            print("user.first_name", user.first_name)
             last_name = user.last_name
             email = user.email
-            print('email', email)
             phone = user.profile.mobile_phone
-            context.update({'first_name': first_name, 'last_name': last_name, 'email': email, "phone": phone})
+            addresses = user.address.all()
+            context.update({'first_name': first_name, 'last_name': last_name, 'email': email, "phone": phone, "addresses": addresses})
             if user.profile.company_name:
                 company_name = user.profile.company_name
                 context.update({"company_name": company_name})
-            # if user.profile.delivery_address:
-            #     print("user.profile.delivery_address", user.profile.delivery_address)
-            #     city = user.profile.delivery_address.city
-            #     street = user.profile.delivery_address.street
-            #     building_number = user.profile.delivery_address.building_number
-            #     entrance_number = user.profile.delivery_address.entrance_number
-            #     flat_number = user.profile.delivery_address.flat_number
-            #     additional_info = user.profile.delivery_address.additional_info
-            #     context.update({'city': city, 'street': street, 'building_number': building_number,
-            #                     'entrance_number': entrance_number, "flat_number": flat_number, "additional_info": additional_info})
-
-            # context.update({'first_name': first_name, 'last_name': last_name, 'email': email, "phone": phone})
         return context
 
     def get_form_kwargs(self):
@@ -271,7 +208,6 @@ class Check(CreateView):
         return kwargs
 
     def form_valid(self, form):
-        print("Form", form)
         print("VALID VALID VALID")
         if self._cart_empty(): #проверить _cart_empty
             form.add_error(None, 'В корзине отсутствуют товары!')
@@ -292,22 +228,61 @@ class Check(CreateView):
             # order.user = user
             print(self.request.user)
             print(order.user)
-            print("ADDRESS", user.profile.delivery_address)
+            address = self.request.POST.get('address', '')
+            split_address = address.split('/')
+            address = DeliveryAddress.objects.get(user=user, street=split_address[1], building_number=split_address[2])
+            print("ADDRESS", type(address))
+            # order.address = address_2
+            # print("address_2", address_2)
+            # print("ADDRESS", user.profile.delivery_address)
+        else:
+            # city = form.cleaned_data['city']
+            # print("CITY", city)
+            # street = form.cleaned_data['street']
+            # building_number = form.cleaned_data['building_number']
+            # entrance_number = form.cleaned_data['entrance_number']
+            # flat_number = form.cleaned_data['flat_number']
+            # additional_info = form.cleaned_data['additional_info']
+            city = self.request.POST.get('city', "Бишкек")
+            street = self.request.POST.get('street', None)
+            building_number = self.request.POST.get('building_number', None)
+            entrance_number = self.request.POST.get('entrance_number', None)
+            flat_number = self.request.POST.get('flat_number', None)
+            additional_info = self.request.POST.get('additional_info', None)
+            address = DeliveryAddress.objects.create(city=city, street=street, building_number=building_number,
+                                                     entrance_number=entrance_number, flat_number=flat_number,
+                                                     additional_info=additional_info)
 
         order.first_name = form.cleaned_data['first_name']
-        # first_name = user.first_name
         order.last_name = form.cleaned_data['last_name']
         order.email = form.cleaned_data['email']
         order.phone = form.cleaned_data['phone']
         shipping_cost = DeliveryCost.objects.latest('created_at')
-        # city = form.cleaned_data['city']
-        # street = form.changed_data['street']
-        # building_number =
-        address = DeliveryAddress.objects.first() #изменить адресс на модель у юзера
+        # if self.request.user.is_anonymous:
+        #     city = form.cleaned_data['city']
+        #     street = form.cleaned_data['street']
+        #     building_number = form.cleaned_data['building_number']
+        #     entrance_number = form.cleaned_data['entrance_number']
+        #     flat_number = form.cleaned_data['flat_number']
+        #     additional_info = form.cleaned_data['additional_info']
+        #     address = DeliveryAddress.objects.first()
 
-        print("Shipping cost", shipping_cost)
-        print("AddRess", address)
+        # address = DeliveryAddress.objects.first() #изменить адресс на модель у юзера
+        # address = form.cleaned_data.get('address')
+        # address = form.cleaned_data['address']
+        # address = self.request.POST.get('address', '')
+        # splited_addr = address.split('/')
+        # address_2 = DeliveryAddress.objects.get(user=self.request.user, street=splited_addr[1], building_number=splited_addr[2])
+        # print("ADDRESS", address)
+        # print("address_2", address_2)
+
+
+
+
+
+        # print("AddRess", address)
         order.address = address
+        # order.address = address_2
         order.shipping_cost = shipping_cost
 
         # order = order(first_name=first_name, last_name=last_name, email=email, phone=phone,
