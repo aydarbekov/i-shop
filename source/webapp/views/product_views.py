@@ -227,9 +227,20 @@ class SearchResultsView(ListView):
         query = self.get_query_string()
         text = form.cleaned_data.get("text").capitalize()
         category = form.cleaned_data.get("category")
-        products = Product.objects.filter(Q(name__icontains=text, category_id=category) | Q(tags__name__icontains=text))
+        category_pk = get_object_or_404(Category, pk=category.pk)
+        products = Product.objects.filter(Q(name__icontains=text, category_id=category))
+        brand = self.request.GET.get('brand')
+        color = self.request.GET.get('color')
+        colors = COLOR_CHOICES
+        same_color_products = Product.objects.filter(category_id=category_pk).values_list('color',flat=None).annotate(Count('pk'))
+        one_category_brands = Brand.objects.filter(products__category_id=category_pk).distinct()
+        if brand:
+            products = Product.objects.filter(Q(brand__brand_name=brand), Q(category=self.kwargs.get('pk')))
+        elif color:
+            products = Product.objects.filter(Q(color=color), Q(category=self.kwargs.get('pk')))
         return super().get_context_data(
-            form=form, query=query, products=products
+            form=form, query=query, products=products, product_category=category_pk, same_color_products=same_color_products,
+            one_category_brands=one_category_brands, colors=colors
         )
 
     def get_query_string(self):
