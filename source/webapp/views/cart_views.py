@@ -224,9 +224,11 @@ class Check(CreateView):
 
     def _save_order_products(self, order):
         totals = self._get_totals()
-        # print("TOTALS", totals)
         for pk, qty in totals.items():
             OrderProduct.objects.create(order=order, product_id=pk, amount=qty)
+            product = Product.objects.get(pk=pk)
+            product.quantity = product.quantity - qty
+            product.save()
 
     def _cart_empty(self):
         products = self.request.session.get('products', [])
