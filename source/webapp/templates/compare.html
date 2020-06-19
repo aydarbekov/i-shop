@@ -3,6 +3,86 @@
 {% block title %}Сравнение{% endblock %}
 {% block styles %}{% endblock %}
 {% block content %}
+    <div class="container">
+        <nav aria-label="breadcrumb" class="my-4">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Сравнение цен</li>
+            </ol>
+        </nav>
+        <h4>Компьютерная техника</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-compare">
+                <thead>
+                <tr>
+                    <th scope="row">Товар</th>
+                    <td>
+                        <div class="photo-back">
+                            <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">
+                            <button class="delete-from-cart"></button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text d-flex flex-column align-items-center px-3">
+                                <h5>Компьютерная мышка</h5>
+                                <p>Электроника</p>
+                                <p class="price">250-400 c</p>
+                                <button type="button" class="to-cart btn btn-success">В корзину</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="photo-back">
+                            <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">
+                            <button class="delete-from-cart"></button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text d-flex flex-column align-items-center px-3">
+                                <h5>Компьютерная мышка</h5>
+                                <p>Электроника</p>
+                                <p class="price">250-400 c</p>
+                                <button type="button" class="to-cart btn btn-success">В корзину</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="photo-back">
+                            <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">
+                            <button class="delete-from-cart"></button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text d-flex flex-column align-items-center px-3">
+                                <h5>Компьютерная мышка</h5>
+                                <p>Электроника</p>
+                                <p class="price">250-400 c</p>
+                                <button type="button" class="to-cart btn btn-success">В корзину</button>
+                            </div>
+                        </div>
+                    </td>
+
+
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <th scope="row">Модель</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">Цвет</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{#!!!!!!!!!!!!!!!!!!!!!!!!!!#}
+
     <div class="container my-4 my-sm-5">
         <div class="row">
             <div class="col-12 col-lg-8">
@@ -11,7 +91,7 @@
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item active"><a href="{% url 'webapp:index' %}">Главная</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Сравнение</li>
-{#                            <li class="breadcrumb-item">Оплата</li>#}
+                            {#                            <li class="breadcrumb-item">Оплата</li>#}
                         </ol>
                     </nav>
                     <table class="table-base table table-hover mt-4 mt-sm-5">
@@ -21,8 +101,8 @@
                             <th class="none-top-border tovar" scope="col">Товар</th>
                             <th class="none-top-border"></th>
                             <th class="none-top-border" scope="col">Цена</th>
-{#                            <th class="none-top-border" scope="col">Количество</th>#}
-{#                            <th class="none-top-border" scope="col">Итого</th>#}
+                            {#                            <th class="none-top-border" scope="col">Количество</th>#}
+                            {#                            <th class="none-top-border" scope="col">Итого</th>#}
                         </tr>
                         </thead>
                         <tbody>
@@ -54,70 +134,70 @@
                                     <p class="d-inline-block d-sm-none">Цена</p>
                                     <div class="price-{{ item.product.pk }}">{{ item.product.price }}</div>
                                 </td>
-{#                                <td class="table-quantity table-for-vertical">#}
-{#                                    <p class="d-inline-block d-sm-none">Количество</p>#}
-{#                                    <div class="input-number">#}
-{#                                        <div class="input-number__minus">#}
-{#                                            <a href="{% url "webapp:cartdeleteitem" %}" id="cart-delete-{{ item.product.pk }}"#}
-{#                               data-product-pk="{{ item.product.pk }}"#}
-{#                               class="cartdelete">-</a>#}
-{#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=remove&next={% url 'webapp:cart' %}">-</a>#}
-{#                                        </div>#}
-{#                                        <input class="input-number__input" type="text" pattern="^[0-9]+$" id="gty-{{ item.product.pk }}"#}
-{#                                               value="{{ item.qty }}">#}
-{#                                        <div class="input-number__plus">#}
-{#                                            <a href="{% url "webapp:cartadditem" %}" id="cart-add-{{ item.product.pk }}"#}
-{#                               data-product-pk="{{ item.product.pk }}"#}
-{#                               class="cartadd">+</a>#}
-{#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:cart' %}">+</a>#}
-{#                                        </div>#}
-{##}
-{#                                    </div>#}
-{#                                </td>#}
-{#                                <td class="product-summ table-for-vertical"><p class="d-inline-block d-sm-none">#}
-{#                                    Итого</p>#}
-{#                                    <input class="" type="text" id="total-{{ item.product.pk }}"#}
-{#                                               value="{{ item.total }}">#}
-{#                                <div class="total-{{ item.product.pk }}">{{ item.total }}</div></td>#}
+                                {#                                <td class="table-quantity table-for-vertical">#}
+                                {#                                    <p class="d-inline-block d-sm-none">Количество</p>#}
+                                {#                                    <div class="input-number">#}
+                                {#                                        <div class="input-number__minus">#}
+                                {#                                            <a href="{% url "webapp:cartdeleteitem" %}" id="cart-delete-{{ item.product.pk }}"#}
+                                {#                               data-product-pk="{{ item.product.pk }}"#}
+                                {#                               class="cartdelete">-</a>#}
+                                {#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=remove&next={% url 'webapp:cart' %}">-</a>#}
+                                {#                                        </div>#}
+                                {#                                        <input class="input-number__input" type="text" pattern="^[0-9]+$" id="gty-{{ item.product.pk }}"#}
+                                {#                                               value="{{ item.qty }}">#}
+                                {#                                        <div class="input-number__plus">#}
+                                {#                                            <a href="{% url "webapp:cartadditem" %}" id="cart-add-{{ item.product.pk }}"#}
+                                {#                               data-product-pk="{{ item.product.pk }}"#}
+                                {#                               class="cartadd">+</a>#}
+                                {#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:cart' %}">+</a>#}
+                                {#                                        </div>#}
+                                {##}
+                                {#                                    </div>#}
+                                {#                                </td>#}
+                                {#                                <td class="product-summ table-for-vertical"><p class="d-inline-block d-sm-none">#}
+                                {#                                    Итого</p>#}
+                                {#                                    <input class="" type="text" id="total-{{ item.product.pk }}"#}
+                                {#                                               value="{{ item.total }}">#}
+                                {#                                <div class="total-{{ item.product.pk }}">{{ item.total }}</div></td>#}
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
-{#            <div class="col-12 col-lg-4">#}
-{#                <div class="cart-summ">#}
-{#                    <h3 class="cart-summ-header">Сравнение</h3>#}
-{#                    <table class="table">#}
-{#                        <tbody>#}
-{#                        <tr>#}
-{#                            <th class="none-top-border cart-summ-itog-header" scope="row">Итог</th>#}
-{#                            <td class="none-top-border cart-summ-itog"><div class="cart-total">#}
-{#                                {{ cart_total }}</div></td>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <th class="cart-summ-itog-header" scope="row">Доставка</th>#}
-{#                            <td class="cart-summ-delivery">{{ shipping_cost }}</td>#}
-{#                            {% if shipping_message %}#}
-{#                                <p style="color: red">{{ shipping_message }}</p>#}
-{#                            {% endif %}#}
-{#                        </tr>#}
-{#                        </tbody>#}
-{#                        <tfoot>#}
-{#                        <tr>#}
-{#                            <th class="cart-summ-itogo-header" scope="row">Итого</th>#}
-{#                            <td class="cart-summ-itogo"><div class="cart-total">#}
-{#                                {{ total }}</div></td>#}
-{#                        </tr>#}
-{#                        </tfoot>#}
-{#                    </table>#}
-{#                    <button type="button" class="to-cart btn btn-success mt-0 ml-4 w-75">Пройти проверку</button>#}
-{#                </div>#}
-{#            </div>#}
+            {#            <div class="col-12 col-lg-4">#}
+            {#                <div class="cart-summ">#}
+            {#                    <h3 class="cart-summ-header">Сравнение</h3>#}
+            {#                    <table class="table">#}
+            {#                        <tbody>#}
+            {#                        <tr>#}
+            {#                            <th class="none-top-border cart-summ-itog-header" scope="row">Итог</th>#}
+            {#                            <td class="none-top-border cart-summ-itog"><div class="cart-total">#}
+            {#                                {{ cart_total }}</div></td>#}
+            {#                        </tr>#}
+            {#                        <tr>#}
+            {#                            <th class="cart-summ-itog-header" scope="row">Доставка</th>#}
+            {#                            <td class="cart-summ-delivery">{{ shipping_cost }}</td>#}
+            {#                            {% if shipping_message %}#}
+            {#                                <p style="color: red">{{ shipping_message }}</p>#}
+            {#                            {% endif %}#}
+            {#                        </tr>#}
+            {#                        </tbody>#}
+            {#                        <tfoot>#}
+            {#                        <tr>#}
+            {#                            <th class="cart-summ-itogo-header" scope="row">Итого</th>#}
+            {#                            <td class="cart-summ-itogo"><div class="cart-total">#}
+            {#                                {{ total }}</div></td>#}
+            {#                        </tr>#}
+            {#                        </tfoot>#}
+            {#                    </table>#}
+            {#                    <button type="button" class="to-cart btn btn-success mt-0 ml-4 w-75">Пройти проверку</button>#}
+            {#                </div>#}
+            {#            </div>#}
         </div>
     </div>
 {% endblock %}
 {% block scripts %}
-{#        <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
-{#        <script type="application/javascript" src="{% static "js/compare_ajax.js" %}"></script>#}
+    {#        <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
+    {#        <script type="application/javascript" src="{% static "js/compare_ajax.js" %}"></script>#}
 {% endblock %}
