@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Доставка{% endblock %}
+{% block styles %}{% endblock %}
+{% block content %}
+    <div class="container d-flex flex-wrap my-5">
+        <div class="left-content mb-5">
+            <h5>Мой аккаунт</h5>
+            <hr>
+            <button type="button" class="panel-buttons panel-btn btn" autofocus >Панель управления</button>
+            <button type="button" class="panel-buttons orders-btn btn " >Мои заказы</button>
+            <button type="button" class="panel-buttons adress-btn btn " >Адреса</button>
+            <button type="button" class="panel-buttons settings-btn btn " >Настройка</button>
+            <a type="button" class="panel-buttons exit-btn btn " >Выход</a>
+        </div>
+
+        <div class="panel-center right-content justify-content-around flex-wrap ">
+            <div class="right-left-content w-50 d-flex flex-column align-items-center">
+                <button class="buttons-right my-orders"><span>Мои заказы</span></button>
+                <button class="buttons-right settings"><span>Настройки</span></button>
+            </div>
+            <div class="right-right-content w-50 d-flex flex-column align-items-center">
+                <button class="buttons-right adresses"><span>Адреса</span></button>
+                <button class="buttons-right exit"><span>Выход</span></button>
+            </div>
+        </div>
+        <div class="panel-settings right-content justify-content-around flex-wrap container">
+            <h5>Личные данные</h5>
+            <form id='private-form' action="">
+                <div class="first-last-name">
+                    <input type="text" name="first_name" autofocus placeholder="Ваше Имя">
+                    <input type="text" name="last_name"  placeholder="Ваша фамилия">
+                </div>
+                <input type="text" name="company_name"  placeholder="Имя компании">
+                <input type="text" name="city"  placeholder="Город">
+                <input type="text" name="adress"  placeholder="Адрес">
+                <input type="text" name="phone"  placeholder="Номер телефона">
+                <input type="text" name="mail"  placeholder="Почта">
+                <button type="submit" class="btn btn-success">Сохранить</button>
+            </form>
+        </div>
+        <div class="panel-adresses right-content container">
+            <h5>Мои адреса</h5>
+            <div class="tr-adress my-4">
+                <p>Улица Малдыбаева 67</p>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="none-top-border" scope="col">Страна:</th>
+                        <th class="none-top-border" scope="col">Город:</th>
+                        <th class="none-top-border" scope="col">Улица:</th>
+                        <th class="none-top-border" scope="col">Дом:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Кыргызстан</td>
+                        <td>Бишкек</td>
+                        <td>Чуйкова</td>
+                        <td>15</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+            <div class="tr-adress my-4">
+                <p>Улица Малдыбаева 67</p>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="none-top-border" scope="col">Страна:</th>
+                        <th class="none-top-border" scope="col">Город:</th>
+                        <th class="none-top-border" scope="col">Улица:</th>
+                        <th class="none-top-border" scope="col">Дом:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Кыргызстан</td>
+                        <td>Бишкек</td>
+                        <td>Чуйкова</td>
+                        <td>15</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+            <div class="tr-adress my-4">
+                <p>Улица Малдыбаева 67</p>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="none-top-border" scope="col">Страна:</th>
+                        <th class="none-top-border" scope="col">Город:</th>
+                        <th class="none-top-border" scope="col">Улица:</th>
+                        <th class="none-top-border" scope="col">Дом:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Кыргызстан</td>
+                        <td>Бишкек</td>
+                        <td>Чуйкова</td>
+                        <td>15</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+        </div>
+        <div class="panel-history right-content justify-content-around flex-wrap container">
+            <h5>Личные данные</h5>
+            <form id='private-form' action="">
+                <div class="first-last-name">
+                    <input type="text" name="first_name" autofocus placeholder="Ваше Имя">
+                    <input type="text" name="last_name"  placeholder="Ваша фамилия">
+                </div>
+                <input type="text" name="company_name"  placeholder="Имя компании">
+                <input type="text" name="city"  placeholder="Город">
+                <input type="text" name="adress"  placeholder="Адрес">
+                <input type="text" name="phone"  placeholder="Номер телефона">
+                <input type="text" name="mail"  placeholder="Почта">
+                <button type="submit" class="btn btn-success">Сохранить</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+		$(document).ready(function(){
+		    {#let panel_center = $('.panel-center')[0];#}
+			$('.settings-btn').click(function() {
+				$('.panel-center')[0].style.display = 'none';
+				$('.panel-adresses')[0].style.display = 'none';
+				$('.panel-history')[0].style.display = 'none';
+				$('.panel-settings')[0].style.display = 'block';
+			});
+			$('.adress-btn').click(function() {
+				$('.panel-center')[0].style.display = 'none';
+				$('.panel-adresses')[0].style.display = 'block';
+				$('.panel-history')[0].style.display = 'none';
+				$('.panel-settings')[0].style.display = 'none';
+			});
+			$('.panel-btn').click(function() {
+				$('.panel-center')[0].style.display = 'flex';
+				$('.panel-adresses')[0].style.display = 'none';
+				$('.panel-history')[0].style.display = 'none';
+				$('.panel-settings')[0].style.display = 'none';
+			});
+			$('.panel-btn').click()
+		});
+	</script>
+{% endblock %}

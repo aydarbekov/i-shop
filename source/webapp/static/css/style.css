@@ -2192,6 +2192,144 @@ table td{
 .table-compare .photo-back{
 	position: relative;
 }
+.buttons-right{
+	display: block;
+	background-color: transparent;
+	border: 1px solid #DFE3E9;
+	border-radius: 11px;
+	width: 95%;
+	margin: 10px 0;
+	height: 193px;
+	position: relative;
+}
+.buttons-right:hover{
+	background-color: lightgrey;
+}
+.buttons-right span{
+	position: absolute;
+	transform: translate(-50%, -50%);
+    bottom: 10%;
+    font-weight: 900;
+	font-size: 18px;
+	line-height: 21px;
+	text-transform: uppercase;
+	color: #4F4F4F;
+}
+.left-content{
+	width: 25%;
+}
+.right-content{
+	width: 75%;
+}
+.my-orders{
+	background-image: url(../images/icons/orders.png);
+	background-repeat: no-repeat;
+	background-position: center 40%;
+}
+.settings{
+	background-image: url(../images/icons/settings.png);
+	background-repeat: no-repeat;
+	background-position: center 40%;
+}
+.adresses{
+	background-image: url(../images/icons/adresses.png);
+	background-repeat: no-repeat;
+	background-position: center 40%;
+}
+.exit{
+	background-image: url(../images/icons/exit.png);
+	background-repeat: no-repeat;
+	background-position: center 40%;
+}
+.left-content{
+	border-right: 1px solid #DFE3E9;
+}
+.panel-buttons{
+	width: 95%;
+	border: none;
+	text-align: left;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 21px;
+	color: #585858;
+	margin-top: 15px;
+}
+.panel-buttons:hover{
+	border: none;
+	background: #F8F8F8;
+}
+.panel-buttons:focus{
+	/*border: none;*/
+	background: #F8F8F8;
+}
+.right-content .first-last-name input {
+    width: 32%;
+}
+.right-content form input {
+    margin-top: 15px;
+    border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+    border-radius: 2px;
+    height: 56px;
+    padding: 20px;
+    width: 65%;
+}
+.right-content h5{
+	margin-right: auto;
+	font-weight: 900;
+	font-size: 18px;
+	line-height: 21px;
+	text-transform: uppercase;
+	color: #585858;
+}
+#private-form button{
+	width: 36%;
+    margin-left: 29%;
+    background: #83B734;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: #FFFFFF;
+    margin-top: 15px;
+}
+.panel-adresses p{
+	margin-bottom: 0;
+	font-weight: 900;
+	font-size: 20px;
+	line-height: 23px;
+	text-transform: uppercase;
+	color: #83B734;
+}
+.panel-adresses thead{
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #A29A9A;
+}
+.panel-adresses .table thead th {
+    border-bottom: none;
+    line-height: 0px;
+}
+.panel-adresses .table td, .table th {
+    border-top: none;
+    line-height: 0px;
+}
+.panel-adresses .table {
+    margin-top: 1rem;
+}
+.panel-center{
+	display: none;
+}
+.panel-settings{
+	display: none;
+}
+.panel-adresses{
+	display: none;
+}
+.panel-history{
+	display: none;
+}
 @media screen and (min-width:769px){
 	.info-card .card-body{
 		display: block!important;
@@ -2367,6 +2505,25 @@ table td{
 	.original-block-item {
     	width: 90%;
     }
+	.left-content{
+		width: 100%;
+	}
+	.right-content{
+		width: 100%;
+	}
+	.right-content .first-last-name input {
+	    width: 100%;
+	}
+	.right-content form input {
+	    width: 100%;
+	}
+	.left-content{
+		border-right: none;
+	}
+	#private-form button{
+		width: 100%;
+	    margin-left: 0;
+	}
 }
 @media screen and (max-width:576px) {
 	.carousel-content{
