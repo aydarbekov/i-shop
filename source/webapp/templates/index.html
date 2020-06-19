@@ -35,7 +35,7 @@
 {#                <div {% if loop.index0 == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>#}
                 <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">
                 <div class="carousel-content carousel-caption">
-                <img class="bestseller-img" src="{{ item_carousel.photo.url }}" alt="...">
+                <img class="mr-5" src="{{ item_carousel.photo.url }}" align="left" alt="...">
                     <h5 class="carousel-title">{{ item_carousel.title }}</h5>
                     <p class="carousel-text">{{ item_carousel.text }}</p>
                     <div class="carousel-button-price d-flex align-items-center">

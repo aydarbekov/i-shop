@@ -323,10 +323,11 @@ body{
 	object-fit: cover;
 }
 .carousel-content{
-	top: 30%;
-	right: 37%;
-	left: 37%;
+	top: 15%;
+	right: 25%;
+	left: 25%;
 	text-align: left;
+	padding-left: 10%;
 }
 .carousel-title{
 	color: black;

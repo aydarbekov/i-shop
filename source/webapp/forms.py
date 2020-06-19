@@ -155,7 +155,7 @@ class BrandForm(forms.ModelForm):
 
 class FullSearchForm(forms.Form):
     text = forms.CharField(max_length=100, required=False, label='Поиск')
-    category = forms.ModelChoiceField(label='Категория', queryset=Category.objects.all(), required=False)
+    category = forms.ModelChoiceField(label='Категория', queryset=Category.objects.all(), required=True)
 
     def clean(self):
         super().clean()
@@ -163,7 +163,11 @@ class FullSearchForm(forms.Form):
         text = data.get('text')
         category_name = self.cleaned_data.get('category')
         category = data.get('category')
+        # print(category_name)
         # user = data.get('user')
+        # if not (category):
+        #     raise ValidationError('Вы не ввели текст поиска!',
+        #                           code='text_search_empty')
         # if not (text):
         #     raise ValidationError('Вы не ввели текст поиска!',
         #                           code='text_search_empty')
