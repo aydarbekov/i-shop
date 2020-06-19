@@ -755,21 +755,21 @@ footer{
 	background-repeat: no-repeat;
 	background-position: center;
 }
-.partners-logo-first{
-	background-image: url(../images/icons/partners/samsung.png);
-}
-.partners-logo-second{
-	background-image: url(../images/icons/partners/Mail.png);
-}
-.partners-logo-third{
-	background-image: url(../images/icons/partners/kia.png);
-}
-.partners-logo-fourth{
-	background-image: url(../images/icons/partners/qiwi.png);
-}
-.partners-logo-fifth{
-	background-image: url(../images/icons/partners/Mail.png);
-}
+/*.partners-logo-first{*/
+/*	background-image: url(../images/icons/partners/samsung.png);*/
+/*}*/
+/*.partners-logo-second{*/
+/*	background-image: url(../images/icons/partners/Mail.png);*/
+/*}*/
+/*.partners-logo-third{*/
+/*	background-image: url(../images/icons/partners/kia.png);*/
+/*}*/
+/*.partners-logo-fourth{*/
+/*	background-image: url(../images/icons/partners/qiwi.png);*/
+/*}*/
+/*.partners-logo-fifth{*/
+/*	background-image: url(../images/icons/partners/Mail.png);*/
+/*}*/
 .info-block{
 	background: #343436;
 	padding: 50px 10%;
@@ -2071,6 +2071,127 @@ table td{
 .modal-for-card .card-cvc{
 	padding: 20px 10px ;
 }
+.methods-payment{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin-bottom: 40px;
+}
+.how-pay .methods-payment p{
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 19px;
+	color: #4F4F4F;
+}
+.method-payment{
+	width: 23%;
+	box-sizing: border-box;
+	border-radius: 11px;
+	min-width: 200px;
+	height: 100px;
+	display: flex;
+    align-items: center;
+    padding: 0 15px 0 82px;
+    margin: 7px 0 7px 0;
+}
+.method-payment p{
+	margin: 0;
+}
+.cash-pay{
+	background: url(../images/icons/cash_pay.png);
+	background-repeat: no-repeat;
+	background-color: #F8F8F8;
+    background-position: 20px 50%;
+}
+.card-pay{
+	background: url(../images/icons/card-pay.png);
+	background-repeat: no-repeat;
+	background-color: #F8F8F8;
+    background-position: 20px 50%;
+}
+.i-pay{
+	background: url(../images/icons/i-pay.png);
+	background-repeat: no-repeat;
+	background-color: #F8F8F8;
+    background-position: 30px 50%;
+}
+.sertificate-pay{
+	background: url(../images/icons/sert-pay.png);
+	background-repeat: no-repeat;
+	background-color: #F8F8F8;
+    background-position: 20px 50%;
+}
+.payment-block h4{
+	color: #000000;
+}
+.payment-block p{
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 19px;
+	color: #000000;
+}
+.payment-block .marker {
+	padding-right: 9px;
+    height: 9px;
+    margin-top: 4px;
+    border-radius: 50%;
+    margin-right: 13px;
+    background-color: #83B734;
+}
+.table-compare img{
+	max-height: 90%;
+    width: auto;
+    max-width: 90%;
+    height: auto;
+}
+.table-compare th{
+	font-weight: 900;
+	font-size: 18px;
+	line-height: 21px;
+	text-transform: uppercase;
+	color: #585858;
+    vertical-align: middle!important;
+}
+.table-compare h5 {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    color: #585858;
+    text-align: center;
+}
+.table-compare p {
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    color: #8D8D8D;
+}
+.table-compare .price {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #83B734;
+}
+.table-compare tbody td{
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 19px;
+	color: #585858;
+	padding-left: 50px;
+}
+.table-compare .delete-from-cart {
+	position: absolute;
+	top: 15px;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/icons/delete.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+}
+.table-compare .photo-back{
+	position: relative;
+}
 @media screen and (min-width:769px){
 	.info-card .card-body{
 		display: block!important;
@@ -2557,6 +2678,14 @@ table td{
 	}
 	.date-cvc input{
 		width: 100%;
+	}
+	.method-payment{
+		width: 100%;
+	}
+	.how-pay h4{
+		font-size: 18px;
+		line-height: 21px;
+		margin: 0;
 	}
 
 }
