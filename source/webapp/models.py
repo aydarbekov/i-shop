@@ -78,7 +78,7 @@ class Product(models.Model):
     color = models.CharField(max_length=20,choices=COLOR_CHOICES, default=COLOR_CHOICES[0][0], verbose_name="Цвет", null=True, blank=True)
     discount = models.IntegerField(verbose_name='Скидка', null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
-    quantity = models.IntegerField(verbose_name='Количество', null=True, blank=True)
+    quantity = models.IntegerField(verbose_name='Количество')
     brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Бренд', related_name='products')
     tags = models.ManyToManyField(Tag, blank=True, related_name='products', verbose_name='Теги')
     offer = models.BooleanField(verbose_name='Акция', default=False)
