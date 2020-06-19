@@ -36,13 +36,15 @@
                         {#                                {% endfor %}#}
                         {#                            </select>#}
                         {% if addresses %}
-                            <select name="address" id="address">
+                            <select style="margin-bottom: 20px; padding: 20px; border: 1px solid #CCCCCC; border-radius: 2px;" name="address" id="address">
                                 {% for address in addresses %}
                                     <option class="address" value="{{ address }}">{{ address }}</option>
-                                    {#                                    {% if address.id == DeliveryAddress.id %} selected="selected"{% endif %}#}
                                 {% endfor %}
                             </select>
                             {#                            {{ form.address }}#}
+                            <a href="{% url 'webapp:delivery_address_add' %}" class="btn hiddenbutton"
+           style="background-color: #83B734; color: white">
+            + Добавить новый адрес доставки</a>
                         {% else %}
                             <input type="text" required name="city" placeholder="Город" value="Бишкек">
                             <input type="text" name="street" placeholder="Улица / Мкр" required>
@@ -116,11 +118,8 @@
                     {#                    <div class="pay-btn">#}
                     {#                        <button type="button" class="to-cart btn btn-success" disabled>Перейти к оплате</button>#}
                     {#                    </div>#}
-                    {#                    <form method="POST" enctype="multipart/form-data" action="">#}
-                    {#            {% include "partial/form.html" %}#}
-                    {#                        {% csrf_token %}#}
                     <div class="pay-btn">
-                        <button type="button" class="to-cart btn btn-success" disabled><input type="submit"
+                        <button type="button" class="to-cart btn btn-success" disabled><input class="btn btn-success" type="submit"
                                                                                               value="Перейти к оплате">
                         </button>
                     </div>
