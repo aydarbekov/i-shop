@@ -52,7 +52,7 @@
                     </div>
                     <hr/>
                 <a href="{% url 'webapp:products_category' product_category.pk %}?category={{ product_category.pk }}">
-                    <button type="button" class="to-cart btn btn-success">Сброс фильров</button></a>
+                    <button type="button" class="to-cart btn btn-success">Сброс фильтров</button></a>
                     <div class="bestseller-in-filter">
                         <div class="bestseller p-5 mb-0 mt-5">
                             <p class="bestseller-text-background-in-category-page">Bestseller</p>
@@ -109,7 +109,7 @@
                 <div class="products-in-category">
                     <div class="row mx-0">
                         {% for product in products %}
-                            <div class="col-6 col-md-4 px-2">
+                            <div class="col-6 col-md-4 px-2 product-pk-element-{{ product.pk }}">
                                 <a href="{% url "webapp:product_detail" product.pk %}">
                                     <div class="card">
                                         <div class="photo-back">
@@ -125,9 +125,9 @@
                                         <div class="card-body">
                                             <div class="card-text d-flex flex-column align-items-center px-3">
                                                 <a href="{% url "webapp:product_detail" product.pk %}">
-                                                    <h5>{{ product }}</h5></a>
+                                                    <h5 class="products" id="{{ product.pk }}">{{ product }} "</h5></a>
                                                 <p>{{ product.category }}</p>
-                                                <p class="price">{{ product.price }} сом</p>
+                                                <p class="product-price" id="{{ product.price }}">{{ product.price }} сом</p>
                                                 {% if product.discount %}
                                                     <div class="discount-count d-flex align-items-center justify-content-center">
                                                         {{ product.discount }}%

@@ -1,8 +1,9 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from webapp.models import DeliveryCost
+from webapp.models import DeliveryCost, DeliveryAddress
 from webapp.views.product_views import SearchView
 
 
@@ -31,3 +32,15 @@ class DeliveryView(SearchView):
 
 class ReturnView(SearchView):
     template_name = 'return.html'
+
+
+class DeliveryAddressAdd(CreateView):
+    model = DeliveryAddress
+    template_name = 'base_CRUD/add.html'
+    fields = ('city', 'street', 'building_number', 'entrance_number', 'flat_number', 'additional_info')
+    success_url = reverse_lazy('webapp:check_cart')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+

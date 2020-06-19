@@ -1,18 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Заказы:</h2>
+    <h1 style="margin-top: 40px; text-align: center">Заказы</h1>
     <br>
     {% csrf_token %}
-            {% for order in orders %}
-{#                <p>Имя клиента: {{ order.first_name }} {{ order.last_name }}</p>#}
-{#                <p>Email : {{ order.email }}</p>#}
-{#                <p>Телефон : {{ order.phone }}</p>#}
-                <p>Адрес : {{ order.address }}</p>
-                <p>Дата создания : {{ order.created_at }}</p>
-                <a href="{% url 'webapp:order_detail' order.pk %}">Подробнее</a>
-                <a href="{% url 'webapp:order_update' order.pk %}">Редактировать</a>
-{#                <a href="{% url 'webapp:order_deliver' order.pk %}">Отмена заказа</a>#}
-{#                <a href="{% url 'webapp:order_deliver' order.pk %}">Заказ доставлен</a>#}
-                <br><br>
-            {% endfor %}
+    <table class="table table-hover">
+        <thead class="thead-light">
+        <tr style="text-align: center">
+            <th scope="col">Aдрес</th>
+            <th scope="col">Дата создания</th>
+            <th class="symbol hiddenbutton" scope="col">Подробнее</th>
+            <th class="symbol hiddenbutton" scope="col">Редактировать</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr style="text-align: center">
+                <td>{{ order.address }}</td>
+                <td>{{ order.created_at|date:'d.m.Y H:i:s' }}</td>
+                <td class="symbol"><a class='update hiddenbutton'
+                                      href="{% url 'webapp:order_detail' order.pk %}">&#8594;</a></td>
+                <td class="symbol"><a class='update hiddenbutton'
+                                      href="{% url 'webapp:order_update' order.pk %}">&#x270E;</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

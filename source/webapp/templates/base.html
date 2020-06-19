@@ -69,6 +69,7 @@
                             <a class="dropdown-item" href="{% url 'webapp:categories_list' %}">Категории</a>
                             <a class="dropdown-item" href="{% url 'webapp:brands_list' %}">Бренды</a>
                             <a class="dropdown-item" href="{% url 'webapp:news' %}">Новости</a>
+                            <a class="dropdown-item" href="{% url 'webapp:main_carousel_list' %}">Главная Карусель</a>
                             <a class="dropdown-item" href="{% url 'webapp:carousel_list' %}">Карусель</a>
                             <a class="dropdown-item" href="{% url 'webapp:orders' %}">Заказы</a>
                             <a class="dropdown-item" href="{% url 'webapp:delivery_cost' %}">Стоимость доставки</a>
@@ -139,7 +140,7 @@
 {#            {% endfor %}#}
         </div>
         <a href="{% url "webapp:cart" %}" class="btn cart-modal-to-cart">Корзина</a>
-        <a class="btn cart-modal-check" href="">Проверить</a>
+        <a href="{% url 'webapp:check_cart' %}" class="btn cart-modal-check">Проверить</a>
     </div>
     <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-light px-2 pt-2 pb-3">

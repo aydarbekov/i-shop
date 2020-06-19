@@ -53,9 +53,13 @@
                         </nav>
                         <div class="name-price mt-4 d-flex">
                             <div class="name-price-2">
-                                <h3>{{ product.name }}, {{ product.brand }}</h3>
-                                <p class="product-price">{{ product.price }} сом</p>
-                                <p class="price-without-discount">{{ product.price }} сом</p>
+                                <h3>{{ product.name }}</h3>
+                                {% if product.discount %}
+                                    <p class="product-price">{{ price_with_discount }} сом</p>
+                                    <p class="price-without-discount">{{ product.price }} сом</p>
+                                {% else %}
+                                    <p class="product-price">{{ product.price }} сом</p>
+                                {% endif %}
                             </div>
                             <div class="name-price-share d-block d-sm-none">
                                 <button class="social-icons"></button>
@@ -135,15 +139,6 @@
                                         <p class="btns-inside-white"></p>
                                     </button>
                                 {% endfor %}
-                                {#                                <button type="button" class="btn color-btn" style="background-color: #83B734;;">#}
-                                {#                                    <p class="btns-inside-white"></p>#}
-                                {#                                </button>#}
-                                {#                                <button type="button" class="btn color-btn" style="background-color: #585858;;">#}
-                                {#                                    <p class="btns-inside-white"></p>#}
-                                {#                                </button>#}
-                                {#                                <button type="button" class="btn color-btn" style="background-color: #6CC1E4;;">#}
-                                {#                                    <p class="btns-inside-white"></p>#}
-                                {#                                </button>#}
                             </div>
                             <div class="category d-flex">
                                 <p>Категория:</p>
@@ -153,11 +148,10 @@
                                 {% if product.tags.all %}
                                     <p>Tags:</p>
                                     {% for tag in product.tags.all %}
-                                        <p class="category-tag-name">#{{ tag }}</p>
+                                        <a href="{% url 'webapp:products_category' product.category.pk %}?tag={{ tag }}" class="category-tag-name" style="color: black">#{{ tag }}</a>
                                     {% endfor %}
                                 {% endif %}
                             </div>
-
                             <div class="share d-none d-sm-block">
                                 <hr/>
                                 <p>Поделиться:</p>

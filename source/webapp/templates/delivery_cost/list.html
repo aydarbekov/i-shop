@@ -1,21 +1,28 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    <h1>Стоимость доставки</h1>
+    <h1 style="margin-top: 40px; text-align: center">Стоимость доставки</h1>
     {% if request.user.is_staff %}
-        <a href="{% url 'webapp:delivery_cost_add' %}" class="btn ml-5 my-3 hiddenbutton" style="background-color: #83B734; color: white">
-            + Добавить новую стоимость доставки</a>
+        <a href="{% url 'webapp:delivery_cost_add' %}" class="btn ml-5 my-3 hiddenbutton"
+           style="background-color: #83B734; color: white">
+            + Добавить новую цену доставки</a>
     {% endif %}
-    <hr/>
-    {%  for deliverycost in deliverycost_list %}
-      <div class="row">
-        <div class="col-8">
-            <h5 class="news-title">Стоимость доставка {{ deliverycost.cost }}</h5>
-            <p class="news-text" style=>Бесплатная доставка от {{ deliverycost.free_from }}</p>
-            <p class="news-text" style=>Цена установлена {{ deliverycost.created_at|date:'d.m.Y H:i:s'}}</p>
-        </div>
-      </div>
-    {% endfor %}
+    <table class="table table-hover">
+        <thead class="thead-light">
+        <tr style="text-align: center">
+            <th scope="col">Стоимость доставки</th>
+            <th scope="col">Бесплатная доставка от</th>
+            <th scope="col">Цена установлена</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for deliverycost in deliverycost_list %}
+            <tr style="text-align: center">
+                <td>{{ deliverycost.cost }}</td>
+                <td>{{ deliverycost.free_from }}</td>
+                <td>{{ deliverycost.created_at|date:'d.m.Y H:i:s' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
-
-
-

@@ -323,10 +323,11 @@ body{
 	object-fit: cover;
 }
 .carousel-content{
-	top: 30%;
-	right: 37%;
-	left: 37%;
+	top: 15%;
+	right: 25%;
+	left: 25%;
 	text-align: left;
+	padding-left: 10%;
 }
 .carousel-title{
 	color: black;
@@ -1870,6 +1871,7 @@ table td{
 	line-height: 16px;
 	color: #585858;
 }
+
 .order-summ{
 	padding: 26px;
     padding-top: 50px;

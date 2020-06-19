@@ -8,9 +8,10 @@ from webapp.views.subcategory_views import SubCategoryDeleteView, SubCategoryCre
 from .views.cart_views import CartView, cartdeleteitem, cartadditem, cart_modal_delete, Check
 from .views.orders_view import OrderListView, OrderDetailView, OrderProductUpdateView, OrderProductDeleteView, OrderUpdateView
 from .views.news_views import NewsView, NewsAddView, NewsDetailView, NewsDeleteView, NewsEditView
-from .views.delivery_cost import DeliveryCostList, DeliveryCostAdd, DeliveryView, ReturnView
+from .views.delivery_cost import DeliveryCostList, DeliveryCostAdd, DeliveryView, ReturnView, DeliveryAddressAdd
 from .views.carousel_views import *
 from .views.compare_views import compareadditem, comparedeleteitem, CompareView, CompareChangeView
+from .views.main_carousel_views import MainCarouselListView, MainCarouselCreateView, MainCarouselUpdateView, MainCarouselDeleteView
 
 app_name = 'webapp'
 
@@ -73,5 +74,10 @@ urlpatterns = [
     path('compares/', CompareView.as_view(), name='compare_list'),
     path('compare/change/', CompareChangeView.as_view(), name='compare_change'),
     path('check/', Check.as_view(), name="check_cart"),
+    path('main-carousel/', MainCarouselListView.as_view(), name='main_carousel_list'),
+    path('main-carousel/add/', MainCarouselCreateView.as_view(), name='main_carousel_add'),
+    path('main-carousel/change/<int:pk>/', MainCarouselUpdateView.as_view(), name='main_carousel_change'),
+    path('maincarousel/delete/<int:pk>/', MainCarouselDeleteView.as_view(), name='main_carousel_delete'),
+    path('deliveryaddress/add', DeliveryAddressAdd.as_view(), name="delivery_address_add"),
 
 ]

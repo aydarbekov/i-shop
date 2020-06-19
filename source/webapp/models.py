@@ -78,7 +78,7 @@ class Product(models.Model):
     color = models.CharField(max_length=20,choices=COLOR_CHOICES, default=COLOR_CHOICES[0][0], verbose_name="Цвет", null=True, blank=True)
     discount = models.IntegerField(verbose_name='Скидка', null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
-    quantity = models.IntegerField(verbose_name='Количество', null=True, blank=True)
+    quantity = models.IntegerField(verbose_name='Количество')
     brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Бренд', related_name='products')
     tags = models.ManyToManyField(Tag, blank=True, related_name='products', verbose_name='Теги')
     offer = models.BooleanField(verbose_name='Акция', default=False)
@@ -92,7 +92,7 @@ class Product(models.Model):
 
 
 class DeliveryAddress(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', related_name='address')
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Пользователь', related_name='address')
     city = models.CharField(max_length=20, choices=CITY_CHOICES, default=CITY_CHOICES[0][0], verbose_name="Город")
     street = models.CharField(max_length=50, verbose_name="Улица")
     building_number = models.CharField(max_length=10, verbose_name="Номер дома")
@@ -213,3 +213,15 @@ class Favorite(models.Model):
     class Meta:
         verbose_name = 'Избранное'
         verbose_name_plural = 'Избранное'
+
+
+class MainCarousel(models.Model):
+    title = models.CharField(max_length=200, null=False, blank=False, verbose_name='Заголовок')
+    text = models.TextField(max_length=3000, null=False, blank=False, verbose_name='Текст')
+    photo = models.ImageField(upload_to='main_carousel_images', null=True, blank=True, verbose_name='Картинка карусели')
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена', null=True, blank=True)
+    link = models.URLField(null=True, blank=True, verbose_name='Ссылка')
+
+
+    def _str_(self):
+        return self.title
