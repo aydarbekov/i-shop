@@ -1,20 +1,53 @@
 {% extends 'base.html' %}
 {% block title %}{{ object.name }}{% endblock %}
 {% block content %}
-   <h4>Заказ:</h4>
-    <p>Имя клиента: {{ order.first_name }} {{ order.last_name }}</p>
-    <p>Email : {{ order.email }}</p>
-    <p>Телефон : {{ order.phone }}</p>
-    <p>Email : {{ order.email }}</p>
-    <p>Дата создания : {{ order.created_at }}</p>
+    <h4 style="margin-top: 40px; text-align: center">Заказ</h4>
     <br>
-    <p>Список покупок:</p>
-    {% for product_in_order in order.orderproduct_set.all %}
-
-        <p>{{ product_in_order.product }}: {{ product_in_order.amount }}</p>
-{#        <p>Producrt pk {{ product_in_order.pk }}</p>#}
-{#        <p>Order pk {{ product_in_order.order.pk }}</p>#}
-        <a href="{% url 'webapp:order_product_update' product_in_order.pk product_in_order.order.pk %}">Изменить количество</a>
-        <a href="{% url 'webapp:order_product_delete' product_in_order.pk product_in_order.order.pk %}">Удалить товар</a>
-    {% endfor %}
+    {% csrf_token %}
+    <table class="table table-hover">
+        <thead class="thead-light">
+        <tr style="text-align: center">
+            <th scope="col">Имя клиента</th>
+            <th scope="col">email</th>
+            <th scope="col">Телефон</th>
+            <th scope="col">Адрес доставки</th>
+            <th scope="col">Стоимость доставки</th>
+            <th scope="col">Дата создания</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="text-align: center">
+            <td>{{ order.first_name }} {{ order.last_name }}</td>
+            <td>{{ order.email }}</td>
+            <td>{{ order.phone }}</td>
+            <td>{{ order.address }}</td>
+            <td>{{ order.shipping_cost }}</td>
+            <td>{{ order.created_at|date:'d.m.Y H:i:s' }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="table table-hover">
+        <thead class="thead-light">
+        <tr style="text-align: center">
+            <th scope="col">Товар</th>
+            <th scope="col">Количество</th>
+            <th class="symbol hiddenbutton" scope="col">Изменить количество</th>
+            <th class="symbol hiddenbutton" scope="col">Удалить товар</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product_in_order in order.orderproduct_set.all %}
+            <tr style="text-align: center">
+                <td>{{ product_in_order.product }}</td>
+                <td>{{ product_in_order.amount }}</td>
+                <td class="symbol"><a class='update hiddenbutton'
+                                      href="{% url'webapp:order_product_update'
+                                              product_in_order.pk product_in_order.order.pk %}">&#x270E;</a></td>
+                <td class="symbol"><a class='update hiddenbutton'
+                                      href="{% url 'webapp:order_product_delete'
+                                              product_in_order.pk product_in_order.order.pk %}">&times;</a></td>
+            </tr>
+                {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
