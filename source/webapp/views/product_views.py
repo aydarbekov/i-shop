@@ -183,6 +183,48 @@ class ProductALLListView(ListView, SearchView):
     # paginate_orphans = 1
 
 
+class ProductListGetView(ListView, SearchView):
+    template_name = 'products/products_list_get.html'
+    model = Product
+
+    def get_url(self):
+        global site
+        site = self.request.path
+        return site
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context['categories'] = Category.objects.all()
+        # context['product_category'] = Category.objects.get(pk=self.kwargs.get('pk'))
+        # context['products'] = Product.objects.filter(category_id=self.kwargs.get('pk'))
+        context['colors'] = COLOR_CHOICES
+        # context['same_color_products'] = Product.objects.filter(category_id=self.kwargs.get('pk')).values_list('color', flat=None).annotate(Count('pk'))
+        # context['one_category_brands'] = Brand.objects.filter(products__category_id=self.kwargs.get('pk')).distinct()
+        context['same_color_products'] = COLOR_CHOICES
+        context['one_category_brands'] = Brand.objects.all()
+        news = self.request.GET.get('news')
+        all = self.request.GET.get('all')
+        print(all, "THIS IS ALL")
+        brand = self.request.GET.get('brand')
+        color = self.request.GET.get('color')
+        if brand:
+            brand = Brand.objects.get(brand_name=self.request.GET.get('brand'))
+            print(brand.pk, "THIS IS BRAND")
+        if color:
+            context['products'] = Product.objects.filter(Q(color=color))
+        # tag = self.request.GET.get('tag')
+        if all:
+            context['products'] = Product.objects.all()
+        if news:
+            context['products'] = Product.objects.order_by('-date')[:12]
+        if brand:
+            context['products'] = Product.objects.filter(brand=brand)
+        # elif tag:
+        #     context['products'] = Product.objects.filter(tags__name__iexact=tag)
+        self.get_url()
+        return context
+
+
 class AddToFavorites(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         product = get_object_or_404(Product, pk=request.POST.get('pk'))

@@ -4,7 +4,7 @@ from webapp.views.brand_views import BrandListView, BrandCreateView, BrandUpdate
 from webapp.views.category_views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView
 from webapp.views.product_views import IndexView, ProductView, ProductCreateView, ProductUpdateView, ProductDeleteView, \
     ProductListView, ProductALLListView, AddToFavorites, DeleteFromFavorites, FavoritesList, SearchResultsView, \
-    ProductsOfferListView, AddToOffer, DeleteFromOffer
+    ProductsOfferListView, AddToOffer, DeleteFromOffer, ProductListGetView
 from webapp.views.review_views import ReviewCreateView
 from webapp.views.subcategory_views import SubCategoryDeleteView, SubCategoryCreateView, SubCategoryUpdateView
 from .views.cart_views import CartView, cartdeleteitem, cartadditem, cart_modal_delete, Check
@@ -26,6 +26,7 @@ urlpatterns = [
     path('product/<int:pk>/update/', ProductUpdateView.as_view(), name='product_update'),
     path('product/<int:pk>/delete/', ProductDeleteView.as_view(), name='product_delete'),
     path('product_category/<int:pk>', ProductListView.as_view(), name='products_category'),
+    path('product_list/', ProductListGetView.as_view(), name='products_list_get'),
     path('product/add-to-favorites/', AddToFavorites.as_view(), name='add_to_favorites'),
     path('product/delete-from-favorites/', DeleteFromFavorites.as_view(), name='delete_from_favorites'),
     path('products_favorites', FavoritesList.as_view(), name='favorite_products'),

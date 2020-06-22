@@ -12,7 +12,7 @@
     {% if product_category.photo %}
         <img src="{{ product_category.photo.url }}" alt="">
     {% endif %}
-        <h4>{{ product_category }}</h4>
+        <h4></h4>
     </div>
     <div class="container">
         <div class="category-block-content d-flex">
@@ -30,14 +30,14 @@
                     <div class="filter-color d-flex flex-column mb-5">
                         <p class="filter-header">Фильтр по цвету</p>
                         {% for color in same_color_products %}
-                            <a href="{% url 'webapp:products_category' product_category.pk %}?color={{ color.0 }}"
+                            <a href="{% url 'webapp:products_list_get' %}?color={{ color.0 }}"
                                class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
                                 <div class="category-filter-color-circle"
                                      style="background-color:{{ color.0 }}; border-color: {% if color.0 == 'white' %}black{% endif %}"></div>
                                 {% for key, value in colors %}
                                     {% if color.0 in key %}{{ value }}{% endif %}
                                 {% endfor %}
-                                <div class="category-filter-color-number">{{ color.1 }}</div>
+{#                                <div class="category-filter-color-number">{{ color.1 }}</div>#}
                             </a>
                         {% endfor %}
                     </div>
@@ -46,14 +46,14 @@
                         <p class="filter-header">Фильтр по бренду</p>
                         <div class="filter-brand-imgs">
                             {% for brand in one_category_brands %}
-                                <a href="{% url 'webapp:products_category' product_category.pk %}?brand={{ brand }}"
+                                <a href="{% url 'webapp:products_list_get' %}?brand={{ brand }}"
                                    class="btn btn-light"><img class='filter-brand-img' src="{{ brand.photo.url }}"
                                                               alt=""></a>
                             {% endfor %}
                         </div>
                     </div>
                     <hr/>
-                <a href="{% url 'webapp:products_category' product_category.pk %}?category={{ product_category.pk }}">
+                <a href="{% url 'webapp:products_list_get' %}?all=all">
                     <button type="button" class="to-cart btn btn-success">Сброс фильтров</button></a>
                     <div class="bestseller-in-filter">
                         <div class="bestseller p-5 mb-0 mt-5">
@@ -81,7 +81,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="{% url 'webapp:index' %}">Главная</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{ product_category }}</li>
+                            <li class="breadcrumb-item active" aria-current="page"></li>
                         </ol>
                     </nav>
                     <div class="pagination ml-auto d-none d-lg-block">

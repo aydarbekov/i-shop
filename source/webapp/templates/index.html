@@ -91,8 +91,8 @@
         </a>
     </div>
     <div class="category-sort container" id="contentt">
-        <a class="btn btn-light category-sort-button" href="#">Все</a>
-        <a class="btn btn-light category-sort-button" href="#">Новинки</a>
+        <a class="btn btn-light category-sort-button" href="{% url 'webapp:products_list_get' %}?all=all">Все</a>
+        <a class="btn btn-light category-sort-button" href="{% url 'webapp:products_list_get' %}?news=news">Новинки</a>
         <a class="btn btn-light category-sort-button" href="#">Популярное</a>
         <a class="btn btn-light category-sort-button" href="#">Скидки и акции</a>
         <a class="btn btn-light category-sort-button" href="#">Товары со скидкой</a>
