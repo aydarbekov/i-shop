@@ -97,7 +97,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        exclude = ['in_stock', 'date', 'tags']
+        exclude = ['in_stock', 'date', 'tags', 'views']
 
     def clean_tags(self):
         tags = self.cleaned_data.get('tags', '')
