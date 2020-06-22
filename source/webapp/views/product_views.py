@@ -11,17 +11,28 @@ from django.utils.http import urlencode
 from django.shortcuts import redirect
 
 
-class SearchView(FormView):
-    form_class = FullSearchForm
+# class SearchView(FormView):
+#     form_class = FullSearchForm
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data()
+#         search_form = FullSearchForm(self.request.GET or None)
+#         context['search_form'] = search_form
+#         return context
+#
+#
+#     def form_valid(self, form):
+#         query = urlencode(form.cleaned_data)
+#         url = reverse('webapp:search_results') + '?' + query
+#         return redirect(url)
 
-    def form_valid(self, form):
-        query = urlencode(form.cleaned_data)
-        # url = reverse('webapp:search_results') + '?' + query
-        url = reverse('webapp:search_results') + '?' + query
-        return redirect(url)
+    # def get(self, request, *args, **kwargs):
+    #     search_form = FullSearchForm(self.request.GET or None)
+    #     context = self.get_context_data(**kwargs)
+    #     context['search_form'] = search_form
+    #     return context
 
 
-class IndexView(SearchView):
+class IndexView(ListView):
     template_name = 'index.html'
     model = Product
     context_object_name = "products"
@@ -40,10 +51,12 @@ class IndexView(SearchView):
         context['products'] = Product.objects.all()
         context['carouseles'] = Carousel.objects.all()
         context['main_carousel'] = MainCarousel.objects.all()
+        # search_form = FullSearchForm(self.request.GET or None)
+        # context['search_form'] = search_form
         return context
 
 
-class ProductView(DetailView, SearchView):
+class ProductView(DetailView):
     model = Product
     template_name = 'products/product_detail.html'
 
@@ -146,7 +159,7 @@ class ProductDeleteView(UserPassesTestMixin, DeleteView):
         return user.is_staff
 
 
-class ProductListView(ListView, SearchView):
+class ProductListView(ListView):
     template_name = 'products/products.html'
     model = Product
 
@@ -176,7 +189,7 @@ class ProductListView(ListView, SearchView):
         return context
 
 
-class ProductALLListView(ListView, SearchView):
+class ProductALLListView(ListView):
     model = Product
     template_name = 'products/products_list.html'
     context_object_name = 'products'
@@ -184,7 +197,7 @@ class ProductALLListView(ListView, SearchView):
     # paginate_orphans = 1
 
 
-class ProductListGetView(ListView, SearchView):
+class ProductListGetView(ListView):
     template_name = 'products/products_list_get.html'
     model = Product
 
@@ -244,7 +257,7 @@ class DeleteFromFavorites(LoginRequiredMixin, View):
         return JsonResponse({'pk': product.pk})
 
 
-class FavoritesList(SearchView):
+class FavoritesList(ListView):
     model = Favorite
     template_name = 'favorites.html'
 
@@ -298,7 +311,7 @@ class SearchResultsView(ListView):
         return data
 
 
-class ProductsOfferListView(SearchView):
+class ProductsOfferListView(ListView):
     template_name = 'offers.html'
     model = Product
 

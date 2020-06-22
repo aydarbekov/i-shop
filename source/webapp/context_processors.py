@@ -1,6 +1,11 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.views import View
+from django.views.generic import FormView
+from django.utils.http import urlencode
+from django.shortcuts import redirect
+from django.urls import reverse
 
+from webapp.forms import FullSearchForm
 from webapp.models import Category, Product, OrderProduct, DeliveryCost
 
 
@@ -49,3 +54,8 @@ def get_shipping_cost(cart_total):
 def compare_products(request):
     compare_products = request.session.get('compare', [])
     return {"compare_products": compare_products}
+
+
+def get_search_form(request):
+    search_form = FullSearchForm(request.GET or None)
+    return {"search_form": search_form}

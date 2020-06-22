@@ -10,10 +10,8 @@ from .forms import UserCreationForm, UserInfoChangeForm, CompanyInfoChangeForm, 
 from main.settings import HOST_NAME
 from accounts.models import Token, Profile
 from django.http import HttpResponseRedirect
-from webapp.views.product_views import SearchView
 from django.core.mail import send_mail
 from django.conf import settings
-from webapp.views.product_views import SearchView
 
 
 # def send_token(user, subject, message, redirect_url):
@@ -181,7 +179,7 @@ class UserPasswordChangeView(UserPassesTestMixin, UpdateView):
         return reverse('accounts:login')
 
 
-class UserListView(ListView, SearchView):
+class UserListView(ListView):
     model = User
     template_name = 'user_list.html'
     context_object_name = 'users'

@@ -6,7 +6,6 @@ from webapp.forms import CartOrderCreateForm, FullSearchForm
 from webapp.models import Product, Order, OrderProduct, DeliveryCost, DeliveryAddress
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponseRedirect
-from webapp.views.product_views import SearchView
 
 
 # class CartChangeView(SearchView):
@@ -38,9 +37,9 @@ from webapp.views.product_views import SearchView
 #         return redirect(next_url)
 
 
-class CartView(SearchView):
+class CartView(ListView):
     model = Order
-    form_class = FullSearchForm
+    # form_class = FullSearchForm
     template_name = 'cart/cart.html'
 
     def get_context_data(self, **kwargs):
