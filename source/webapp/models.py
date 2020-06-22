@@ -218,9 +218,10 @@ class Favorite(models.Model):
 class MainCarousel(models.Model):
     title = models.CharField(max_length=200, null=False, blank=False, verbose_name='Заголовок')
     text = models.TextField(max_length=3000, null=False, blank=False, verbose_name='Текст')
-    photo = models.ImageField(upload_to='main_carousel_images', null=True, blank=True, verbose_name='Картинка карусели')
+    photo = models.ImageField(upload_to='main_carousel_images', null=True, blank=True, verbose_name='Картинка')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена', null=True, blank=True)
     link = models.URLField(null=True, blank=True, verbose_name='Ссылка')
+    image = models.ImageField(upload_to='main_carousel_images', null=True, blank=True, verbose_name='Картинка карусели (фон)')
 
 
     def _str_(self):

@@ -31,7 +31,7 @@ class MainCarouselListView(UserPassesTestMixin, ListView):
 class MainCarouselCreateView(UserPassesTestMixin, CreateView):
     model = MainCarousel
     template_name = 'base_CRUD/add.html'
-    fields = ['title', 'text', 'photo', 'price', 'link']
+    fields = ['title', 'text', 'photo', 'price', 'link', 'image']
     success_url = reverse_lazy('webapp:main_carousel_list')
 
     def test_func(self):
@@ -55,7 +55,7 @@ class MainCarouselCreateView(UserPassesTestMixin, CreateView):
 class MainCarouselUpdateView(UserPassesTestMixin, UpdateView):
     model = MainCarousel
     template_name = 'base_CRUD/edit.html'
-    fields = ['title', 'text', 'photo', 'price', 'link']
+    fields = ['title', 'text', 'photo', 'price', 'link', 'image']
     # fields = ['product']
     # context_object_name = 'product'
 
