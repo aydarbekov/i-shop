@@ -2349,6 +2349,15 @@ table td{
 .panel-history{
 	display: none;
 }
+.order-collapse-btn{
+	width: 100%;
+}
+.order-header .table td, .order-header .table th {
+     border-top: none;
+}
+.right-right-content a{
+	text-align: center;
+}
 @media screen and (min-width:769px){
 	.info-card .card-body{
 		display: block!important;

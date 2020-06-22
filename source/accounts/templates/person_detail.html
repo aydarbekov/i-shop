@@ -27,20 +27,20 @@
         </div>
         <div class="panel-settings right-content justify-content-around flex-wrap container">
             <h5>Личные данные</h5>
-{#            <form id='private-form' action="">#}
-        <form action="{% url 'accounts:user_update' user_object.pk %}" method="post" enctype="multipart/form-data">
-            {% include "partial/form.html" %}
-{#                <div class="first-last-name">#}
-{#                    <input type="text" name="first_name" autofocus placeholder="{{ user.first_name }}">#}
-{#                    <input type="text" name="last_name"  placeholder="{{ user.last_name }}">#}
-{#                </div>#}
-{#                {% if user.profile.company_name %}#}
-{#                    <input type="text" name="company_name"  placeholder="{{ user.profile.company_name }}">#}
-{#                {% endif %}#}
-{#                <input type="text" name="city"  placeholder="Город">#}
-{#                <input type="text" name="adress"  placeholder="Адрес">#}
-{#                <input type="text" name="phone"  placeholder="{{ user.profile.mobile_phone }}">#}
-{#                <input type="text" name="mail"  placeholder="{{ user.email }}">#}
+            {#            <form id='private-form' action="">#}
+            <form action="{% url 'accounts:user_update' user_object.pk %}" method="post" enctype="multipart/form-data">
+                {% include "partial/form.html" %}
+                {#                <div class="first-last-name">#}
+                {#                    <input type="text" name="first_name" autofocus placeholder="{{ user.first_name }}">#}
+                {#                    <input type="text" name="last_name"  placeholder="{{ user.last_name }}">#}
+                {#                </div>#}
+                {#                {% if user.profile.company_name %}#}
+                {#                    <input type="text" name="company_name"  placeholder="{{ user.profile.company_name }}">#}
+                {#                {% endif %}#}
+                {#                <input type="text" name="city"  placeholder="Город">#}
+                {#                <input type="text" name="adress"  placeholder="Адрес">#}
+                {#                <input type="text" name="phone"  placeholder="{{ user.profile.mobile_phone }}">#}
+                {#                <input type="text" name="mail"  placeholder="{{ user.email }}">#}
                 <button type="submit" class="btn btn-success">Сохранить</button>
             </form>
         </div>
@@ -113,46 +113,251 @@
             </div>
             <hr>
         </div>
-        <div class="panel-history right-content justify-content-around flex-wrap container">
-            <h5>Личные данные</h5>
-            <form id='private-form' action="">
-                <div class="first-last-name">
-                    <input type="text" name="first_name" autofocus placeholder="Ваше Имя">
-                    <input type="text" name="last_name"  placeholder="Ваша фамилия">
+        <div class="panel-history right-content container">
+            <h5>Мои заказы</h5>
+            <div class="accordion" id="accordionOrder">
+                <div class="card">
+                    <div class="order-header" id="id-order-header">
+                        <button class="btn btn-link order-collapse-btn" type="button" data-toggle="collapse" data-target="#orderInside" aria-expanded="true" aria-controls="orderInside">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td class="table-products-name table-for-vertical">
+                                        заказ 345 678 907
+                                    </td>
+                                    <td class="table-price table-for-vertical">
+                                        от 08.01.2020
+                                    </td>
+                                    <td class="table-price table-for-vertical">
+                                        Кол-во: 4
+                                    </td>
+                                    <td class="product-summ table-for-vertical">$2400</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </button>
+                    </div>
+                    <div id="orderInside" class="collapse" aria-labelledby="id-order-header" data-parent="#accordionOrder">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td class="table-second-column">
+                                    <div class="photo-back-table">
+                                        <img src="{% static 'images/printer3.png' %}" class="product-photo card-img-top" alt="...">
+                                    </div>
+                                </td>
+
+                                <td class="table-products-name table-for-vertical">
+                                    Принтер для печати
+                                </td>
+                                <td class="table-price table-for-vertical">
+                                    $200
+                                </td>
+                                <td class="table-price table-for-vertical">
+                                    Кол-во: 4
+                                </td>
+                                <td class="product-summ table-for-vertical">$400</td>
+                            </tr>
+                            <tr>
+                                <td class="table-second-column">
+                                    <div class="photo-back-table">
+                                        <img src="{% static 'images/chair.png' %}" class="product-photo card-img-top" alt="...">
+                                    </div>
+                                </td>
+
+                                <td class="table-products-name table-for-vertical">
+                                    Принтер для печати
+                                </td>
+                                <td class="table-price table-for-vertical">
+                                    $200
+                                </td>
+                                <td class="table-price table-for-vertical">
+                                    Кол-во: 4
+                                </td>
+                                <td class="product-summ table-for-vertical">$400</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <input type="text" name="company_name"  placeholder="Имя компании">
-                <input type="text" name="city"  placeholder="Город">
-                <input type="text" name="adress"  placeholder="Адрес">
-                <input type="text" name="phone"  placeholder="Номер телефона">
-                <input type="text" name="mail"  placeholder="Почта">
-                <button type="submit" class="btn btn-success">Сохранить</button>
-            </form>
+                <div class="card">
+                    <div class="order-header" id="id-order-header">
+                        <button class="btn btn-link order-collapse-btn" type="button" data-toggle="collapse" data-target="#orderInside2" aria-expanded="true" aria-controls="orderInside2">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td class="table-products-name table-for-vertical">
+                                        заказ 345 678 907
+                                    </td>
+                                    <td class="table-price table-for-vertical">
+                                        от 08.01.2020
+                                    </td>
+                                    <td class="table-price table-for-vertical">
+                                        Кол-во: 4
+                                    </td>
+                                    <td class="product-summ table-for-vertical">$2400</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </button>
+                    </div>
+                    <div id="orderInside2" class="collapse" aria-labelledby="id-order-header" data-parent="#accordionOrder">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td class="table-second-column">
+                                    <div class="photo-back-table">
+                                        <img src="{% static 'images/printer3.png' %}" class="product-photo card-img-top" alt="...">
+                                    </div>
+                                </td>
+
+                                <td class="table-products-name table-for-vertical">
+                                    Принтер для печати
+                                </td>
+                                <td class="table-price table-for-vertical">
+                                    $200
+                                </td>
+                                <td class="table-price table-for-vertical">
+                                    Кол-во: 4
+                                </td>
+                                <td class="product-summ table-for-vertical">$400</td>
+                            </tr>
+                            <tr>
+                                <td class="table-second-column">
+                                    <div class="photo-back-table">
+                                        <img src="{% static 'images/chair.png' %}" class="product-photo card-img-top" alt="...">
+                                    </div>
+                                </td>
+
+                                <td class="table-products-name table-for-vertical">
+                                    Принтер для печати
+                                </td>
+                                <td class="table-price table-for-vertical">
+                                    $200
+                                </td>
+                                <td class="table-price table-for-vertical">
+                                    Кол-во: 4
+                                </td>
+                                <td class="product-summ table-for-vertical">$400</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="order-header" id="id-order-header">
+                        <button class="btn btn-link order-collapse-btn" type="button" data-toggle="collapse" data-target="#orderInside3" aria-expanded="true" aria-controls="orderInside3">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td class="table-products-name table-for-vertical">
+                                        заказ 345 678 907
+                                    </td>
+                                    <td class="table-price table-for-vertical">
+                                        от 08.01.2020
+                                    </td>
+                                    <td class="table-price table-for-vertical">
+                                        Кол-во: 4
+                                    </td>
+                                    <td class="product-summ table-for-vertical">$2400</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </button>
+                    </div>
+                    <div id="orderInside3" class="collapse" aria-labelledby="id-order-header" data-parent="#accordionOrder">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td class="table-second-column">
+                                    <div class="photo-back-table">
+                                        <img src="{% static 'images/printer3.png' %}" class="product-photo card-img-top" alt="...">
+                                    </div>
+                                </td>
+
+                                <td class="table-products-name table-for-vertical">
+                                    Принтер для печати
+                                </td>
+                                <td class="table-price table-for-vertical">
+                                    $200
+                                </td>
+                                <td class="table-price table-for-vertical">
+                                    Кол-во: 4
+                                </td>
+                                <td class="product-summ table-for-vertical">$400</td>
+                            </tr>
+                            <tr>
+                                <td class="table-second-column">
+                                    <div class="photo-back-table">
+                                        <img src="{% static 'images/chair.png' %}" class="product-photo card-img-top" alt="...">
+                                    </div>
+                                </td>
+
+                                <td class="table-products-name table-for-vertical">
+                                    Принтер для печати
+                                </td>
+                                <td class="table-price table-for-vertical">
+                                    $200
+                                </td>
+                                <td class="table-price table-for-vertical">
+                                    Кол-во: 4
+                                </td>
+                                <td class="product-summ table-for-vertical">$400</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
 {% block scripts %}
     <script type="text/javascript">
-		$(document).ready(function(){
-		    {#let panel_center = $('.panel-center')[0];#}
-			$('.settings-btn').click(function() {
-				$('.panel-center')[0].style.display = 'none';
-				$('.panel-adresses')[0].style.display = 'none';
-				$('.panel-history')[0].style.display = 'none';
-				$('.panel-settings')[0].style.display = 'block';
-			});
-			$('.adress-btn').click(function() {
-				$('.panel-center')[0].style.display = 'none';
-				$('.panel-adresses')[0].style.display = 'block';
-				$('.panel-history')[0].style.display = 'none';
-				$('.panel-settings')[0].style.display = 'none';
-			});
-			$('.panel-btn').click(function() {
-				$('.panel-center')[0].style.display = 'flex';
-				$('.panel-adresses')[0].style.display = 'none';
-				$('.panel-history')[0].style.display = 'none';
-				$('.panel-settings')[0].style.display = 'none';
-			});
-			$('.panel-btn').click()
-		});
-	</script>
+        $(document).ready(function(){
+            $('.settings-btn').click(function() {
+                $('.panel-center')[0].style.display = 'none';
+                $('.panel-adresses')[0].style.display = 'none';
+                $('.panel-history')[0].style.display = 'none';
+                $('.panel-settings')[0].style.display = 'block';
+            });
+            $('.settings').click(function() {
+                $('.panel-center')[0].style.display = 'none';
+                $('.panel-adresses')[0].style.display = 'none';
+                $('.panel-history')[0].style.display = 'none';
+                $('.panel-settings')[0].style.display = 'block';
+            });
+            $('.adress-btn').click(function() {
+                $('.panel-center')[0].style.display = 'none';
+                $('.panel-adresses')[0].style.display = 'block';
+                $('.panel-history')[0].style.display = 'none';
+                $('.panel-settings')[0].style.display = 'none';
+            });
+            $('.adresses').click(function() {
+                $('.panel-center')[0].style.display = 'none';
+                $('.panel-adresses')[0].style.display = 'block';
+                $('.panel-history')[0].style.display = 'none';
+                $('.panel-settings')[0].style.display = 'none';
+            });
+            $('.panel-btn').click(function() {
+                $('.panel-center')[0].style.display = 'flex';
+                $('.panel-adresses')[0].style.display = 'none';
+                $('.panel-history')[0].style.display = 'none';
+                $('.panel-settings')[0].style.display = 'none';
+            });
+            $('.orders-btn').click(function() {
+                $('.panel-center')[0].style.display = 'none';
+                $('.panel-adresses')[0].style.display = 'none';
+                $('.panel-history')[0].style.display = 'block';
+                $('.panel-settings')[0].style.display = 'none';
+            });
+            $('.my-orders').click(function() {
+                $('.panel-center')[0].style.display = 'none';
+                $('.panel-adresses')[0].style.display = 'none';
+                $('.panel-history')[0].style.display = 'block';
+                $('.panel-settings')[0].style.display = 'none';
+            });
+            $('.panel-btn').click();
+        });
+    </script>
 {% endblock %}
