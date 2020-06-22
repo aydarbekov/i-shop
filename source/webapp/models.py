@@ -72,6 +72,8 @@ class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name='Товар')
     category = models.ForeignKey(Category, related_name='products', on_delete=models.PROTECT,
                                 verbose_name='Категория')
+    subcategory = models.ForeignKey(SubCategory, on_delete=models.SET_NULL, null=True, blank=True,
+                                  related_name='product', verbose_name='Подраздел')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     in_stock = models.BooleanField(verbose_name='В наличии', default=True)
     description = models.TextField(max_length=3000, verbose_name='Описание', null=True, blank=True)

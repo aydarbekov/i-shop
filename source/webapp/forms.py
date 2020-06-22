@@ -106,6 +106,19 @@ class ProductForm(forms.ModelForm):
         tags = filter(lambda tag: len(tag) > 0, tags)
         return tags
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['subcategory'].queryset = SubCategory.objects.none()
+        # if 'category' in self.data:
+        #     try:
+        #         category_id = int(self.data.get('category'))
+        #         print(category_id)
+        #         self.fields['subcategory'].queryset = SubCategory.objects.filter(category=category_id).order_by('sub_name')
+        #     except (ValueError, TypeError):
+        #         pass
+        # elif self.instance.pk:
+        #     self.fields['subcategory'].queryset = self.instance.category.subcategories_set.order_by('sub_name')
+
 
 ImageFormset = inlineformset_factory(Product, Image, fields='__all__', extra=1, validate_min=False, min_num=0, can_delete=True)
 

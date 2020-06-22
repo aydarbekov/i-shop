@@ -3,7 +3,7 @@
 {% block content %}
     <h1 class="text-center">Создать</h1>
     <div class="container" style="width: 800px">
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form method="post" id="productForm" data-subcategories-url="{% url 'webapp:ajax_load_subcategories' %}" enctype="multipart/form-data">
             {% include "partial/form.html" %}
             {% include 'products/product_images_formset.html' %}
             <p class="text-center"><input type="submit" value="Создать" class="btn"
@@ -12,5 +12,21 @@
     </div>
 {% endblock %}
 {% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $("#id_category").change(function () {
+            let url = $("#productForm").attr("data-subcategories-url");
+            let categoryId = $(this).val();
+            $.ajax({
+                url: url,
+                data: {
+                    'category': categoryId
+                },
+                success: function (data) {
+                    $("#id_subcategory").html(data);
+                }
+            });
+        });
+    </script>
     <script type="application/javascript" src="{% static "js/product_images_formset.js" %}"></script>
 {% endblock %}

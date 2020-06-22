@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from webapp.forms import ProductForm, ImageFormset, FullSearchForm
-from webapp.models import Product, Category, Carousel, Favorite, Tag, COLOR_CHOICES, Brand, MainCarousel
+from webapp.models import Product, Category, Carousel, Favorite, Tag, COLOR_CHOICES, Brand, MainCarousel, SubCategory
 from django.db.models import Q, Count
 from django.utils.http import urlencode
 from django.shortcuts import redirect
@@ -331,3 +331,14 @@ class DeleteFromOffer(LoginRequiredMixin, View):
         product.offer = False
         product.save()
         return JsonResponse({'pk': product.pk})
+
+
+def load_subcategories(request):
+    print('in')
+    category_id = request.GET.get('category')
+    print('yes')
+    print(category_id)
+    subcategories = SubCategory.objects.filter(category_id=category_id).order_by('sub_name')
+    print(subcategories)
+    return render(request, 'partial/subcategory_dropdown_list_options.html', {'subcategories': subcategories})
+    # return JsonResponse({'subcategories': subcategories})
