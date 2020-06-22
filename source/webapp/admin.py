@@ -1,6 +1,6 @@
 from django.contrib import admin
 from webapp.models import Category, Product, SubCategory, DeliveryAddress, Order, \
-    OrderProduct, Review, News, Image, Brand, DeliveryCost, Favorite, Tag
+    OrderProduct, Review, News, Image, Brand, DeliveryCost, Favorite, Tag, MainCarousel
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -54,6 +54,12 @@ class BrandAdmin(admin.ModelAdmin):
     list_display_links = ['pk', 'brand_name']
 
 
+class MainCarouselAdmin(admin.ModelAdmin):
+    list_display = ['pk', 'title', 'text', 'photo', 'price', 'link']
+    list_filter = ['title']
+    list_display_links = ['pk', 'title']
+
+
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
@@ -66,3 +72,4 @@ admin.site.register(DeliveryCost)
 admin.site.register(Brand, BrandAdmin)
 admin.site.register(Favorite)
 admin.site.register(Tag)
+admin.site.register(MainCarousel, MainCarouselAdmin)

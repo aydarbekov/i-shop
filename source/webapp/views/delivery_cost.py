@@ -7,7 +7,7 @@ from webapp.models import DeliveryCost, DeliveryAddress
 from webapp.views.product_views import SearchView
 
 
-class DeliveryCostList(ListView):
+class DeliveryCostList(ListView, SearchView):
     model = DeliveryCost
     template_name = 'delivery_cost/list.html'
     # context_object_name = 'deliverycost_list'

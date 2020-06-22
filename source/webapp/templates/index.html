@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load static %}
 {% block title %}Kanctorg{% endblock %}
 {% block menu %}
 {% endblock %}
@@ -35,7 +35,9 @@
 {#                <div {% if loop.index0 == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>#}
                 <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">
                 <div class="carousel-content carousel-caption">
+                {% if item_carousel.photo %}
                 <img class="mr-5" src="{{ item_carousel.photo.url }}" align="left" alt="...">
+                    {% endif %}
                     <h5 class="carousel-title">{{ item_carousel.title }}</h5>
                     <p class="carousel-text">{{ item_carousel.text }}</p>
                     <div class="carousel-button-price d-flex align-items-center">
@@ -116,7 +118,9 @@
         <div class="container d-flex flex-nowrap bestseller bg-transparent bestseller-slide">
             {% for carousel in carouseles %}
             <div class="d-flex flex-nowrap bg-transparent">
+            {% if carousel.product.images.first.image.url %}
                 <img class="bestseller-img" src="{{ carousel.product.images.first.image.url }}" alt="{{ carousel.product.name }}" style="">
+            {% endif %}
                 <div class="bestseller-content">
                     <h3>{{ carousel.product.name }}</h3>
                     {% if carousel.product.description %}
@@ -160,7 +164,7 @@
                 <div class="card">
                     <img src="{% static 'images/printer3.png' %}" class="promo-img card-img-top" alt="...">
                     <div class="promo-body card-body position-relative">
-                        <div class="promo-descr position-absolute btn">Акция дня</div>
+                        <div class="promo-descr position-absolute">Акция дня</div>
                         <h5 class="card-title">Получи скидку</h5>
                         <div class="promo-icons d-flex justify-content-center">
                             <button class="promo-button-favorite"></button>
@@ -177,7 +181,7 @@
                 <div class="card">
                     <img src="{% static 'images/promo2.png' %}" class="promo-img card-img-top" alt="...">
                     <div class="promo-body card-body position-relative">
-                        <div class="promo-descr position-absolute btn">Сюрприз для художника</div>
+                        <div class="promo-descr position-absolute">Сюрприз для художника</div>
                         <h5 class="card-title">Сделай сюрприз</h5>
                         <div class="promo-icons d-flex justify-content-center">
                             <button class="promo-button-favorite"></button>
@@ -195,7 +199,7 @@
                 <div class="card">
                     <img src="{% static 'images/promo3.png' %}" class="promo-img card-img-top" alt="...">
                     <div class="promo-body card-body position-relative">
-                        <div class="promo-descr position-absolute btn">Экономьте для двоих</div>
+                        <div class="promo-descr position-absolute">Экономьте для двоих</div>
                         <h5 class="card-title">Экономь и приумножай</h5>
                         <div class="promo-icons d-flex justify-content-center">
                             <button class="promo-button-favorite"></button>

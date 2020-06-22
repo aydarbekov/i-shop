@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% block title %}Доставка{% endblock %}
+{% block title %}Мой профиль{% endblock %}
+{% load static %}
 {% block styles %}{% endblock %}
 {% block content %}
     <div class="container d-flex flex-wrap my-5">
@@ -11,7 +12,7 @@
             <button type="button" class="panel-buttons orders-btn btn " >Мои заказы</button>
             <button type="button" class="panel-buttons adress-btn btn " >Адреса</button>
             <button type="button" class="panel-buttons settings-btn btn " >Настройка</button>
-            <a type="button" class="panel-buttons exit-btn btn " >Выход</a>
+            <a type="button" class="panel-buttons exit-btn btn" href="{% url 'accounts:logout' %}" >Выход</a>
         </div>
 
         <div class="panel-center right-content justify-content-around flex-wrap ">
@@ -26,16 +27,20 @@
         </div>
         <div class="panel-settings right-content justify-content-around flex-wrap container">
             <h5>Личные данные</h5>
-            <form id='private-form' action="">
-                <div class="first-last-name">
-                    <input type="text" name="first_name" autofocus placeholder="Ваше Имя">
-                    <input type="text" name="last_name"  placeholder="Ваша фамилия">
-                </div>
-                <input type="text" name="company_name"  placeholder="Имя компании">
-                <input type="text" name="city"  placeholder="Город">
-                <input type="text" name="adress"  placeholder="Адрес">
-                <input type="text" name="phone"  placeholder="Номер телефона">
-                <input type="text" name="mail"  placeholder="Почта">
+{#            <form id='private-form' action="">#}
+        <form action="{% url 'accounts:user_update' user_object.pk %}" method="post" enctype="multipart/form-data">
+            {% include "partial/form.html" %}
+{#                <div class="first-last-name">#}
+{#                    <input type="text" name="first_name" autofocus placeholder="{{ user.first_name }}">#}
+{#                    <input type="text" name="last_name"  placeholder="{{ user.last_name }}">#}
+{#                </div>#}
+{#                {% if user.profile.company_name %}#}
+{#                    <input type="text" name="company_name"  placeholder="{{ user.profile.company_name }}">#}
+{#                {% endif %}#}
+{#                <input type="text" name="city"  placeholder="Город">#}
+{#                <input type="text" name="adress"  placeholder="Адрес">#}
+{#                <input type="text" name="phone"  placeholder="{{ user.profile.mobile_phone }}">#}
+{#                <input type="text" name="mail"  placeholder="{{ user.email }}">#}
                 <button type="submit" class="btn btn-success">Сохранить</button>
             </form>
         </div>

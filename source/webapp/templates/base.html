@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -79,7 +79,7 @@
 
                 {% if request.user.is_authenticated %}
                     <a class="login  d-none d-md-flex"
-                       href="{% url 'accounts:user_detail' request.user.pk %}">{{ request.user }}!</a>
+                       href="{% url 'accounts:user_update' request.user.pk %}">{{ request.user }}!</a>
                     <a class="login  d-none d-md-flex" href="{% url 'accounts:logout' %}">Выйти</a>
                 {% else %}
                     <a class="login  d-none d-md-flex" href="{% url 'accounts:login' %}">Войти</a>

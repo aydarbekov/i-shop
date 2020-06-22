@@ -99,7 +99,7 @@ class UserCreationForm(forms.Form):
 
 
 class UserInfoChangeForm(forms.ModelForm):
-    photo = forms.ImageField(label='Avatar', required=False)
+    # photo = forms.ImageField(label='Avatar', required=False)
     mobile_phone = forms.CharField(required=True, label='Мобильный телефон')
     birth_date = forms.DateField(required=False, label='Дата рождения')
     sex = forms.ChoiceField(choices=SEX, required=False, label='Пол')
@@ -125,7 +125,7 @@ class UserInfoChangeForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email']
-        profile_fields =['mobile_phone', 'sex', 'birth_date', 'photo']
+        profile_fields =['mobile_phone', 'sex', 'birth_date']
 
 
 class CompanyInfoChangeForm(forms.ModelForm):
