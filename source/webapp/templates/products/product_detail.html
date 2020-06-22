@@ -49,7 +49,8 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="{% url 'webapp:index' %}">Главная</a></li>
-                                <li class="breadcrumb-item"><a href="#">{{ product.category }}</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'webapp:products_category' product.category.pk %}">
+                                    {{ product.category }}</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
                             </ol>
                         </nav>
@@ -108,7 +109,8 @@
                                                 data-product-pk="{{ product.pk }}"></button>
                                     {% endwith %}
                                 {% endif %}
-                                <button class="promo-btn-in-product promo-button-compare2 ml-4 ">
+                                <button class="promo-btn-in-product promo-button-compare2 ml-4 compare-add" href="{% url 'webapp:compare_add' %}"
+                                                                data-product-pk="{{ product.pk }}">
                                     <p class="d-inline-block d-sm-none">
                                         Сравнение цен
                                     </p>
@@ -222,7 +224,8 @@
         <div class="container">
             <div class="recomend-title d-flex justify-content-between">
                 <p>Рекомендуемые товары</p>
-                <p>Все</p>
+                <a href="{% url 'webapp:products_category' product.category.pk %}">
+                    <p>Все</p></a>
             </div>
             <div class="row">
                 {% for product in products %}

@@ -72,10 +72,8 @@ class ProductView(DetailView):
         item_count = products.count()
         if item_count <= 4:
             context['products'] = random.sample(list(Product.objects.filter(category=product.category)), k=1)
-            print(context['products'])
         else:
             context['products'] = random.sample(list(Product.objects.filter(category=product.category)), k=4)
-            print(context['products'])
         # print(item_count, "ITEM COUNT")
         # random_item = q[random.randint(1, item_count + 1)]
         # print(random_item, "THIS IS RANDOM ITEMS")
