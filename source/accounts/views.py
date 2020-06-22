@@ -13,6 +13,7 @@ from django.http import HttpResponseRedirect
 from webapp.views.product_views import SearchView
 from django.core.mail import send_mail
 from django.conf import settings
+from webapp.views.product_views import SearchView
 
 
 # def send_token(user, subject, message, redirect_url):
@@ -142,15 +143,16 @@ class UserDetailView(DetailView):
 
 class UserInfoChangeView(UpdateView):
     model = User
-    template_name = 'user_update.html'
+    # template_name = 'user_update.html'
     context_object_name = 'user_object'
+    template_name = 'person_detail.html'
     form_class = UserInfoChangeForm
 
     # def test_func(self):
     #     return self.get_object() == self.request.user
 
     def get_success_url(self):
-        return reverse('accounts:user_detail', kwargs={"pk": self.object.pk})
+        return reverse('accounts:user_update', kwargs={"pk": self.object.pk})
 
 
 class CompanyInfoChangeView(UpdateView):

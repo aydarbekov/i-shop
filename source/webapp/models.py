@@ -225,3 +225,7 @@ class MainCarousel(models.Model):
 
     def _str_(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Главная карусель'
+        verbose_name_plural = 'Главная карусель'

@@ -251,7 +251,7 @@ class SearchResultsView(ListView):
         return data
 
 
-class ProductsOfferListView(ListView):
+class ProductsOfferListView(SearchView):
     template_name = 'offers.html'
     model = Product
 
