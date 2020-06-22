@@ -12,6 +12,7 @@ from .views.delivery_cost import DeliveryCostList, DeliveryCostAdd, DeliveryView
 from .views.carousel_views import *
 from .views.compare_views import compareadditem, comparedeleteitem, CompareView, CompareChangeView
 from .views.main_carousel_views import MainCarouselListView, MainCarouselCreateView, MainCarouselUpdateView, MainCarouselDeleteView
+from .views.payment_views import PaymentView
 
 app_name = 'webapp'
 
@@ -79,5 +80,6 @@ urlpatterns = [
     path('main-carousel/change/<int:pk>/', MainCarouselUpdateView.as_view(), name='main_carousel_change'),
     path('maincarousel/delete/<int:pk>/', MainCarouselDeleteView.as_view(), name='main_carousel_delete'),
     path('deliveryaddress/add', DeliveryAddressAdd.as_view(), name="delivery_address_add"),
+    path('зфньуте/', PaymentView.as_view(), name='payment_view'),
 
 ]

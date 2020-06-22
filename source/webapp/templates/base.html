@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}MySite{% endblock %}</title>
+    <title>{% block title %}Kanctorg{% endblock %}</title>
     <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="{% static "css/jquery-ui.min.css" %}">
@@ -183,7 +183,7 @@
                         <a class="nav-link" href="{% url 'webapp:offer_products' %}">Акции</a>
                     </li>
                     <li class="nav-item ml-0 ml-lg-4">
-                        <a class="nav-link" href="#">Оплата</a>
+                        <a class="nav-link" href="{% url 'webapp:payment_view' %}">Оплата</a>
                     </li>
                     <li class="nav-item ml-0 ml-lg-4">
                         <a class="nav-link" href="{% url 'webapp:delivery_view' %}">Доставка</a>
@@ -196,7 +196,7 @@
         </div>
     </div>
 </header>
-
+{% include "partial/messages.html" %}
 {% block content %}{% endblock %}
 
 <footer>

@@ -3,121 +3,213 @@
 {% block title %}Сравнение{% endblock %}
 {% block styles %}{% endblock %}
 {% block content %}
-    <div class="container my-4 my-sm-5">
-        <div class="row">
-            <div class="col-12 col-lg-8">
-                <div class="table-products">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item active"><a href="{% url 'webapp:index' %}">Главная</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Сравнение</li>
-{#                            <li class="breadcrumb-item">Оплата</li>#}
-                        </ol>
-                    </nav>
-                    <table class="table-base table table-hover mt-4 mt-sm-5">
-                        <thead class="">
-                        <tr class="table-header">
-                            <th class="none-top-border" scope="col"></th>
-                            <th class="none-top-border tovar" scope="col">Товар</th>
-                            <th class="none-top-border"></th>
-                            <th class="none-top-border" scope="col">Цена</th>
-{#                            <th class="none-top-border" scope="col">Количество</th>#}
-{#                            <th class="none-top-border" scope="col">Итого</th>#}
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for item in compare %}
-                            <tr class="product-{{ item.product.pk }}">
-                                <td class="table-first-column">
-                                    <a href="{% url 'webapp:compare_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:compare_list' %}">
-                                        <div class="delete-from-cart">
-                                        </div>
-                                    </a>
-                                </td>
-                                <td class="table-second-column">
-                                    <div class="photo-back-table">
-                                        {% if item.product.images %}
-                                            <img src="{{ item.product.images.first.image.url }}" class="product-photo card-img-top"
-                                                 alt="...">
-                                        {% else %}
-                                            <img src="{% static "images/no_photo.jpg" %}"
-                                                 class="product-photo card-img-top" alt="...">
-                                        {% endif %}
+    <div class="container">
+        <nav aria-label="breadcrumb" class="my-4">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Сравнение цен</li>
+            </ol>
+        </nav>
+{#        <h4>Компьютерная техника</h4>#}
+        <div class="table-responsive">
+            <table class="table table-striped table-compare">
+                <thead>
+                <tr>
+                    <th scope="row">Товар</th>
+                    {% for item in compare %}
+                    <td>
+                        <div class="photo-back">
+                            <img src="{{ item.product.images.first.image.url }}" class="card-img-top" alt="...">
+                            <a href="{% url 'webapp:compare_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:compare_list' %}">
+                                <button class="delete-from-cart"></button></a>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text d-flex flex-column align-items-center px-3">
+                                <h5>{{ item.product.name }}</h5>
+                                <p>{{ item.product.category }}</p>
+                                <p class="price">{{ item.product.price }}</p>
+                                <button type="button" class="to-cart btn btn-success cartadd"
+                                                            href="{% url "webapp:cartadditem" %}"
+                                                            data-product-pk="{{ item.product.pk }}"
+                                                            id="cart-add-{{ item.product.pk }}">В
+                                                        корзину
+                                                    </button>
+{#                                <button type="button" class="to-cart btn btn-success">В корзину</button>#}
+                            </div>
+                        </div>
+                    </td>
+                    {% endfor %}
+{#                    <td>#}
+{#                        <div class="photo-back">#}
+{#                            <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">#}
+{#                            <button class="delete-from-cart"></button>#}
+{#                        </div>#}
+{#                        <div class="card-body">#}
+{#                            <div class="card-text d-flex flex-column align-items-center px-3">#}
+{#                                <h5>Компьютерная мышка</h5>#}
+{#                                <p>Электроника</p>#}
+{#                                <p class="price">250-400 c</p>#}
+{#                                <button type="button" class="to-cart btn btn-success">В корзину</button>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </td>#}
+{#                    <td>#}
+{#                        <div class="photo-back">#}
+{#                            <img src="{% static 'images/chair.png' %}" class="card-img-top" alt="...">#}
+{#                            <button class="delete-from-cart"></button>#}
+{#                        </div>#}
+{#                        <div class="card-body">#}
+{#                            <div class="card-text d-flex flex-column align-items-center px-3">#}
+{#                                <h5>Компьютерная мышка</h5>#}
+{#                                <p>Электроника</p>#}
+{#                                <p class="price">250-400 c</p>#}
+{#                                <button type="button" class="to-cart btn btn-success">В корзину</button>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </td>#}
 
-                                    </div>
-                                </td>
-                                <td class="table-products-name table-for-vertical">
-                                    {{ item.product.name }}
-                                    <div class="delete-from-cart d-inline-block d-sm-none"></div>
-                                </td>
-                                <td class="table-price table-for-vertical">
-                                    <p class="d-inline-block d-sm-none">Цена</p>
-                                    <div class="price-{{ item.product.pk }}">{{ item.product.price }}</div>
-                                </td>
-{#                                <td class="table-quantity table-for-vertical">#}
-{#                                    <p class="d-inline-block d-sm-none">Количество</p>#}
-{#                                    <div class="input-number">#}
-{#                                        <div class="input-number__minus">#}
-{#                                            <a href="{% url "webapp:cartdeleteitem" %}" id="cart-delete-{{ item.product.pk }}"#}
-{#                               data-product-pk="{{ item.product.pk }}"#}
-{#                               class="cartdelete">-</a>#}
-{#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=remove&next={% url 'webapp:cart' %}">-</a>#}
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">Цвет</th>
+                    {% for item in compare %}
+                    <td>{{ item.product.color }}</td>
+{#                    <td>Thornton</td>#}
+{#                    <td>@fat</td>#}
+                        {% endfor %}
+                </tr>
+                <tr>
+                    <th scope="row">Брэнд</th>
+                    {% for item in compare %}
+                    <td>{{ item.product.brand }}</td>
+{#                    <td>the Bird</td>#}
+{#                    <td>@twitter</td>#}
+                    {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{#!!!!!!!!!!!!!!!!!!!!!!!!!!#}
+
+{#    <div class="container my-4 my-sm-5">#}
+{#        <div class="row">#}
+{#            <div class="col-12 col-lg-8">#}
+{#                <div class="table-products">#}
+{#                    <nav aria-label="breadcrumb">#}
+{#                        <ol class="breadcrumb mb-0">#}
+{#                            <li class="breadcrumb-item active"><a href="{% url 'webapp:index' %}">Главная</a></li>#}
+{#                            <li class="breadcrumb-item active" aria-current="page">Сравнение</li>#}
+                            {#                            <li class="breadcrumb-item">Оплата</li>#}
+{#                        </ol>#}
+{#                    </nav>#}
+{#                    <table class="table-base table table-hover mt-4 mt-sm-5">#}
+{#                        <thead class="">#}
+{#                        <tr class="table-header">#}
+{#                            <th class="none-top-border" scope="col"></th>#}
+{#                            <th class="none-top-border tovar" scope="col">Товар</th>#}
+{#                            <th class="none-top-border"></th>#}
+{#                            <th class="none-top-border" scope="col">Цена</th>#}
+                            {#                            <th class="none-top-border" scope="col">Количество</th>#}
+                            {#                            <th class="none-top-border" scope="col">Итого</th>#}
+{#                        </tr>#}
+{#                        </thead>#}
+{#                        <tbody>#}
+{#                        {% for item in compare %}#}
+{#                            <tr class="product-{{ item.product.pk }}">#}
+{#                                <td class="table-first-column">#}
+{#                                    <a href="{% url 'webapp:compare_change' %}?pk={{ item.product.pk }}&action=delete&next={% url 'webapp:compare_list' %}">#}
+{#                                        <div class="delete-from-cart">#}
 {#                                        </div>#}
-{#                                        <input class="input-number__input" type="text" pattern="^[0-9]+$" id="gty-{{ item.product.pk }}"#}
-{#                                               value="{{ item.qty }}">#}
-{#                                        <div class="input-number__plus">#}
-{#                                            <a href="{% url "webapp:cartadditem" %}" id="cart-add-{{ item.product.pk }}"#}
-{#                               data-product-pk="{{ item.product.pk }}"#}
-{#                               class="cartadd">+</a>#}
-{#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:cart' %}">+</a>#}
-{#                                        </div>#}
+{#                                    </a>#}
+{#                                </td>#}
+{#                                <td class="table-second-column">#}
+{#                                    <div class="photo-back-table">#}
+{#                                        {% if item.product.images %}#}
+{#                                            <img src="{{ item.product.images.first.image.url }}" class="product-photo card-img-top"#}
+{#                                                 alt="...">#}
+{#                                        {% else %}#}
+{#                                            <img src="{% static "images/no_photo.jpg" %}"#}
+{#                                                 class="product-photo card-img-top" alt="...">#}
+{#                                        {% endif %}#}
 {##}
 {#                                    </div>#}
 {#                                </td>#}
-{#                                <td class="product-summ table-for-vertical"><p class="d-inline-block d-sm-none">#}
-{#                                    Итого</p>#}
-{#                                    <input class="" type="text" id="total-{{ item.product.pk }}"#}
-{#                                               value="{{ item.total }}">#}
-{#                                <div class="total-{{ item.product.pk }}">{{ item.total }}</div></td>#}
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-{#            <div class="col-12 col-lg-4">#}
-{#                <div class="cart-summ">#}
-{#                    <h3 class="cart-summ-header">Сравнение</h3>#}
-{#                    <table class="table">#}
-{#                        <tbody>#}
-{#                        <tr>#}
-{#                            <th class="none-top-border cart-summ-itog-header" scope="row">Итог</th>#}
-{#                            <td class="none-top-border cart-summ-itog"><div class="cart-total">#}
-{#                                {{ cart_total }}</div></td>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <th class="cart-summ-itog-header" scope="row">Доставка</th>#}
-{#                            <td class="cart-summ-delivery">{{ shipping_cost }}</td>#}
-{#                            {% if shipping_message %}#}
-{#                                <p style="color: red">{{ shipping_message }}</p>#}
-{#                            {% endif %}#}
-{#                        </tr>#}
+{#                                <td class="table-products-name table-for-vertical">#}
+{#                                    {{ item.product.name }}#}
+{#                                    <div class="delete-from-cart d-inline-block d-sm-none"></div>#}
+{#                                </td>#}
+{#                                <td class="table-price table-for-vertical">#}
+{#                                    <p class="d-inline-block d-sm-none">Цена</p>#}
+{#                                    <div class="price-{{ item.product.pk }}">{{ item.product.price }}</div>#}
+{#                                </td>#}
+                                {#                                <td class="table-quantity table-for-vertical">#}
+                                {#                                    <p class="d-inline-block d-sm-none">Количество</p>#}
+                                {#                                    <div class="input-number">#}
+                                {#                                        <div class="input-number__minus">#}
+                                {#                                            <a href="{% url "webapp:cartdeleteitem" %}" id="cart-delete-{{ item.product.pk }}"#}
+                                {#                               data-product-pk="{{ item.product.pk }}"#}
+                                {#                               class="cartdelete">-</a>#}
+                                {#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=remove&next={% url 'webapp:cart' %}">-</a>#}
+                                {#                                        </div>#}
+                                {#                                        <input class="input-number__input" type="text" pattern="^[0-9]+$" id="gty-{{ item.product.pk }}"#}
+                                {#                                               value="{{ item.qty }}">#}
+                                {#                                        <div class="input-number__plus">#}
+                                {#                                            <a href="{% url "webapp:cartadditem" %}" id="cart-add-{{ item.product.pk }}"#}
+                                {#                               data-product-pk="{{ item.product.pk }}"#}
+                                {#                               class="cartadd">+</a>#}
+                                {#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:cart' %}">+</a>#}
+                                {#                                        </div>#}
+                                {##}
+                                {#                                    </div>#}
+                                {#                                </td>#}
+                                {#                                <td class="product-summ table-for-vertical"><p class="d-inline-block d-sm-none">#}
+                                {#                                    Итого</p>#}
+                                {#                                    <input class="" type="text" id="total-{{ item.product.pk }}"#}
+                                {#                                               value="{{ item.total }}">#}
+                                {#                                <div class="total-{{ item.product.pk }}">{{ item.total }}</div></td>#}
+{#                            </tr>#}
+{#                        {% endfor %}#}
 {#                        </tbody>#}
-{#                        <tfoot>#}
-{#                        <tr>#}
-{#                            <th class="cart-summ-itogo-header" scope="row">Итого</th>#}
-{#                            <td class="cart-summ-itogo"><div class="cart-total">#}
-{#                                {{ total }}</div></td>#}
-{#                        </tr>#}
-{#                        </tfoot>#}
 {#                    </table>#}
-{#                    <button type="button" class="to-cart btn btn-success mt-0 ml-4 w-75">Пройти проверку</button>#}
 {#                </div>#}
 {#            </div>#}
-        </div>
-    </div>
+            {#            <div class="col-12 col-lg-4">#}
+            {#                <div class="cart-summ">#}
+            {#                    <h3 class="cart-summ-header">Сравнение</h3>#}
+            {#                    <table class="table">#}
+            {#                        <tbody>#}
+            {#                        <tr>#}
+            {#                            <th class="none-top-border cart-summ-itog-header" scope="row">Итог</th>#}
+            {#                            <td class="none-top-border cart-summ-itog"><div class="cart-total">#}
+            {#                                {{ cart_total }}</div></td>#}
+            {#                        </tr>#}
+            {#                        <tr>#}
+            {#                            <th class="cart-summ-itog-header" scope="row">Доставка</th>#}
+            {#                            <td class="cart-summ-delivery">{{ shipping_cost }}</td>#}
+            {#                            {% if shipping_message %}#}
+            {#                                <p style="color: red">{{ shipping_message }}</p>#}
+            {#                            {% endif %}#}
+            {#                        </tr>#}
+            {#                        </tbody>#}
+            {#                        <tfoot>#}
+            {#                        <tr>#}
+            {#                            <th class="cart-summ-itogo-header" scope="row">Итого</th>#}
+            {#                            <td class="cart-summ-itogo"><div class="cart-total">#}
+            {#                                {{ total }}</div></td>#}
+            {#                        </tr>#}
+            {#                        </tfoot>#}
+            {#                    </table>#}
+            {#                    <button type="button" class="to-cart btn btn-success mt-0 ml-4 w-75">Пройти проверку</button>#}
+            {#                </div>#}
+            {#            </div>#}
+{#        </div>#}
+{#    </div>#}
 {% endblock %}
 {% block scripts %}
-{#        <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
-{#        <script type="application/javascript" src="{% static "js/compare_ajax.js" %}"></script>#}
+{#            <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
+{#            <script type="application/javascript" src="{% static "js/compare_ajax.js" %}"></script>#}
 {% endblock %}

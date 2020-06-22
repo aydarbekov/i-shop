@@ -755,21 +755,21 @@ footer{
 	background-repeat: no-repeat;
 	background-position: center;
 }
-.partners-logo-first{
-	background-image: url(../images/icons/partners/samsung.png);
-}
-.partners-logo-second{
-	background-image: url(../images/icons/partners/Mail.png);
-}
-.partners-logo-third{
-	background-image: url(../images/icons/partners/kia.png);
-}
-.partners-logo-fourth{
-	background-image: url(../images/icons/partners/qiwi.png);
-}
-.partners-logo-fifth{
-	background-image: url(../images/icons/partners/Mail.png);
-}
+/*.partners-logo-first{*/
+/*	background-image: url(../images/icons/partners/samsung.png);*/
+/*}*/
+/*.partners-logo-second{*/
+/*	background-image: url(../images/icons/partners/Mail.png);*/
+/*}*/
+/*.partners-logo-third{*/
+/*	background-image: url(../images/icons/partners/kia.png);*/
+/*}*/
+/*.partners-logo-fourth{*/
+/*	background-image: url(../images/icons/partners/qiwi.png);*/
+/*}*/
+/*.partners-logo-fifth{*/
+/*	background-image: url(../images/icons/partners/Mail.png);*/
+/*}*/
 .info-block{
 	background: #343436;
 	padding: 50px 10%;
@@ -2071,6 +2071,265 @@ table td{
 .modal-for-card .card-cvc{
 	padding: 20px 10px ;
 }
+.methods-payment{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin-bottom: 40px;
+}
+.how-pay .methods-payment p{
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 19px;
+	color: #4F4F4F;
+}
+.method-payment{
+	width: 23%;
+	box-sizing: border-box;
+	border-radius: 11px;
+	min-width: 200px;
+	height: 100px;
+	display: flex;
+    align-items: center;
+    padding: 0 15px 0 82px;
+    margin: 7px 0 7px 0;
+}
+.method-payment p{
+	margin: 0;
+}
+.cash-pay{
+	background: url(../images/icons/cash_pay.png);
+	background-repeat: no-repeat;
+	background-color: #F8F8F8;
+    background-position: 20px 50%;
+}
+.card-pay{
+	background: url(../images/icons/card-pay.png);
+	background-repeat: no-repeat;
+	background-color: #F8F8F8;
+    background-position: 20px 50%;
+}
+.i-pay{
+	background: url(../images/icons/i-pay.png);
+	background-repeat: no-repeat;
+	background-color: #F8F8F8;
+    background-position: 30px 50%;
+}
+.sertificate-pay{
+	background: url(../images/icons/sert-pay.png);
+	background-repeat: no-repeat;
+	background-color: #F8F8F8;
+    background-position: 20px 50%;
+}
+.payment-block h4{
+	color: #000000;
+}
+.payment-block p{
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 19px;
+	color: #000000;
+}
+.payment-block .marker {
+	padding-right: 9px;
+    height: 9px;
+    margin-top: 4px;
+    border-radius: 50%;
+    margin-right: 13px;
+    background-color: #83B734;
+}
+.table-compare img{
+	max-height: 90%;
+    width: auto;
+    max-width: 90%;
+    height: auto;
+}
+.table-compare th{
+	font-weight: 900;
+	font-size: 18px;
+	line-height: 21px;
+	text-transform: uppercase;
+	color: #585858;
+    vertical-align: middle!important;
+}
+.table-compare h5 {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    color: #585858;
+    text-align: center;
+}
+.table-compare p {
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    color: #8D8D8D;
+}
+.table-compare .price {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #83B734;
+}
+.table-compare tbody td{
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 19px;
+	color: #585858;
+	padding-left: 50px;
+}
+.table-compare .delete-from-cart {
+	position: absolute;
+	top: 15px;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/icons/delete.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+}
+.table-compare .photo-back{
+	position: relative;
+}
+.buttons-right{
+	display: block;
+	background-color: transparent;
+	border: 1px solid #DFE3E9;
+	border-radius: 11px;
+	width: 95%;
+	margin: 10px 0;
+	height: 193px;
+	position: relative;
+}
+.buttons-right:hover{
+	background-color: lightgrey;
+}
+.buttons-right span{
+	position: absolute;
+	transform: translate(-50%, -50%);
+    bottom: 10%;
+    font-weight: 900;
+	font-size: 18px;
+	line-height: 21px;
+	text-transform: uppercase;
+	color: #4F4F4F;
+}
+.left-content{
+	width: 25%;
+}
+.right-content{
+	width: 75%;
+}
+.my-orders{
+	background-image: url(../images/icons/orders.png);
+	background-repeat: no-repeat;
+	background-position: center 40%;
+}
+.settings{
+	background-image: url(../images/icons/settings.png);
+	background-repeat: no-repeat;
+	background-position: center 40%;
+}
+.adresses{
+	background-image: url(../images/icons/adresses.png);
+	background-repeat: no-repeat;
+	background-position: center 40%;
+}
+.exit{
+	background-image: url(../images/icons/exit.png);
+	background-repeat: no-repeat;
+	background-position: center 40%;
+}
+.left-content{
+	border-right: 1px solid #DFE3E9;
+}
+.panel-buttons{
+	width: 95%;
+	border: none;
+	text-align: left;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 21px;
+	color: #585858;
+	margin-top: 15px;
+}
+.panel-buttons:hover{
+	border: none;
+	background: #F8F8F8;
+}
+.panel-buttons:focus{
+	/*border: none;*/
+	background: #F8F8F8;
+}
+.right-content .first-last-name input {
+    width: 32%;
+}
+.right-content form input {
+    margin-top: 15px;
+    border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+    border-radius: 2px;
+    height: 56px;
+    padding: 20px;
+    width: 65%;
+}
+.right-content h5{
+	margin-right: auto;
+	font-weight: 900;
+	font-size: 18px;
+	line-height: 21px;
+	text-transform: uppercase;
+	color: #585858;
+}
+#private-form button{
+	width: 36%;
+    margin-left: 29%;
+    background: #83B734;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: #FFFFFF;
+    margin-top: 15px;
+}
+.panel-adresses p{
+	margin-bottom: 0;
+	font-weight: 900;
+	font-size: 20px;
+	line-height: 23px;
+	text-transform: uppercase;
+	color: #83B734;
+}
+.panel-adresses thead{
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #A29A9A;
+}
+.panel-adresses .table thead th {
+    border-bottom: none;
+    line-height: 0px;
+}
+.panel-adresses .table td, .table th {
+    border-top: none;
+    line-height: 0px;
+}
+.panel-adresses .table {
+    margin-top: 1rem;
+}
+.panel-center{
+	display: none;
+}
+.panel-settings{
+	display: none;
+}
+.panel-adresses{
+	display: none;
+}
+.panel-history{
+	display: none;
+}
 @media screen and (min-width:769px){
 	.info-card .card-body{
 		display: block!important;
@@ -2246,6 +2505,25 @@ table td{
 	.original-block-item {
     	width: 90%;
     }
+	.left-content{
+		width: 100%;
+	}
+	.right-content{
+		width: 100%;
+	}
+	.right-content .first-last-name input {
+	    width: 100%;
+	}
+	.right-content form input {
+	    width: 100%;
+	}
+	.left-content{
+		border-right: none;
+	}
+	#private-form button{
+		width: 100%;
+	    margin-left: 0;
+	}
 }
 @media screen and (max-width:576px) {
 	.carousel-content{
@@ -2557,6 +2835,14 @@ table td{
 	}
 	.date-cvc input{
 		width: 100%;
+	}
+	.method-payment{
+		width: 100%;
+	}
+	.how-pay h4{
+		font-size: 18px;
+		line-height: 21px;
+		margin: 0;
 	}
 
 }
