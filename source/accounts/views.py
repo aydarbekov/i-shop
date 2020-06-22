@@ -136,7 +136,7 @@ def password_reset_email_view(request):
 
 class UserDetailView(DetailView):
     model = User
-    template_name = 'user_detail.html'
+    template_name = 'person_detail.html'
     context_object_name = 'user'
 
 
