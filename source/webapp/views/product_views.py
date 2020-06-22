@@ -46,16 +46,13 @@ class IndexView(SearchView):
 class ProductView(DetailView, SearchView):
     model = Product
     template_name = 'products/product_detail.html'
-    # form_class = FullSearchForm
-    #
-    # def form_valid(self, form):
-    #     query = urlencode(form.cleaned_data)
-    #     # url = reverse('webapp:search_results') + '?' + query
-    #     url = reverse('webapp:search_results') + '?' + query
-    #     return redirect(url)
 
     def get_context_data(self, **kwargs):
+        product = get_object_or_404(Product, id=self.kwargs['pk'])
+        product.views += 1  # инкрементируем счётчик просмотров и обновляем поле в базе данных
+        product.save(update_fields=['views'])
         context = super().get_context_data(**kwargs)
+
         context['same_products'] = Product.objects.filter(name=self.object, brand=self.object.brand)
         # context['product.images.all'] =
         if self.object.discount:
@@ -207,13 +204,13 @@ class ProductListGetView(ListView, SearchView):
         context['same_color_products'] = COLOR_CHOICES
         context['one_category_brands'] = Brand.objects.all()
         news = self.request.GET.get('news')
+        popular = self.request.GET.get('popular')
         all = self.request.GET.get('all')
-        print(all, "THIS IS ALL")
+        offer = self.request.GET.get('offer')
         brand = self.request.GET.get('brand')
         color = self.request.GET.get('color')
         if brand:
             brand = Brand.objects.get(brand_name=self.request.GET.get('brand'))
-            print(brand.pk, "THIS IS BRAND")
         if color:
             context['products'] = Product.objects.filter(Q(color=color))
         # tag = self.request.GET.get('tag')
@@ -221,6 +218,10 @@ class ProductListGetView(ListView, SearchView):
             context['products'] = Product.objects.all()
         if news:
             context['products'] = Product.objects.order_by('-date')[:12]
+        if offer:
+            context['products'] = Product.objects.filter(Q(offer=True) | Q(discount__isnull=False))[:12]
+        if popular:
+            context['products'] = Product.objects.order_by('-views')[:12]
         if brand:
             context['products'] = Product.objects.filter(brand=brand)
         # elif tag:
