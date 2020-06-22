@@ -9,6 +9,7 @@ from webapp.models import Product, Category, Carousel, Favorite, Tag, COLOR_CHOI
 from django.db.models import Q, Count
 from django.utils.http import urlencode
 from django.shortcuts import redirect
+import random
 
 
 # class SearchView(FormView):
@@ -65,7 +66,19 @@ class ProductView(DetailView):
         product.views += 1  # инкрементируем счётчик просмотров и обновляем поле в базе данных
         product.save(update_fields=['views'])
         context = super().get_context_data(**kwargs)
-
+        # context['products'] = random.sample(list(Product.objects.filter(category=product.category)), k=4)
+        # random_items = random.sample(list(Product.objects.filter(category=product.category)), k=3)
+        products = Product.objects.filter(category=product.category)
+        item_count = products.count()
+        if item_count <= 4:
+            context['products'] = random.sample(list(Product.objects.filter(category=product.category)), k=1)
+            print(context['products'])
+        else:
+            context['products'] = random.sample(list(Product.objects.filter(category=product.category)), k=4)
+            print(context['products'])
+        # print(item_count, "ITEM COUNT")
+        # random_item = q[random.randint(1, item_count + 1)]
+        # print(random_item, "THIS IS RANDOM ITEMS")
         context['same_products'] = Product.objects.filter(name=self.object, brand=self.object.brand)
         # context['product.images.all'] =
         if self.object.discount:
