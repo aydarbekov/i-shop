@@ -12,14 +12,14 @@
         <div class="product-content">
             <div class="row">
                 <div class="col-12 col-md-5 mt-5">
-{#                    {% for product in same_products.all %}#}
-                        {% if product.images %}
-                            <a href="{{ product.images.first.image.url }}" data-fancybox="gallery"
-                               data-caption="Caption #1">
-                        {% else %}
-                            {% load static %}<a href="{% static "images/no_photo.jpg" %}" data-fancybox="gallery"
-                                                data-caption="Caption #1">
-                        {% endif %}
+                    {#                    {% for product in same_products.all %}#}
+                    {% if product.images %}
+                        <a href="{{ product.images.first.image.url }}" data-fancybox="gallery"
+                           data-caption="Caption #1">
+                    {% else %}
+                        {% load static %}<a href="{% static "images/no_photo.jpg" %}" data-fancybox="gallery"
+                                            data-caption="Caption #1">
+                    {% endif %}
                     <div class="photo-back">
                         {% if product.images %}
                             <img src="{{ product.images.first.image.url }}" class="card-img-top"
@@ -29,17 +29,19 @@
                         {% endif %}
                     </div>
                     </a>
-                        <div class="lil-imgs justify-content-between mt-4 d-none d-sm-flex">
-                        {% for image in product.images.all %}
-                            {% if image.image.url != product.images.first.image.url %}
-                                <a href="{{ image.image.url }}" data-fancybox="gallery" data-caption="Caption #1">
-                                    <div class="photo-back-little">
-                                        <img src="{{ image.image.url }}" class="card-img-top" alt="...">
-                                    </div>
-                                </a>
-                            {% endif %}
+                    <div class="lil-imgs mt-4 d-none d-sm-flex">
+                        {% for prod in same_products %}
+                            {% for image in prod.images.all %}
+                                {% if image.image.url != product.images.first.image.url %}
+                                    <a href="{{ image.image.url }}" data-fancybox="gallery" data-caption="Caption #1">
+                                        <div class="photo-back-little">
+                                            <img src="{{ image.image.url }}" class="card-img-top" alt="...">
+                                        </div>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
                         {% endfor %}
-{#                    {% endfor %}#}
+                        {#                    {% endfor %}#}
                     </div>
                 </div>
                 <div class="col-12 col-md-7 mt-5">
@@ -134,10 +136,11 @@
                             <div class="color d-flex align-items-center">
                                 <p class="mr-3 mb-0">Цвета:</p>
                                 {% for prod in same_products.all %}
-                                    <button type="button" class="btn color-btn"
-                                            style="background-color:{{ prod.color }}; border-color:{% if prod.color == 'white' %}black{% endif %}">
+                                    <a href="{% url 'webapp:product_detail' prod.pk %}?color={{ prod.color }}"
+                                       class="btn color-btn"
+                                       style="background:{{ prod.color }}; border-color:{% if prod.color == 'white' %}black{% endif %}">
                                         <p class="btns-inside-white"></p>
-                                    </button>
+                                    </a>
                                 {% endfor %}
                             </div>
                             <div class="category d-flex">
@@ -148,7 +151,8 @@
                                 {% if product.tags.all %}
                                     <p>Tags:</p>
                                     {% for tag in product.tags.all %}
-                                        <a href="{% url 'webapp:products_category' product.category.pk %}?tag={{ tag }}" class="category-tag-name" style="color: black">#{{ tag }}</a>
+                                        <a href="{% url 'webapp:products_category' product.category.pk %}?tag={{ tag }}"
+                                           class="category-tag-name" style="color: black">#{{ tag }}</a>
                                     {% endfor %}
                                 {% endif %}
                             </div>
