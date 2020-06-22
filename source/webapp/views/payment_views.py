@@ -1,5 +1,5 @@
-from webapp.views.product_views import SearchView
+from django.views.generic.base import TemplateView
 
 
-class PaymentView(SearchView):
+class PaymentView(TemplateView):
     template_name = 'payment.html'

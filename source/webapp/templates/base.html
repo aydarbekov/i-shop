@@ -41,6 +41,11 @@
             </button>
             <a class="nav-link logo mx-auto ml-md-4 mr-md-0" href="{% url 'webapp:index' %}"></a>
             {% include 'partial/simple_search.html' %}
+{#        {{ search_form }}#}
+{#        <form method="post" id="search">{% csrf_token %}#}
+{#            {{ form.as_p }}#}
+{#    <input type="submit" value="Send message">#}
+{#        </form>#}
             {#            <form class="form-inline d-none d-md-flex align-items-center" method="get" action="#">#}
             {#                <input class="search form-control rounded-left" type="search" placeholder="Поиск" aria-label="Search">#}
             {##}

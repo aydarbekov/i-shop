@@ -2,12 +2,11 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from webapp.models import DeliveryCost, DeliveryAddress
-from webapp.views.product_views import SearchView
 
 
-class DeliveryCostList(ListView, SearchView):
+class DeliveryCostList(ListView):
     model = DeliveryCost
     template_name = 'delivery_cost/list.html'
     # context_object_name = 'deliverycost_list'
@@ -25,12 +24,12 @@ class DeliveryCostAdd(UserPassesTestMixin, CreateView):
         return user.is_staff
 
 
-class DeliveryView(SearchView):
+class DeliveryView(TemplateView):
     template_name = 'delivery.html'
     # return render(request, 'delivery.html')
 
 
-class ReturnView(SearchView):
+class ReturnView(TemplateView):
     template_name = 'return.html'
 
 

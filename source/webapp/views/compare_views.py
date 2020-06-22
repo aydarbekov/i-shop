@@ -3,12 +3,11 @@ from django.http import JsonResponse
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView
-from webapp.views.product_views import SearchView
 
 from webapp.models import Product
 
 
-class CompareView(SearchView):
+class CompareView(ListView):
     model = Product
     template_name = 'compare.html'
 
