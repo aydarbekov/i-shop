@@ -106,9 +106,9 @@ class ProductForm(forms.ModelForm):
         tags = filter(lambda tag: len(tag) > 0, tags)
         return tags
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['subcategory'].queryset = SubCategory.objects.none()
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['subcategory'].queryset = SubCategory.objects.none()
         # if 'category' in self.data:
         #     try:
         #         category_id = int(self.data.get('category'))

@@ -3,7 +3,8 @@
 {% block content %}
     <h1 class="text-center">Создать</h1>
     <div class="container" style="width: 800px">
-        <form method="post" id="productForm" data-subcategories-url="{% url 'webapp:ajax_load_subcategories' %}" enctype="multipart/form-data">
+    <form method="post" id="productForm" enctype="multipart/form-data">
+{#        <form method="post" id="productForm" data-subcategories-url="{% url 'webapp:ajax_load_subcategories' %}" enctype="multipart/form-data">#}
             {% include "partial/form.html" %}
             {% include 'products/product_images_formset.html' %}
             <p class="text-center"><input type="submit" value="Создать" class="btn"
@@ -12,18 +13,54 @@
     </div>
 {% endblock %}
 {% block scripts %}
+{#    <script>#}
+{#    $("#id_category").change(function () {#}
+{#        console.log("HI");#}
+{#        $('#id_category').val();#}
+{#        console.log($('#id_category').val());#}
+{##}
+{#// или#}
+{##}
+        {#console.log(selected, "THIS IS SELECT");#}
+{##}
+        {#var category = $(this).val();#}
+        {#console.log(value, "THIS IS CATEGORY");#}
+{#        $.ajax({#}
+{#            url: '{% url "webapp:ajax_load_subcategories" %}',#}
+{#            data: {#}
+{#                'category': category,#}
+{#            },#}
+{#            success: function (response) {#}
+{#                var  new_options = response;#}
+{#                alert(new_options[0].name);  // works#}
+{#                $('#id_sub_category').empty();#}
+{#                $.each(new_options, function(key, value) {#}
+{#                    $('#id_sub_category')#}
+{#                        .append($('<option>', { value : key })#}
+{#                        .text(value.name));#}
+{#                });#}
+{#            }#}
+{#    });#}
+{#    })#}
+{#    </script>#}
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
-        $("#id_category").change(function () {
+        $("#productForm #id_category").change(function () {
             let url = $("#productForm").attr("data-subcategories-url");
             let categoryId = $(this).val();
             $.ajax({
-                url: url,
+                url: '{% url "webapp:ajax_load_subcategories" %}',
                 data: {
                     'category': categoryId
                 },
                 success: function (data) {
-                    $("#id_subcategory").html(data);
+                    var subcategories = data['subcategories'];
+                    var id_list = [];
+                    $('#productForm #id_subcategory').find('option').remove();
+                    for (var i in subcategories){
+                        let option = new Option(subcategories[i]['sub_name'],subcategories[i]['id']);
+                        $('#productForm #id_subcategory').append(option);
+                    }
                 }
             });
         });

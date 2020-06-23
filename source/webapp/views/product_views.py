@@ -358,11 +358,7 @@ class DeleteFromOffer(LoginRequiredMixin, View):
 
 
 def load_subcategories(request):
-    print('in')
     category_id = request.GET.get('category')
-    print('yes')
-    print(category_id)
-    subcategories = SubCategory.objects.filter(category_id=category_id).order_by('sub_name')
-    print(subcategories)
-    return render(request, 'partial/subcategory_dropdown_list_options.html', {'subcategories': subcategories})
-    # return JsonResponse({'subcategories': subcategories})
+    subcategories = SubCategory.objects.filter(category_id=category_id).order_by('sub_name').values()
+    return JsonResponse({'subcategories': list(subcategories)})
+
