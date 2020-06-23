@@ -5,7 +5,8 @@ from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from webapp.forms import ProductForm, ImageFormset, FullSearchForm
-from webapp.models import Product, Category, Carousel, Favorite, Tag, COLOR_CHOICES, Brand, MainCarousel, SubCategory
+from webapp.models import Product, Category, Carousel, Favorite, Tag, COLOR_CHOICES, Brand, MainCarousel, SubCategory, \
+    ProductInCategory
 from django.db.models import Q, Count
 from django.utils.http import urlencode
 from django.shortcuts import redirect
@@ -182,6 +183,7 @@ class ProductListView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         context['categories'] = Category.objects.all()
+        context['product_in_category'] = ProductInCategory.objects.first()
         context['product_category'] = Category.objects.get(pk=self.kwargs.get('pk'))
         context['products'] = Product.objects.filter(category_id=self.kwargs.get('pk'))
         context['colors'] = COLOR_CHOICES
@@ -220,6 +222,7 @@ class ProductListGetView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         context['categories'] = Category.objects.all()
+        context['product_in_category'] = ProductInCategory.objects.first()
         # context['product_category'] = Category.objects.get(pk=self.kwargs.get('pk'))
         # context['products'] = Product.objects.filter(category_id=self.kwargs.get('pk'))
         context['colors'] = COLOR_CHOICES

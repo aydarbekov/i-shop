@@ -121,9 +121,27 @@
                             {% if request.user.is_staff %}
                                 <div class="row">
                                     <p class="mt-2 mx-3">Кол-во: {{ product.quantity }}</p>
-                                    <a class='btn update hiddenbutton' href="{% url 'webapp:carousel_add' %}"
-                                       style="color: blue">Добавить
-                                        в карусель</a>
+                                    {% csrf_token %}
+                    <div id="favorites-button-{{ product.pk }}" class="mt-2">
+                        <a href="{% url "webapp:carouseladditem" %}" id="carousel-add-{{ product.pk }}"
+                               data-product-pk="{{ product.pk }}"
+                               class="btn btn-success carouseladd {% if product.carousel_product.all %}d-none{% endif %}">В Карусель</a>
+                        <a href="{% url "webapp:carouseldeleteitem" %}" id="carousel-delete-{{ product.pk }}"
+                               data-product-pk="{{ product.pk }}"
+                               class="btn btn-danger carouseldelete {% if not product.carousel_product.all %}d-none{% endif %}">Из Карусели</a>
+{#                    </div>#}
+{#                                    <div id="favorites-button" class="mt-2">#}
+                        <a href="{% url "webapp:product_in_category_additem" %}" id="product-in-category-add-{{ product.pk }}"
+                               data-product-pk="{{ product.pk }}"
+                               class="btn btn-success product-in-category-add {% if product.product_in_category.all %}d-none{% endif %}">В Рекоммендованое</a>
+                        <a href="{% url "webapp:product_in_category_deleteitem" %}" id="product-in-category-delete-{{ product.pk }}"
+                               data-product-pk="{{ product.pk }}"
+                               class="btn btn-danger product-in-category-delete {% if not product.product_in_category.all %}d-none{% endif %}">Из Рекоммендованого</a>
+                                    </div>
+
+{#                                    <a class='btn update hiddenbutton' href="{% url 'webapp:carousel_add' product.pk %}"#}
+{#                                       style="color: blue">Добавить#}
+{#                                        в карусель</a>#}
                                     <a class='btn update hiddenbutton'
                                        href="{% url 'webapp:product_update' product.pk %}" style="color: blue">Редактировать</a>
                                     <a class='btn delete hiddenbutton'
@@ -391,6 +409,8 @@
             $('.review').rating();
         });
     </script>
+        <script type="application/javascript" src="{% static "js/carousel_ajax.js" %}"></script>
+        <script type="application/javascript" src="{% static "js/product_in_category.js" %}"></script>
     {#    <script type="application/javascript" src="{% static "js/cart_ajax.js" %}"></script>#}
     {#    <script type="application/javascript" src="{% static "js/compare_ajax.js" %}"></script>#}
 {% endblock %}
