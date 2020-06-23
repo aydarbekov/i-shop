@@ -4,7 +4,7 @@ from django.db import models
 
 
 CITY_CHOICES = (
-    ('Bishkek', 'Бишкек'),
+    ('Бишкек', 'Бишкек'),
 )
 COLOR_CHOICES = (
     ('none', 'Любой'),
