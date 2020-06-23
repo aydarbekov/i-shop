@@ -357,6 +357,36 @@ class DeleteFromOffer(LoginRequiredMixin, View):
         return JsonResponse({'pk': product.pk})
 
 
+class ProductSubCategoryListView(ListView):
+    template_name = 'products/products.html'
+    model = Product
+
+    def get_url(self):
+        global site
+        site = self.request.path
+        return site
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context['categories'] = Category.objects.all()
+        context['product_category'] = Category.objects.get(subcategories=self.kwargs.get('pk'))
+        context['products'] = Product.objects.filter(subcategory_id=self.kwargs.get('pk'))
+        context['colors'] = COLOR_CHOICES
+        context['same_color_products'] = Product.objects.filter(category_id=self.kwargs.get('pk')).values_list('color', flat=None).annotate(Count('pk'))
+        context['one_category_brands'] = Brand.objects.filter(products__category_id=self.kwargs.get('pk')).distinct()
+        brand = self.request.GET.get('brand')
+        color = self.request.GET.get('color')
+        tag = self.request.GET.get('tag')
+        if brand:
+            context['products'] = Product.objects.filter(Q(brand__brand_name=brand), Q(subcategory=self.kwargs.get('pk')))
+        elif color:
+            context['products'] = Product.objects.filter(Q(color=color), Q(subcategory=self.kwargs.get('pk')))
+        elif tag:
+            context['products'] = Product.objects.filter(tags__name__iexact=tag)
+        self.get_url()
+        return context
+
+
 def load_subcategories(request):
     category_id = request.GET.get('category')
     subcategories = SubCategory.objects.filter(category_id=category_id).order_by('sub_name').values()

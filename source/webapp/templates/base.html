@@ -174,7 +174,7 @@
                                     </a>
                                     <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">
                                         {% for subcategory in category.subcategories.all %}
-                                            <a class="dropdown-item" href="#">{{ subcategory.sub_name }}</a>
+                                            <a class="dropdown-item" href="{% url 'webapp:products_sub_category' subcategory.pk %}?category={{ subcategory.pk }}">{{ subcategory.sub_name }}</a>
                                         {% endfor %}
                                     </div>
                                 </div>
