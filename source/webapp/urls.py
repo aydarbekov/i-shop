@@ -1,6 +1,8 @@
 from django.urls import path
 from webapp.views.brand_views import BrandListView, BrandCreateView, BrandUpdateView, BrandDeleteView
 from webapp.views.category_views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView
+from webapp.views.product_in_category_views import ProductInCategoryCreateView, ProductInCategoryListView, \
+    ProductInCategoryDeleteView, ProductInCategoryUpdateView, product_in_categoryadditem, product_in_categorydeleteitem
 from webapp.views.product_views import IndexView, ProductView, ProductCreateView, ProductUpdateView, ProductDeleteView, \
     ProductListView, ProductALLListView, AddToFavorites, DeleteFromFavorites, FavoritesList, SearchResultsView, \
     ProductsOfferListView, AddToOffer, DeleteFromOffer, load_subcategories, ProductListGetView, \
@@ -86,5 +88,11 @@ urlpatterns = [
     path('maincarousel/delete/<int:pk>/', MainCarouselDeleteView.as_view(), name='main_carousel_delete'),
     path('deliveryaddress/add', DeliveryAddressAdd.as_view(), name="delivery_address_add"),
     path('payment/', PaymentView.as_view(), name='payment_view'),
+    path('product_in_category/add/', ProductInCategoryCreateView.as_view(), name='product_in_category_add'),
+    path('product_in_category/', ProductInCategoryListView.as_view(), name='product_in_category_list'),
+    path('product_in_category/change/<int:pk>/', ProductInCategoryUpdateView.as_view(), name='product_in_category_change'),
+    path('product_in_category/delete/<int:pk>/', ProductInCategoryDeleteView.as_view(), name='product_in_category_delete'),
+    path('product_in_category_deleteitem/', product_in_categorydeleteitem, name='product_in_category_deleteitem'),
+    path('product_in_category_additem/', product_in_categoryadditem, name='product_in_category_additem'),
 
 ]

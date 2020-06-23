@@ -233,3 +233,15 @@ class MainCarousel(models.Model):
     class Meta:
         verbose_name = 'Главная карусель'
         verbose_name_plural = 'Главная карусель'
+
+
+class ProductInCategory(models.Model):
+    product = models.ForeignKey(Product, related_name='product_in_category', on_delete=models.CASCADE,
+                                verbose_name='Рекоммендуемы товар в категории', null=True, blank=True)
+
+    def _str_(self):
+        return self.product.name
+
+    class Meta:
+        verbose_name = 'Товар в категории'
+        verbose_name_plural = 'Товар в категории'

@@ -45,15 +45,9 @@
                         <a href="{% url "webapp:carouseladditem" %}" id="carousel-add-{{ product.pk }}"
                                data-product-pk="{{ product.pk }}"
                                class="btn btn-success carouseladd {% if product.carousel_product.all %}d-none{% endif %}">Добавить</a>
-{#                            <input type="button" value="Добавить" data-id="{{ product.pk }}" class="btn btn-success carouseladd#}
-{#                            {% if product.carousel_product.all %}d-none{% endif %}" id="carousel-add-{{ product.pk }}">#}
-{#                        {% else %}#}
                         <a href="{% url "webapp:carouseldeleteitem" %}" id="carousel-delete-{{ product.pk }}"
                                data-product-pk="{{ product.pk }}"
                                class="btn btn-danger carouseldelete {% if not product.carousel_product.all %}d-none{% endif %}">Удалить</a>
-{#                            <input type="button" value="Удалить" data-id="{{ product.pk }}" class="btn btn-danger carouseldelete#}
-{#                            {% if not product.carousel_product.all %}d-none{% endif %}" id="carousel-delete-{{ product.pk }}">#}
-{#                        {% endif %}#}
                     </div>
                         </td>
                         <td>{% include 'partial/offer_buttons.html'%}</td>
@@ -70,4 +64,5 @@
 {% endblock %}
 {% block scripts %}
     <script type="application/javascript" src="{% static "js/carousel_ajax.js" %}"></script>
+    <script type="application/javascript" src="{% static "js/product_in_category.js" %}"></script>
 {% endblock %}

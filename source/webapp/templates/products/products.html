@@ -59,13 +59,20 @@
                         <div class="bestseller p-5 mb-0 mt-5">
                             <p class="bestseller-text-background-in-category-page">Bestseller</p>
                             <div class="bestseller-content mt-0">
-                                <h3>Office chair</h3>
-                                <p class="bestseller-text pr-0 mt-0">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                    elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>
-                                <img class="bestseller-img mb-5" src="{% static 'images/chair.png' %}" alt="Кресло"
+                                <h3>{{ product_in_category.product }}</h3>
+                                <p class="bestseller-text pr-0 mt-0">{{ product_in_category.product.description }}</p>
+                                {% if product_in_category.product.images %}
+                                <img class="bestseller-img mb-5" src="{{ product_in_category.product.images.first.image.url }}" alt="Кресло"
                                      style="">
-                                <p class="bestseller-price ml-0">8</p>
-                                <button type="button" class="btn bestseller-button mr-0">в корзину</button>
+                                {% endif %}
+                                <p class="bestseller-price ml-0">{{ product_in_category.product.price }} сом</p>
+{#                                <button type="button" class="btn bestseller-button mr-0">в корзину</button>#}
+                            <button type="button" class="to-cart btn btn-success cartadd"
+                                                            href="{% url "webapp:cartadditem" %}"
+                                                            data-product-pk="{{ product_in_category.product.pk }}"
+                                                            id="cart-add-{{ product_in_category.product.pk }}">В
+                                                        корзину
+                                                    </button>
                             </div>
                         </div>
                     </div>
