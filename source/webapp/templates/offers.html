@@ -10,6 +10,12 @@
         <h4>{{ product_category }}</h4>
     </div>
     <div class="container">
+        <nav aria-label="breadcrumb" class="my-4">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'webapp:index' %}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Акции</li>
+            </ol>
+        </nav>
         <div class="category-block-content d-flex">
             <div class="filter d-lg-block collapse" id="collapseExample1">
                 <div class="category-detail-filter">
