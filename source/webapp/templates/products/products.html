@@ -190,17 +190,24 @@
             </div>
         </div>
     </div>
-    <div class="bestseller mb-0 mt-3 pb-3 d-lg-none">
-        <p class="bestseller-text-background">Bestseller</p>
-        <img class="bestseller-img" src="{% static 'images/chair.png' %}" alt="Кресло" style="">
-        <div class="bestseller-content">
-            <h3>Кресло для офиса</h3>
-            <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione
-                maiores harum. Aliquid, sed.</p>
-            <p class="bestseller-price">$8</p>
-            <button type="button" class="btn bestseller-button mr-4">в корзину</button>
+    {% if product_in_category %}
+        <div class="bestseller mb-0 mt-3 pb-3 d-lg-none">
+            <p class="bestseller-text-background">Bestseller</p>
+            {% if product_in_category.product.images %}
+                <img class="bestseller-img" src=src="{{ product_in_category.product.images.first.image.url }}"
+                     alt="Кресло" style="">
+            {% endif %}
+            <div class="bestseller-content">
+                <h3>{{ product_in_category.product }}</h3>
+                <p class="bestseller-text">{{ product_in_category.product.description }}</p>
+                <p class="bestseller-price">{{ product_in_category.product.price }} сом</p>
+                <button type="button" class="btn bestseller-button mr-4" href="{% url "webapp:cartadditem" %}"
+                        data-product-pk="{{ product_in_category.product.pk }}"
+                        id="cart-add-{{ product_in_category.product.pk }}">В корзину
+                </button>
+            </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}
 {% block scripts %}
     <script type="application/javascript" src="{% static "js/products.js" %}"></script>
