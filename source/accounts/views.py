@@ -139,6 +139,8 @@ class UserDetailView(DetailView):
     context_object_name = 'user'
 
 
+
+
 class UserInfoChangeView(UpdateView):
     model = User
     # template_name = 'user_update.html'

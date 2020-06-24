@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'accounts',
     'phonenumber_field',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
