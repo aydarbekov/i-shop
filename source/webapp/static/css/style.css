@@ -248,6 +248,7 @@ body{
 	font-size: 10px;
 	line-height: 12px;
 	color: #585858;
+	position: relative;
 }
 .burger-compare:hover{
 	background-position: -54px -19px;
@@ -257,6 +258,20 @@ body{
 .burger-compare p{
 	margin-top: 27px;
 	margin-right: 0;
+}
+.burger-compare .circle-count{
+	background-image: url(../images/icons/Ellipse-4.png);
+	background-repeat: no-repeat;
+	height: 17px;
+	width: 17px;
+	position: absolute;
+	top: -3px;
+	left: 39px;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 10px;
+	line-height: 12px;
+	color: #FFFFFF;
 }
 .bottom-header{
 	border: 0.1px solid #DFE3E9;
@@ -661,6 +676,50 @@ body{
 	font-size: 10px;
 	line-height: 12px;
 	color: #FFFFFF;
+}
+.red4{
+	background: url(../images/icons/red-heart.png);
+    height: 20px;
+    width: 50px;
+	border: none;
+    display: inline-block;
+    background-size: 45%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0;
+	position: relative;
+	margin-bottom: 10px;
+}
+.red4 .circle-count{
+	background-image: url(../images/icons/Ellipse-4.png);
+	/*background-size: 70%;*/
+	background-repeat: no-repeat;
+	height: 17px;
+	width: 17px;
+	position: absolute;
+	top: -3px;
+	left: 29px;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 7px;
+	line-height: 9px;
+	color: #FFFFFF;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+.red4:hover{
+	background: url(../images/icons/red-heart.png);
+    height: 20px;
+    width: 50px;
+	border: none;
+    display: inline-block;
+    background-size: 45%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0;
+	position: relative;
+	margin-bottom: 10px;
 }
 .promo-button-favorite:hover{
     background-position: -50px -10px;
