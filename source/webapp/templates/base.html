@@ -61,7 +61,7 @@
             <div class="nav-link text-uppercase ml-md-auto d-flex align-items-center justify-content-between">
                 {% block menu %}{% endblock %}
                 {% if perms.webapp.product_add %}
-                    <div class="dropdown">
+                    <div class="dropdown d-none d-md-block">
                         <button class=" login m-0 btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                 style="border: none; white-space: pre-line; background-color: white; width: min-content;">
@@ -94,7 +94,7 @@
                     <a class="login  d-none d-md-flex" href="{% url 'accounts:register' %}">Зарегистрироваться</a>
                 {% endif %}
                 {% if request.user.is_authenticated %}
-                    <a class=" {% if request.user.favorites.all %}red3{% else %}favorites btn{% endif %}"
+                    <a class="d-none d-md-block {% if request.user.favorites.all %}red3{% else %}favorites btn{% endif %}"
                        href="{% url 'webapp:favorite_products' %}">
                         <div class="circle-count d-flex align-items-center justify-content-center">
                             {{ request.user.favorites.all|length }}
