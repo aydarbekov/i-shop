@@ -2420,6 +2420,13 @@ table td{
 .right-right-content a{
 	text-align: center;
 }
+.lil-imgs .slick-list{
+    width: 100%;
+}
+/*.lil-imgs .slick-track{*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*}*/
 .lil-imgs .slick-arrow {
     opacity: 0.5;
     width: 30px;
