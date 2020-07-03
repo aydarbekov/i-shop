@@ -144,10 +144,32 @@ class ProductUpdateView(PermissionRequiredMixin, UpdateView):
         tag_names = [tag.name for tag in tags]
         return ', '.join(tag_names)
 
-    def form_valid(self, form):
+    def get_context_data(self, **kwargs):
+        if 'formset' not in kwargs:
+            kwargs['formset'] = ImageFormset(instance=self.object)
+        return super().get_context_data(**kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        formset = ImageFormset(request.POST, request.FILES, instance=self.object)
+
+        if form.is_valid() and formset.is_valid():
+            return self.form_valid(form, formset)
+        return self.form_invalid(form, formset)
+
+    def form_valid(self, form, formset):
+        formset.instance = self.object
+        formset.save()
+        self.object = form.save()
+        self.object.save()
         tags = form.cleaned_data.get('tags')
         self.save_tags(tags)
-        return super().form_valid(form)
+        return HttpResponseRedirect(self.get_success_url())
+        # return super().form_valid(form)
+
+    def form_invalid(self, form, formset):
+        return self.render_to_response(self.get_context_data(form=form, formset=formset))
 
     def save_tags(self, tags):
         self.object.tags.clear()
