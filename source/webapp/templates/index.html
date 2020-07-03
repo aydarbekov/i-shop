@@ -5,81 +5,41 @@
 {% endblock %}
 {% block content %}
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-div carousel-inner">
-{#            <div class="carousel-item active">#}
-{#                <a href="#">#}
-{#                    <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">#}
-{#                    <div class="carousel-content carousel-caption">#}
-{#                        <h5 class="carousel-title">Блокнот</h5>#}
-{#                        <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,#}
-{#                            porro.</p>#}
-{#                        <div class="carousel-button-price d-flex align-items-center">#}
-{#                            <button type="button" class="btn button-in-carousel mr-4">в корзину</button>#}
-{#                            <p class="carousel-price">$15</p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </a>#}
-{#            </div>#}
-            {% for item_carousel in main_carousel %}
-{#                <div class="carousel-item">#}
-                {% if forloop.counter == 1 %}
-                    <div class="carousel-item active">
-                {% else %}
-                    <div class="carousel-item">
-                    {% endif %}
-{#                <div {% if loop.index0 == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>#}
-{#                <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">#}
-                {% if item_carousel.image %}
-                    <img src="{{ item_carousel.image.url }}" class="d-block w-100" alt="...">
-                {% else %}
-                    <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">
-                {% endif %}
-                <div class="carousel-content carousel-caption">
-                {% if item_carousel.photo %}
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-div carousel-inner">
+        {% for item_carousel in main_carousel %}
+            {#                <div class="carousel-item">#}
+            {% if forloop.counter == 1 %}
+                <div class="carousel-item active">
+            {% else %}
+                <div class="carousel-item">
+            {% endif %}
+        {#                <div {% if loop.index0 == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>#}
+        {#                <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">#}
+        {% if item_carousel.image %}
+            <img src="{{ item_carousel.image.url }}" class="d-block w-100" alt="...">
+        {% else %}
+            <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">
+        {% endif %}
+        <div class="carousel-content carousel-caption">
+            {% if item_carousel.photo %}
                 <img class="mr-5" src="{{ item_carousel.photo.url }}" align="left" alt="...">
-                    {% endif %}
-                    <h5 class="carousel-title">{{ item_carousel.title }}</h5>
-                    <p class="carousel-text">{{ item_carousel.text }}</p>
-                    <div class="carousel-button-price d-flex align-items-center">
-                        <a href="{{ item_carousel.link }}" class="btn button-in-carousel mr-4">подробнее</a>
+            {% endif %}
+            <h5 class="carousel-title">{{ item_carousel.title }}</h5>
+            <p class="carousel-text">{{ item_carousel.text }}</p>
+            <div class="carousel-button-price d-flex align-items-center">
+                <a href="{{ item_carousel.link }}" class="btn button-in-carousel mr-4">подробнее</a>
 
-{#                        <button type="button" class="btn button-in-carousel mr-4">в корзину</button>#}
-                        <p class="carousel-price">сом {{ item_carousel.price }}</p>
-                    </div>
-                </div>
+                {#                        <button type="button" class="btn button-in-carousel mr-4">в корзину</button>#}
+                <p class="carousel-price">сом {{ item_carousel.price }}</p>
             </div>
-            {% endfor %}
-{#            <div class="carousel-item">#}
-{#                <a href="#">#}
-{#                    <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">#}
-{#                    <div class="carousel-content carousel-caption">#}
-{#                        <h5 class="carousel-title">Блокнот</h5>#}
-{#                        <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,#}
-{#                            porro.</p>#}
-{#                        <div class="carousel-button-price d-flex align-items-center">#}
-{#                            <button type="button" class="btn button-in-carousel mr-4">в корзину</button>#}
-{#                            <p class="carousel-price">$15</p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </a>#}
-{#            </div>#}
-{#            <div class="carousel-item">#}
-{#                <img src="{% static "images/carousel_images/carousel1.png" %}" class="d-block w-100" alt="...">#}
-{#                <div class="carousel-content carousel-caption">#}
-{#                    <h5 class="carousel-title">Книга</h5>#}
-{#                    <p class="carousel-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero sint,#}
-{#                        repellendus officiis!</p>#}
-{#                    <div class="carousel-button-price d-flex align-items-center">#}
-{#                        <button type="button" class="btn button-in-carousel mr-4">в корзину</button>#}
-{#                        <p class="carousel-price">$20</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
+        </div>
+        </div>
+        {% endfor %}
         </div>
         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -122,41 +82,23 @@
         <p class="bestseller-text-background">Bestseller</p>
         <div class="container d-flex flex-nowrap bestseller bg-transparent bestseller-slide">
             {% for carousel in carouseles %}
-            <div class="d-flex flex-nowrap bg-transparent">
-            {% if carousel.product.images.first.image.url %}
-                <img class="bestseller-img" src="{{ carousel.product.images.first.image.url }}" alt="{{ carousel.product.name }}" style="">
-            {% endif %}
-                <div class="bestseller-content">
-                    <h3>{{ carousel.product.name }}</h3>
-                    {% if carousel.product.description %}
-                    <p class="bestseller-text">{{ carousel.product.description }}</p>
+                <div class="d-flex flex-nowrap bg-transparent">
+                    {% if carousel.product.images.first.image.url %}
+                        <img class="bestseller-img" src="{{ carousel.product.images.first.image.url }}" alt="{{ carousel.product.name }}" style="">
                     {% endif %}
-                    <p class="bestseller-price">${{ carousel.product.price }}</p>
-{#                <a href="{% url 'webapp:cart_change' %}?pk={{ carousel.product.pk }}&action=add&next={% url 'webapp:index' %}">#}
-                    <button type="button" class="btn bestseller-button mr-4 cartadd" href="{% url "webapp:cartadditem" %}"
-                                        data-product-pk="{{ carousel.product.pk }}" id="cart-add-{{ carousel.product.pk }}">в корзину</button>
-{#                    </a>#}
+                    <div class="bestseller-content">
+                        <h3>{{ carousel.product.name }}</h3>
+                        {% if carousel.product.description %}
+                            <p class="bestseller-text">{{ carousel.product.description }}</p>
+                        {% endif %}
+                        <p class="bestseller-price">${{ carousel.product.price }}</p>
+                        {#                <a href="{% url 'webapp:cart_change' %}?pk={{ carousel.product.pk }}&action=add&next={% url 'webapp:index' %}">#}
+                        <button type="button" class="btn bestseller-button mr-4 cartadd" href="{% url "webapp:cartadditem" %}"
+                                data-product-pk="{{ carousel.product.pk }}" id="cart-add-{{ carousel.product.pk }}">в корзину</button>
+                        {#                    </a>#}
+                    </div>
                 </div>
-            </div>
             {% endfor %}
-{#            <div class="d-flex flex-nowrap bg-transparent">#}
-{#                <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">#}
-{#                <div class="bestseller-content">#}
-{#                    <h3>Кресло для офиса</h3>#}
-{#                    <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>#}
-{#                    <p class="bestseller-price">$8</p>#}
-{#                    <button type="button" class="btn bestseller-button mr-4">в корзину</button>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="d-flex flex-nowrap bg-transparent">#}
-{#                <img class="bestseller-img" src="{% static "images/chair.png" %}" alt="Кресло" style="">#}
-{#                <div class="bestseller-content">#}
-{#                    <h3>Кресло для офиса</h3>#}
-{#                    <p class="bestseller-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vel ratione maiores harum. Aliquid, sed.</p>#}
-{#                    <p class="bestseller-price">$8</p>#}
-{#                    <button type="button" class="btn bestseller-button mr-4">в корзину</button>#}
-{#                </div>#}
-{#            </div>#}
         </div>
     </div>
     <div class="promos container">
@@ -227,9 +169,9 @@
         </form>
     </div>
     <div class="map">
-{#        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4412.16964714803!2d74.55874739931456!3d42.7115643736239!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389935106d16e745%3A0xc2410481696a04e9!2zNDLCsDQyJzQ0LjMiTiA3NMKwMzMnMzIuMSJF!5e0!3m2!1sru!2skg!4v1589124898764!5m2!1sru!2skg"#}
-{#                width="100%" height="480" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"#}
-{#                tabindex="0"></iframe>#}
+        {#        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4412.16964714803!2d74.55874739931456!3d42.7115643736239!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389935106d16e745%3A0xc2410481696a04e9!2zNDLCsDQyJzQ0LjMiTiA3NMKwMzMnMzIuMSJF!5e0!3m2!1sru!2skg!4v1589124898764!5m2!1sru!2skg"#}
+        {#                width="100%" height="480" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"#}
+        {#                tabindex="0"></iframe>#}
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2924.101455207664!2d74.59815671526881!3d42.87070271069281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eb7da3f1e9d79%3A0x53650b0d7dd0ccd3!2zMTYyINGD0LsuINCf0LDQvdGE0LjQu9C-0LLQsCwg0JHQuNGI0LrQtdC6!5e0!3m2!1sru!2skg!4v1592934697616!5m2!1sru!2skg" width="100%" height="480" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
     </div>
     {#    <h1 class="text-center">Товары</h1>#}

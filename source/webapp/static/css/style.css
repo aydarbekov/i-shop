@@ -2525,9 +2525,9 @@ table td{
 		left: 37%;
 		text-align: left;
 	}
-	.slick-list{
-		height: 320px;
-	}
+	/*.slick-list{*/
+	/*	height: 320px;*/
+	/*}*/
 	.category-card{
 		margin-left: 15px;
 		margin-right: 15px;

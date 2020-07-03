@@ -11,17 +11,17 @@ function slick() {
                 settings: {
                     centerMode: false,
                     slidesToShow: 3,
-                    slidesToScroll: 2,
+                    slidesToScroll: 1,
                     infinite: false,
                 }
             },
             {
-                breakpoint: 768,
+                breakpoint: 576 ,
                 settings: {
                     arrows: false,
                     centerMode: false,
                     slidesToShow: 2,
-                    slidesToScroll: 2,
+                    slidesToScroll: 1,
                     infinite: false,
 
                 }
@@ -69,14 +69,14 @@ function goup() {
 $(document).ready(function(){
     slick();
     if(document.documentElement.clientWidth < 768) {
-        godown();
+        // godown();
     }
     $(window).resize(function() {
         if(document.documentElement.clientWidth < 768) {
-            godown();
+            // godown();
         }
         if(document.documentElement.clientWidth >= 768) {
-            goup();
+            // goup();
         }
     });
 
