@@ -1195,6 +1195,9 @@ footer{
 	max-width: 90%;
 	height: auto;
 }
+.lil-imgs{
+	padding-left: 13px;
+}
 .lil-imgs .photo-back-little{
 	background-color: #F8F8F8;
 	height: 128px;
@@ -2416,6 +2419,28 @@ table td{
 }
 .right-right-content a{
 	text-align: center;
+}
+.lil-imgs .slick-arrow {
+    opacity: 0.5;
+    width: 30px;
+    height: 100%;
+    font-size: 0;
+    border: none;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+}
+.lil-imgs .slick-prev{
+	left: -5%;
+	background-image: url(../images/icons/prev.svg);
+	background-repeat: no-repeat;
+    background-position: center;
+}
+.lil-imgs .slick-next{
+	right: -5%;
+	background-image: url(../images/icons/next.svg);
+	background-repeat: no-repeat;
+    background-position: center;
 }
 @media screen and (min-width:769px){
 	.info-card .card-body{
