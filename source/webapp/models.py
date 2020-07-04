@@ -245,3 +245,16 @@ class ProductInCategory(models.Model):
     class Meta:
         verbose_name = 'Товар в категории'
         verbose_name_plural = 'Товар в категории'
+
+
+class Specifications(models.Model):
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='speсifications')
+    name = models.CharField(max_length=200, null=False, blank=False, verbose_name='Название')
+    value = models.CharField(max_length=200, null=False, blank=False, verbose_name='Значение')
+
+    def __str__(self):
+        return f'(self.product.name+self.name+self.value    )'
+
+    class Meta:
+        verbose_name = 'Характеристи'
+        verbose_name_plural = 'Характеристика'

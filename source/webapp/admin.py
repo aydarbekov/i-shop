@@ -1,6 +1,6 @@
 from django.contrib import admin
 from webapp.models import Category, Product, SubCategory, DeliveryAddress, Order, \
-    OrderProduct, Review, News, Image, Brand, DeliveryCost, Favorite, Tag, MainCarousel
+    OrderProduct, Review, News, Image, Brand, DeliveryCost, Favorite, Tag, MainCarousel, Specifications
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -73,3 +73,4 @@ admin.site.register(Brand, BrandAdmin)
 admin.site.register(Favorite)
 admin.site.register(Tag)
 admin.site.register(MainCarousel, MainCarouselAdmin)
+admin.site.register(Specifications)
