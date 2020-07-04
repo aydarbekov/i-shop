@@ -214,6 +214,11 @@
                     <p>Отзывов нет</p>
                 {% endfor %}
             </div>
+            <div class="specification-list">
+                {% for spec in product.speсifications.all %}
+                    <p>{{ spec.name }}: {{ spec.value }}</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <div class="original-block">

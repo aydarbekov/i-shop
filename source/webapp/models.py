@@ -253,7 +253,7 @@ class Specifications(models.Model):
     value = models.CharField(max_length=200, null=False, blank=False, verbose_name='Значение')
 
     def __str__(self):
-        return f'(self.product.name+self.name+self.value    )'
+        return f"{self.product.name} - {self.name}: {self.value}"
 
     class Meta:
         verbose_name = 'Характеристи'
