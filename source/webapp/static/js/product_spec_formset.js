@@ -1,9 +1,9 @@
-function setFormId(form, formsNumber) {
-    let formId = 'images-' + formsNumber;
+function setSpecsFormId(form, formsNumber) {
+    let formId = 'specs-' + formsNumber;
     let oldId = form.prop('id');
     form.prop('id', formId);
 
-    let fields = ['image', 'id'];
+    let fields = ['name', 'value', 'id'];
     fields.forEach(function(field) {
         let element = form.find('#id_' + oldId + '-' + field);
         let fieldName = formId + '-' + field;
@@ -15,11 +15,11 @@ function setFormId(form, formsNumber) {
     deleteButton.data('id', formId);
 }
 
-function formReset(form) {
+function formSpecsReset(form) {
     let formId = form.prop('id');
     form.removeClass('d-none');
 
-    let fields = ['image', 'id'];
+    let fields = ['name', 'value', 'id'];
     fields.forEach(function(field) {
         let element = form.find('#id_' + formId + '-' + field);
         element.val('');
@@ -33,40 +33,41 @@ function formReset(form) {
 
     let deleteButton = form.find('.btn-danger');
     deleteButton.off('click');
-    deleteButton.click(deleteImageForm);
+    deleteButton.click(deleteSpecsForm);
 }
 
-let newForm2 =$("#image_forms .form-row").first().clone();
+let newForm =$("#specs_forms .form-row").first().clone();
 
-function addImageForm (event) {
-    let totalFormsInput = $("#id_images-TOTAL_FORMS");
-    let maxFormsInput = $("#id_images-MAX_NUM_FORMS");
+function addSpecsForm (event) {
+    let totalFormsInput = $("#id_speсifications-TOTAL_FORMS");
+    let maxFormsInput = $("#id_speсifications-MAX_NUM_FORMS");
+    console.log(maxFormsInput);
     let totalForms = totalFormsInput.val();
     let maxForms = maxFormsInput.val();
     if(totalForms === maxForms) {
-        alert('Максимальное количество фото добавлено!');
-    } else
-        {
-        let firstForm2 = newForm2.clone();
-        setFormId(firstForm2, totalForms);
-        formReset(firstForm2);
-        $("#image_forms").append(firstForm2);
+        alert('Максимальное количество добавлено!');
+    } else{
+        let firstForm = newForm.clone();
+        setSpecsFormId(firstForm, totalForms);
+        formSpecsReset(firstForm);
+        $("#specs_forms").append(firstForm);
         totalFormsInput.val(parseInt(totalForms) + 1);
     }
 }
 
-function deleteImageForm(event) {
-    let totalFormsInput = $("#id_images-TOTAL_FORMS");
+function deleteSpecsForm(event) {
+    let totalFormsInput = $("#id_speсifications-TOTAL_FORMS");
     // let minFormsInput = $("#id_images-MIN_NUM_FORMS");
     let totalForms = totalFormsInput.val();
     // let minForms = minFormsInput.val();
     // if(totalForms === minForms) {
     //     alert('В заказе должно быть хотя бы ' + minForms + " товар(а/ов).");
     // } else
-    {
+    // {
         let formId = $(event.target).data('id');
+        console.log(formId);
         let form = $("#" + formId);
-
+        console.log(form);
         let idInput = form.find('#id_' + formId + '-id');
         if (idInput.val()) {
             let deleteCheckbox = form.find('#id_' + formId + '-DELETE');
@@ -77,14 +78,14 @@ function deleteImageForm(event) {
             totalFormsInput.val(parseInt(totalForms) - 1);
         }
 
-        let forms = $("#image_forms .form-row");
+        let forms = $("#specs_forms .form-row");
         for(let i = 0; i < forms.length; i++) {
             setFormId($(forms[i]), i);
         }
-    }
+    // }
 }
 
 $(document).ready(function() {
-    $('#add_image_form').click(addImageForm);
-    $('#image_forms button.btn-danger').click(deleteImageForm)
+    $('#add_specs_form').click(addSpecsForm);
+    $('#specs_forms button.btn-danger').click(deleteSpecsForm)
 });

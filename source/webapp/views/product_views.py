@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
-from webapp.forms import ProductForm, ImageFormset, FullSearchForm
+from webapp.forms import ProductForm, ImageFormset, FullSearchForm, SpecificationFormset
 from webapp.models import Product, Category, Carousel, Favorite, Tag, COLOR_CHOICES, Brand, MainCarousel, SubCategory, \
     ProductInCategory
 from django.db.models import Q, Count
@@ -97,8 +97,9 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
     permission_denied_message = '403 Доступ запрещён!'
 
     def get_context_data(self, **kwargs):
-        if 'formset' not in kwargs:
+        if 'formset' and 'specification_formset' not in kwargs:
             kwargs['formset'] = ImageFormset()
+            kwargs['specification_formset'] = SpecificationFormset()
         return super().get_context_data(**kwargs)
 
     def post(self, request, *args, **kwargs):

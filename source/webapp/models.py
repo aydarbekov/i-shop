@@ -249,8 +249,8 @@ class ProductInCategory(models.Model):
 
 class Specifications(models.Model):
     product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='speсifications')
-    name = models.CharField(max_length=200, null=False, blank=False, verbose_name='Название')
-    value = models.CharField(max_length=200, null=False, blank=False, verbose_name='Значение')
+    name = models.CharField(max_length=200, null=False, blank=False, verbose_name='Название характеристики')
+    value = models.CharField(max_length=200, null=False, blank=False, verbose_name='Значение характеристики')
 
     def __str__(self):
         return f"{self.product.name} - {self.name}: {self.value}"
