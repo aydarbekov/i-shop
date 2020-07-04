@@ -80,12 +80,12 @@
                                     <input class="input-number__input" type="text" pattern="^[0-9]+$" value="1"
                                            id="gty-{{ product.pk }}">
                                     <div class="input-number__plus">+</div>
-                                    <div class="input-number__plus">
+{#                                    <div class="input-number__plus">#}
                                         {#                                        <a href="{% url "webapp:cartadditem" %}?pk={{ item.product.pk }}" id="cart-add-{{ product.pk }}"#}
                                         {#                               data-product-pk="{{ product.pk }}"#}
                                         {#                               class="cartadd">+</a>#}
                                         {#                                            <a href="{% url 'webapp:cart_change' %}?pk={{ item.product.pk }}&action=add&next={% url 'webapp:cart' %}">+</a>#}
-                                    </div>
+{#                                    </div>#}
                                 </div>
                                 {#                                <a type="button" href="{% url "webapp:carouseladditem" %}" id="carousel-add-{{ product.pk }}"#}
                                 {#                               data-product-pk="{{ product.pk }}"#}
