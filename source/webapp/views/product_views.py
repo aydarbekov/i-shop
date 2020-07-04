@@ -151,20 +151,25 @@ class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         if 'formset' not in kwargs:
             kwargs['formset'] = ImageFormset(instance=self.object)
+            kwargs['specification_formset'] = SpecificationFormset(instance=self.object)
         return super().get_context_data(**kwargs)
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = self.get_form()
         formset = ImageFormset(request.POST, request.FILES, instance=self.object)
+        specification_formset = SpecificationFormset(instance=self.object, data=request.POST)
 
-        if form.is_valid() and formset.is_valid():
-            return self.form_valid(form, formset)
-        return self.form_invalid(form, formset)
 
-    def form_valid(self, form, formset):
+        if form.is_valid() and formset.is_valid() and specification_formset.is_valid():
+            return self.form_valid(form, formset, specification_formset)
+        return self.form_invalid(form, formset, specification_formset)
+
+    def form_valid(self, form, formset, specification_formset):
         formset.instance = self.object
         formset.save()
+        specification_formset.instance = self.object
+        specification_formset.save()
         self.object = form.save()
         self.object.save()
         tags = form.cleaned_data.get('tags')
@@ -172,8 +177,8 @@ class ProductUpdateView(PermissionRequiredMixin, UpdateView):
         return HttpResponseRedirect(self.get_success_url())
         # return super().form_valid(form)
 
-    def form_invalid(self, form, formset):
-        return self.render_to_response(self.get_context_data(form=form, formset=formset))
+    def form_invalid(self, form, formset, specification_formset):
+        return self.render_to_response(self.get_context_data(form=form, formset=formset, specification_formset=specification_formset))
 
     def save_tags(self, tags):
         self.object.tags.clear()
