@@ -106,25 +106,28 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
         self.object = None
         form = self.get_form()
         formset = ImageFormset(request.POST, request.FILES)
-        if form.is_valid() and formset.is_valid():
-            return self.form_valid(form, formset)
-        return self.form_invalid(form, formset)
+        specification_formset = SpecificationFormset(data=request.POST)
+        if form.is_valid() and formset.is_valid() and specification_formset.is_valid():
+            return self.form_valid(form, formset, specification_formset)
+        return self.form_invalid(form, formset, specification_formset)
 
     def tags_create(self, tags):
         for tag in tags:
             product_tag, _ = Tag.objects.get_or_create(name=tag)
             self.object.tags.add(product_tag)
 
-    def form_valid(self, form, formset):
+    def form_valid(self, form, formset, specification_formset):
         self.object = form.save()
         self.object.save()
         self.tags_create(form.cleaned_data.get('tags'))
         formset.instance = self.object
         formset.save()
+        specification_formset.instance = self.object
+        specification_formset.save()
         return HttpResponseRedirect(self.get_success_url())
 
-    def form_invalid(self, form, formset):
-        return self.render_to_response(self.get_context_data(form=form, formset=formset))
+    def form_invalid(self, form, formset, specification_formset):
+        return self.render_to_response(self.get_context_data(form=form, formset=formset, specification_formset=specification_formset))
 
     def get_success_url(self):
         return reverse('webapp:product_detail', kwargs={'pk': self.object.pk})

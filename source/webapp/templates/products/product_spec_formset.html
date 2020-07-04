@@ -4,7 +4,7 @@
 {% endfor %}
 <div id="specs_forms">
     {% for form in specification_formset %}
-        <div class="form-row justify-content-between" id="specs-{{ forloop.counter0 }}">
+        <div class="form-row justify-content-between" id="specifications-{{ forloop.counter0 }}">
             <div class="form-group col-md-5">
                 {% include 'partial/form_field.html' with field=form.name %}
             </div>
@@ -13,7 +13,7 @@
             </div>
             <div class="form-group col-md-2 text-center">
                 <button type="button" class="btn btn-danger mt-md-4"
-                        data-id="specs-{{ forloop.counter0 }}">x
+                        data-id="specifications-{{ forloop.counter0 }}">x
                 </button>
             </div>
             <div class="d-none">

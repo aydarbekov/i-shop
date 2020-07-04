@@ -1,18 +1,21 @@
 function setSpecsFormId(form, formsNumber) {
-    let formId = 'specs-' + formsNumber;
+    let formId1 = 'specifications-' + formsNumber;
     let oldId = form.prop('id');
-    form.prop('id', formId);
+    form.prop('id', formId1);
 
     let fields = ['name', 'value', 'id'];
     fields.forEach(function(field) {
         let element = form.find('#id_' + oldId + '-' + field);
-        let fieldName = formId + '-' + field;
+        console.log('#id_' + oldId + '-' + field)
+        console.log(element)
+        let fieldName = formId1 + '-' + field;
         element.prop('name', fieldName);
+        console.log(fieldName)
         element.prop('id', 'id_' + fieldName);
     });
 
     let deleteButton = form.find('.btn-danger');
-    deleteButton.data('id', formId);
+    deleteButton.data('id', formId1);
 }
 
 function formSpecsReset(form) {
@@ -39,8 +42,8 @@ function formSpecsReset(form) {
 let newForm =$("#specs_forms .form-row").first().clone();
 
 function addSpecsForm (event) {
-    let totalFormsInput = $("#id_speсifications-TOTAL_FORMS");
-    let maxFormsInput = $("#id_speсifications-MAX_NUM_FORMS");
+    let totalFormsInput = $("#id_specifications-TOTAL_FORMS");
+    let maxFormsInput = $("#id_specifications-MAX_NUM_FORMS");
     console.log(maxFormsInput);
     let totalForms = totalFormsInput.val();
     let maxForms = maxFormsInput.val();
@@ -56,7 +59,7 @@ function addSpecsForm (event) {
 }
 
 function deleteSpecsForm(event) {
-    let totalFormsInput = $("#id_speсifications-TOTAL_FORMS");
+    let totalFormsInput = $("#id_specifications-TOTAL_FORMS");
     // let minFormsInput = $("#id_images-MIN_NUM_FORMS");
     let totalForms = totalFormsInput.val();
     // let minForms = minFormsInput.val();

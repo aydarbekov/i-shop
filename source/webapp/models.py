@@ -248,7 +248,7 @@ class ProductInCategory(models.Model):
 
 
 class Specifications(models.Model):
-    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='speсifications')
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='specifications')
     name = models.CharField(max_length=200, null=False, blank=False, verbose_name='Название характеристики')
     value = models.CharField(max_length=200, null=False, blank=False, verbose_name='Значение характеристики')
 
