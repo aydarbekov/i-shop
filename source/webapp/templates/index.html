@@ -64,14 +64,16 @@
                 <div class="category-card ">
                     <div class="position-relative">
                         <a href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}">
-                            {% if category.photo %}
-                                <img src="{{ category.photo.url }}" class="card-img-top" alt="{{ category.category_name }}">
-                            {% else %}
-                                <img src="{% static 'default_image.png' %}" class="card-img-top" alt="No photo">
-                            {% endif %}
-                            <h5 class="category-card-title card-title d-inline-block position-absolute">{{ category.category_name }}</h5>
-                            <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">
-                                {{ category.products.all|length }}</p>
+                            <div class="photo-back">
+                                {% if category.photo %}
+                                    <img src="{{ category.photo.url }}" class="card-img-top" alt="{{ category.category_name }}">
+                                {% else %}
+                                    <img src="{% static 'default_image.png' %}" class="card-img-top" alt="No photo">
+                                {% endif %}
+                                <h5 class="category-card-title card-title d-inline-block position-absolute">{{ category.category_name }}</h5>
+                                <p class="category-card-count d-flex align-items-center justify-content-center position-absolute">
+                                    {{ category.products.all|length }}</p>
+                            </div>
                         </a>
                     </div>
                 </div>

@@ -1,32 +1,33 @@
 function slick() {
     $('.category-cards').slick({
-        centerMode: true,
+        centerMode: false,
         centerPadding: '60px',
-        infinite: true,
+        infinite: false,
         slidesToShow: 4,
         slidesToScroll: 2,
-        responsive: [
-            {
-                breakpoint: 992,
-                settings: {
-                    centerMode: false,
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    infinite: false,
-                }
-            },
-            {
-                breakpoint: 576 ,
-                settings: {
-                    arrows: false,
-                    centerMode: false,
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                    infinite: false,
-
-                }
-            }
-        ]
+        variableWidth: true,
+        // responsive: [
+        //     {
+        //         breakpoint: 992,
+        //         settings: {
+        //             centerMode: false,
+        //             slidesToShow: 3,
+        //             slidesToScroll: 1,
+        //             infinite: false,
+        //         }
+        //     },
+        //     {
+        //         breakpoint: 576 ,
+        //         settings: {
+        //             arrows: false,
+        //             centerMode: false,
+        //             slidesToShow: 2,
+        //             slidesToScroll: 1,
+        //             infinite: false,
+        //
+        //         }
+        //     }
+        // ]
     });
     $('.bestseller-slide').slick({
         centerMode: true,
