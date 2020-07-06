@@ -1,9 +1,11 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
+from rest_framework.reverse import reverse
+
 from webapp.forms import SubCategoryForm
-from webapp.models import SubCategory
+from webapp.models import SubCategory, Category
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 
 
 class SubCategoryCreateView(UserPassesTestMixin, CreateView):
@@ -13,6 +15,17 @@ class SubCategoryCreateView(UserPassesTestMixin, CreateView):
 
     def get_success_url(self):
         return redirect('webapp:categories_list')
+
+    def form_valid(self, form):
+        subname = form.cleaned_data['sub_name']
+        category_pk = self.kwargs.get('pk')
+        category = get_object_or_404(Category, pk=category_pk)
+        # if category.subcategories.filter(sub_name=subname):
+        #     messages.error(self.request, 'Подраздел с таким названием уже существует!')
+        #     return render(self.request, 'base_CRUD/add.html', {})
+        # else:
+        category.subcategories.create(sub_name=subname)
+        return self.get_success_url()
 
     def test_func(self):
         user = self.request.user
@@ -25,7 +38,7 @@ class SubCategoryUpdateView(UserPassesTestMixin, UpdateView):
     fields = ['sub_name']
 
     def get_success_url(self):
-        return redirect('webapp:categories_list')
+        return reverse('webapp:categories_list')
 
     def test_func(self):
         user = self.request.user
