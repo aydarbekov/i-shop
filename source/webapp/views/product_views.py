@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
-from webapp.forms import ProductForm, ImageFormset, FullSearchForm
+from webapp.forms import ProductForm, ImageFormset, FullSearchForm, SpecificationFormset
 from webapp.models import Product, Category, Carousel, Favorite, Tag, COLOR_CHOICES, Brand, MainCarousel, SubCategory, \
     ProductInCategory
 from django.db.models import Q, Count
@@ -97,33 +97,37 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
     permission_denied_message = '403 Доступ запрещён!'
 
     def get_context_data(self, **kwargs):
-        if 'formset' not in kwargs:
+        if 'formset' and 'specification_formset' not in kwargs:
             kwargs['formset'] = ImageFormset()
+            kwargs['specification_formset'] = SpecificationFormset()
         return super().get_context_data(**kwargs)
 
     def post(self, request, *args, **kwargs):
         self.object = None
         form = self.get_form()
         formset = ImageFormset(request.POST, request.FILES)
-        if form.is_valid() and formset.is_valid():
-            return self.form_valid(form, formset)
-        return self.form_invalid(form, formset)
+        specification_formset = SpecificationFormset(data=request.POST)
+        if form.is_valid() and formset.is_valid() and specification_formset.is_valid():
+            return self.form_valid(form, formset, specification_formset)
+        return self.form_invalid(form, formset, specification_formset)
 
     def tags_create(self, tags):
         for tag in tags:
             product_tag, _ = Tag.objects.get_or_create(name=tag)
             self.object.tags.add(product_tag)
 
-    def form_valid(self, form, formset):
+    def form_valid(self, form, formset, specification_formset):
         self.object = form.save()
         self.object.save()
         self.tags_create(form.cleaned_data.get('tags'))
         formset.instance = self.object
         formset.save()
+        specification_formset.instance = self.object
+        specification_formset.save()
         return HttpResponseRedirect(self.get_success_url())
 
-    def form_invalid(self, form, formset):
-        return self.render_to_response(self.get_context_data(form=form, formset=formset))
+    def form_invalid(self, form, formset, specification_formset):
+        return self.render_to_response(self.get_context_data(form=form, formset=formset, specification_formset=specification_formset))
 
     def get_success_url(self):
         return reverse('webapp:product_detail', kwargs={'pk': self.object.pk})
@@ -144,10 +148,37 @@ class ProductUpdateView(PermissionRequiredMixin, UpdateView):
         tag_names = [tag.name for tag in tags]
         return ', '.join(tag_names)
 
-    def form_valid(self, form):
+    def get_context_data(self, **kwargs):
+        if 'formset' not in kwargs:
+            kwargs['formset'] = ImageFormset(instance=self.object)
+            kwargs['specification_formset'] = SpecificationFormset(instance=self.object)
+        return super().get_context_data(**kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        formset = ImageFormset(request.POST, request.FILES, instance=self.object)
+        specification_formset = SpecificationFormset(instance=self.object, data=request.POST)
+
+
+        if form.is_valid() and formset.is_valid() and specification_formset.is_valid():
+            return self.form_valid(form, formset, specification_formset)
+        return self.form_invalid(form, formset, specification_formset)
+
+    def form_valid(self, form, formset, specification_formset):
+        formset.instance = self.object
+        formset.save()
+        specification_formset.instance = self.object
+        specification_formset.save()
+        self.object = form.save()
+        self.object.save()
         tags = form.cleaned_data.get('tags')
         self.save_tags(tags)
-        return super().form_valid(form)
+        return HttpResponseRedirect(self.get_success_url())
+        # return super().form_valid(form)
+
+    def form_invalid(self, form, formset, specification_formset):
+        return self.render_to_response(self.get_context_data(form=form, formset=formset, specification_formset=specification_formset))
 
     def save_tags(self, tags):
         self.object.tags.clear()

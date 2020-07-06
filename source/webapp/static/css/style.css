@@ -93,7 +93,7 @@ body{
 	font-size: 14px;
 	line-height: 16px;
 	color: #585858;
-	margin-right: 48px;
+	margin-right: 15px;
 }
 .login:hover{
 	color: #585858;
@@ -425,17 +425,22 @@ body{
 	top: 360px;
 }
 .category-block .slick-track{
-	left: -50%;
+	left: 2%;
 }
 .category-card{
 	margin-left: 10px;
 	margin-right: 10px;
 	/*max-width: 268px;*/
 }
-.category-card img{
-	max-height: 350px;
-	max-width: 350px;
+.category-card .photo-back{
+    padding: 0;
+    height: 282px;
+    width: 282px;
 }
+/*.category-card img{*/
+/*	max-height: 350px;*/
+/*	max-width: 350px;*/
+/*}*/
 .category-card-title{
 	padding: 7% 8px;
 	margin: 5% 7%;
@@ -1194,6 +1199,9 @@ footer{
 	width: auto;
 	max-width: 90%;
 	height: auto;
+}
+.lil-imgs{
+	padding-left: 13px;
 }
 .lil-imgs .photo-back-little{
 	background-color: #F8F8F8;
@@ -2417,6 +2425,35 @@ table td{
 .right-right-content a{
 	text-align: center;
 }
+.lil-imgs .slick-list{
+    width: 100%;
+}
+/*.lil-imgs .slick-track{*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*}*/
+.lil-imgs .slick-arrow {
+    opacity: 0.5;
+    width: 30px;
+    height: 100%;
+    font-size: 0;
+    border: none;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+}
+.lil-imgs .slick-prev{
+	left: -5%;
+	background-image: url(../images/icons/prev.svg);
+	background-repeat: no-repeat;
+    background-position: center;
+}
+.lil-imgs .slick-next{
+	right: -5%;
+	background-image: url(../images/icons/next.svg);
+	background-repeat: no-repeat;
+    background-position: center;
+}
 @media screen and (min-width:769px){
 	.info-card .card-body{
 		display: block!important;
@@ -2517,6 +2554,11 @@ table td{
 		width: 270px;
 	    height: 270px;
 	}
+    .category-card .photo-back{
+        padding: 0;
+        height: 232px;
+        width: 232px;
+    }
 }
 @media screen and (max-width:768px) {
 	.carousel-content{
@@ -2525,9 +2567,9 @@ table td{
 		left: 37%;
 		text-align: left;
 	}
-	.slick-list{
-		height: 320px;
-	}
+	/*.slick-list{*/
+	/*	height: 320px;*/
+	/*}*/
 	.category-card{
 		margin-left: 15px;
 		margin-right: 15px;
@@ -2611,6 +2653,11 @@ table td{
 		width: 100%;
 	    margin-left: 0;
 	}
+    .category-card .photo-back{
+        padding: 0;
+        height: 182px;
+        width: 182px;
+    }
 }
 @media screen and (max-width:576px) {
 	.carousel-content{
@@ -2931,6 +2978,11 @@ table td{
 		line-height: 21px;
 		margin: 0;
 	}
+     .category-card .photo-back{
+        padding: 0;
+        height: 142px;
+        width: 142px;
+    }
 
 }
 @-moz-document url-prefix() {

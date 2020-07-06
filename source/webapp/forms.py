@@ -1,7 +1,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm, inlineformset_factory
-from webapp.models import OrderProduct, Order, Product, Image, Category, SubCategory, Brand, DeliveryAddress
+from webapp.models import OrderProduct, Order, Product, Image, Category, SubCategory, Brand, DeliveryAddress, \
+    Specifications
 
 
 class CartOrderCreateForm(ModelForm):
@@ -121,6 +122,7 @@ class ProductForm(forms.ModelForm):
 
 
 ImageFormset = inlineformset_factory(Product, Image, fields='__all__', extra=1, validate_min=False, min_num=0, can_delete=True)
+SpecificationFormset = inlineformset_factory(Product, Specifications, fields='__all__', extra=1, validate_min=False, min_num=0, can_delete=True)
 
 
 ProductsFormset = inlineformset_factory(Order, OrderProduct, OrderProductForm, extra=0,
