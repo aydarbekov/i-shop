@@ -31,12 +31,12 @@ class CategoryCreateView(UserPassesTestMixin, CreateView):
         return user.is_staff
 
     def get_success_url(self):
-        return redirect('webapp:categories_list')
+        return reverse('webapp:categories_list')
 
 
 class CategoryUpdateView(UserPassesTestMixin, UpdateView):
     model = Category
-    template_name = 'base_CRUD/edit.html'
+    template_name = 'base_CRUD/add.html'
     fields = ['category_name', 'photo']
     context_object_name = 'category'
 
