@@ -144,6 +144,18 @@ class Order(models.Model):
         verbose_name_plural = 'Заказы'
 
 
+class TerminalPayment(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Заказ', related_name='payment')
+    paied = models.IntegerField(verbose_name='Оплаченная сумма')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+
+    def __str__(self):
+        return "{} / {} / {}".format(self.order, self.paied, self.created_at)
+
+    class Meta:
+        verbose_name = 'Оплата'
+        verbose_name_plural = 'Оплаты'
+
 class OrderProduct(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Заказ')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="orderproduct", verbose_name='Товар')
