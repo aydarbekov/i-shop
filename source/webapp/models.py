@@ -137,7 +137,7 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
 
     def __str__(self):
-        return "{} / {}".format(self.email, self.phone)
+        return "{} / {}".format(self.pk, self.created_at)
 
     class Meta:
         verbose_name = 'Заказ'
