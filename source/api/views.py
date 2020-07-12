@@ -17,24 +17,20 @@ class OrderView(APIView):
     renderer_classes = [ApiXmlRenderer]
 
     def get(self, request):
-        orders = Order.objects.all()
         account = request.GET.get('account')
         pk = account.lstrip('0')
         command = request.GET.get('command')
-        order = None
-        result = None
         txn_id = request.GET.get('txn_id')
         sum = request.GET.get('sum')
+        dict = {}
         if command == 'check':
             try:
-                order = Order.objects.get(pk=pk)
+                Order.objects.get(pk=pk)
                 result = 0
+                dict = {"result": result, "sum": sum}
             except Order.DoesNotExist:
-                order = None
                 result = 5
-            print(command, "THIS IS COMMANDD")
-            print(order, "THIS IS ORDER")
-            print(result, "THIS IS RESULT")
+                dict = {"result": result}
         if command == 'pay':
             try:
                 order = Order.objects.get(pk=pk)
@@ -44,17 +40,21 @@ class OrderView(APIView):
                 result = 0
                 payment = TerminalPayment.objects.create(order=order, payed=sum)
                 payment.save()
+                dict = {"txn_id": txn_id, "result": result, "sum": sum}
+                self.change_status(order)
             else:
                 result = 5
-            print(command, "THIS IS COMMANDD")
-            print(order, "THIS IS ORDER")
-            print(result, "THIS IS RESULT")
-
-        print(sum)
-        price = 0
-        # for i in order.products.all():
-        #     price += i.price
-        # print(price, "THIS IS PRICE")
-        # text = '<?xml version="1.0" encoding="utf-8"?><response><result></result><sum>1500</sum><comment>OK</comment></response>'
-        dict = {"result":result, "sum":price}
+                dict = {"result": result}
         return Response(dict, content_type='application/xml')
+
+    def change_status(self, order):
+        payments = TerminalPayment.objects.filter(order=order)
+        sum_payments = 0
+        for i in payments:
+            sum_payments += i.payed
+        price = 0
+        for i in order.products.all():
+            price += i.price
+        if sum_payments >= price:
+            order.status = 'Оплачено'
+            order.save()
