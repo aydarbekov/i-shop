@@ -147,11 +147,11 @@ class Order(models.Model):
 
 class TerminalPayment(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Заказ', related_name='payment')
-    payed = models.IntegerField(verbose_name='Оплаченная сумма')
+    payed = models.DecimalField(verbose_name='Оплаченная сумма', decimal_places=3, max_digits=8)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 
     def __str__(self):
-        return "{} / {} / {}".format(self.order, self.paied, self.created_at)
+        return "{} / {} / {}".format(self.order, self.payed, self.created_at)
 
     class Meta:
         verbose_name = 'Оплата'

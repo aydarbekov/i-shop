@@ -178,25 +178,23 @@ class UserPasswordChangeView(UserPassesTestMixin, UpdateView):
         return self.get_object() == self.request.user
 
     def get_success_url(self):
-        return reverse('accounts:login')
+        return reverse('accounts:user_list')
 
 
 class UserListView(ListView):
     model = User
     template_name = 'user_list.html'
     context_object_name = 'users'
-    # paginate_by = 5
-    # paginate_orphans = 1
 
     def get_url(self):
         global site
         site = self.request.path
         return site
 
-    # def test_func(self):
-    #     user = self.request.user
-    #     print(user)
-    #     return user.is_staff
+    def test_func(self):
+        user = self.request.user
+        print(user)
+        return user.is_staff
 
 
 def register_staff_view(request):

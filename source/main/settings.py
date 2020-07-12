@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'rest_framework',
     'api',
+    'defusedxml'
 ]
 
 MIDDLEWARE = [
