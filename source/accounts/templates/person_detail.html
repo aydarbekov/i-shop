@@ -104,11 +104,11 @@
                             <tr>
                             {% for product_in_order in order.orderproduct_set.all %}
                                 <td class="table-second-column">
-                                {% if product.images %}
+                                {% if product_in_order.product.images %}
                                     <div class="photo-back-table">
                                         <img src="{{ product_in_order.product.images.first.image.url }}" style="max-width: 10rem" class="product-photo card-img-top" alt="...">
                                     </div>
-                                    {% else %}
+                                {% else %}
                                     {% load static %}
                                     <img src="{% static "images/no_photo.jpg" %}" style="max-width: 10rem" class="product-photo card-img-top" alt="...">
                                 {% endif %}
