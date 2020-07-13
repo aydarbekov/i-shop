@@ -36,7 +36,7 @@ class CategoryCreateView(UserPassesTestMixin, CreateView):
 
 class CategoryUpdateView(UserPassesTestMixin, UpdateView):
     model = Category
-    template_name = 'base_CRUD/edit.html'
+    template_name = 'base_CRUD/add.html'
     fields = ['category_name', 'photo']
     context_object_name = 'category'
 

@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'accounts',
     'phonenumber_field',
     'mathfilters',
+    'rest_framework',
+    'api',
+    'defusedxml'
 ]
 
 MIDDLEWARE = [

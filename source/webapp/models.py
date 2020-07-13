@@ -135,6 +135,7 @@ class Order(models.Model):
     products = models.ManyToManyField(Product, through='OrderProduct', through_fields=('order', 'product'), verbose_name='Товары', related_name='orders')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
+    status = models.CharField(max_length=20, verbose_name='Статус оплаты', null=True, blank=True,)
 
     def __str__(self):
         return "{} / {}".format(self.pk, self.created_at)
@@ -143,6 +144,18 @@ class Order(models.Model):
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
 
+
+class TerminalPayment(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Заказ', related_name='payment')
+    payed = models.DecimalField(verbose_name='Оплаченная сумма', decimal_places=3, max_digits=8)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+
+    def __str__(self):
+        return "{} / {} / {}".format(self.order, self.payed, self.created_at)
+
+    class Meta:
+        verbose_name = 'Оплата'
+        verbose_name_plural = 'Оплаты'
 
 class OrderProduct(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Заказ')
