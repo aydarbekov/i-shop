@@ -13,7 +13,7 @@
             <th scope="col">Адрес доставки</th>
             <th scope="col">Стоимость доставки</th>
             <th scope="col">Дата создания</th>
-            <th scope="col">Сумма</th>
+            <th scope="col">Итог</th>
         </tr>
         </thead>
         <tbody>
@@ -24,7 +24,7 @@
             <td>{{ order.address }}</td>
             <td>{{ order.shipping_cost }}</td>
             <td>{{ order.created_at|date:'d.m.Y H:i:s' }}</td>
-            <td>{{ summary_price }}</td>
+            <td>{{ order.total_sum }}</td>
 
         </tr>
         </tbody>
