@@ -34,6 +34,14 @@ class OrderDetailView(PermissionRequiredMixin, DetailView):
             return Order.objects.all()
         return self.request.user.orders.all()
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        summary_price = 0
+        for i in self.object.products.all():
+            summary_price += i.price
+        context['summary_price'] = summary_price
+        return context
+
 
 class OrderProductUpdateView(PermissionRequiredMixin, UpdateView):
     permission_required = 'webapp.update_orderproduct'

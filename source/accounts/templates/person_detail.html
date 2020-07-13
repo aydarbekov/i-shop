@@ -85,6 +85,8 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
+                                    {% for price in order.orderproduct_set.all %}
+                                    {% endfor %}
                                     <td class="table-products-name table-for-vertical">
                                         заказ {{ order.pk }}
                                     </td>
@@ -122,7 +124,7 @@
                                     Кол-во: {{ product_in_order.amount }}
                                 </td>
                                 {% with a=product_in_order.product.price b=product_in_order.amount %}
-                                <td class="product-summ table-for-vertical">{{ a|mul:b }} </td>
+                                <td class="product-summ table-for-vertical">{{ a|mul:b }}</td>
                                 {% endwith %}
                             </tr>
                             </tbody>
