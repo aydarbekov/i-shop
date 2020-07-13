@@ -27,9 +27,9 @@
         </thead>
         <tbody>
         {% for user in users %}
-            {% if perms.accounts.view_user %}
-                <tr data-href="{% url 'accounts:user_detail' user.pk %}">
-            {% endif %}
+{#            {% if perms.accounts.view_user %}#}
+{#                <tr data-href="{% url 'accounts:user_detail' user.pk %}">#}
+{#            {% endif %}#}
                 <th scope="row">{{ use.id }}</th>
                 {% if perms.accounts.view_user %}
                     <td data-href="{% url 'accounts:user_detail' user.pk %}">{{ user.first_name }}</td>
@@ -38,14 +38,14 @@
                 <td>{{ user.profile.type }}</td>
                 <td>{{ user.profile.mobile_phone }}</td>
                 <td>{{ user.profile.birth_date }}</td>
-                {% if perms.accounts.view_user %}
-                    <td><a href="{% url 'accounts:user_detail' user.pk %}"> Details...</a>
-                {% endif %}
+{#                {% if perms.accounts.view_user %}#}
+{#                    <td><a href="{% url 'accounts:user_detail' user.pk %}"> Details...</a>#}
+{#                {% endif %}#}
                 {% if user.profile.type == 'client' %}
-                    <a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a></td>
+                    <td><a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a></td>
                 {% endif %}
                 {% if user.profile.type == 'company' %}
-                    <a href="{% url 'accounts:company_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a></td>
+                    <td><a href="{% url 'accounts:company_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a></td>
                 {% endif %}
 {#                    <a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a></td>#}
                 </tr>

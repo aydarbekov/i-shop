@@ -23,6 +23,7 @@ class OrderView(APIView):
         txn_id = request.GET.get('txn_id')
         sum = request.GET.get('sum')
         dict = {}
+        # self.get_payment(txn_id)
         if command == 'check':
             try:
                 order = Order.objects.get(pk=pk)
@@ -43,9 +44,9 @@ class OrderView(APIView):
                 order = Order.objects.get(pk=pk)
             except Order.DoesNotExist:
                 order = None
-            if order and order.status == None:
+            if order and order.status == None and self.get_payment(txn_id):
                 result = 0
-                payment = TerminalPayment.objects.create(order=order, payed=sum)
+                payment = TerminalPayment.objects.create(order=order, payed=sum, txn_id=txn_id)
                 payment.save()
                 dict = {"txn_id": txn_id, "result": result, "sum": sum}
                 self.change_status(order)
@@ -65,3 +66,16 @@ class OrderView(APIView):
         if sum_payments >= price:
             order.status = 'Оплачено'
             order.save()
+
+    def get_payment(self, txn_id):
+        print(txn_id, "Txn_id")
+        try:
+            payment = TerminalPayment.objects.get(txn_id=txn_id)
+            payment = False
+        except TerminalPayment.DoesNotExist:
+            payment = True
+            print("EXCEPTION")
+        return payment
+
+
+
