@@ -26,11 +26,16 @@ class OrderView(APIView):
         if command == 'check':
             try:
                 order =Order.objects.get(pk=pk)
-                result = 0
-                price = 0
-                for i in order.products.all():
-                    price += i.price
-                dict = {"result": result, "sum": price}
+                print(order.status, "THIS IS ORDER STATUS")
+                if order.status:
+                    result = 1
+                    dict = {"result": result}
+                else:
+                    result = 0
+                    price = 0
+                    for i in order.products.all():
+                        price += i.price
+                    dict = {"result": result, "sum": price}
             except Order.DoesNotExist:
                 result = 5
                 dict = {"result": result}
