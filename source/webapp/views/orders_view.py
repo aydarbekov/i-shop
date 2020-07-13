@@ -9,6 +9,33 @@ class OrderListView(ListView):
     template_name = 'order/list.html'
     context_object_name = 'orders'
 
+
+    # def get_context_data(self, **kwargs):
+    #     cart, cart_total = self._prepare_cart()
+    #     kwargs['cart'] = cart
+    #     kwargs['cart_total'] = cart_total
+    #     return super().get_context_data(**kwargs)
+    #
+    # def _prepare_cart(self):
+    #     totals = self._get_totals()
+    #     cart = []
+    #     cart_total = 0
+    #     for pk, qty in totals.items():
+    #         product = Product.objects.get(pk=int(pk))
+    #         total = product.price * qty
+    #         cart_total += total
+    #         cart.append({'product': product, 'qty': qty, 'total': total})
+    #     return cart, cart_total
+    #
+    # def _get_totals(self):
+    #     products = self.request.session.get('products', [])
+    #     totals = {}
+    #     for product_pk in products:
+    #         if product_pk not in totals:
+    #             totals[product_pk] = 0
+    #         totals[product_pk] += 1
+    #     return totals
+
     def get_queryset(self):
         if self.request.user.has_perm('webapp:view_order'):
             return Order.objects.all().order_by('-created_at')

@@ -32,7 +32,7 @@ class OrderProductInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'first_name', 'last_name', 'phone', 'email', 'address', 'shipping_cost', 'created_at')
+    list_display = ('pk', 'first_name', 'last_name', 'phone', 'email', 'address', 'shipping_cost', 'total_sum', 'created_at')
     inlines = (OrderProductInline, )
 
 
