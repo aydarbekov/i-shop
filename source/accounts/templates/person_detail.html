@@ -48,7 +48,7 @@
         </div>
         <div class="panel-adresses right-content container">
             <h5>Мои адреса</h5>
-            {% for address in user.address.all %}
+            {% for address in user_object.address.all %}
             <div class="tr-adress my-4">
                 <p> улица {{ address.street }} {{ address.building_number }}</p>
                 <table class="table">
@@ -79,7 +79,7 @@
         </div>
         <div class="panel-history right-content container">
             <h5>Мои заказы</h5>
-        {% for order in user.orders.all %}
+        {% for order in user_object.orders.all %}
             <div class="accordion" id="accordionOrder">
                 <div class="card">
                     <div class="order-header" id="id-order-header">
