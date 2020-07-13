@@ -25,10 +25,9 @@ class OrderView(APIView):
         dict = {}
         if command == 'check':
             try:
-                order =Order.objects.get(pk=pk)
-                print(order.status, "THIS IS ORDER STATUS")
+                order = Order.objects.get(pk=pk)
                 if order.status:
-                    result = 1
+                    result = 5
                     dict = {"result": result}
                 else:
                     result = 0
@@ -44,7 +43,7 @@ class OrderView(APIView):
                 order = Order.objects.get(pk=pk)
             except Order.DoesNotExist:
                 order = None
-            if order:
+            if order and order.status == None:
                 result = 0
                 payment = TerminalPayment.objects.create(order=order, payed=sum)
                 payment.save()

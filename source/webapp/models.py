@@ -149,9 +149,10 @@ class TerminalPayment(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Заказ', related_name='payment')
     payed = models.DecimalField(verbose_name='Оплаченная сумма', decimal_places=3, max_digits=8)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    txn_id = models.IntegerField(verbose_name='TXN_ID', null=True, blank=True)
 
     def __str__(self):
-        return "{} / {} / {}".format(self.order, self.payed, self.created_at)
+        return "{} / {} / {}".format(self.order, self.payed, self.created_at, self.txn_id)
 
     class Meta:
         verbose_name = 'Оплата'
