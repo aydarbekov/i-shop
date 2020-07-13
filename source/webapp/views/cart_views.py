@@ -149,9 +149,14 @@ class Check(CreateView):
         if self.request.user.is_authenticated:
             user = self.request.user
             order.user = user
-            address = self.request.POST.get('address', '')
-            split_address = address.split('/')
-            address = DeliveryAddress.objects.get(user=user, street=split_address[1], building_number=split_address[2])
+            if user.address == None:
+                address = self.request.POST.get('address', '')
+                split_address = address.split('/')
+                address = DeliveryAddress.objects.get(user=user, street=split_address[1], building_number=split_address[2])
+            else:
+                address = self.create_address()
+                address.user = user
+                address.save()
         else:
             # city = form.cleaned_data['city']
             # print("CITY", city)
@@ -160,15 +165,7 @@ class Check(CreateView):
             # entrance_number = form.cleaned_data['entrance_number']
             # flat_number = form.cleaned_data['flat_number']
             # additional_info = form.cleaned_data['additional_info']
-            city = self.request.POST.get('city', "Бишкек")
-            street = self.request.POST.get('street', None)
-            building_number = self.request.POST.get('building_number', None)
-            entrance_number = self.request.POST.get('entrance_number', None)
-            flat_number = self.request.POST.get('flat_number', None)
-            additional_info = self.request.POST.get('additional_info', None)
-            address = DeliveryAddress.objects.create(city=city, street=street, building_number=building_number,
-                                                     entrance_number=entrance_number, flat_number=flat_number,
-                                                     additional_info=additional_info)
+            address = self.create_address()
 
         first_name = form.cleaned_data['first_name']
         order.first_name = first_name
@@ -193,6 +190,18 @@ class Check(CreateView):
         messages.success(self.request, 'Заказ оформлен!')
         self._clean_cart()
         return HttpResponseRedirect(self.get_success_url())
+
+    def create_address(self):
+        city = self.request.POST.get('city', "Бишкек")
+        street = self.request.POST.get('street', None)
+        building_number = self.request.POST.get('building_number', None)
+        entrance_number = self.request.POST.get('entrance_number', None)
+        flat_number = self.request.POST.get('flat_number', None)
+        additional_info = self.request.POST.get('additional_info', None)
+        address = DeliveryAddress.objects.create(city=city, street=street, building_number=building_number,
+                                                 entrance_number=entrance_number, flat_number=flat_number,
+                                                 additional_info=additional_info)
+        return address
 
     def form_invalid(self, form):
         print("Form", form)
