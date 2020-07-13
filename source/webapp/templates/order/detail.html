@@ -33,6 +33,7 @@
         <thead class="thead-light">
         <tr style="text-align: center">
             <th scope="col">Товар</th>
+            <th scope="col">Цена</th>
             <th scope="col">Количество</th>
             <th class="symbol hiddenbutton" scope="col">Изменить количество</th>
             <th class="symbol hiddenbutton" scope="col">Удалить товар</th>
@@ -42,6 +43,7 @@
         {% for product_in_order in order.orderproduct_set.all %}
             <tr style="text-align: center">
                 <td>{{ product_in_order.product }}</td>
+                <td>{{ product_in_order.product.price }}</td>
                 <td>{{ product_in_order.amount }}</td>
                 <td class="symbol"><a class='update hiddenbutton'
                                       href="{% url'webapp:order_product_update'
