@@ -138,7 +138,7 @@ class Order(models.Model):
     status = models.CharField(max_length=20, verbose_name='Статус оплаты', null=True, blank=True,)
 
     def __str__(self):
-        return "{} / {}".format(self.email, self.phone)
+        return "{} / {}".format(self.pk, self.created_at)
 
     class Meta:
         verbose_name = 'Заказ'

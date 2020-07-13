@@ -2,6 +2,7 @@
 {% load static %}
 {% load mathfilters %}
 {% block title %}Мой профиль{% endblock %}
+{% load static %}
 {% block styles %}{% endblock %}
 {% block content %}
     <div class="container d-flex flex-wrap my-5">
@@ -19,6 +20,7 @@
             <div class="right-left-content w-50 d-flex flex-column align-items-center">
                 <button class="buttons-right my-orders"><span>Мои заказы</span></button>
                 <button class="buttons-right settings"><span>Настройки</span></button>
+                <a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success hiddenbutton">Редактировать</a>
             </div>
             <div class="right-right-content w-50 d-flex flex-column align-items-center">
                 <button class="buttons-right adresses"><span>Адреса</span></button>
@@ -104,11 +106,11 @@
                             <tr>
                             {% for product_in_order in order.orderproduct_set.all %}
                                 <td class="table-second-column">
-                                {% if product.images %}
+                                {% if product_in_order.product.images %}
                                     <div class="photo-back-table">
                                         <img src="{{ product_in_order.product.images.first.image.url }}" style="max-width: 10rem" class="product-photo card-img-top" alt="...">
                                     </div>
-                                    {% else %}
+                                {% else %}
                                     {% load static %}
                                     <img src="{% static "images/no_photo.jpg" %}" style="max-width: 10rem" class="product-photo card-img-top" alt="...">
                                 {% endif %}
@@ -136,7 +138,6 @@
         {% endfor %}
         </div>
     </div>
-
 {% endblock %}
 {% block scripts %}
     <script type="text/javascript">
