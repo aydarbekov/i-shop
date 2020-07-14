@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect
-from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from webapp.models import Order, OrderProduct
 from webapp.forms import OrderProductForm, ManualOrderForm
 
@@ -68,6 +68,23 @@ class OrderDetailView(PermissionRequiredMixin, DetailView):
             summary_price += i.price
         context['summary_price'] = summary_price
         return context
+
+
+class OrderProductCreateView(CreateView):
+    model = OrderProduct
+    template_name = 'order/create_orderproduct.html'
+    form_class = OrderProductForm
+
+    def form_valid(self, form):
+        pk = self.kwargs.get('pk')
+        order = Order.objects.get(pk=pk)
+        print("order", order)
+        OrderProduct.objects.create(
+            order=order,
+            product=form.cleaned_data['product'],
+            amount=form.cleaned_data['amount']
+        )
+        return redirect('webapp:order_detail', self.kwargs.get('pk'))
 
 
 class OrderProductUpdateView(PermissionRequiredMixin, UpdateView):

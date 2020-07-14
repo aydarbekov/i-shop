@@ -10,7 +10,8 @@ from webapp.views.product_views import IndexView, ProductView, ProductCreateView
 from webapp.views.review_views import ReviewCreateView
 from webapp.views.subcategory_views import SubCategoryDeleteView, SubCategoryCreateView, SubCategoryUpdateView
 from .views.cart_views import CartView, cartdeleteitem, cartadditem, cart_modal_delete, Check
-from .views.orders_view import OrderListView, OrderDetailView, OrderProductUpdateView, OrderProductDeleteView, OrderUpdateView
+from .views.orders_view import OrderListView, OrderDetailView, OrderProductCreateView, OrderProductUpdateView, \
+    OrderProductDeleteView, OrderUpdateView
 from .views.news_views import NewsView, NewsAddView, NewsDetailView, NewsDeleteView, NewsEditView
 from .views.delivery_cost import DeliveryCostList, DeliveryCostAdd, DeliveryView, ReturnView, DeliveryAddressAdd
 from .views.carousel_views import *
@@ -46,9 +47,10 @@ urlpatterns = [
     path('subcategory/delete/<int:pk>/', SubCategoryDeleteView.as_view(), name='subcategory_delete'),
     path('orders/', OrderListView.as_view(), name='orders'),
     path('order/<int:pk>/', OrderDetailView.as_view(), name="order_detail"),
-    path('orders/<int:pk>/update', OrderUpdateView.as_view(), name='order_update'),
-    path('orders/product/update/<int:pk>/<int:id>', OrderProductUpdateView.as_view(), name='order_product_update'),
-    path('orders/product/delete/<int:pk>/<int:id>', OrderProductDeleteView.as_view(), name='order_product_delete'),
+    path('order/<int:pk>/update', OrderUpdateView.as_view(), name='order_update'),
+    path('order/product/create/<int:pk>/', OrderProductCreateView.as_view(), name='order_product_create'),
+    path('order/product/update/<int:pk>/<int:id>/', OrderProductUpdateView.as_view(), name='order_product_update'),
+    path('order/product/delete/<int:pk>/<int:id>/', OrderProductDeleteView.as_view(), name='order_product_delete'),
     # path('cart/change/', CartChangeView.as_view(), name='cart_change'),
     path('cart/', CartView.as_view(), name='cart'),
     path('review/add/<int:pk>/', ReviewCreateView.as_view(), name='review_create'),
