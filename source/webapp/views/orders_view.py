@@ -96,44 +96,11 @@ class OrderProductUpdateView(UpdateView):
     template_name = 'order/update_orderproduct.html'
     form_class = OrderProductForm
 
-    # def get(self, request, *args, **kwargs):
-    #     # queryset = OrderProduct.objects.filter(order__pk=kwargs['pk'], product__pk=kwargs['id'])
-    #     # obj = queryset.get()
-    #     # self.object = obj
-    #     # print(self.object)
-    #     queryset = self.get_queryset()
-    #     queryset = queryset.filter(order__pk=kwargs['pk'], product__pk=kwargs['id'])
-    #     obj = queryset.get()
-    #     self.object = obj
-    #     return super().get(request, *args, **kwargs)
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data()
-    #     queryset = OrderProduct.objects.filter(order__pk=kwargs['pk'], product__pk=kwargs['id'])
-    #     obj = queryset.get()
-    #     context['object'] = obj
-    #
-    #     return context
-
-    # def get(self, request, *args, **kwargs):
-    #     # order = Order.objects.get(pk=kwargs['pk'])
-    #     # print(order)
-    #     # p = order.products.get(pk=kwargs['id'])
-    #     # print(p)
-    #     # op = order.orderproduct.get(product=p.id)
-    #     # print(op)
-    #     # prod = Product.objects.get(pk=kwargs['id'])
-    #     # print(prod)
-    #     print(kwargs['pk'])
-    #     print(kwargs['id'])
-    #     OrderProduct
-    #     orderprod = OrderProduct.objects.filter(order__pk=kwargs['pk'], product__pk=kwargs['id'])
-    #     return orderprod
 
 
     def form_valid(self, form):
         self.object = form.save()
-        return redirect('webapp:order_detail', self.kwargs.get('pk'))
+        return redirect('webapp:order_detail', self.kwargs.get('id'))
 
 
 class OrderProductDeleteView(PermissionRequiredMixin, DeleteView):
@@ -143,11 +110,6 @@ class OrderProductDeleteView(PermissionRequiredMixin, DeleteView):
     form_class = OrderProductForm
     permission_required = 'webapp.delete_orderproduct'
     permission_denied_message = 'Permission denied'
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data()
-    #     print(OrderProduct.product)
-    #     context['product'] = OrderProduct.product
 
     def delete(self, request, *args, **kwargs):
         print(self.get_object())
