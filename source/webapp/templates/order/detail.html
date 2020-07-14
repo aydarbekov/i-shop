@@ -57,7 +57,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for product_in_order in order.orderproduct_set.all %}
+        {% for product_in_order in order.orderproduct.all %}
             <tr style="text-align: center">
                 <td>{{ product_in_order.product }}</td>
                 <td>{{ product_in_order.product.price }}</td>
@@ -69,9 +69,9 @@
                     <td class="table-for-vertical">{{ a|mul:b }}</td>
                 {% endwith %}
                 <td class="symbol"><a class='update hiddenbutton'
-                                      href="{% url 'webapp:order_product_update' order.pk product_in_order.product.pk %}">&#x270E;</a></td>
+                                      href="{% url 'webapp:order_product_update' product_in_order.pk %}">&#x270E;</a></td>
                 <td class="symbol"><a class='update hiddenbutton'
-                                      href="{% url 'webapp:order_product_delete' order.pk product_in_order.order.pk %}">&times;</a></td>
+                                      href="{% url 'webapp:order_product_delete' product_in_order.pk order.pk%}">&times;</a></td>
             </tr>
                 {% endfor %}
 {#        <td class="symbol"><a class='update hiddenbutton' #}

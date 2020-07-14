@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
-from webapp.models import Order, OrderProduct
+from webapp.models import Order, OrderProduct, Product
 from webapp.forms import OrderProductForm, ManualOrderForm
 from django.urls import reverse_lazy
 
@@ -88,13 +88,48 @@ class OrderProductCreateView(CreateView):
         )
         return redirect('webapp:order_detail', self.kwargs.get('pk'))
 
-
-class OrderProductUpdateView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'webapp.update_orderproduct'
-    permission_denied_message = 'Permission denied'
+# PermissionRequiredMixin,
+class OrderProductUpdateView(UpdateView):
+    # permission_required = 'webapp.update_orderproduct'
+    # permission_denied_message = 'Permission denied'
     model = OrderProduct
     template_name = 'order/update_orderproduct.html'
     form_class = OrderProductForm
+
+    # def get(self, request, *args, **kwargs):
+    #     # queryset = OrderProduct.objects.filter(order__pk=kwargs['pk'], product__pk=kwargs['id'])
+    #     # obj = queryset.get()
+    #     # self.object = obj
+    #     # print(self.object)
+    #     queryset = self.get_queryset()
+    #     queryset = queryset.filter(order__pk=kwargs['pk'], product__pk=kwargs['id'])
+    #     obj = queryset.get()
+    #     self.object = obj
+    #     return super().get(request, *args, **kwargs)
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data()
+    #     queryset = OrderProduct.objects.filter(order__pk=kwargs['pk'], product__pk=kwargs['id'])
+    #     obj = queryset.get()
+    #     context['object'] = obj
+    #
+    #     return context
+
+    # def get(self, request, *args, **kwargs):
+    #     # order = Order.objects.get(pk=kwargs['pk'])
+    #     # print(order)
+    #     # p = order.products.get(pk=kwargs['id'])
+    #     # print(p)
+    #     # op = order.orderproduct.get(product=p.id)
+    #     # print(op)
+    #     # prod = Product.objects.get(pk=kwargs['id'])
+    #     # print(prod)
+    #     print(kwargs['pk'])
+    #     print(kwargs['id'])
+    #     OrderProduct
+    #     orderprod = OrderProduct.objects.filter(order__pk=kwargs['pk'], product__pk=kwargs['id'])
+    #     return orderprod
+
 
     def form_valid(self, form):
         self.object = form.save()
@@ -112,4 +147,4 @@ class OrderProductDeleteView(PermissionRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         self.object.delete()
-        return redirect('webapp:order_detail', self.kwargs.get('pk'))
+        return redirect('webapp:order_detail', self.kwargs.get('id'))

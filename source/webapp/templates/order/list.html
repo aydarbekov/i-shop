@@ -23,8 +23,8 @@
                 <td>{{ order.total_sum }}</td>
                 <td class="symbol"><a class='update hiddenbutton'
                                       href="{% url 'webapp:order_detail' order.pk %}">&#8594;</a></td>
-{#                <td class="symbol"><a class='update hiddenbutton'#}
-{#                                      href="{% url 'webapp:order_product_update' order.pk  product_in_order.product.pk %}">&#x270E;</a></td>#}
+                <td class="symbol"><a class='update hiddenbutton'
+                                      href="{% url 'webapp:order_update' order.pk %}">&#x270E;</a></td>
             </tr>
         {% endfor %}
         </tbody>
