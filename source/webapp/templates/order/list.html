@@ -20,13 +20,13 @@
                 <td>{{ order.pk }}</td>
                 <td>{{ order.address }}</td>
                 <td>{{ order.created_at|date:'d.m.Y H:i:s' }}</td>
+                <td>{{ order.total_sum }}</td>
                 <td class="symbol"><a class='update hiddenbutton'
                                       href="{% url 'webapp:order_detail' order.pk %}">&#8594;</a></td>
                 <td class="symbol"><a class='update hiddenbutton'
-                                      href="{% url 'webapp:order_update' order.pk %}">&#x270E;</a></td>
+                                      href="{% url 'webapp:order_product_update' order.pk %}">&#x270E;</a></td>
             </tr>
         {% endfor %}
-        {{ summary_price }}!!!
         </tbody>
     </table>
 {% endblock %}

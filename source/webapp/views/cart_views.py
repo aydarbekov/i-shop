@@ -108,6 +108,7 @@ def cartadditem(request):
 
 
 class Check(CreateView):
+    # cart_total = None
     model = Order
     form_class = CartOrderCreateForm
     # fields = ['user', 'first_name', 'last_name', 'email', 'phone']
@@ -118,9 +119,13 @@ class Check(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        basket, basket_total = self._prepare_cart()
-        kwargs['basket'] = basket
-        kwargs['basket_total'] = basket_total
+        cart, cart_total = self._prepare_cart()
+        shipping_cost = self._get_shipping_cost(cart_total)
+        print("Стоимость доставки", shipping_cost)
+        order_sum = cart_total + shipping_cost
+        print("Общая стоимость заказа", order_sum)
+        kwargs['cart'] = cart
+        kwargs['cart_total'] = cart_total
         user = self.request.user
 
         if user.is_authenticated:
@@ -140,7 +145,7 @@ class Check(CreateView):
         kwargs['user'] = self.request.user
         return kwargs
 
-    def form_valid(self, form):
+    def form_valid(self, form, **kwargs):
         if self._cart_empty():
             form.add_error(None, 'В корзине отсутствуют товары!')
             return self.form_invalid(form)
@@ -149,7 +154,8 @@ class Check(CreateView):
         if self.request.user.is_authenticated:
             user = self.request.user
             order.user = user
-            if user.address == None:
+            print(user.address.count(), "user.address")
+            if user.address.count() > 0:
                 address = self.request.POST.get('address', '')
                 split_address = address.split('/')
                 address = DeliveryAddress.objects.get(user=user, street=split_address[1], building_number=split_address[2])
@@ -158,13 +164,6 @@ class Check(CreateView):
                 address.user = user
                 address.save()
         else:
-            # city = form.cleaned_data['city']
-            # print("CITY", city)
-            # street = form.cleaned_data['street']
-            # building_number = form.cleaned_data['building_number']
-            # entrance_number = form.cleaned_data['entrance_number']
-            # flat_number = form.cleaned_data['flat_number']
-            # additional_info = form.cleaned_data['additional_info']
             address = self.create_address()
 
         first_name = form.cleaned_data['first_name']
@@ -175,15 +174,17 @@ class Check(CreateView):
         order.email = email
         phone = form.cleaned_data['phone']
         order.phone = phone
-        shipping_cost = DeliveryCost.objects.latest('created_at')
+        shipping_cost_object = DeliveryCost.objects.latest('created_at')
+        order.shipping_cost = shipping_cost_object
         order.address = address
-        order.shipping_cost = shipping_cost
+        cart, cart_total = self._prepare_cart()
+        print("backet_total".upper(), cart_total)
+        shipping_cost = self._get_shipping_cost(cart_total)
+        print("Стоимость доставки", shipping_cost)
+        total_sum = cart_total + shipping_cost
+        print("Общая стоимость заказа", total_sum)
+        order.total_sum = total_sum
         order.save()
-        # Добавить отправку пользователю пароля
-        # create_account = self.request.POST.get('create_account')
-        # print("create_account".upper(), create_account)
-        # if create_account == "on":
-        #     user = User(username=email, first_name=first_name, last_name=last_name, email=email)
         self._save_order_products(order)
         self.object = order
         print(self.object.address)
@@ -193,8 +194,11 @@ class Check(CreateView):
 
     def create_address(self):
         city = self.request.POST.get('city', "Бишкек")
+        print(type(city), "city".upper())
         street = self.request.POST.get('street', None)
+        print(type(street), "street".upper())
         building_number = self.request.POST.get('building_number', None)
+        print(building_number, "buildint_number".upper())
         entrance_number = self.request.POST.get('entrance_number', None)
         flat_number = self.request.POST.get('flat_number', None)
         additional_info = self.request.POST.get('additional_info', None)
@@ -229,6 +233,17 @@ class Check(CreateView):
                 totals[product_pk] = 0
             totals[product_pk] += 1
         return totals
+
+    def _get_shipping_cost(self, cart_total):
+        try:
+            deliverycost_object = DeliveryCost.objects.latest('created_at')
+            if cart_total >= deliverycost_object.free_from:
+                shipping = 0
+            else:
+                shipping = deliverycost_object.cost
+        except:
+            shipping = -1
+        return shipping
 
     def _save_order_products(self, order):
         totals = self._get_totals()

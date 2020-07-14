@@ -95,4 +95,5 @@ urlpatterns = [
     path('product_in_category_deleteitem/', product_in_categorydeleteitem, name='product_in_category_deleteitem'),
     path('product_in_category_additem/', product_in_categoryadditem, name='product_in_category_additem'),
 
+
 ]

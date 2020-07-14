@@ -112,8 +112,8 @@ class DeliveryAddress(models.Model):
 
 
 class DeliveryCost(models.Model):
-    cost = models.IntegerField(verbose_name='Стоимость доставки')
-    free_from = models.IntegerField(verbose_name='Бесплатная доставка при сумме заказа от')
+    cost = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Стоимость доставки')
+    free_from = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Бесплатная доставка при сумме заказа от')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 
     def __str__(self):
@@ -136,6 +136,7 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
     status = models.CharField(max_length=20, verbose_name='Статус оплаты', null=True, blank=True,)
+    total_sum = models.DecimalField(max_digits=9, decimal_places=2, default=9999)
 
     def __str__(self):
         return "{} / {}".format(self.pk, self.created_at)
