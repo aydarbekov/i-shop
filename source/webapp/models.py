@@ -159,8 +159,9 @@ class TerminalPayment(models.Model):
         verbose_name = 'Оплата'
         verbose_name_plural = 'Оплаты'
 
+
 class OrderProduct(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Заказ')
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="orderproduct", verbose_name='Заказ')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="orderproduct", verbose_name='Товар')
     amount = models.IntegerField(verbose_name='Количество')
 
