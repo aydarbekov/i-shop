@@ -1,3 +1,5 @@
+import csv
+
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, render
@@ -53,6 +55,42 @@ class IndexView(ListView):
         context['products'] = Product.objects.all()
         context['carouseles'] = Carousel.objects.all()
         context['main_carousel'] = MainCarousel.objects.all()
+        # data = csv.reader(open("/home/akyl/attractor/projects/i-shop/source/bumaga_i_bum_izdelia.csv"), delimiter='|')
+
+        # for row in data:
+        #     if row[0] != 'Name':
+        #         num_prod = Product.objects.filter(name=row[0]).count()
+        #         print(num_prod)
+        #         if num_prod == 0:
+        #             product = Product()
+        #             product.name = row[0]
+        #             product.description = row[1]
+        #             category = Category.objects.get_or_create(category_name=row[5])
+        #             product.category = category[0]
+        #             subcategory = SubCategory.objects.get_or_create(sub_name=row[4], category_id=category[0].id)
+        #             product.subcategory = subcategory[0]
+        #             product.price = 1
+        #             product.quantity = 1
+        #             product.save()
+        #             imgs = row[2]
+        #             imgs = imgs[1:-1]
+        #             imgs = imgs.split(',')
+        #             for img in imgs:
+        #                 # print(img)
+        #                 product.images.create(image=img[1:-1])
+        #             specs = row[3]
+        #             specs = specs[1:-1]
+        #             specs = specs.split(',')
+        #             for spec in specs:
+        #                 print(spec)
+        #                 spec = spec[2:-1]
+        #                 spec = spec.split(':')
+        #
+        #                 product.specifications.create(name=spec[0], value=spec[1])
+        #             product.save()
+        #         else:
+        #             continue
+
         # search_form = FullSearchForm(self.request.GET or None)
         # context['search_form'] = search_form
         return context
