@@ -69,7 +69,7 @@
                     <td class="table-for-vertical">{{ a|mul:b }}</td>
                 {% endwith %}
                 <td class="symbol"><a class='update hiddenbutton'
-                                      href="{% url 'webapp:order_product_update' product_in_order.pk %}">&#x270E;</a></td>
+                                      href="{% url 'webapp:order_product_update' product_in_order.pk order.pk%}">&#x270E;</a></td>
                 <td class="symbol"><a class='update hiddenbutton'
                                       href="{% url 'webapp:order_product_delete' product_in_order.pk order.pk%}">&times;</a></td>
             </tr>
