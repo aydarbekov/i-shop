@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load mathfilters %}
 {% block title %}{{ object.name }}{% endblock %}
 {% block content %}
-    <h4 style="margin-top: 40px; text-align: center">Заказ</h4>
+    <h4 style="margin-top: 40px; text-align: center">Заказ #{{ order.pk }}</h4>
     <br>
     {% csrf_token %}
     <table class="table table-hover">
@@ -50,25 +51,36 @@
             <th scope="col">Товар</th>
             <th scope="col">Цена</th>
             <th scope="col">Количество</th>
+            <th scope="col">Сумма</th>
             <th class="symbol hiddenbutton" scope="col">Изменить количество</th>
             <th class="symbol hiddenbutton" scope="col">Удалить товар</th>
         </tr>
         </thead>
         <tbody>
         {% for product_in_order in order.orderproduct_set.all %}
-            {{ product_in_order.ordder.pk }}
             <tr style="text-align: center">
                 <td>{{ product_in_order.product }}</td>
                 <td>{{ product_in_order.product.price }}</td>
                 <td>{{ product_in_order.amount }}</td>
-                <td class="symbol"><a class='update hiddenbutton' href="{% url'webapp:order_product_update'
-                                              product_in_order.pk product_in_order.order.pk %}">&#x270E;</a></td>
+{#                <td>{{ product_in_order.order.pk }}</td>#}
+{#                <td>{{ product_in_order.product.pk }}</td>#}
+
+                {% with a=product_in_order.product.price b=product_in_order.amount %}
+                    <td class="table-for-vertical">{{ a|mul:b }}</td>
+                {% endwith %}
                 <td class="symbol"><a class='update hiddenbutton'
-                                      href="{% url 'webapp:order_product_delete'
-                                              product_in_order.pk product_in_order.order.pk %}">&times;</a></td>
+                                      href="{% url 'webapp:order_product_update' order.pk product_in_order.product.pk %}">&#x270E;</a></td>
+                <td class="symbol"><a class='update hiddenbutton'
+                                      href="{% url 'webapp:order_product_delete' order.pk product_in_order.order.pk %}">&times;</a></td>
             </tr>
                 {% endfor %}
+{#        <td class="symbol"><a class='update hiddenbutton' #}
+{#                              href="{% url 'webapp:order_product_update' product_in_order.pk %}">Редактироввать</a></td>#}
+{#        {% for product in order.products.all %}#}
+{#        <p>{{ product.name }}</p>#}
+{#        <a href="{% url 'webapp:order_product_update' order.pk product.pk %}">Изменить количество</a>#}
+{#        <a href="{% url 'webapp:order_product_delete' order.pk product.pk %}">Удалить товар</a>#}
+{#        {% endfor %}#}
         </tbody>
     </table>
 {% endblock %}
-{% url "webapp:product_update" order.pk %}
