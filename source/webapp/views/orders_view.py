@@ -103,13 +103,19 @@ class OrderProductUpdateView(PermissionRequiredMixin, UpdateView):
 
 class OrderProductDeleteView(PermissionRequiredMixin, DeleteView):
     model = OrderProduct
-    context_object_name = 'product'
+    context_object_name = 'object'
     template_name = 'order/delete_orderproduct.html'
     form_class = OrderProductForm
     permission_required = 'webapp.delete_orderproduct'
     permission_denied_message = 'Permission denied'
 
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data()
+    #     print(OrderProduct.product)
+    #     context['product'] = OrderProduct.product
+
     def delete(self, request, *args, **kwargs):
+        print(self.get_object())
         self.object = self.get_object()
         self.object.delete()
         return redirect('webapp:order_detail', self.kwargs.get('pk'))

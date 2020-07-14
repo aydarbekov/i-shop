@@ -95,6 +95,7 @@ class OrderProductForm(ModelForm):
         fields = ['product', 'amount']
 
 
+
 class ProductForm(forms.ModelForm):
     tags = forms.CharField(max_length=101, required=False, label='Тэги')
 
