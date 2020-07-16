@@ -22,7 +22,9 @@ class OrderView(APIView):
         pk = account.lstrip('0')
         command = request.GET.get('command')
         txn_id = request.GET.get('txn_id')
+        print(txn_id, "THIS IS TXN ID")
         sum = request.GET.get('sum')
+        print(sum, "THIS IS SUM")
         token = request.GET.get('token')
         dict = {}
         if token == API_TOKEN:
