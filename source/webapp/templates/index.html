@@ -93,7 +93,7 @@
                         {% if carousel.product.description %}
                             <p class="bestseller-text">{{ carousel.product.description }}</p>
                         {% endif %}
-                        <p class="bestseller-price">${{ carousel.product.price }}</p>
+                        <p class="bestseller-price">{{ carousel.product.price }}</p>
                         {#                <a href="{% url 'webapp:cart_change' %}?pk={{ carousel.product.pk }}&action=add&next={% url 'webapp:index' %}">#}
                         <button type="button" class="btn bestseller-button mr-4 cartadd" href="{% url "webapp:cartadditem" %}"
                                 data-product-pk="{{ carousel.product.pk }}" id="cart-add-{{ carousel.product.pk }}">в корзину</button>
