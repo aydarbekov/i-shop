@@ -12,9 +12,8 @@ class OrderListView(ListView):
 
 
     # def get_context_data(self, **kwargs):
-    #     cart, cart_total = self._prepare_cart()
-    #     kwargs['cart'] = cart
-    #     kwargs['cart_total'] = cart_total
+    #     context = super().get_context_data()
+    #     context['order_pay_num'] = '{:06}'.format(self.kwargs.get('pk'))
     #     return super().get_context_data(**kwargs)
     #
     # def _prepare_cart(self):
@@ -69,6 +68,7 @@ class OrderDetailView(PermissionRequiredMixin, DetailView):
         for i in self.object.products.all():
             summary_price += i.price
         context['summary_price'] = summary_price
+        context['order_pay_num'] = '{:06}'.format(self.kwargs.get('pk'))
         return context
 
 

@@ -12,7 +12,7 @@
         {% if product_category.photo %}
             <img src="{{ product_category.photo.url }}" alt="">
         {% endif %}
-        <h4>{{ product_category }}</h4>
+        <h4>{{ product_category }}!!!</h4>
     </div>
     <div class="container">
         <div class="category-block-content d-flex">
@@ -30,6 +30,7 @@
                     <div class="filter-color d-flex flex-column mb-5">
                         <p class="filter-header">Фильтр по цвету</p>
                         {% for color in same_color_products %}
+                            {% if product_category %}
                             <a href="{% url 'webapp:products_category' product_category.pk %}?color={{ color.0 }}"
                                class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
                                 <div class="category-filter-color-circle"
@@ -39,6 +40,7 @@
                                 {% endfor %}
                                 <div class="category-filter-color-number">{{ color.1 }}</div>
                             </a>
+                            {% endif %}
                         {% endfor %}
                     </div>
                     <hr/>

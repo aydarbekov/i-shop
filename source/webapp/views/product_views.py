@@ -369,22 +369,44 @@ class SearchResultsView(ListView):
             category = form.cleaned_data.get('category')
         query = self.get_query_string()
         text = form.cleaned_data.get("text").capitalize()
-        category = form.cleaned_data.get("category")
-        category_pk = get_object_or_404(Category, pk=category.pk)
-        products = Product.objects.filter(Q(name__icontains=text, category_id=category))
+        # category = form.cleaned_data.get("category")
+        # category_pk = get_object_or_404(Category, pk=category.pk)
+        # products = Product.objects.filter(Q(name__icontains=text, category_id=category))
+        products = Product.objects.filter(Q(name__icontains=text))
+        count = 0
+        category_pk = None
+        for product in products:
+            count += 1
+            category_pk = product.category.pk
+            if count != 0:
+                break
+        category = Category.objects.get(pk=category_pk)
         brand = self.request.GET.get('brand')
         color = self.request.GET.get('color')
         colors = COLOR_CHOICES
+        # category_products = Product.objects.filter(pk=products)
+        # print(self.kwargs.get('pk'))
+        # product_category = Category.objects.get(pk=self.kwargs.get('pk'))
         same_color_products = Product.objects.filter(category_id=category_pk).values_list('color',flat=None).annotate(Count('pk'))
+
         one_category_brands = Brand.objects.filter(products__category_id=category_pk).distinct()
+        #
+        # same_color_products = Product.objects.filter(name=text).values_list('color', flat=None).annotate(Count('pk'))
+        # one_category_brands = Brand.objects.filter(products=products).distinct()
         if brand:
             products = Product.objects.filter(Q(brand__brand_name=brand), Q(category=self.kwargs.get('pk')))
         elif color:
             products = Product.objects.filter(Q(color=color), Q(category=self.kwargs.get('pk')))
+        # return super().get_context_data(
+        #     form=form, query=query, products=products, product_category=category_pk, same_color_products=same_color_products,
+        #     one_category_brands=one_category_brands, colors=colors
+        # )
+
         return super().get_context_data(
-            form=form, query=query, products=products, product_category=category_pk, same_color_products=same_color_products,
-            one_category_brands=one_category_brands, colors=colors
+            form=form, query=query, products=products, same_color_products=same_color_products,
+            one_category_brands=one_category_brands, colors=colors, product_category=category
         )
+
 
     def get_query_string(self):
         data = {}

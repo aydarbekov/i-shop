@@ -2,7 +2,7 @@
 {% load mathfilters %}
 {% block title %}{{ object.name }}{% endblock %}
 {% block content %}
-    <h4 style="margin-top: 40px; text-align: center">Заказ #{{ order.pk }}</h4>
+    <h4 style="margin-top: 40px; text-align: center">Заказ #{{ order_pay_num }}</h4>
     <br>
     {% csrf_token %}
     <table class="table table-hover">

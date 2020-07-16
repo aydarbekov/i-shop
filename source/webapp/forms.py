@@ -173,7 +173,7 @@ class BrandForm(forms.ModelForm):
 
 class FullSearchForm(forms.Form):
     text = forms.CharField(max_length=100, required=False, label='Поиск')
-    category = forms.ModelChoiceField(label='Категория', queryset=Category.objects.all(), required=True)
+    # category = forms.ModelChoiceField(label='Категория', queryset=Category.objects.all(), required=True)
 
     # def clean(self):
     #     super().clean()

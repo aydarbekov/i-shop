@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load format %}
 {% block content %}
     <h1 style="margin-top: 40px; text-align: center">Заказы</h1>
     <br>
@@ -18,7 +19,8 @@
         <tbody>
         {% for order in orders %}
             <tr style="text-align: center">
-                <td>{{ order.pk }}</td>
+{#                <td>{{ order.pk }}</td>#}
+                <td>{{ order.pk|format:"{:06}" }}</td>
                 <td>{{ order.address }}</td>
                 <td>{{ order.created_at|date:'d.m.Y H:i:s' }}</td>
                 <td>{{ order.total_sum }}</td>

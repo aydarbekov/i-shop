@@ -6,11 +6,11 @@
             {% if field.label == 'Поиск' %}
                 <input class="search form-control rounded-left" id="id_text" type="text" name="text" placeholder="Поиск" aria-label="Search">
             {% endif %}
-            {% if field.label == 'Категория' %}
-                <p class="m-0">
-                {{ field }}
-                </p>
-            {% endif %}
+{#            {% if field.label == 'Категория' %}#}
+{#                <p class="m-0">#}
+{#                {{ field }}#}
+{#                </p>#}
+{#            {% endif %}#}
         {% endfor %}
 {% for error in field.errors %}
     <p class="text-danger">{{ error }}</p>

@@ -3,6 +3,7 @@
 {% load mathfilters %}
 {% block title %}Мой профиль{% endblock %}
 {% load static %}
+{% load format %}
 {% block styles %}{% endblock %}
 {% block content %}
     <div class="container d-flex flex-wrap my-5">
@@ -90,7 +91,7 @@
                                     {% for price in order.orderproduct_set.all %}
                                     {% endfor %}
                                     <td class="table-products-name table-for-vertical">
-                                        заказ {{ order.pk }}
+                                        заказ {{ order.pk|format:"{:06}"  }}
                                     </td>
                                     <td class="table-price table-for-vertical">
                                         от {{ order.created_at }}
