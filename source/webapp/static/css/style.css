@@ -1058,7 +1058,7 @@ footer{
 	padding: 0;
 }
 .photo-back{
-	background-color: #F8F8F8;
+	background-color: white;
 	height: 310px;
 	align-items: center;
     display: flex;

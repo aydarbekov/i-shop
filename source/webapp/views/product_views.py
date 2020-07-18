@@ -13,6 +13,7 @@ from django.db.models import Q, Count
 from django.utils.http import urlencode
 from django.shortcuts import redirect
 import random
+import requests
 
 
 # class SearchView(FormView):
@@ -55,12 +56,15 @@ class IndexView(ListView):
         context['products'] = Product.objects.all()
         context['carouseles'] = Carousel.objects.all()
         context['main_carousel'] = MainCarousel.objects.all()
-        # data = csv.reader(open("/home/akyl/attractor/projects/i-shop/source/bumaga_i_bum_izdelia.csv"), delimiter='|')
-
+        # data = csv.reader(open("/home/akyl/attractor/projects/i-shop/source/kantstovary.csv"), delimiter='|')
+        # count = 7580
+        # row_count = 0
         # for row in data:
         #     if row[0] != 'Name':
         #         num_prod = Product.objects.filter(name=row[0]).count()
         #         print(num_prod)
+        #         row_count += 1
+        #         print(row_count)
         #         if num_prod == 0:
         #             product = Product()
         #             product.name = row[0]
@@ -75,12 +79,21 @@ class IndexView(ListView):
         #             imgs = row[2]
         #             imgs = imgs[1:-1]
         #             imgs = imgs.split(',')
+        #
+        #
         #             for img in imgs:
-        #                 # print(img)
-        #                 product.images.create(image=img[1:-1])
+        #                 p = requests.get((img.strip())[1:-1])
+        #
+        #                 out = open(f"uploads/product_images/kanc/{count}.jpg", "wb")
+        #                 out.write(p.content)
+        #                 out.close()
+        #                 product.images.create(image=f"product_images/kanc/{count}.jpg")
+        #                 print(count)
+        #                 count += 1
         #             specs = row[3]
         #             specs = specs[1:-1]
         #             specs = specs.split(',')
+        #
         #             for spec in specs:
         #                 print(spec)
         #                 spec = spec[2:-1]
@@ -91,8 +104,8 @@ class IndexView(ListView):
         #         else:
         #             continue
 
-        # search_form = FullSearchForm(self.request.GET or None)
-        # context['search_form'] = search_form
+        search_form = FullSearchForm(self.request.GET or None)
+        context['search_form'] = search_form
         return context
 
 

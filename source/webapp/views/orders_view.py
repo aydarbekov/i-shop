@@ -88,15 +88,13 @@ class OrderProductCreateView(CreateView):
         )
         return redirect('webapp:order_detail', self.kwargs.get('pk'))
 
-# PermissionRequiredMixin,
-class OrderProductUpdateView(UpdateView):
-    # permission_required = 'webapp.update_orderproduct'
-    # permission_denied_message = 'Permission denied'
+
+class OrderProductUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'webapp.update_orderproduct'
+    permission_denied_message = 'Permission denied'
     model = OrderProduct
     template_name = 'order/update_orderproduct.html'
     form_class = OrderProductForm
-
-
 
     def form_valid(self, form):
         self.object = form.save()
@@ -112,7 +110,6 @@ class OrderProductDeleteView(PermissionRequiredMixin, DeleteView):
     permission_denied_message = 'Permission denied'
 
     def delete(self, request, *args, **kwargs):
-        print(self.get_object())
         self.object = self.get_object()
         self.object.delete()
         return redirect('webapp:order_detail', self.kwargs.get('id'))
