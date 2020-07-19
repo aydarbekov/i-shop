@@ -13,7 +13,7 @@ from django.db.models import Q, Count
 from django.utils.http import urlencode
 from django.shortcuts import redirect
 import random
-import requests
+# import requests
 
 
 # class SearchView(FormView):

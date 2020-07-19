@@ -9,9 +9,9 @@ from webapp.forms import FullSearchForm
 from webapp.models import Category, Product, OrderProduct, DeliveryCost
 
 
+
 def category(request):
     return {"categories": Category.objects.all()}
-
 
 def cart_products(request):
     products = request.session.get('products', [])
