@@ -252,9 +252,9 @@ class ProductListView(ListView):
     context_object_name = 'products'
 
     def get_queryset(self):
-        category_pk = self.request.GET.get('category')
+        category_pk = self.kwargs.get('pk')
         if category_pk:
-            return Product.objects.filter(category_id=category_pk).order_by('price')
+            return Product.objects.filter(category_id=category_pk)
         else:
             return Product.objects.all()
 
@@ -477,7 +477,7 @@ class ProductSubCategoryListView(ListView):
         return site
 
     def get_queryset(self):
-        category_pk = self.request.GET.get('category')
+        category_pk = self.kwargs.get('pk')
         if category_pk:
             return Product.objects.filter(subcategory_id=category_pk)
         else:
@@ -488,6 +488,9 @@ class ProductSubCategoryListView(ListView):
         context['categories'] = Category.objects.all()
         context['product_category'] = Category.objects.get(subcategories=self.kwargs.get('pk'))
         # context['products'] = Product.objects.filter(subcategory_id=self.kwargs.get('pk'))
+        # subcategory = SubCategory.objects.get(category=self.kwargs.get('pk'))
+        # print(Category.objects.get(subcategories=self.kwargs.get('pk')), "THIS IS SUBCATEGORY")
+        context['category'] = self.kwargs.get('pk')
         context['colors'] = COLOR_CHOICES
         context['same_color_products'] = Product.objects.filter(category_id=self.kwargs.get('pk')).values_list('color', flat=None).annotate(Count('pk'))
         context['one_category_brands'] = Brand.objects.filter(products__category_id=self.kwargs.get('pk')).distinct()
