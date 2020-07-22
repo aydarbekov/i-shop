@@ -11,6 +11,8 @@
     <div class="category-detail-headline">
         {% if product_category.photo %}
             <img src="{{ product_category.photo.url }}" alt="">
+            {% else %}
+            <img src="{% static 'kanc.png' %}" alt="">
         {% endif %}
         <h4>{{ product_category }}</h4>
     </div>
