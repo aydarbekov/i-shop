@@ -41,14 +41,6 @@ class IndexView(ListView):
     template_name = 'index.html'
     model = Product
     context_object_name = "products"
-    # form_class = FullSearchForm
-    #
-    #
-    # def form_valid(self, form):
-    #     query = urlencode(form.cleaned_data)
-    #     # url = reverse('webapp:search_results') + '?' + query
-    #     url = reverse('webapp:search_results') + '?' + query
-    #     return redirect(url)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
@@ -256,6 +248,15 @@ class ProductDeleteView(UserPassesTestMixin, DeleteView):
 class ProductListView(ListView):
     template_name = 'products/products.html'
     model = Product
+    paginate_by = 15
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        category_pk = self.request.GET.get('category')
+        if category_pk:
+            return Product.objects.filter(category_id=category_pk).order_by('price')
+        else:
+            return Product.objects.all()
 
     def get_url(self):
         global site
@@ -267,7 +268,7 @@ class ProductListView(ListView):
         context['categories'] = Category.objects.all()
         context['product_in_category'] = ProductInCategory.objects.first()
         context['product_category'] = Category.objects.get(pk=self.kwargs.get('pk'))
-        context['products'] = Product.objects.filter(category_id=self.kwargs.get('pk'))
+        # context['products'] = Product.objects.filter(category_id=self.kwargs.get('pk'))
         context['colors'] = COLOR_CHOICES
         context['same_color_products'] = Product.objects.filter(category_id=self.kwargs.get('pk')).values_list('color', flat=None).annotate(Count('pk'))
         context['one_category_brands'] = Brand.objects.filter(products__category_id=self.kwargs.get('pk')).distinct()
@@ -467,17 +468,26 @@ class DeleteFromOffer(LoginRequiredMixin, View):
 class ProductSubCategoryListView(ListView):
     template_name = 'products/products.html'
     model = Product
+    paginate_by = 15
+    context_object_name = 'products'
 
     def get_url(self):
         global site
         site = self.request.path
         return site
 
+    def get_queryset(self):
+        category_pk = self.request.GET.get('category')
+        if category_pk:
+            return Product.objects.filter(subcategory_id=category_pk)
+        else:
+            return Product.objects.all()
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         context['categories'] = Category.objects.all()
         context['product_category'] = Category.objects.get(subcategories=self.kwargs.get('pk'))
-        context['products'] = Product.objects.filter(subcategory_id=self.kwargs.get('pk'))
+        # context['products'] = Product.objects.filter(subcategory_id=self.kwargs.get('pk'))
         context['colors'] = COLOR_CHOICES
         context['same_color_products'] = Product.objects.filter(category_id=self.kwargs.get('pk')).values_list('color', flat=None).annotate(Count('pk'))
         context['one_category_brands'] = Brand.objects.filter(products__category_id=self.kwargs.get('pk')).distinct()

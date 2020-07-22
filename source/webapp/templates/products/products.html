@@ -100,7 +100,8 @@
                         </ol>
                     </nav>
                     <div class="pagination ml-auto d-none d-lg-block">
-                        <p>Страница: 9 / 12 / 24</p>
+{#                        <p>Страница: 9 / 12 / 24</p>#}
+                        <p>{% include 'partial/pagination.html' %}</p>
                     </div>
                     <div class="sort-incategory-dropdown dropdown d-none d-lg-block">
                         <button class="btn btn-light dropdown-toggle ml-5" type="button" id="dropdownMenuButton"
@@ -190,6 +191,7 @@
                             </div>
                         {% endfor %}
                     </div>
+                <p>{% include 'partial/pagination.html' %}</p>
                 </div>
             </div>
         </div>
