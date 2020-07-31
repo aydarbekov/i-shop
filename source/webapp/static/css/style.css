@@ -392,6 +392,16 @@ body{
 	text-transform: uppercase;
 	margin-bottom: 0
 }
+.subcategory{
+	height: 32px;
+	align-items: center;
+	line-height: 32px;
+	display: flex;
+}
+.subcategory:hover{
+	background: #6CC1E4;
+	color: white;
+}
 .category-sort{
 	margin: 4% auto;
 	white-space: nowrap;

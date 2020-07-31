@@ -189,8 +189,8 @@
                         {#                        <li class="active"><a href="/blog/category/{{ category.slug }}?page={{ pag }}">{{ pag }}</a></li>#}
                         <div class="dropdown-menu mt-0 rounded-0" aria-labelledby="navbarDropdownMenuLink">
                             {% for category in categories %}
-                                <div class="dropdown-item dropright">
-                                    <a class="category nav-link d-flex align-items-center pl-0"
+                                <div class="dropdown-item dropright py-0">
+                                    <a class="category nav-link d-flex align-items-center pl-0 py-0"
                                        href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}"
                                        id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown"
                                        aria-haspopup="true" aria-expanded="false">
@@ -200,7 +200,7 @@
                                     </a>
                                     <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">
                                         {% for subcategory in category.subcategories.all %}
-                                            <a class="dropdown-item"
+                                            <a class="dropdown-item subcategory"
                                                href="{% url 'webapp:products_sub_category' subcategory.pk %}?category={{ subcategory.pk }}">{{ subcategory.sub_name }}</a>
                                         {% endfor %}
                                     </div>

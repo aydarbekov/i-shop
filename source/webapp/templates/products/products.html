@@ -144,7 +144,7 @@
                                             <div class="card-text d-flex flex-column align-items-center px-3">
                                                 <a href="{% url "webapp:product_detail" product.pk %}">
                                                     <h5 class="products" id="{{ product.pk }}">{{ product }}</h5></a>
-                                                <p>{{ product.category }}</p>
+                                                <p>{{ product.category }}{% if product.subcategory %}/{{ product.subcategory }}{% endif %}</p>
                                                 <p class="product-price" id="{{ product.price }}">{{ product.price }}
                                                     сом</p>
                                                 {% if product.discount %}
@@ -155,7 +155,7 @@
                                             </div>
                                             <div class="position-for-hidden position-relative">
                                                 <div class="hidden-part text-center">
-                                                    <p class="card-text">{{ product.description }}</p>
+{#                                                    <p class="card-text">{{ product.description }}</p>#}
                                                     <div class="promo-icons d-flex justify-content-center">
                                                         {% if request.user.is_authenticated %}
                                                             {% with favorite=product|is_favorite:request.user %}
