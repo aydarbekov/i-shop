@@ -144,6 +144,7 @@
                                             <div class="card-text d-flex flex-column align-items-center px-3">
                                                 <a href="{% url "webapp:product_detail" product.pk %}">
                                                     <h5 class="products" id="{{ product.pk }}">{{ product }}</h5></a>
+                                            <p>Артикул: {{ product.vendor_code }}</p>
                                             <p>{{ product.category }}{% if product.subcategory %}/{{ product.subcategory }}{% endif %}</p>
                                             {% if request.user.profile.type == 'client' %}
                                                 <p class="product-price" id="{{ product.price }}">{{ product.price }}
