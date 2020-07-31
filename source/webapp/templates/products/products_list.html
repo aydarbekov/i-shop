@@ -9,6 +9,7 @@
             </div>
             {#            {% endif %}#}
             <thead>
+                <p>{% include 'partial/pagination.html' %}</p>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Изображение</th>
@@ -61,6 +62,7 @@
             {% endfor %}
         </table>
 {#    </form>#}
+    <p>{% include 'partial/pagination.html' %}</p>
 {% endblock %}
 {% block scripts %}
     <script type="application/javascript" src="{% static "js/carousel_ajax.js" %}"></script>

@@ -75,9 +75,11 @@ class Product(models.Model):
     subcategory = models.ForeignKey(SubCategory, on_delete=models.SET_NULL, null=True, blank=True,
                                   related_name='product', verbose_name='Подраздел')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
+    trade_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Оптовая Цена', null=True, blank=True)
+    dealer_price= models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Дилерская Цена', null=True, blank=True)
     in_stock = models.BooleanField(verbose_name='В наличии', default=True)
     description = models.TextField(max_length=3000, verbose_name='Описание', null=True, blank=True)
-    color = models.CharField(max_length=20,choices=COLOR_CHOICES, default=COLOR_CHOICES[0][0], verbose_name="Цвет", null=True, blank=True)
+    color = models.CharField(max_length=20, choices=COLOR_CHOICES, default=COLOR_CHOICES[0][0], verbose_name="Цвет", null=True, blank=True)
     discount = models.IntegerField(verbose_name='Скидка', null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
     quantity = models.IntegerField(verbose_name='Количество')
@@ -85,6 +87,10 @@ class Product(models.Model):
     tags = models.ManyToManyField(Tag, blank=True, related_name='products', verbose_name='Теги')
     offer = models.BooleanField(verbose_name='Акция', default=False)
     views = models.IntegerField('Просмотры', default=0)
+    vendor_code = models.CharField(verbose_name='Артикул', max_length=40, null=True, blank=True)
+    code = models.CharField(verbose_name='Код товара', max_length=40, null=True, blank=True)
+    tnvd_code = models.CharField(verbose_name='Код ТНВД', max_length=40, null=True, blank=True)
+    bar_coded = models.CharField(verbose_name='Штрих код', max_length=40, null=True, blank=True)
 
     def __str__(self):
         return self.name
