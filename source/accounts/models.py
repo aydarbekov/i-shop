@@ -7,8 +7,8 @@ from webapp.models import DeliveryAddress
 PROFILE_TYPE_CHOICES = (
     ('client', 'Физическое лицо'),
     ('company', 'Юридическое лицо'),
-    ('seller', 'Продавец'),
-    ('admin', 'Администратор'),
+    ('dealer', 'Дилер'),
+    ('trader', 'Оптовик'),
 )
 
 SEX = (

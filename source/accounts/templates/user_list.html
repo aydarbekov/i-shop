@@ -41,7 +41,7 @@
 {#                {% if perms.accounts.view_user %}#}
 {#                    <td><a href="{% url 'accounts:user_detail' user.pk %}"> Details...</a>#}
 {#                {% endif %}#}
-                {% if user.profile.type == 'client' %}
+                {% if user.profile.type == 'client' or 'seller' %}
                     <td><a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success hiddenbutton">Edit</a></td>
                 {% endif %}
                 {% if user.profile.type == 'company' %}

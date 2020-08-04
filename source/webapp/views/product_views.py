@@ -289,8 +289,8 @@ class ProductALLListView(ListView):
     model = Product
     template_name = 'products/products_list.html'
     context_object_name = 'products'
-    # paginate_by = 5
-    # paginate_orphans = 1
+    paginate_by = 45
+    paginate_orphans = 1
 
 
 class ProductListGetView(ListView):
@@ -368,8 +368,14 @@ class SearchResultsView(ListView):
     model = Product
     template_name = 'products/products.html'
     context_object_name = 'products'
-    # paginate_by = 2
-    # paginate_orphans = 1
+    paginate_by = 15
+
+    def get_queryset(self):
+        text = self.request.GET.get('text')
+        if text:
+            return Product.objects.filter(Q(name__icontains=text))
+        else:
+            return Product.objects.all()
 
     def get_url(self):
         global site

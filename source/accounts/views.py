@@ -139,8 +139,6 @@ class UserDetailView(DetailView):
     context_object_name = 'user'
 
 
-
-
 class UserInfoChangeView(UpdateView):
     model = User
     # template_name = 'user_update.html'
@@ -193,7 +191,6 @@ class UserListView(ListView):
 
     def test_func(self):
         user = self.request.user
-        print(user)
         return user.is_staff
 
 
@@ -212,6 +209,7 @@ def register_staff_view(request):
                 email=form.cleaned_data['email'],
                 is_active=True  # user не активный до подтверждения email
             )
+            user.is_active = True
             user.set_password(form.cleaned_data['password'])
             user.save()
             profile = Profile(
@@ -221,8 +219,7 @@ def register_staff_view(request):
             )
             user.save()
             profile.save()
-
-            return reverse('accounts:user_detail', kwargs={"pk": user.pk})
+            return redirect('accounts:user_list')
         else:
             return render(request, 'register.html', {'form': form})
 

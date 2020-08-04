@@ -61,7 +61,13 @@
                                     <p class="product-price">{{ price_with_discount }} сом</p>
                                     <p class="price-without-discount">{{ product.price }} сом</p>
                                 {% else %}
-                                    <p class="product-price">{{ product.price }} сом</p>
+                                    {% if request.user.profile.type == 'client' %}
+                                        <p class="product-price">{{ product.price }} сом</p>
+                                        {% elif request.user.profile.type == 'trader' %}
+                                        <p class="product-price">{{ product.trade_price }} сом</p>
+                                        {% elif request.user.profile.type == 'dealer' %}
+                                        <p class="product-price">{{ product.dealer_price }} сом</p>
+                                        {% endif %}
                                 {% endif %}
                             </div>
                             <div class="name-price-share d-block d-sm-none">

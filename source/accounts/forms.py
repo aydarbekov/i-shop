@@ -10,6 +10,10 @@ from django.forms import TextInput
 STAFF_TYPE_CHOICES = (
     ('seller', 'Продавец'),
     ('admin', 'Администратор'),
+    ('client', 'Физическое лицо'),
+    ('company', 'Юридическое лицо'),
+    ('dealer', 'Дилер'),
+    ('trader', 'Оптоввик'),
 )
 
 
