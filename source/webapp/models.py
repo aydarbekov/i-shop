@@ -39,6 +39,7 @@ class SubCategory(models.Model):
     sub_name = models.CharField(max_length=50, verbose_name='Подраздел')
     category = models.ForeignKey(Category, related_name='subcategories', on_delete=models.PROTECT,
                                  verbose_name='Категория')
+    photo = models.ImageField(upload_to='subcategory_images', null=True, blank=True, verbose_name='Изображение')
 
     def __str__(self):
         return self.sub_name
