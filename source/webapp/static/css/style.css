@@ -1067,6 +1067,11 @@ footer{
 	color: #585858;
 	padding: 0;
 }
+/*.submenu{*/
+    /*top: 0;*/
+    /*left: 100%;*/
+    /*position: absolute;*/
+/*}*/
 .photo-back{
 	background-color: white;
 	height: 310px;

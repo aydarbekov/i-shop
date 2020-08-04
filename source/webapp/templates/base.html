@@ -168,7 +168,8 @@
                     <a class='burger-icons burger-profile ml-3' href="{% url 'accounts:user_update' request.user.pk %}">
                         <p>Мой профиль</p></a>
                 {% else %}
-                    <a class='burger-icons burger-profile ml-3' href="{% url 'accounts:login' %}"><p class="text-center">Войти</p></a>
+                    <a class='burger-icons burger-profile ml-3' href="{% url 'accounts:login' %}"><p
+                            class="text-center">Войти</p></a>
                 {% endif %}
                 <a class='burger-icons burger-compare ml-3' href="{% url 'webapp:compare_list' %}"><p>Сравнение цен</p>
                     <div class="circle-count d-flex align-items-center justify-content-center">{{ compare_products|length }}</div>
@@ -189,7 +190,7 @@
                         {#                        <li class="active"><a href="/blog/category/{{ category.slug }}?page={{ pag }}">{{ pag }}</a></li>#}
                         <div class="dropdown-menu mt-0 rounded-0" aria-labelledby="navbarDropdownMenuLink">
                             {% for category in categories %}
-                                <div class="dropdown-item dropright py-0">
+                                <div class="dropdown-item dropright py-0 position-relative">
                                     <a class="category nav-link d-flex align-items-center pl-0 py-0"
                                        href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}"
                                        id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown"
@@ -198,11 +199,20 @@
                                            class="category nav-link dropdown-toggle d-flex align-items-center pl-0">
                                             <p>{{ category.category_name }}</p></a>
                                     </a>
-                                    <div class="dropdown-menu m-0" aria-labelledby="navbarDropdownMenuLink2">
-                                        {% for subcategory in category.subcategories.all %}
-                                            <a class="dropdown-item subcategory"
-                                               href="{% url 'webapp:products_sub_category' subcategory.pk %}?category={{ subcategory.pk }}">{{ subcategory.sub_name }}</a>
-                                        {% endfor %}
+                                    <div class="row submenu dropdown-menu m-0"
+                                         aria-labelledby="navbarDropdownMenuLink2">
+                                        {% if category.photo and category.subcategories.all %}
+                                            <div class="d-inline-block" style="width: 250px">
+                                                {% for subcategory in category.subcategories.all %}
+                                                    <a class="dropdown-item subcategory"
+                                                       href="{% url 'webapp:products_sub_category' subcategory.pk %}?category={{ subcategory.pk }}">{{ subcategory.sub_name }}</a>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <img src="{{ category.photo.url }}"
+                                                     alt="...">
+                                            </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             {% endfor %}
