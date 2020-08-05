@@ -1,6 +1,7 @@
 from django.urls import path
 from webapp.views.brand_views import BrandListView, BrandCreateView, BrandUpdateView, BrandDeleteView
-from webapp.views.category_views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView
+from webapp.views.category_views import CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView, \
+    CategoryDetailView
 from webapp.views.product_in_category_views import ProductInCategoryCreateView, ProductInCategoryListView, \
     ProductInCategoryDeleteView, ProductInCategoryUpdateView, product_in_categoryadditem, product_in_categorydeleteitem
 from webapp.views.product_views import IndexView, ProductView, ProductCreateView, ProductUpdateView, ProductDeleteView, \
@@ -39,6 +40,7 @@ urlpatterns = [
     path('products_in_offer/', ProductsOfferListView.as_view(), name='offer_products'),
     path('ajax/load-subcategories/', load_subcategories, name='ajax_load_subcategories'),
     path('categories/', CategoryListView.as_view(), name='categories_list'),
+    path('category/<int:pk>/', CategoryDetailView.as_view(), name='category_detail'),
     path('category/add/', CategoryCreateView.as_view(), name='category_add'),
     path('category/change/<int:pk>/', CategoryUpdateView.as_view(), name='category_change'),
     path('category/delete/<int:pk>/', CategoryDeleteView.as_view(), name='category_delete'),

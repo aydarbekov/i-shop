@@ -192,10 +192,11 @@
                             {% for category in categories %}
                                 <div class="dropdown-item dropright py-0 position-relative">
                                     <a class="category nav-link d-flex align-items-center pl-0 py-0"
-                                       href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}"
+{#                                       href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}"#}
+                                       href="{% url 'webapp:category_detail' category.pk %}"
                                        id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown"
                                        aria-haspopup="true" aria-expanded="false">
-                                        <a href="{% url 'webapp:products_category' category.pk %}?category={{ category.pk }}"
+                                        <a href="{% url 'webapp:category_detail' category.pk %}"
                                            class="category nav-link dropdown-toggle d-flex align-items-center pl-0">
                                             <p>{{ category.category_name }}</p></a>
                                     </a>
