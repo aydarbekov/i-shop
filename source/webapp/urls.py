@@ -19,6 +19,7 @@ from .views.carousel_views import *
 from .views.compare_views import compareadditem, comparedeleteitem, CompareView, CompareChangeView
 from .views.main_carousel_views import MainCarouselListView, MainCarouselCreateView, MainCarouselUpdateView, MainCarouselDeleteView
 from .views.payment_views import PaymentView
+from .views.color_view import *
 
 app_name = 'webapp'
 
@@ -65,6 +66,10 @@ urlpatterns = [
     path('brand/add/', BrandCreateView.as_view(), name='brand_add'),
     path('brand/change/<int:pk>/', BrandUpdateView.as_view(), name='brand_change'),
     path('brand/delete/<int:pk>/', BrandDeleteView.as_view(), name='brand_delete'),
+    path('colors/', ColorListView.as_view(), name='colors_list'),
+    path('color/add/', ColorCreateView.as_view(), name='color_add'),
+    path('color/change/<int:pk>/', ColorUpdateView.as_view(), name='color_change'),
+    path('color/delete/<int:pk>/', ColorDeleteView.as_view(), name='color_delete'),
     path('carousel/', CarouselListView.as_view(), name='carousel_list'),
     path('carousel/add/', CarouselCreateView.as_view(), name='carousel_add'),
     path('carousel/change/<int:pk>/', CarouselUpdateView.as_view(), name='carousel_change'),
