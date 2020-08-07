@@ -1,6 +1,7 @@
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db import models
+from colorfield.fields import ColorField
 
 
 CITY_CHOICES = (
@@ -22,6 +23,9 @@ COLOR_CHOICES = (
     ('purple', 'Фиолетовый'),
 )
 
+class Color(models.Model):
+    color = ColorField(default='white')
+
 
 class Category(models.Model):
     category_name = models.CharField(max_length=50, verbose_name='Категория')
@@ -39,6 +43,7 @@ class SubCategory(models.Model):
     sub_name = models.CharField(max_length=50, verbose_name='Подраздел')
     category = models.ForeignKey(Category, related_name='subcategories', on_delete=models.PROTECT,
                                  verbose_name='Категория')
+    photo = models.ImageField(upload_to='subcategory_images', null=True, blank=True, verbose_name='Изображение')
 
     def __str__(self):
         return self.sub_name
@@ -79,7 +84,8 @@ class Product(models.Model):
     dealer_price= models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Дилерская Цена', null=True, blank=True)
     in_stock = models.BooleanField(verbose_name='В наличии', default=True)
     description = models.TextField(max_length=3000, verbose_name='Описание', null=True, blank=True)
-    color = models.CharField(max_length=20, choices=COLOR_CHOICES, default=COLOR_CHOICES[0][0], verbose_name="Цвет", null=True, blank=True)
+    # color = models.CharField(max_length=20, choices=COLOR_CHOICES, default=COLOR_CHOICES[0][0], verbose_name="Цвет", null=True, blank=True)
+    color = models.ForeignKey(Color, null=True, blank=True, on_delete=models.SET_NULL, related_name='colors', verbose_name='Цвет')
     discount = models.IntegerField(verbose_name='Скидка', null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
     quantity = models.IntegerField(verbose_name='Количество')

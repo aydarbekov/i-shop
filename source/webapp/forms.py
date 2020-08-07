@@ -1,5 +1,7 @@
+from colorfield.fields import ColorField
 from django import forms
 from django.core.exceptions import ValidationError
+from django.forms.widgets import TextInput
 from django.forms import ModelForm, inlineformset_factory
 from webapp.models import OrderProduct, Order, Product, Image, Category, SubCategory, Brand, DeliveryAddress, \
     Specifications
@@ -102,6 +104,9 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         exclude = ['in_stock', 'date', 'tags', 'views']
+        # widgets = {
+        #     'color': TextInput(attrs={'type': 'color'}),
+        # }
 
     def clean_tags(self):
         tags = self.cleaned_data.get('tags', '')

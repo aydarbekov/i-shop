@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from webapp.forms import CategoryForm
 from webapp.models import Category
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.shortcuts import redirect
 
 
@@ -58,3 +58,8 @@ class CategoryDeleteView(UserPassesTestMixin, DeleteView):
     def test_func(self):
         user = self.request.user
         return user.is_staff
+
+
+class CategoryDetailView(DetailView):
+    model= Category
+    template_name = 'category_detail.html'

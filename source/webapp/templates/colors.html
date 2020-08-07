@@ -3,42 +3,35 @@
     <form method="POST" action="#">
         {% csrf_token %}
         <table class="table" style="line-height: 15px">
-            <h3>Бренды</h3>
-            {#            {% if perms.webapp.add_category %}#}
+            <h3>Палитра цветов</h3>
             <div class="row">
-                <a href="{% url 'webapp:brand_add' %}" class="btn ml-5 my-3 hiddenbutton" style="background-color: #83B734; color: white">Добавить
-                    бренд</a>
+                <a href="{% url 'webapp:color_add' %}" class="btn ml-5 my-3 hiddenbutton" style="background-color: #83B734; color: white">Добавить
+                    цвет</a>
             </div>
-            {#            {% endif %}#}
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Изображение</th>
+                <th scope="col">Цвет</th>
                 <th scope="col">Название</th>
                 <th class="symbol hiddenbutton" scope="col">Редактировать</th>
                 <th class="symbol hiddenbutton" scope="col">Удалить</th>
             </tr>
             </thead>
-            {% for brand in brands %}
+            {% for color in colors %}
                 <tbody>
                 <tr style="background-color: lavender">
                     <th scope="row">{{ forloop.counter }}</th>
                     <td>
-                        {% if brand.photo %}
-                            <img src="{{ brand.photo.url }}" alt="..." style="width: 50px; height: 30px">
-                        {% else %}
-                            {% load static %}
-                            <img src="{% static "images/no_photo.jpg" %}" alt="no-photo"style="height: 30px;width: 30px">
-                        {% endif %}
+                        <div style="background-color: {{ color.color }}; width: 50px; height: 30px"></div>
                     </td>
-                    <td>{{ brand.brand_name }}</td>
+                    <td>{{ color.color }}</td>
                     {#                    {% if perms.webapp.change_category %}#}
                     <td class="symbol"><a class='update hiddenbutton'
-                                          href="{% url 'webapp:brand_change' brand.pk %}">&#x270E;</a></td>
+                                          href="{% url 'webapp:color_change' color.pk %}">&#x270E;</a></td>
                     {#                    {% endif %}#}
                     {#                    {% if perms.webapp.delete_category %}#}
                     <td class="symbol"><a class='delete hiddenbutton'
-                                          href="{% url 'webapp:brand_delete' brand.pk %}" style="color: red">&times;</a>
+                                          href="{% url 'webapp:color_delete' color.pk %}" style="color: red">&times;</a>
                     </td>
                     {#                    {% endif %}#}
                 </tr>
