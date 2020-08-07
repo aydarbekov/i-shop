@@ -24,7 +24,7 @@ class ColorListView(UserPassesTestMixin, ListView):
 class ColorCreateView(UserPassesTestMixin, CreateView):
     model = Color
     template_name = 'base_CRUD/add.html'
-    # form_class = BrandForm
+    fields = ['color']
 
     def test_func(self):
         user = self.request.user
@@ -37,7 +37,7 @@ class ColorCreateView(UserPassesTestMixin, CreateView):
 class ColorUpdateView(UserPassesTestMixin, UpdateView):
     model = Color
     template_name = 'base_CRUD/edit.html'
-    # fields = ['brand_name', 'photo']
+    fields = ['color']
     context_object_name = 'color'
 
     def get_success_url(self):

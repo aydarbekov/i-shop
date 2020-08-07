@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="POST" action="#">
+        {% csrf_token %}
+        <table class="table" style="line-height: 15px">
+            <h3>Палитра цветов</h3>
+            <div class="row">
+                <a href="{% url 'webapp:color_add' %}" class="btn ml-5 my-3 hiddenbutton" style="background-color: #83B734; color: white">Добавить
+                    цвет</a>
+            </div>
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Цвет</th>
+                <th scope="col">Название</th>
+                <th class="symbol hiddenbutton" scope="col">Редактировать</th>
+                <th class="symbol hiddenbutton" scope="col">Удалить</th>
+            </tr>
+            </thead>
+            {% for color in colors %}
+                <tbody>
+                <tr style="background-color: lavender">
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>
+                        <div style="background-color: {{ color.color }}; width: 50px; height: 30px"></div>
+                    </td>
+                    <td>{{ color.color }}</td>
+                    {#                    {% if perms.webapp.change_category %}#}
+                    <td class="symbol"><a class='update hiddenbutton'
+                                          href="{% url 'webapp:color_change' color.pk %}">&#x270E;</a></td>
+                    {#                    {% endif %}#}
+                    {#                    {% if perms.webapp.delete_category %}#}
+                    <td class="symbol"><a class='delete hiddenbutton'
+                                          href="{% url 'webapp:color_delete' color.pk %}" style="color: red">&times;</a>
+                    </td>
+                    {#                    {% endif %}#}
+                </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </form>
+{% endblock %}
