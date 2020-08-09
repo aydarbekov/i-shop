@@ -81,7 +81,7 @@ class Product(models.Model):
                                   related_name='product', verbose_name='Подраздел')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     trade_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Оптовая Цена', null=True, blank=True)
-    dealer_price= models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Дилерская Цена', null=True, blank=True)
+    dealer_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Дилерская Цена', null=True, blank=True)
     in_stock = models.BooleanField(verbose_name='В наличии', default=True)
     description = models.TextField(max_length=3000, verbose_name='Описание', null=True, blank=True)
     # color = models.CharField(max_length=20, choices=COLOR_CHOICES, default=COLOR_CHOICES[0][0], verbose_name="Цвет", null=True, blank=True)
