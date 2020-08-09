@@ -16,7 +16,7 @@
                             <img src="{% static "images/no_photo.jpg" %}" alt="no-photo" style="width: 10vw">
                         {% endif %}
                     </div>
-                    <div class="mt-4">{{ subcategory.sub_name }}<div class="d-inline" style="font-style: italic; color: gray">({{ subcategory.product.all|length }})</div></div>
+                    <a class="mt-4" style="color: black" href="{% url 'webapp:products_sub_category' subcategory.pk %}?category={{ subcategory.pk }}">{{ subcategory.sub_name }}<div class="d-inline" style="font-style: italic; color: gray">({{ subcategory.product.all|length }})</div></a>
                 </div>
             {% endfor %}
         </div>

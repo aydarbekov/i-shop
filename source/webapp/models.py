@@ -24,7 +24,15 @@ COLOR_CHOICES = (
 )
 
 class Color(models.Model):
+    name = models.CharField(max_length=50, verbose_name='Название',default='Белый')
     color = ColorField(default='white')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Цвет'
+        verbose_name_plural = 'Цвета'
 
 
 class Category(models.Model):

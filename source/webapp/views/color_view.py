@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
 # from webapp.forms import ColorForm
+from webapp.forms import ColorForm
 from webapp.models import Color
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
@@ -24,7 +25,7 @@ class ColorListView(UserPassesTestMixin, ListView):
 class ColorCreateView(UserPassesTestMixin, CreateView):
     model = Color
     template_name = 'base_CRUD/add.html'
-    fields = ['color']
+    form_class = ColorForm
 
     def test_func(self):
         user = self.request.user
@@ -37,7 +38,7 @@ class ColorCreateView(UserPassesTestMixin, CreateView):
 class ColorUpdateView(UserPassesTestMixin, UpdateView):
     model = Color
     template_name = 'base_CRUD/edit.html'
-    fields = ['color']
+    form_class = ColorForm
     context_object_name = 'color'
 
     def get_success_url(self):

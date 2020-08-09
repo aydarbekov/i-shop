@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.forms.widgets import TextInput
 from django.forms import ModelForm, inlineformset_factory
 from webapp.models import OrderProduct, Order, Product, Image, Category, SubCategory, Brand, DeliveryAddress, \
-    Specifications
+    Specifications, Color
 
 
 class CartOrderCreateForm(ModelForm):
@@ -104,9 +104,6 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         exclude = ['in_stock', 'date', 'tags', 'views']
-        # widgets = {
-        #     'color': TextInput(attrs={'type': 'color'}),
-        # }
 
     def clean_tags(self):
         tags = self.cleaned_data.get('tags', '')
@@ -207,3 +204,9 @@ class FullSearchForm(forms.Form):
     #     # if errors:
     #     #     raise ValidationError(errors)
     #     return data
+
+
+class ColorForm(forms.ModelForm):
+    class Meta:
+        model = Color
+        fields = ['name', 'color']
