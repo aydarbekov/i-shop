@@ -54,7 +54,6 @@ class CartView(ListView):
         cart_total = 0
         for pk, qty in totals.items():
             product = Product.objects.get(pk=int(pk))
-            total = 0
             if self.request.user.profile.type == 'dealer':
                 total = product.dealer_price * qty
             elif self.request.user.profile.type == 'trader':
