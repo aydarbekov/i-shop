@@ -19,7 +19,15 @@
         </thead>
         <tbody>
         <tr style="text-align: center">
-            <td>{{ order.first_name }} {{ order.last_name }}</td>
+            {% if user.profile.type == 'client' or 'seller' %}
+                    <td><a href="{% url 'accounts:user_update' order.user.pk %}">
+                        {{ order.first_name }} {{ order.last_name }}</a></td>
+                {% endif %}
+                {% if user.profile.type == 'company' %}
+                    <td><a href="{% url 'accounts:company_update' order.user.pk %}">
+                        {{ order.first_name }} {{ order.last_name }}</a></td>
+                {% endif %}
+{#            <td>{{ order.first_name }} {{ order.last_name }}</td>#}
             <td>{{ order.email }}</td>
             <td>{{ order.phone }}</td>
             <td>{{ order.address }}</td>
@@ -51,7 +59,8 @@
             <th scope="col">Товар</th>
             <th scope="col">Цена</th>
             <th scope="col">Количество</th>
-            <th scope="col">Сумма</th>
+            <th scope="col">Сумма Заказа</th>
+            <th scope="col">Статус</th>
             <th class="symbol hiddenbutton" scope="col">Изменить количество</th>
             <th class="symbol hiddenbutton" scope="col">Удалить товар</th>
         </tr>
@@ -68,6 +77,11 @@
                 {% with a=product_in_order.product.price b=product_in_order.amount %}
                     <td class="table-for-vertical">{{ a|mul:b }}</td>
                 {% endwith %}
+            {% if product_in_order.order.status %}
+            <td>{{ product_in_order.order.status }}</td>
+            {% else %}
+            <td>Неоплачено</td>
+            {% endif %}
                 <td class="symbol"><a class='update hiddenbutton'
                                       href="{% url 'webapp:order_product_update' product_in_order.pk order.pk%}">&#x270E;</a></td>
                 <td class="symbol"><a class='update hiddenbutton'
@@ -84,4 +98,38 @@
 {#        {% endfor %}#}
         </tbody>
     </table>
+        <table class="table table-hover">
+        <thead class="thead-light">
+        <tr style="text-align: center">
+            <th scope="col">Заказ</th>
+            <th scope="col">Оплаченная сумма</th>
+            <th scope="col">Дата оплаты</th>
+        </tr>
+        </thead>
+        <h4 style="margin-top: 40px; text-align: center">Оплаты</h4>
+        <tbody>
+        {% for payment in payments %}
+            <tr style="text-align: center">
+                <td>{{ payment.order.pk }}</td>
+                <td>{{ payment.payed }}</td>
+                <td>{{ payment.created_at }}</td>
+{#                <td>{{ product_in_order.order.pk }}</td>#}
+{#                <td>{{ product_in_order.product.pk }}</td>#}
+
+            </tr>
+                {% endfor %}
+{#        ddd#}
+{#        <td class="symbol"><a class='update hiddenbutton' #}
+{#                              href="{% url 'webapp:order_product_update' product_in_order.pk %}">Редактироввать</a></td>#}
+{#        {% for product in order.products.all %}#}
+{#        <p>{{ product.name }}</p>#}
+{#        <a href="{% url 'webapp:order_product_update' order.pk product.pk %}">Изменить количество</a>#}
+{#        <a href="{% url 'webapp:order_product_delete' order.pk product.pk %}">Удалить товар</a>#}
+{#        {% endfor %}#}
+        </tbody>
+    </table>
+    <h4>Итого оплачено: {{ payed }}</h4>
+    {% with a=order.total_sum b=payed %}
+        <h4>Остаток: {{ a|sub:b }}</h4>
+                {% endwith %}
 {% endblock %}
