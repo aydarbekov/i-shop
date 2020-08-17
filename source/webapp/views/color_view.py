@@ -4,11 +4,11 @@ from webapp.forms import ColorForm
 from webapp.models import Color
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 
 class ColorListView(UserPassesTestMixin, ListView):
-    template_name = 'colors.html'
+    template_name = 'color/colors.html'
     model = Color
     context_object_name = 'colors'
     page_kwarg = 'page'
@@ -24,7 +24,7 @@ class ColorListView(UserPassesTestMixin, ListView):
 
 class ColorCreateView(UserPassesTestMixin, CreateView):
     model = Color
-    template_name = 'base_CRUD/add.html'
+    template_name = 'color/colorpicker.html'
     form_class = ColorForm
 
     def test_func(self):
@@ -32,7 +32,7 @@ class ColorCreateView(UserPassesTestMixin, CreateView):
         return user.is_staff
 
     def get_success_url(self):
-        return redirect('webapp:colors_list')
+        return reverse('webapp:colors_list')
 
 
 class ColorUpdateView(UserPassesTestMixin, UpdateView):

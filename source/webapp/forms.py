@@ -1,7 +1,6 @@
-from colorfield.fields import ColorField
+from colorfield.widgets import ColorWidget
 from django import forms
 from django.core.exceptions import ValidationError
-from django.forms.widgets import TextInput
 from django.forms import ModelForm, inlineformset_factory
 from webapp.models import OrderProduct, Order, Product, Image, Category, SubCategory, Brand, DeliveryAddress, \
     Specifications, Color
@@ -207,6 +206,12 @@ class FullSearchForm(forms.Form):
 
 
 class ColorForm(forms.ModelForm):
+    # color = forms.CharField(widget=ColorPickerWidget)
+
     class Meta:
         model = Color
         fields = ['name', 'color']
+        widgets = {
+            'color': ColorWidget,}
+
+

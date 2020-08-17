@@ -4,7 +4,7 @@
     <p class="text-danger">{{ error }}</p>
 {% endfor %}
 {% for field in form %}
-    <div class="form-group">
+    <div class="form-group" {% if field.object %}style="background-color: {{ object }}" {% endif %}>
         <label for="{{ field.id_for_label }}" class="mr-3">{{ field.label }}</label>
         {% if field|field_type == 'imagefield' or field|field_type == 'filefield' %}
             {{ field }}

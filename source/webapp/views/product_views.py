@@ -178,7 +178,7 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
 
 class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     model = Product
-    template_name = 'base_CRUD/edit.html'
+    template_name = 'products/product_edit.html'
     form_class = ProductForm
     context_object_name = 'product'
     permission_required = 'webapp.change_product'

@@ -31,7 +31,7 @@ class BrandCreateView(UserPassesTestMixin, CreateView):
         return user.is_staff
 
     def get_success_url(self):
-        return redirect('webapp:brands_list')
+        return reverse('webapp:brands_list')
 
 
 class BrandUpdateView(UserPassesTestMixin, UpdateView):
