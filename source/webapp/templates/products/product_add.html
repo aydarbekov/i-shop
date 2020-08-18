@@ -3,8 +3,8 @@
 {% block content %}
     <h1 class="text-center">Создать</h1>
     <div class="container" style="width: 800px">
-    <form method="post" id="productForm" enctype="multipart/form-data">
-{#        <form method="post" id="productForm" data-subcategories-url="{% url 'webapp:ajax_load_subcategories' %}" enctype="multipart/form-data">#}
+        <form method="post" id="productForm" enctype="multipart/form-data">
+            {#        <form method="post" id="productForm" data-subcategories-url="{% url 'webapp:ajax_load_subcategories' %}" enctype="multipart/form-data">#}
             {% include "partial/form.html" %}
             {% include 'products/product_images_formset.html' %}
             {% include 'products/product_spec_formset.html' %}
@@ -28,8 +28,8 @@
                     var subcategories = data['subcategories'];
                     var id_list = [];
                     $('#productForm #id_subcategory').find('option').remove();
-                    for (var i in subcategories){
-                        let option = new Option(subcategories[i]['sub_name'],subcategories[i]['id']);
+                    for (var i in subcategories) {
+                        let option = new Option(subcategories[i]['sub_name'], subcategories[i]['id']);
                         $('#productForm #id_subcategory').append(option);
                     }
                 }

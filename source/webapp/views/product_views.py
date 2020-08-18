@@ -1,19 +1,14 @@
-import csv
-
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from webapp.forms import ProductForm, ImageFormset, FullSearchForm, SpecificationFormset
 from webapp.models import Product, Category, Carousel, Favorite, Tag, COLOR_CHOICES, Brand, MainCarousel, SubCategory, \
-    ProductInCategory
+    ProductInCategory, Color
 from django.db.models import Q, Count
-from django.utils.http import urlencode
-from django.shortcuts import redirect
 import random
-# import requests
 
 
 # class SearchView(FormView):
@@ -269,8 +264,8 @@ class ProductListView(ListView):
         context['product_in_category'] = ProductInCategory.objects.first()
         context['product_category'] = Category.objects.get(pk=self.kwargs.get('pk'))
         # context['products'] = Product.objects.filter(category_id=self.kwargs.get('pk'))
-        context['colors'] = COLOR_CHOICES
-        context['same_color_products'] = Product.objects.filter(category_id=self.kwargs.get('pk')).values_list('color', flat=None).annotate(Count('pk'))
+        context['colors'] = Color.objects.all
+        context['same_color_products'] = Product.objects.filter(category_id=self.kwargs.get('pk')).values_list('color', flat=None ).annotate(Count('pk'))
         context['one_category_brands'] = Brand.objects.filter(products__category_id=self.kwargs.get('pk')).distinct()
         brand = self.request.GET.get('brand')
         color = self.request.GET.get('color')
@@ -308,10 +303,9 @@ class ProductListGetView(ListView):
         context['product_in_category'] = ProductInCategory.objects.first()
         # context['product_category'] = Category.objects.get(pk=self.kwargs.get('pk'))
         # context['products'] = Product.objects.filter(category_id=self.kwargs.get('pk'))
-        context['colors'] = COLOR_CHOICES
-        # context['same_color_products'] = Product.objects.filter(category_id=self.kwargs.get('pk')).values_list('color', flat=None).annotate(Count('pk'))
+        context['colors'] = Color.objects.all()
+        context['same_color_products'] = Product.objects.all().values_list('color', flat=None).annotate(Count('pk'))
         # context['one_category_brands'] = Brand.objects.filter(products__category_id=self.kwargs.get('pk')).distinct()
-        context['same_color_products'] = COLOR_CHOICES
         context['one_category_brands'] = Brand.objects.all()
         news = self.request.GET.get('news')
         popular = self.request.GET.get('popular')
@@ -403,7 +397,7 @@ class SearchResultsView(ListView):
         category = Category.objects.get(pk=category_pk)
         brand = self.request.GET.get('brand')
         color = self.request.GET.get('color')
-        colors = COLOR_CHOICES
+        colors = Color.objects.all()
         # category_products = Product.objects.filter(pk=products)
         # print(self.kwargs.get('pk'))
         # product_category = Category.objects.get(pk=self.kwargs.get('pk'))
@@ -443,7 +437,7 @@ class ProductsOfferListView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         context['products'] = Product.objects.filter(Q(offer=True)|Q(discount__isnull=False))
-        context['colors'] = COLOR_CHOICES
+        context['colors'] = Color.objects.all()
         context['same_color_products'] = Product.objects.filter(Q(offer=True)|Q(discount__isnull=False)).values_list('color',                                                            flat=None).annotate(Count('pk'))
         context['one_category_brands'] = Brand.objects.filter(Q(products__offer=True)|Q(products__discount__isnull=False)).distinct()
         brand = self.request.GET.get('brand')
@@ -497,7 +491,7 @@ class ProductSubCategoryListView(ListView):
         # subcategory = SubCategory.objects.get(category=self.kwargs.get('pk'))
         # print(Category.objects.get(subcategories=self.kwargs.get('pk')), "THIS IS SUBCATEGORY")
         context['category'] = self.kwargs.get('pk')
-        context['colors'] = COLOR_CHOICES
+        context['colors'] = Color.objects.all()
         context['same_color_products'] = Product.objects.filter(category_id=self.kwargs.get('pk')).values_list('color', flat=None).annotate(Count('pk'))
         context['one_category_brands'] = Brand.objects.filter(products__category_id=self.kwargs.get('pk')).distinct()
         brand = self.request.GET.get('brand')

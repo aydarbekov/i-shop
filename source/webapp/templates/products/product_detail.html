@@ -159,16 +159,18 @@
                         </div>
                         <div class="color-category-tags mb-2">
                             <hr/>
+                            {% if product.color %}
                             <div class="color d-flex align-items-center">
                                 <p class="mr-3 mb-0">Цвета:</p>
                                 {% for prod in same_products.all %}
-                                    <a href="{% url 'webapp:product_detail' prod.pk %}?color={{ prod.color }}"
+                                    <a href="{% url 'webapp:product_detail' prod.pk %}?color={{ prod.color.pk }}"
                                        class="btn color-btn"
-                                       style="background:{{ prod.color }}; border-color:{% if prod.color == 'white' %}black{% endif %}">
+                                       style="background:{{ prod.color.color }}; border-color:{% if prod.color.color == '#FFFFFF' %}black{% endif %}">
                                         <p class="btns-inside-white"></p>
                                     </a>
                                 {% endfor %}
                             </div>
+                            {% endif %}
                             <div class="category d-flex">
                                 <p>Категория:</p>
                                 <p class="category-tag-name">{{ product.category }}</p>

@@ -11,7 +11,7 @@
     <div class="category-detail-headline">
         {% if product_category.photo %}
             <img src="{{ product_category.photo.url }}" alt="">
-            {% else %}
+        {% else %}
             <img src="{% static 'kanc.png' %}" alt="">
         {% endif %}
         <h4>{{ product_category }}</h4>
@@ -31,17 +31,32 @@
                     <hr/>
                     <div class="filter-color d-flex flex-column mb-5">
                         <p class="filter-header">Фильтр по цвету</p>
-                        {% for color in same_color_products %}
+                        {#                        {% for color in same_color_products %}#}
+                        {#                            {% if product_category %}#}
+                        {#                            <a href="{% url 'webapp:products_category' product_category.pk %}?color={{ color.0 }}"#}
+                        {#                               class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">#}
+                        {#                                <div class="category-filter-color-circle"#}
+                        {#                                     style="background-color:{{ color.0 }}; border-color: {% if color.0 == 'white' %}black{% endif %}"></div>#}
+                        {#                                {% for key, value in colors %}#}
+                        {#                                    {% if color.0 in key %}{{ value }}{% endif %}#}
+                        {#                                {% endfor %}#}
+                        {#                                <div class="category-filter-color-number">{{ color.1 }}</div>#}
+                        {#                            </a>#}
+                        {#                            {% endif %}#}
+                        {#                        {% endfor %}#}
+                        {% for color in same_color_products.all %}
                             {% if product_category %}
-                            <a href="{% url 'webapp:products_category' product_category.pk %}?color={{ color.0 }}"
-                               class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
-                                <div class="category-filter-color-circle"
-                                     style="background-color:{{ color.0 }}; border-color: {% if color.0 == 'white' %}black{% endif %}"></div>
-                                {% for key, value in colors %}
-                                    {% if color.0 in key %}{{ value }}{% endif %}
-                                {% endfor %}
-                                <div class="category-filter-color-number">{{ color.1 }}</div>
-                            </a>
+                                <a href="{% url 'webapp:products_category' product_category.pk %}?color={{ color.0 }}"
+                                   class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
+                                    {% for value in colors.values_list %}
+                                        {% if color.0 == value.0 %}
+                                            <div class="category-filter-color-circle"
+                                                 style="background:{{ value.2 }}; border:{% if value.2 != "#FFFFFF" %}none{% endif %}"></div>
+                                            {{ value.id }}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <div class="category-filter-color-number">{{ color.1 }}</div>
+                                </a>
                             {% endif %}
                         {% endfor %}
                     </div>
@@ -100,7 +115,7 @@
                         </ol>
                     </nav>
                     <div class="pagination ml-auto d-none d-lg-block">
-{#                        <p>Страница: 9 / 12 / 24</p>#}
+                        {#                        <p>Страница: 9 / 12 / 24</p>#}
                         <p>{% include 'partial/pagination.html' %}</p>
                     </div>
                     <div class="sort-incategory-dropdown dropdown d-none d-lg-block">
@@ -144,17 +159,21 @@
                                             <div class="card-text d-flex flex-column align-items-center px-3">
                                                 <a href="{% url "webapp:product_detail" product.pk %}">
                                                     <h5 class="products" id="{{ product.pk }}">{{ product }}</h5></a>
-                                            <p>{{ product.category }}{% if product.subcategory %}/{{ product.subcategory }}{% endif %}</p>
-                                            {% if request.user.profile.type == 'client' %}
-                                                <p class="product-price" id="{{ product.price }}">{{ product.price }}
-                                                    сом</p>
-                                            {% elif request.user.profile.type == 'trader' %}
-                                            <p class="product-price" id="{{ product.trade_price }}">{{ product.trade_price }}
-                                                    сом</p>
-                                            {% elif request.user.profile.type == 'dealer' %}
-                                            <p class="product-price" id="{{ product.dealer_price }}">{{ product.dealer_price }}
-                                                    сом</p>
-                                            {% endif %}
+                                                <p>{{ product.category }}{% if product.subcategory %}/
+                                                    {{ product.subcategory }}{% endif %}</p>
+                                                {% if request.user.profile.type == 'client' %}
+                                                    <p class="product-price"
+                                                       id="{{ product.price }}">{{ product.price }}
+                                                        сом</p>
+                                                {% elif request.user.profile.type == 'trader' %}
+                                                    <p class="product-price"
+                                                       id="{{ product.trade_price }}">{{ product.trade_price }}
+                                                        сом</p>
+                                                {% elif request.user.profile.type == 'dealer' %}
+                                                    <p class="product-price"
+                                                       id="{{ product.dealer_price }}">{{ product.dealer_price }}
+                                                        сом</p>
+                                                {% endif %}
                                                 {% if product.discount %}
                                                     <div class="discount-count d-flex align-items-center justify-content-center">
                                                         {{ product.discount }}%
@@ -163,7 +182,7 @@
                                             </div>
                                             <div class="position-for-hidden position-relative">
                                                 <div class="hidden-part text-center">
-{#                                                    <p class="card-text">{{ product.description }}</p>#}
+                                                    {#                                                    <p class="card-text">{{ product.description }}</p>#}
                                                     <div class="promo-icons d-flex justify-content-center">
                                                         {% if request.user.is_authenticated %}
                                                             {% with favorite=product|is_favorite:request.user %}
@@ -199,7 +218,7 @@
                             </div>
                         {% endfor %}
                     </div>
-                <p>{% include 'partial/pagination.html' %}</p>
+                    <p>{% include 'partial/pagination.html' %}</p>
                 </div>
             </div>
         </div>

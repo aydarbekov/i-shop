@@ -90,7 +90,6 @@ class ManualOrderForm(ModelForm):
 
 
 class OrderProductForm(ModelForm):
-
     class Meta:
         model = OrderProduct
         fields = ['product', 'amount']
@@ -206,8 +205,6 @@ class FullSearchForm(forms.Form):
 
 
 class ColorForm(forms.ModelForm):
-    # color = forms.CharField(widget=ColorPickerWidget)
-
     class Meta:
         model = Color
         fields = ['name', 'color']

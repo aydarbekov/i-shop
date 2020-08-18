@@ -16,10 +16,11 @@
                 <th scope="col">Название</th>
                 <th scope="col">Категория</th>
                 <th scope="col">Бренд</th>
-                <th scope="col">Количество</th>
+                <th scope="col">Цвет</th>
+                <th scope="col">Кол-во</th>
                 <th class="symbol hiddenbutton" scope="col">Добавить в Карусель</th>
                 <th class="symbol hiddenbutton" scope="col">Акции</th>
-                <th class="symbol hiddenbutton" scope="col">Редактировать</th>
+                <th class="symbol hiddenbutton" scope="col">Редак-ть</th>
                 <th class="symbol hiddenbutton" scope="col">Удалить</th>
             </tr>
             </thead>
@@ -38,6 +39,7 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.category }}</td>
                     <td>{{ product.brand }}</td>
+                    <td style="background-color: {{ product.color.color }}">{{ product.color.name }}</td>
                     <td>{{ product.quantity }}</td>
                     <td>
 {#                        {% if  not product.carousel_product.all %}#}
