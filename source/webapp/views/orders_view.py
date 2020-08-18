@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
-from webapp.models import Order, OrderProduct, Product
+from webapp.models import Order, OrderProduct, Product, TerminalPayment
 from webapp.forms import OrderProductForm, ManualOrderForm
 from django.urls import reverse_lazy
 
@@ -68,6 +68,11 @@ class OrderDetailView(PermissionRequiredMixin, DetailView):
         for i in self.object.products.all():
             summary_price += i.price
         context['summary_price'] = summary_price
+        context['payments'] = TerminalPayment.objects.all().filter(order=self.object)
+        payed_price = 0
+        for i in TerminalPayment.objects.all().filter(order=self.object):
+            payed_price += i.payed
+        context['payed'] = payed_price
         context['order_pay_num'] = '{:06}'.format(self.kwargs.get('pk'))
         return context
 
