@@ -150,4 +150,6 @@ EMAIL_HOST_USER = 'noreply.kanctorg.kg@gmail.com'  # ваш user
 EMAIL_HOST_PASSWORD = 'kanctorg'  # ваш пароль
 EMAIL_PORT = 587
 API_TOKEN = '27c15be3-4304-4a9c-9755-1a7cf77ddb76'
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
