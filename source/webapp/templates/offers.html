@@ -41,6 +41,19 @@
 {#                                <div class="category-filter-color-number">{{ color.1 }}</div>#}
 {#                            </a>#}
 {#                        {% endfor %}#}
+                        {% for color in same_color_products.all %}
+                                <a href="{% url 'webapp:offer_products' %}?color={{ color.0 }}"
+                                   class="btn btn-light d-flex align-items-center pl-0 category-filter-color-btn">
+                                    {% for value in colors.values_list %}
+                                        {% if color.0 == value.0 %}
+                                            <div class="category-filter-color-circle"
+                                                 style="background:{{ value.2 }}; border:{% if value.2 != "#FFFFFF" %}none{% endif %}"></div>
+                                            {{ value.id }}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <div class="category-filter-color-number">{{ color.1 }}</div>
+                                </a>
+                        {% endfor %}
                     </div>
                     <hr/>
                     <div class="filter-brand mb-5">
